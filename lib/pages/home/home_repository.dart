@@ -27,8 +27,7 @@ class HomeRepository {
       List<ChannelInfo> _itemList = [];
 
       if (response.statusCode == 200) {
-        final channelListChunk =
-            json.decode(utf8.decode(response.bodyBytes))['result'];
+        final channelListChunk = jsonDecode(response.body)['result'];
         for (List<dynamic> channelList in channelListChunk) {
           for (Map channel in channelList) {
             var info = ChannelInfo.fromJson(channel);

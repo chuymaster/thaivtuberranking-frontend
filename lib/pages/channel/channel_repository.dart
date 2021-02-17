@@ -56,7 +56,7 @@ class ChannelRepository {
       final response = await http.get(url);
 
       if (response.statusCode == 200) {
-        final data = json.decode(utf8.decode(response.bodyBytes))['result'];
+        final data = jsonDecode(response.body)['result'];
         return Result<ChannelChartData>.success(
             ChannelChartData.fromJson(data));
       } else {
