@@ -35,7 +35,8 @@ class VideoRankingRepository {
       List<VideoRanking> _itemList = [];
 
       if (response.statusCode == 200) {
-        final rankingList = jsonDecode(response.body)['result'];
+        final rankingList =
+            json.decode(utf8.decode(response.bodyBytes))['result'];
         for (Map ranking in rankingList) {
           var info = VideoRanking.fromJson(ranking);
           _itemList.add(info);
