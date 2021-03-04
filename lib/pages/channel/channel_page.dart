@@ -21,7 +21,7 @@ import 'package:transparent_image/transparent_image.dart';
 import 'package:oktoast/oktoast.dart';
 
 class ChannelPage extends StatefulWidget {
-  ChannelPage({Key key, this.channelId}) : super(key: key);
+  ChannelPage({Key? key, required this.channelId}) : super(key: key);
 
   static const String route = '/channel';
 
@@ -32,12 +32,12 @@ class ChannelPage extends StatefulWidget {
 }
 
 class _ChannelPageState extends State<ChannelPage> {
-  ChannelInfo _channelInfo;
-  ChannelChartData _channelChartData;
+  ChannelInfo? _channelInfo;
+  ChannelChartData? _channelChartData;
   ChannelRepository _repository = ChannelRepository();
 
-  double width;
-  double height;
+  late double width;
+  late double height;
 
   @override
   void initState() {
@@ -99,7 +99,7 @@ class _ChannelPageState extends State<ChannelPage> {
                       // FIXME:- Re-enable this view
                       // _buildAnnotationText('กราฟความเปลี่ยนแปลง'),
                       // _buildChartDataView(),
-                      AdsView(),
+                      // AdsView(),
                     ],
                   ),
                   constraints: CustomConstraints.pageBoxConstraints)));

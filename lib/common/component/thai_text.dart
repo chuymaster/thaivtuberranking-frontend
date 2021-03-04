@@ -13,8 +13,8 @@ class ThaiText extends StatelessWidget {
   static const String sarabun = 'Sarabun';
 
   ThaiText(
-      {Key key,
-      this.text,
+      {Key? key,
+      required this.text,
       this.fontWeight = FontWeight.normal,
       this.textHeight = 1.35, // จำเป็นต้องเซ็ตความสูงเพื่อให้ภาษาไทยไม่ตกร่อง
       this.color = Colors.black,

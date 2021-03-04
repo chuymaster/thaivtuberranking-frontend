@@ -18,7 +18,8 @@ class AddPage extends StatefulWidget {
 
   final List<String> vTuberChannelIdList;
 
-  const AddPage({Key key, this.vTuberChannelIdList}) : super(key: key);
+  const AddPage({Key? key, required this.vTuberChannelIdList})
+      : super(key: key);
   @override
   _AddPageState createState() => _AddPageState();
 }
@@ -72,10 +73,12 @@ class _AddPageState extends State<AddPage> {
             Radio(
               value: OriginType.OriginalOnly,
               groupValue: _currentOriginType,
-              onChanged: (OriginType value) {
-                setState(() {
-                  _currentOriginType = value;
-                });
+              onChanged: (OriginType? value) {
+                if (value != null) {
+                  setState(() {
+                    _currentOriginType = value;
+                  });
+                }
               },
             ),
             ThaiText(
@@ -89,10 +92,12 @@ class _AddPageState extends State<AddPage> {
             Radio(
               value: OriginType.All,
               groupValue: _currentOriginType,
-              onChanged: (OriginType value) {
-                setState(() {
-                  _currentOriginType = value;
-                });
+              onChanged: (OriginType? value) {
+                if (value != null) {
+                  setState(() {
+                    _currentOriginType = value;
+                  });
+                }
               },
             ),
             ThaiText(
@@ -106,10 +111,13 @@ class _AddPageState extends State<AddPage> {
   }
 
   void _validateInputText() {
-    setState(() {
-      _isValidated = _formKey.currentState.validate();
-      _isSubmitButtonDisabled = !_formKey.currentState.validate();
-    });
+    final currentState = _formKey.currentState;
+    if (currentState != null) {
+      setState(() {
+        _isValidated = currentState.validate();
+        _isSubmitButtonDisabled = !currentState.validate();
+      });
+    }
   }
 
   Widget _buildRequestAddChannelBox() {
@@ -119,17 +127,18 @@ class _AddPageState extends State<AddPage> {
       decoration: InputDecoration(hintText: "UCqhhWjpw23dWhJ5rRwCCrMA"),
       onChanged: (text) => {_validateInputText()},
       validator: (value) {
-        if (value.isEmpty) {
-          return 'โปรดกรอกแชนแนล ID';
-        } else if (!value.startsWith('UC')) {
-          return 'แชนแนล ID ต้องขึ้นต้นด้วย UC';
-        } else if (value.length != channelIdLength) {
-          return 'แชนแนล ID ต้องมีความยาว $channelIdLength ตัวอักษร';
-        } else if (widget.vTuberChannelIdList.contains(value)) {
-          return AddErrorMessage.alreadyAdded;
-        } else {
-          return null;
+        if (value != null) {
+          if (value.isEmpty) {
+            return 'โปรดกรอกแชนแนล ID';
+          } else if (!value.startsWith('UC')) {
+            return 'แชนแนล ID ต้องขึ้นต้นด้วย UC';
+          } else if (value.length != channelIdLength) {
+            return 'แชนแนล ID ต้องมีความยาว $channelIdLength ตัวอักษร';
+          } else if (widget.vTuberChannelIdList.contains(value)) {
+            return AddErrorMessage.alreadyAdded;
+          }
         }
+        return null;
       },
       controller: _textEditingController,
     );
@@ -147,7 +156,7 @@ class _AddPageState extends State<AddPage> {
               setState(() {
                 _isSubmitButtonDisabled = true;
               });
-              if (_formKey.currentState.validate()) {
+              if (_formKey.currentState?.validate() ?? false) {
                 _requestAddChannel(_textEditingController.text);
               } else {
                 setState(() {
