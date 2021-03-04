@@ -96,8 +96,9 @@ class _ChannelPageState extends State<ChannelPage> {
                       Padding(padding: EdgeInsets.all(8)),
                       // _buildAnnotationText('วิดีโอล่าสุด'),
                       // _buildYoutubeView(),
-                      _buildAnnotationText('กราฟความเปลี่ยนแปลง'),
-                      _buildChartDataView(),
+                      // FIXME:- Re-enable this view
+                      // _buildAnnotationText('กราฟความเปลี่ยนแปลง'),
+                      // _buildChartDataView(),
                       AdsView(),
                     ],
                   ),
