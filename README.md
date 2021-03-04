@@ -21,6 +21,10 @@ A Flutter Web client application for [Thai VTuber Ranking](https://vtuber.chuysa
 - Production environment
  `flutter run -d chrome --dart-define=DEPLOY_ENVIRONMENT=Production --web-renderer html`
 
+ ## API Document
+ 
+ See https://github.com/chuymaster/thai-vtuber-ranking-docs
+
 ## Automated Deployment
 
 - Auto trigger deploy to Netlify when `main` branch is updated. Host: https://vtuber.chuysan.com/#/
