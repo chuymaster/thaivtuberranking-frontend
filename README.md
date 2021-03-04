@@ -2,15 +2,15 @@
 
 # thaivtuberranking-frontend
 
-A Flutter Web project. [Project Portal](https://www.notion.so/Thai-VTuber-Ranking-79d4f27e65214eab9fec4461f83baa77)
+A Flutter Web client application for [Thai VTuber Ranking](https://vtuber.chuysan.com/) website.
 
-## Web Client
+![](docs/repository-open-graph.png)
 
-### Setup
+## Setup
 
-- Flutter Web https://flutter.dev/docs/get-started/web
+- See Documentation on Flutter site https://flutter.dev/docs/get-started/web
 
-### Flutter Web Local Test
+## Local Command
 
 - Debug environment
 `flutter run -d chrome --web-renderer html`
@@ -21,22 +21,27 @@ A Flutter Web project. [Project Portal](https://www.notion.so/Thai-VTuber-Rankin
 - Production environment
  `flutter run -d chrome --dart-define=DEPLOY_ENVIRONMENT=Production --web-renderer html`
 
-### Frontend Applications
+## Automated Deployment
+
 - Auto trigger deploy to Netlify when `main` branch is updated. Host: https://vtuber.chuysan.com/#/
 - Auto trigger deploy to Netlify when `develop` branch is updated. Host: https://vtuber-qa-chuysan.netlify.app/#/
 
-## Netlify Build Command
+### Netlify Build Command
 
 Build commands that run when the branch is updated are listed below.
 
-### QA Environment
+- QA Environment
 
 ```
 if cd flutter; then git pull && cd ..; else git clone https://github.com/flutter/flutter.git; fi && flutter/bin/flutter channel stable && flutter/bin/flutter upgrade && flutter/bin/flutter config --enable-web && flutter/bin/flutter build web --release --dart-define=DEPLOY_ENVIRONMENT=Qa --web-renderer html && sh update_html.sh
 ```
 
-### Production Environment
+- Production Environment
 
 ```
 if cd flutter; then git pull && cd ..; else git clone https://github.com/flutter/flutter.git; fi && flutter/bin/flutter channel stable && flutter/bin/flutter upgrade && flutter/bin/flutter config --enable-web && flutter/bin/flutter build web --release --dart-define=DEPLOY_ENVIRONMENT=Production --web-renderer html && sh update_html.sh
 ```
+
+# Contributing
+
+I am still learning how to develop in Flutter. Feel free to raise an issue, create a pull request or contact me at [@chuymaster](https://twitter.com/chuymaster) 😄
