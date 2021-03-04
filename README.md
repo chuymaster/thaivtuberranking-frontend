@@ -13,14 +13,30 @@ A Flutter Web project. [Project Portal](https://www.notion.so/Thai-VTuber-Rankin
 ### Flutter Web Local Test
 
 - Debug environment
-`flutter run -d chrome`
+`flutter run -d chrome --web-renderer html`
 
 - QA environment 
- `flutter run -d chrome --dart-define=DEPLOY_ENVIRONMENT=Qa`
+ `flutter run -d chrome --dart-define=DEPLOY_ENVIRONMENT=Qa --web-renderer html`
 
 - Production environment
- `flutter run -d chrome --dart-define=DEPLOY_ENVIRONMENT=Production`
+ `flutter run -d chrome --dart-define=DEPLOY_ENVIRONMENT=Production --web-renderer html`
 
 ### Frontend Applications
 - Auto trigger deploy to Netlify when `main` branch is updated. Host: https://vtuber.chuysan.com/#/
 - Auto trigger deploy to Netlify when `develop` branch is updated. Host: https://vtuber-qa-chuysan.netlify.app/#/
+
+## Netlify Build Command
+
+Build commands that run when the branch is updated are listed below.
+
+### QA Environment
+
+```
+if cd flutter; then git pull && cd ..; else git clone https://github.com/flutter/flutter.git; fi && flutter/bin/flutter channel stable && flutter/bin/flutter upgrade && flutter/bin/flutter config --enable-web && flutter/bin/flutter build web --release --dart-define=DEPLOY_ENVIRONMENT=Qa --web-renderer html && sh update_html.sh
+```
+
+### Production Environment
+
+```
+if cd flutter; then git pull && cd ..; else git clone https://github.com/flutter/flutter.git; fi && flutter/bin/flutter channel stable && flutter/bin/flutter upgrade && flutter/bin/flutter config --enable-web && flutter/bin/flutter build web --release --dart-define=DEPLOY_ENVIRONMENT=Production --web-renderer html && sh update_html.sh
+```
