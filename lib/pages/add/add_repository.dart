@@ -5,8 +5,8 @@ import 'package:thaivtuberranking/services/result.dart';
 
 class AddRepository {
   Future<Result> sendAddChannelRequest(String channelId, String type) async {
-    String addChannelRequestUrl =
-        "https://us-central1-thaivtuberranking.cloudfunctions.net/postChannelRequest";
+    Uri addChannelRequestUrl = Uri.parse(
+        "https://us-central1-thaivtuberranking.cloudfunctions.net/postChannelRequest");
     try {
       Response response = await http.post(addChannelRequestUrl,
           body: {'channel_id': channelId, 'type': type});

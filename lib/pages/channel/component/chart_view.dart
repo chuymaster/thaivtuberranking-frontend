@@ -7,7 +7,11 @@ class ChartView extends StatelessWidget {
   final double width;
   final double height;
 
-  const ChartView({Key key, this.width, this.height, this.channelChartData})
+  const ChartView(
+      {required Key key,
+      required this.width,
+      required this.height,
+      required this.channelChartData})
       : super(key: key);
 
   @override

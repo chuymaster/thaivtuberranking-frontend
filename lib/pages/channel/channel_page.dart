@@ -8,9 +8,7 @@ import 'package:thaivtuberranking/common/component/custom_constraints.dart';
 import 'package:thaivtuberranking/common/component/error_dialog.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
 import 'package:thaivtuberranking/pages/channel/channel_repository.dart';
-import 'package:thaivtuberranking/pages/channel/component/ads_view.dart';
 import 'package:thaivtuberranking/pages/channel/component/chart_view.dart';
-import 'package:thaivtuberranking/pages/channel/component/youtube_view.dart';
 import 'package:thaivtuberranking/pages/channel/entity/channel_chart_data.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/result.dart';
@@ -106,10 +104,7 @@ class _ChannelPageState extends State<ChannelPage> {
       body = CenterCircularProgressIndicator();
     }
 
-    String title = "";
-    if (_channelInfo != null) {
-      title = _channelInfo.channelName;
-    }
+    String title = _channelInfo?.channelName ?? "";
 
     return Scaffold(
       appBar: PreferredSize(
