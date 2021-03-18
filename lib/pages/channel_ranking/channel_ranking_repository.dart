@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ChannelRankingRepository {
-  SharedPreferences prefs;
+  late SharedPreferences prefs;
 
   static const _filterKey = 'filter';
 

@@ -3,8 +3,8 @@ import 'package:firebase_analytics/observer.dart';
 import 'package:thaivtuberranking/services/environment_setting.dart';
 
 class Analytics {
-  final FirebaseAnalytics analytics;
-  final FirebaseAnalyticsObserver observer;
+  final FirebaseAnalytics? analytics;
+  final FirebaseAnalyticsObserver? observer;
 
   Analytics({this.analytics, this.observer});
 
@@ -13,7 +13,7 @@ class Analytics {
     if (EnvironmentSetting.shared.isReleaseMode &&
         EnvironmentSetting.shared.deployEnvironment ==
             DeployEnvironment.Production) {
-      await analytics.logEvent(name: name, parameters: parameters);
+      await analytics?.logEvent(name: name, parameters: parameters);
     }
   }
 }

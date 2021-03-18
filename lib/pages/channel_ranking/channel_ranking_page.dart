@@ -16,7 +16,8 @@ import '../../main.dart';
 class ChannelRankingPage extends StatefulWidget {
   final List<ChannelInfo> channelList;
 
-  const ChannelRankingPage({Key key, this.channelList}) : super(key: key);
+  const ChannelRankingPage({Key? key, required this.channelList})
+      : super(key: key);
 
   @override
   _ChannelRankingPageState createState() => _ChannelRankingPageState();
@@ -32,9 +33,9 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
   final int _itemPerPage = 20;
 
   List<Tab> _tabBarTabs = [];
-  int _tabBarInitialIndex;
+  late int _tabBarInitialIndex;
 
-  TabController _tabController;
+  late TabController _tabController;
   ScrollController _scrollController = ScrollController();
 
   final List<FilterItem> filterItems = <FilterItem>[
@@ -133,8 +134,8 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
       length: _tabBarTabs.length,
       child: Builder(
         builder: (BuildContext context) {
-          final TabController tabController = DefaultTabController.of(context);
-          tabController.addListener(() {
+          final TabController? tabController = DefaultTabController.of(context);
+          tabController?.addListener(() {
             if (!tabController.indexIsChanging) {
               FilterItem newItem = filterItems[tabController.index];
               MyApp.analytics.sendAnalyticsEvent(

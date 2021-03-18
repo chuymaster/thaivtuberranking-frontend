@@ -16,9 +16,9 @@ void main() {
 class MyApp extends StatelessWidget {
   static String title = "จัดอันดับ VTuber ไทย";
 
-  static FirebaseAnalytics _analytics;
-  static FirebaseAnalyticsObserver _observer;
-  static Analytics analytics;
+  static FirebaseAnalytics? _analytics;
+  static FirebaseAnalyticsObserver? _observer;
+  static late Analytics analytics;
 
   // Init Analytics object only on release mode
   initAnalytics() {

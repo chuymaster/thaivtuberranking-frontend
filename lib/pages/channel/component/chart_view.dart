@@ -8,7 +8,7 @@ class ChartView extends StatelessWidget {
   final double height;
 
   const ChartView(
-      {required Key key,
+      {Key? key,
       required this.width,
       required this.height,
       required this.channelChartData})
