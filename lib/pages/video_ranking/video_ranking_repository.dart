@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:async';
-import 'dart:html';
 import 'package:http/http.dart' as http;
 import 'package:thaivtuberranking/services/result.dart';
 
