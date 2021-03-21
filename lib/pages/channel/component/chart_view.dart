@@ -1,3 +1,4 @@
+import 'package:easy_web_view/easy_web_view.dart';
 import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/pages/channel/entity/channel_chart_data.dart';
 
@@ -16,7 +17,14 @@ class ChartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(width: width, height: height, child: Container());
+    var webView = EasyWebView(
+      src: _getChartHTML(width, height),
+      isHtml: true,
+      key: UniqueKey(),
+      onLoaded: () {},
+    );
+    final padding = 16;
+    return SizedBox(width: width, height: height + padding, child: webView);
   }
 
   String _getChartHTML(double width, double height) {
