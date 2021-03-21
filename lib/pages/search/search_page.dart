@@ -1,4 +1,4 @@
-import 'package:flappy_search_bar/flappy_search_bar.dart';
+// import 'package:flappy_search_bar/flappy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/common/component/center_circular_progress_indicator.dart';
 import 'package:thaivtuberranking/common/component/error_dialog.dart';
@@ -25,9 +25,10 @@ class SearchPage extends StatefulWidget {
   _SearchPageState createState() => _SearchPageState();
 }
 
+// FIXME:- Enable when null-safety is supported
 class _SearchPageState extends State<SearchPage> {
-  final SearchBarController<ChannelInfo> _searchBarController =
-      SearchBarController();
+  // final SearchBarController<ChannelInfo> _searchBarController =
+  //     SearchBarController();
   final _repository = HomeRepository();
   var _isLoading = false;
 
@@ -74,56 +75,56 @@ class _SearchPageState extends State<SearchPage> {
         ),
         body: _isLoading
             ? CenterCircularProgressIndicator()
-            : _buildSearchWidget());
+            : Container()); // FIXME:- Enable _buildSearchWidget() when null-safety is supported;
   }
 
-  Widget _buildSearchWidget() {
-    _searchBarController.sortList((a, b) {
-      return a.totalSubscribers.compareTo(b.totalSubscribers);
-    });
+  // Widget _buildSearchWidget() {
+  //   _searchBarController.sortList((a, b) {
+  //     return a.totalSubscribers.compareTo(b.totalSubscribers);
+  //   });
 
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: SearchBar<ChannelInfo>(
-          searchBarController: _searchBarController,
-          placeHolder: Text("พิมพ์ชื่อแชนแนลสองตัวอักษรขึ้นไป"),
-          cancellationWidget: Text("ยกเลิก"),
-          emptyWidget: Text("ไม่พบผลลัพธ์"),
-          minimumChars: 2,
-          onSearch: _search,
-          onItemFound: (ChannelInfo channelInfo, int index) {
-            return RankingListTile(
-              item: channelInfo,
-              displayRank: 0,
-              subscribers: channelInfo.getSubscribers(),
-              views: channelInfo.getViews(),
-              published: channelInfo.getPublishedAt(),
-              updated: channelInfo.getLastPublishedVideoAtString(),
-              onTap: (channelInfo) {
-                Navigator.pushNamed(context, ChannelPage.route,
-                    arguments: channelInfo.channelId);
-                MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.view_detail, {
-                  'channel_id': channelInfo.channelId,
-                  'channel_name': channelInfo.channelName,
-                  'location': 'search_page'
-                });
-              },
-              onTapYouTubeIcon: (channelInfo) {
-                UrlLauncher.launchURL(channelInfo.getChannelUrl());
-                MyApp.analytics
-                    .sendAnalyticsEvent(AnalyticsEvent.click_vtuber_url, {
-                  'name': channelInfo.channelName,
-                  'url': channelInfo.getChannelUrl(),
-                  'location': 'search_youtube_icon'
-                });
-              },
-            );
-          },
-        ),
-      ),
-    );
-  }
+  //   return SafeArea(
+  //     child: Padding(
+  //       padding: const EdgeInsets.symmetric(horizontal: 20),
+  //       child: SearchBar<ChannelInfo>(
+  //         searchBarController: _searchBarController,
+  //         placeHolder: Text("พิมพ์ชื่อแชนแนลสองตัวอักษรขึ้นไป"),
+  //         cancellationWidget: Text("ยกเลิก"),
+  //         emptyWidget: Text("ไม่พบผลลัพธ์"),
+  //         minimumChars: 2,
+  //         onSearch: _search,
+  //         onItemFound: (ChannelInfo channelInfo, int index) {
+  //           return RankingListTile(
+  //             item: channelInfo,
+  //             displayRank: 0,
+  //             subscribers: channelInfo.getSubscribers(),
+  //             views: channelInfo.getViews(),
+  //             published: channelInfo.getPublishedAt(),
+  //             updated: channelInfo.getLastPublishedVideoAtString(),
+  //             onTap: (channelInfo) {
+  //               Navigator.pushNamed(context, ChannelPage.route,
+  //                   arguments: channelInfo.channelId);
+  //               MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.view_detail, {
+  //                 'channel_id': channelInfo.channelId,
+  //                 'channel_name': channelInfo.channelName,
+  //                 'location': 'search_page'
+  //               });
+  //             },
+  //             onTapYouTubeIcon: (channelInfo) {
+  //               UrlLauncher.launchURL(channelInfo.getChannelUrl());
+  //               MyApp.analytics
+  //                   .sendAnalyticsEvent(AnalyticsEvent.click_vtuber_url, {
+  //                 'name': channelInfo.channelName,
+  //                 'url': channelInfo.getChannelUrl(),
+  //                 'location': 'search_youtube_icon'
+  //               });
+  //             },
+  //           );
+  //         },
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Future<List<ChannelInfo>> _search(String query) async {
     MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.search, {"query": query});
