@@ -5,11 +5,11 @@ import 'package:transparent_image/transparent_image.dart';
 
 class VideoRankingListTile extends StatelessWidget {
   const VideoRankingListTile({
-    Key key,
-    @required this.item,
-    this.onTap,
-    this.onTapChannelName,
-    this.displayRank,
+    Key? key,
+    required this.item,
+    required this.onTap,
+    required this.onTapChannelName,
+    required this.displayRank,
   }) : super(key: key);
 
   final VideoRanking item;

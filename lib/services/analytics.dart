@@ -1,19 +1,20 @@
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
+// import 'package:firebase_analytics/firebase_analytics.dart';
+// import 'package:firebase_analytics/observer.dart';
 import 'package:thaivtuberranking/services/environment_setting.dart';
 
 class Analytics {
-  final FirebaseAnalytics analytics;
-  final FirebaseAnalyticsObserver observer;
+  // FIXME:- Enable when null-safety is supported
+  // final FirebaseAnalytics? analytics;
+  // final FirebaseAnalyticsObserver? observer;
 
-  Analytics({this.analytics, this.observer});
+  // Analytics({this.analytics, this.observer});
 
   Future<void> sendAnalyticsEvent(
       String name, Map<String, dynamic> parameters) async {
     if (EnvironmentSetting.shared.isReleaseMode &&
         EnvironmentSetting.shared.deployEnvironment ==
             DeployEnvironment.Production) {
-      await analytics.logEvent(name: name, parameters: parameters);
+      // await analytics?.logEvent(name: name, parameters: parameters);
     }
   }
 }

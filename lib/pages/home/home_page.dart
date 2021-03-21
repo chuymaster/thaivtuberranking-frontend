@@ -20,7 +20,7 @@ import 'entity/channel_info.dart';
 import 'home_repository.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
   static const String route = '/';
 

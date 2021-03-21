@@ -1,25 +1,31 @@
+// import 'package:easy_web_view/easy_web_view.dart';
 import 'package:flutter/material.dart';
-import 'package:easy_web_view/easy_web_view.dart';
 import 'package:thaivtuberranking/pages/channel/entity/channel_chart_data.dart';
 
+// FIXME:- Create with flutter native widget
 class ChartView extends StatelessWidget {
   final ChannelChartData channelChartData;
   final double width;
   final double height;
 
-  const ChartView({Key key, this.width, this.height, this.channelChartData})
+  const ChartView(
+      {Key? key,
+      required this.width,
+      required this.height,
+      required this.channelChartData})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var webView = EasyWebView(
-      src: _getChartHTML(width, height),
-      isHtml: true,
-      key: UniqueKey(),
-      onLoaded: () {},
-    );
+    // FIXME:- Enable when null-safety is supported
+    // var webView = EasyWebView(
+    //   src: _getChartHTML(width, height),
+    //   isHtml: true,
+    //   key: UniqueKey(),
+    //   onLoaded: () {},
+    // );
     final padding = 16;
-    return SizedBox(width: width, height: height + padding, child: webView);
+    return SizedBox(width: width, height: height + padding, child: Container());
   }
 
   String _getChartHTML(double width, double height) {
@@ -61,7 +67,7 @@ class ChartView extends StatelessWidget {
         var options = {
         chartArea: {
           top: 32,
-          height: '60%' 
+          height: '60%'
         },
         vAxes: {
           0: {
