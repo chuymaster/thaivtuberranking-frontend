@@ -16,10 +16,10 @@ import '../../main.dart';
 // ignore: must_be_immutable
 class SearchPage extends StatefulWidget {
   static const String route = '/search';
-  List<ChannelInfo> channelList;
-  OriginType originType;
+  List<ChannelInfo>? channelList;
+  OriginType? originType;
 
-  SearchPage({Key key, this.channelList, this.originType}) : super(key: key);
+  SearchPage({Key? key, this.channelList, this.originType}) : super(key: key);
 
   @override
   _SearchPageState createState() => _SearchPageState();
@@ -129,18 +129,22 @@ class _SearchPageState extends State<SearchPage> {
     MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.search, {"query": query});
 
     await Future.delayed(Duration(milliseconds: 1));
-    var filteredList = widget.channelList
-        .where((element) =>
-            element.channelName.toLowerCase().contains(query.toLowerCase()))
-        .toList();
-    if (widget.originType == OriginType.OriginalOnly) {
-      filteredList =
-          filteredList.where((element) => !element.isRebranded).toList();
-    }
+    if (widget.channelList != null) {
+      var filteredList = widget.channelList!
+          .where((element) =>
+              element.channelName.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+      if (widget.originType == OriginType.OriginalOnly) {
+        filteredList =
+            filteredList.where((element) => !element.isRebranded).toList();
+      }
 
-    filteredList.sort((a, b) {
-      return b.totalSubscribers.compareTo(a.totalSubscribers);
-    });
-    return filteredList;
+      filteredList.sort((a, b) {
+        return b.totalSubscribers.compareTo(a.totalSubscribers);
+      });
+      return filteredList;
+    } else {
+      return [];
+    }
   }
 }

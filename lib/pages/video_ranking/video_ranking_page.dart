@@ -17,7 +17,8 @@ class VideoRankingPage extends StatefulWidget {
   final OriginType originType;
   final VideoRankingType rankingType;
 
-  const VideoRankingPage({Key key, this.originType, this.rankingType})
+  const VideoRankingPage(
+      {Key? key, required this.originType, required this.rankingType})
       : super(key: key);
   @override
   _VideoRankingPageState createState() => _VideoRankingPageState();
@@ -65,7 +66,6 @@ class _VideoRankingPageState extends State<VideoRankingPage> {
       case OriginType.All:
         return _ranking;
     }
-    return [];
   }
 
   @override

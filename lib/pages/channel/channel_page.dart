@@ -30,7 +30,7 @@ class ChannelPage extends StatefulWidget {
 }
 
 class _ChannelPageState extends State<ChannelPage> {
-  ChannelInfo? _channelInfo;
+  late ChannelInfo _channelInfo;
   ChannelChartData? _channelChartData;
   ChannelRepository _repository = ChannelRepository();
 
@@ -117,7 +117,7 @@ class _ChannelPageState extends State<ChannelPage> {
   }
 
   void launchChannelUrl() {
-    UrlLauncher.launchURL(_channelInfo.getChannelUrl());
+    UrlLauncher.launchURL(_channelInfo!.getChannelUrl());
     MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.click_vtuber_url, {
       'name': _channelInfo.channelName,
       'url': _channelInfo.getChannelUrl(),
@@ -149,7 +149,8 @@ class _ChannelPageState extends State<ChannelPage> {
   Widget _buildAnnotationText(String text) {
     return Container(
       padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
-      child: ThaiText(text: text, fontSize: 14, color: Colors.grey[500]),
+      child: ThaiText(
+          text: text, fontSize: 14, color: Colors.grey[500] ?? Colors.grey),
       alignment: Alignment.centerLeft,
     );
   }
@@ -249,27 +250,27 @@ class _ChannelPageState extends State<ChannelPage> {
         padding: EdgeInsets.all(16));
   }
 
-  Widget _buildYoutubeView() {
-    try {
-      var video = _channelInfo.getLatestVideo();
-      var videoId = video.id;
+  // Widget _buildYoutubeView() {
+  //   try {
+  //     var video = _channelInfo.getLatestVideo();
+  //     var videoId = video.id;
 
-      return YouTubeVideoHtmlView(
-          videoId: videoId, width: width, height: height);
-    } catch (e) {
-      var videoView = Container(
-        child: Center(child: ThaiText(text: 'No video')),
-        color: Colors.grey[300],
-      );
+  //     return YouTubeVideoHtmlView(
+  //         videoId: videoId, width: width, height: height);
+  //   } catch (e) {
+  //     var videoView = Container(
+  //       child: Center(child: ThaiText(text: 'No video')),
+  //       color: Colors.grey[300],
+  //     );
 
-      return SizedBox(width: width, height: height, child: videoView);
-    }
-  }
+  //     return SizedBox(width: width, height: height, child: videoView);
+  //   }
+  // }
 
   Widget _buildChartDataView() {
     if (_channelChartData != null) {
       return ChartView(
-        channelChartData: _channelChartData,
+        channelChartData: _channelChartData!,
         width: width,
         height: height,
       );

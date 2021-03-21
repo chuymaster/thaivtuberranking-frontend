@@ -8,7 +8,7 @@ class DrawerOriginTypeRadioFilter extends StatefulWidget {
   final Function(OriginType) onChanged;
 
   const DrawerOriginTypeRadioFilter(
-      {Key key, this.currentOriginType, this.onChanged})
+      {Key? key, required this.currentOriginType, required this.onChanged})
       : super(key: key);
 
   @override
@@ -42,10 +42,12 @@ class _DrawerOriginTypeRadioFilterState
                 Radio(
                   value: OriginType.OriginalOnly,
                   groupValue: widget.currentOriginType,
-                  onChanged: (OriginType value) {
-                    setState(() {
-                      widget.onChanged(value);
-                    });
+                  onChanged: (OriginType? value) {
+                    if (value != null) {
+                      setState(() {
+                        widget.onChanged(value);
+                      });
+                    }
                   },
                 ),
                 ThaiText(text: Strings.fullVtuber),
@@ -56,10 +58,12 @@ class _DrawerOriginTypeRadioFilterState
                 Radio(
                   value: OriginType.All,
                   groupValue: widget.currentOriginType,
-                  onChanged: (OriginType value) {
-                    setState(() {
-                      widget.onChanged(value);
-                    });
+                  onChanged: (OriginType? value) {
+                    if (value != null) {
+                      setState(() {
+                        widget.onChanged(value);
+                      });
+                    }
                   },
                 ),
                 ThaiText(text: Strings.allVtuber),

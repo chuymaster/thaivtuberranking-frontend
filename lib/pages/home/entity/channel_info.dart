@@ -11,7 +11,7 @@ class ChannelInfo {
   final String description;
   final bool isRebranded;
 
-  var videos = List<Video>();
+  List<Video> videos = [];
 
   final int updatedAt;
   String featureVideoUrl = '';
@@ -23,16 +23,16 @@ class ChannelInfo {
   final _formatter = new NumberFormat("#,###");
 
   ChannelInfo(
-      {this.channelId,
-      this.channelName,
-      this.totalSubscribers,
-      this.totalViews,
-      this.iconUrl,
-      this.publishedAt,
-      this.lastPublishedVideoAt,
-      this.description,
-      this.isRebranded,
-      this.updatedAt});
+      {required this.channelId,
+      required this.channelName,
+      required this.totalSubscribers,
+      required this.totalViews,
+      required this.iconUrl,
+      required this.publishedAt,
+      required this.lastPublishedVideoAt,
+      required this.description,
+      required this.isRebranded,
+      required this.updatedAt});
 
   factory ChannelInfo.fromJson(Map<String, dynamic> json) {
     return ChannelInfo(
@@ -66,7 +66,7 @@ class ChannelInfo {
         .format(DateTime.fromMillisecondsSinceEpoch(updatedAt));
   }
 
-  DateTime getLastPublishedVideoAt() {
+  DateTime? getLastPublishedVideoAt() {
     if (lastPublishedVideoAt.isEmpty) {
       return null;
     }
@@ -89,7 +89,7 @@ class ChannelInfo {
     return _formatter.format(totalViews);
   }
 
-  Video getLatestVideo() {
+  Video? getLatestVideo() {
     if (videos.isEmpty) {
       return null;
     } else {

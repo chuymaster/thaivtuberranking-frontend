@@ -46,7 +46,7 @@ class VideoRanking {
     return videoRanking;
   }
 
-  DateTime getPublishedVideoAt() {
+  DateTime? getPublishedVideoAt() {
     if (publishedAt.isEmpty) {
       return null;
     }

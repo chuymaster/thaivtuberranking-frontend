@@ -2,7 +2,7 @@ enum Filter { Subscriber, View, PublishedDate, UpdatedDate }
 
 class FilterItem {
   final Filter filter;
-  String text;
+  String text = "";
 
   FilterItem(this.filter) {
     switch (filter) {

@@ -18,8 +18,8 @@ class HomeRepository {
         ]
         gsutil cors set cors.json gs://thaivtuberranking.appspot.com
      */
-    String channelListJson =
-        "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/list.json";
+    Uri channelListJson = Uri.parse(
+        "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/list.json");
 
     try {
       final response = await http.get(channelListJson);
@@ -30,7 +30,7 @@ class HomeRepository {
         final channelListChunk =
             json.decode(utf8.decode(response.bodyBytes))['result'];
         for (List<dynamic> channelList in channelListChunk) {
-          for (Map channel in channelList) {
+          for (Map<String, dynamic> channel in channelList) {
             var info = ChannelInfo.fromJson(channel);
             _itemList.add(info);
           }
