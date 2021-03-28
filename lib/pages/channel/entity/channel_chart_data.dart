@@ -21,20 +21,24 @@ class ChannelChartData {
 
 class ChartDataPoint {
   final DateTime date;
-  final int views;
-  final int subscribers;
-  final int comments;
-  final int videos;
+  final double views;
+  final double subscribers;
+  final double comments;
+  final double videos;
 
   ChartDataPoint(
       this.date, this.views, this.subscribers, this.comments, this.videos);
 
   factory ChartDataPoint.fromJson(Map<String, dynamic> json) {
-    return ChartDataPoint(DateTime.parse(json['date']), json['views'],
-        json['subscribers'], json['comments'], json['videos']);
+    return ChartDataPoint(DateTime.parse(json['date']), json['views'] ?? 0,
+        json['subscribers'] ?? 0, json['comments'] ?? 0, json['videos'] ?? 0);
   }
 
   String getDateFormatted() {
     return DateFormat('d/M/yyyy').format(date);
+  }
+
+  double getDateInDouble() {
+    return date.millisecondsSinceEpoch.toDouble();
   }
 }
