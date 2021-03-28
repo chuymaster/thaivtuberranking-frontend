@@ -17,6 +17,30 @@ class ChannelChartData {
 
     return ChannelChartData(json['id'], json['title'], dataPoints);
   }
+
+  List<ChartDataPoint> takeChartDataPoints(int number) {
+    int length = chartDataPoints.length;
+    if (length <= number) {
+      return chartDataPoints;
+    }
+    int remainder = (length / number).ceil();
+
+    List<int> indexes = [];
+    chartDataPoints.asMap().forEach((index, value) {
+      indexes.add(index);
+    });
+
+    List<int> takeIndexes =
+        indexes.where((element) => element.remainder(remainder) == 0).toList();
+    List<ChartDataPoint> takeChartDataPoints = [];
+
+    chartDataPoints.asMap().forEach((index, value) {
+      if (takeIndexes.contains(index)) {
+        takeChartDataPoints.add(value);
+      }
+    });
+    return takeChartDataPoints;
+  }
 }
 
 class ChartDataPoint {
