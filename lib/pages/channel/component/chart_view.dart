@@ -1,8 +1,8 @@
-import 'package:fl_chart/fl_chart.dart';
+// import 'package:easy_web_view/easy_web_view.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:thaivtuberranking/pages/channel/entity/channel_chart_data.dart';
 
+// FIXME:- Create with flutter native widget
 class ChartView extends StatelessWidget {
   final ChannelChartData channelChartData;
   final double width;
@@ -17,52 +17,95 @@ class ChartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<FlSpot> subscriberSpots =
-        channelChartData.chartDataPoints.reversed.take(7).map((element) {
-      return FlSpot(element.getDateInDouble(), element.subscribers);
-    }).toList();
-
-    LineChartBarData subscribersBarData = LineChartBarData(
-      spots: subscriberSpots,
-      isCurved: true,
-      curveSmoothness: 0.35,
-      isStrokeCapRound: true,
-      barWidth: 10,
-    );
-
-    LineChart lineChart = LineChart(
-        LineChartData(
-            lineBarsData: [subscribersBarData],
-            axisTitleData: FlAxisTitleData(bottomTitle: _xAxisTitle()),
-            titlesData: FlTitlesData(bottomTitles: _bottomTitles())),
-        swapAnimationDuration: Duration(milliseconds: 150));
+    // FIXME:- Enable when null-safety is supported
+    // var webView = EasyWebView(
+    //   src: _getChartHTML(width, height),
+    //   isHtml: true,
+    //   key: UniqueKey(),
+    //   onLoaded: () {},
+    // );
     final padding = 16;
-    return SizedBox(width: width, height: height + padding, child: lineChart);
+    return SizedBox(width: width, height: height + padding, child: Container());
   }
 
-  AxisTitle _xAxisTitle() {
-    return AxisTitle(
-        showTitle: true,
-        titleText: 'Date',
-        textStyle:
-            TextStyle(color: Colors.black54, fontWeight: FontWeight.bold));
-  }
+  String _getChartHTML(double width, double height) {
+    var data = '';
+    channelChartData.chartDataPoints.forEach((element) {
+      final date = element.getDateFormatted();
+      final subscribers = element.subscribers;
+      final views = element.views;
+      data += "['$date', $subscribers, $views],\n";
+    });
 
-  SideTitles _bottomTitles() {
-    return SideTitles(
-      showTitles: true,
-      getTextStyles: (value) {
-        return TextStyle(
-          color: Colors.black87,
-          fontSize: 14,
-        );
-      },
-      getTitles: (value) {
-        final DateTime date =
-            DateTime.fromMillisecondsSinceEpoch(value.toInt());
-        return DateFormat('d/M/yyyy').format(date);
-      },
-      margin: 8,
-    );
+    final html = '''
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'วันที่');
+        data.addColumn('number', 'จำนวนผู้ติดตาม');
+        data.addColumn('number', 'ยอดดูวิดีโอทั้งหมด');
+        data.addRows([$data]);
+
+        // Set chart options
+
+        var options = {
+        chartArea: {
+          top: 32,
+          height: '60%'
+        },
+        vAxes: {
+          0: {
+            title: 'จำนวนผู้ติดตาม'
+          },
+          1: {
+            title:'ยอดดูวิดีโอทั้งหมด'
+          }
+        },
+        hAxis: {title: 'วันที่'},
+         seriesType: 'line',
+          series: {1: {type: 'line', targetAxisIndex: 1}
+          },
+          width: $width,
+          height: $height
+        }
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+
+  <!--No need for body margin in embedded webview-->
+  <style>
+    body {
+      margin: 0px;
+      padding: 0px;
+    }
+  </style>
+  </head>
+
+  <body>
+    <!--Div that will hold the pie chart-->
+    <div id="chart_div"></div>
+  </body>
+</html>
+''';
+    return html;
   }
 }
