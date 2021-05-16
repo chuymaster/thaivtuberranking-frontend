@@ -15,6 +15,9 @@ class SearchIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    channelList.sort((a, b) {
+      return b.totalSubscribers.compareTo(a.totalSubscribers);
+    });
     return IconButton(
         icon: Icon(Icons.search),
         onPressed: () {
