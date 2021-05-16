@@ -63,13 +63,14 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           return MaterialPageRoute(
               builder: (context) => ChannelSearchPage(
                     channelList: args[0],
-                    originType: args[1],
                   ),
               settings: RouteSettings(name: ChannelSearchPage.route));
+        } else {
+          // Redirect to Home if coming to the ChannelSearchPage directly from the URL
+          return MaterialPageRoute(
+              builder: (context) => HomePage(),
+              settings: RouteSettings(name: HomePage.route));
         }
-        return MaterialPageRoute(
-            builder: (context) => ChannelSearchPage(),
-            settings: RouteSettings(name: ChannelSearchPage.route));
 
       default:
         return MaterialPageRoute(

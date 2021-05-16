@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:search_page/search_page.dart';
-import 'package:thaivtuberranking/common/component/center_circular_progress_indicator.dart';
-import 'package:thaivtuberranking/common/component/error_dialog.dart';
 import 'package:thaivtuberranking/pages/channel/channel_page.dart';
 import 'package:thaivtuberranking/pages/home/component/vtuber_ranking_list.dart';
 import 'package:thaivtuberranking/pages/home/entity/channel_info.dart';
-import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
-import 'package:thaivtuberranking/pages/home/home_repository.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
-import 'package:thaivtuberranking/services/result.dart';
 import 'package:thaivtuberranking/services/url_launcher.dart';
 
 import '../../main.dart';
@@ -16,70 +11,23 @@ import '../../main.dart';
 // ignore: must_be_immutable
 class ChannelSearchPage extends StatefulWidget {
   static const String route = '/search';
-  List<ChannelInfo>? channelList;
-  OriginType? originType;
+  final List<ChannelInfo> channelList;
 
-  ChannelSearchPage({Key? key, this.channelList, this.originType})
-      : super(key: key);
+  ChannelSearchPage({Key? key, required this.channelList}) : super(key: key);
 
   @override
   _ChannelSearchPageState createState() => _ChannelSearchPageState();
 }
 
 class _ChannelSearchPageState extends State<ChannelSearchPage> {
-  final _repository = HomeRepository();
-  var _isLoading = false;
-  List<ChannelInfo> get _filteredList {
-    if (widget.channelList != null) {
-      var filteredList;
-      if (widget.originType == OriginType.OriginalOnly) {
-        filteredList = widget.channelList!
-            .where((element) => !element.isRebranded)
-            .toList();
-      }
-
-      filteredList.sort((a, b) {
-        return b.totalSubscribers.compareTo(a.totalSubscribers);
-      });
-      return filteredList;
-    } else {
-      return [];
-    }
-  }
-
   @override
   void initState() {
     super.initState();
+    widget.channelList.sort((a, b) {
+      return b.totalSubscribers.compareTo(a.totalSubscribers);
+    });
     MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.page_loaded,
         {AnalyticsParameterName.page_name: AnalyticsPageName.search});
-
-    if (widget.originType == null) {
-      widget.originType = OriginType.OriginalOnly;
-    }
-    if (widget.channelList == null) {
-      loadData();
-    }
-  }
-
-  void loadData() async {
-    final result = await _repository.getVTuberChannelData();
-    if (result is SuccessState) {
-      setState(() {
-        widget.channelList = result.value;
-      });
-    } else if (result is ErrorState) {
-      ErrorDialog.showErrorDialog(
-          'ไม่สามารถโหลดข้อมูล VTuber ได้\nโปรดลองใหม่ในภายหลัง',
-          result.msg,
-          context);
-      setState(() {
-        _isLoading = false;
-      });
-    } else {
-      setState(() {
-        _isLoading = true;
-      });
-    }
   }
 
   @override
@@ -88,13 +36,14 @@ class _ChannelSearchPageState extends State<ChannelSearchPage> {
         appBar: AppBar(
           title: Text("ค้นหาแชนแนล"),
         ),
-        body: CenterCircularProgressIndicator(),
+        body: Container(),
         floatingActionButton: _buildFloatingActionButton());
   }
 
   Widget _buildFloatingActionButton() {
     return FloatingActionButton(
-        tooltip: "Search",
+        tooltip: "ค้นหาแชนแนล",
+        child: Icon(Icons.search),
         onPressed: () => showSearch(
             context: context,
             delegate: SearchPage<ChannelInfo>(
@@ -102,7 +51,7 @@ class _ChannelSearchPageState extends State<ChannelSearchPage> {
                 MyApp.analytics.sendAnalyticsEvent(
                     AnalyticsEvent.search, {"query": query});
               },
-              items: widget.channelList!,
+              items: widget.channelList,
               searchLabel: "ค้นหาแชนแนล",
               suggestion: Center(
                 child: Text('พิมพ์ชื่อแชนแนลที่อยากค้นหา'),
