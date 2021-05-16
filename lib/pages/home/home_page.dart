@@ -5,7 +5,7 @@ import 'package:thaivtuberranking/common/component/error_dialog.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
 import 'package:thaivtuberranking/common/strings.dart';
 import 'package:thaivtuberranking/pages/channel_ranking/channel_ranking_page.dart';
-import 'package:thaivtuberranking/pages/search/search_page.dart';
+import 'package:thaivtuberranking/pages/search/channel_search_page.dart';
 import 'package:thaivtuberranking/pages/video_ranking/video_ranking_container_page.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/environment_setting.dart';
@@ -84,7 +84,6 @@ class _HomePageState extends State<HomePage> {
       case OriginType.All:
         return _channelList;
     }
-    return [];
   }
 
   /// Build All
@@ -100,10 +99,11 @@ class _HomePageState extends State<HomePage> {
             IconButton(
                 icon: Icon(Icons.search),
                 onPressed: () {
-                  Navigator.pushNamed(context, SearchPage.route, arguments: [
-                    _getFilteredChannelList(),
-                    _currentOriginType
-                  ]);
+                  Navigator.pushNamed(context, ChannelSearchPage.route,
+                      arguments: [
+                        _getFilteredChannelList(),
+                        _currentOriginType
+                      ]);
                 }),
             IconButton(
               icon: Icon(Icons.add_circle),
