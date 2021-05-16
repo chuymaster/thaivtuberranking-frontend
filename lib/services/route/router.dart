@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:thaivtuberranking/pages/search/channel_search_page.dart';
 import 'string_extension.dart';
 import 'routing_data.dart';
 import '../../pages/add/add_complete_page.dart';
@@ -57,21 +56,6 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         return MaterialPageRoute(
             builder: (context) => AddCompletePage(),
             settings: RouteSettings(name: AddCompletePage.route));
-      case ChannelSearchPage.route:
-        if (settings.arguments != null) {
-          var args = settings.arguments as List;
-          return MaterialPageRoute(
-              builder: (context) => ChannelSearchPage(
-                    channelList: args[0],
-                  ),
-              settings: RouteSettings(name: ChannelSearchPage.route));
-        } else {
-          // Redirect to Home if coming to the ChannelSearchPage directly from the URL
-          return MaterialPageRoute(
-              builder: (context) => HomePage(),
-              settings: RouteSettings(name: HomePage.route));
-        }
-
       default:
         return MaterialPageRoute(
             builder: (context) => _buildNotFoundPage(routingData.route),
