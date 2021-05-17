@@ -19,6 +19,8 @@ import 'package:thaivtuberranking/pages/home/entity/channel_info.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:oktoast/oktoast.dart';
 
+import 'component/sample_chart.dart';
+
 class ChannelPage extends StatefulWidget {
   ChannelPage({Key? key, required this.channelId}) : super(key: key);
 
@@ -277,11 +279,14 @@ class _ChannelPageState extends State<ChannelPage> {
 
   Widget _buildChartDataView() {
     if (_channelChartData != null) {
-      return ChartView(
+      return LineChartSample2(
         channelChartData: _channelChartData!,
-        width: width,
-        height: height,
       );
+      // return ChartView(
+      //   channelChartData: _channelChartData!,
+      //   width: width,
+      //   height: height,
+      // );
     } else {
       return Container();
     }
