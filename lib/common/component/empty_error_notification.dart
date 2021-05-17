@@ -14,7 +14,8 @@ class EmptyErrorNotification extends StatelessWidget {
               text: "เกิดข้อผิดพลาดจึงไม่สามารถแสดงข้อมูลได้",
             ),
             ThaiText(
-              text: "กรุณาแจ้งผู้พัฒนาเพื่อทำการแก้ไข",
+              text:
+                  "กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ต\nหรือแจ้งผู้พัฒนาเพื่อทำการแก้ไข",
             ),
             InkWell(
               child: Padding(
