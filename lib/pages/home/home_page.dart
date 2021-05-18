@@ -102,9 +102,9 @@ class _HomePageState extends State<HomePage> {
           currentIndex: _currentIndex,
           items: [
             BottomNavigationBarItem(
-                icon: Icon(Icons.ondemand_video), title: Text("วิดีโอ")),
+                icon: Icon(Icons.ondemand_video), label: "วิดีโอ"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.person_pin), title: Text("แชนแนล"))
+                icon: Icon(Icons.person_pin), label: "แชนแนล")
           ],
           onTap: _onBottomNavigationBarTabTapped),
       floatingActionButton: FloatingActionButton(
