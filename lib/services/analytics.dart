@@ -37,6 +37,7 @@ class AnalyticsEvent {
   static String copy_channel_url = "copy_channel_url";
   static String view_search_page = 'view_search_page';
   static String search = 'search';
+  static String click_channel_statistics_api = 'click_channel_statistics_api';
 
   // Load screen
   static String page_loaded = "screen_loaded";

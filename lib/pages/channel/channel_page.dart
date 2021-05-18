@@ -9,8 +9,7 @@ import 'package:thaivtuberranking/common/component/custom_constraints.dart';
 import 'package:thaivtuberranking/common/component/error_dialog.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
 import 'package:thaivtuberranking/pages/channel/channel_repository.dart';
-import 'package:thaivtuberranking/pages/channel/component/chart_view.dart';
-import 'package:thaivtuberranking/pages/channel/component/sync_chart.dart';
+import 'package:thaivtuberranking/pages/channel/component/channel_chart_view.dart';
 import 'package:thaivtuberranking/pages/channel/entity/channel_chart_data.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/result.dart';
@@ -20,9 +19,6 @@ import 'package:thaivtuberranking/pages/home/entity/channel_info.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:oktoast/oktoast.dart';
 
-import 'component/sample_chart.dart';
-
-// TODO:- link to original json 'https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/chart_data/UCqhhWjpw23dWhJ5rRwCCrMA.json'
 class ChannelPage extends StatefulWidget {
   ChannelPage({Key? key, required this.channelId}) : super(key: key);
 
@@ -97,11 +93,9 @@ class _ChannelPageState extends State<ChannelPage> {
                       buildBasicInfo(),
                       buildDescription(),
                       Padding(padding: EdgeInsets.all(8)),
-                      // _buildAnnotationText('วิดีโอล่าสุด'),
-                      // _buildYoutubeView(),
-                      _buildAnnotationText('กราฟความเปลี่ยนแปลง'),
+                      _buildAnnotationText(),
                       _buildChartDataView(),
-                      // AdsView(),
+                      _buildRawDataLink()
                     ],
                   ),
                   constraints: CustomConstraints.pageBoxConstraints)));
@@ -121,7 +115,7 @@ class _ChannelPageState extends State<ChannelPage> {
     );
   }
 
-  void launchChannelUrl() {
+  void _launchChannelUrl() {
     if (_channelInfo != null) {
       UrlLauncher.launchURL(_channelInfo!.getChannelUrl());
       MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.click_vtuber_url, {
@@ -153,12 +147,14 @@ class _ChannelPageState extends State<ChannelPage> {
     return inkWell;
   }
 
-  Widget _buildAnnotationText(String text) {
+  Widget _buildAnnotationText() {
     return Container(
       padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
       child: ThaiText(
-          text: text, fontSize: 14, color: Colors.grey[500] ?? Colors.grey),
-      alignment: Alignment.centerLeft,
+          text: 'กราฟความเปลี่ยนแปลง',
+          fontSize: 14,
+          color: Colors.grey[500] ?? Colors.grey),
+      alignment: Alignment.bottomLeft,
     );
   }
 
@@ -214,7 +210,7 @@ class _ChannelPageState extends State<ChannelPage> {
             InkWell(
               child: imageWithYoutubeIcon,
               onTap: () {
-                launchChannelUrl();
+                _launchChannelUrl();
               },
             ),
             Padding(
@@ -230,7 +226,7 @@ class _ChannelPageState extends State<ChannelPage> {
                         fontSize: 18,
                         overflow: TextOverflow.ellipsis),
                     onTap: () {
-                      launchChannelUrl();
+                      _launchChannelUrl();
                     },
                   ),
                   Padding(
@@ -262,23 +258,6 @@ class _ChannelPageState extends State<ChannelPage> {
     }
   }
 
-  // Widget _buildYoutubeView() {
-  //   try {
-  //     var video = _channelInfo.getLatestVideo();
-  //     var videoId = video.id;
-
-  //     return YouTubeVideoHtmlView(
-  //         videoId: videoId, width: width, height: height);
-  //   } catch (e) {
-  //     var videoView = Container(
-  //       child: Center(child: ThaiText(text: 'No video')),
-  //       color: Colors.grey[300],
-  //     );
-
-  //     return SizedBox(width: width, height: height, child: videoView);
-  //   }
-  // }
-
   Widget _buildChartDataView() {
     if (_channelChartData != null) {
       return ChannelChartView(
@@ -286,5 +265,29 @@ class _ChannelPageState extends State<ChannelPage> {
     } else {
       return Container();
     }
+  }
+
+  Widget _buildRawDataLink() {
+    return Container(
+      child: InkWell(
+        child: ThaiText(
+          text: "API",
+          fontSize: 12,
+          color: Colors.blue,
+        ),
+        onTap: () {
+          UrlLauncher.launchURL(
+              'https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/chart_data/' +
+                  widget.channelId +
+                  '.json');
+          MyApp.analytics
+              .sendAnalyticsEvent(AnalyticsEvent.click_channel_statistics_api, {
+            'id': widget.channelId,
+          });
+        },
+      ),
+      alignment: Alignment.bottomRight,
+      padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
+    );
   }
 }
