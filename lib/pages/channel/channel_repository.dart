@@ -15,42 +15,46 @@ class ChannelRepository {
       DocumentSnapshot channelSnapshot =
           await channelInfoRef.doc(channelId).get();
       var data = channelSnapshot.data();
-      var channelInfo = new ChannelInfo(
-          channelId: channelId,
-          channelName: data['title'],
-          totalSubscribers: data['subscribers'],
-          totalViews: data['views'],
-          iconUrl: data['thumbnail_icon_url'],
-          publishedAt: data['published_at'] ?? "-",
-          lastPublishedVideoAt: data['last_published_video_at'] ?? "-",
-          description: data['description'],
-          isRebranded: data['is_rebranded'] ?? false,
-          updatedAt: data['updated_at'] ?? 0);
+      if (data != null) {
+        var channelInfo = new ChannelInfo(
+            channelId: channelId,
+            channelName: data['title'],
+            totalSubscribers: data['subscribers'],
+            totalViews: data['views'],
+            iconUrl: data['thumbnail_icon_url'],
+            publishedAt: data['published_at'] ?? "-",
+            lastPublishedVideoAt: data['last_published_video_at'] ?? "-",
+            description: data['description'],
+            isRebranded: data['is_rebranded'] ?? false,
+            updatedAt: data['updated_at'] ?? 0);
 
-      QuerySnapshot videoSnapshot =
-          await channelInfoRef.doc(channelId).collection('video').get();
-      var videoDocs = videoSnapshot.docs;
+        QuerySnapshot videoSnapshot =
+            await channelInfoRef.doc(channelId).collection('video').get();
+        var videoDocs = videoSnapshot.docs;
 
-      List<Video> videos = [];
+        List<Video> videos = [];
 
-      videoDocs.forEach((videoDoc) {
-        var data = videoDoc.data();
-        var video = new Video(videoDoc.id, data['title'], data['description'],
-            data['published_at'], data['thumbnail_image_url']);
-        videos.add(video);
-      });
+        videoDocs.forEach((videoDoc) {
+          var data = videoDoc.data();
+          var video = new Video(videoDoc.id, data['title'], data['description'],
+              data['published_at'], data['thumbnail_image_url']);
+          videos.add(video);
+        });
 
-      channelInfo.videos = videos;
+        channelInfo.videos = videos;
 
-      return Result<ChannelInfo>.success(channelInfo);
+        return Result<ChannelInfo>.success(channelInfo);
+      } else {
+        return Result.error("data is null.");
+      }
     } catch (error) {
       return Result.error(error.toString());
     }
   }
 
   Future<Result> getChannelChartData(String channelId) async {
-    String url =
-        "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/chart_data/$channelId.json";
+    Uri url = Uri.parse(
+        "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/chart_data/$channelId.json");
 
     try {
       final response = await http.get(url);

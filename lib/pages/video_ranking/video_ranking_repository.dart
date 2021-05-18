@@ -8,12 +8,12 @@ import 'entity/video_ranking.dart';
 enum VideoRankingType { OneDay, ThreeDay, SevenDay }
 
 class VideoRankingRepository {
-  String _oneDayRankingJson =
-      "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/one_day_ranking.json";
-  String _threeDayRankingJson =
-      "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/three_days_ranking.json";
-  String _sevenDayRankingJson =
-      "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/seven_days_ranking.json";
+  Uri _oneDayRankingJson = Uri.parse(
+      "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/one_day_ranking.json");
+  Uri _threeDayRankingJson = Uri.parse(
+      "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/three_days_ranking.json");
+  Uri _sevenDayRankingJson = Uri.parse(
+      "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/seven_days_ranking.json");
 
   Future<Result> getVideoRanking(VideoRankingType type) async {
     var url = _oneDayRankingJson;
@@ -37,7 +37,7 @@ class VideoRankingRepository {
       if (response.statusCode == 200) {
         final rankingList =
             json.decode(utf8.decode(response.bodyBytes))['result'];
-        for (Map ranking in rankingList) {
+        for (Map<String, dynamic> ranking in rankingList) {
           var info = VideoRanking.fromJson(ranking);
           _itemList.add(info);
         }

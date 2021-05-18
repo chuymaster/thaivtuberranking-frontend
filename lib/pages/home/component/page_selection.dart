@@ -8,7 +8,10 @@ class PageSelection extends StatelessWidget {
   final int _maxButtonCount = 5;
 
   const PageSelection(
-      {Key key, this.currentPageNumber, this.maxPageNumber, this.onPageChanged})
+      {Key? key,
+      required this.currentPageNumber,
+      required this.maxPageNumber,
+      required this.onPageChanged})
       : super(key: key);
 
   Widget buildPageSelection() {

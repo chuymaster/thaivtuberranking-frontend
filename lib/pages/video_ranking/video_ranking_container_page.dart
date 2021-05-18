@@ -9,7 +9,8 @@ import '../../main.dart';
 class VideoRankingContainerPage extends StatefulWidget {
   final OriginType originType;
 
-  const VideoRankingContainerPage({Key key, this.originType}) : super(key: key);
+  const VideoRankingContainerPage({Key? key, required this.originType})
+      : super(key: key);
   @override
   _VideoRankingContainerPageState createState() =>
       _VideoRankingContainerPageState();
@@ -17,7 +18,7 @@ class VideoRankingContainerPage extends StatefulWidget {
 
 class _VideoRankingContainerPageState extends State<VideoRankingContainerPage>
     with SingleTickerProviderStateMixin {
-  TabController _tabController;
+  late TabController _tabController;
 
   final List<Tab> _tabBarTabs = [
     Tab(
@@ -85,7 +86,7 @@ class _VideoRankingContainerPageState extends State<VideoRankingContainerPage>
       length: _tabBarTabs.length,
       child: Builder(
         builder: (context) {
-          final TabController tabController = DefaultTabController.of(context);
+          final TabController tabController = DefaultTabController.of(context)!;
           tabController.addListener(() {
             if (!tabController.indexIsChanging) {
               MyApp.analytics.sendAnalyticsEvent(

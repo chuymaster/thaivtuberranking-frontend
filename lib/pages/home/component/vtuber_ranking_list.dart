@@ -13,13 +13,13 @@ class VTuberRankingList extends StatelessWidget {
   final Function(ChannelInfo) onTapYouTubeIcon;
 
   const VTuberRankingList(
-      {Key key,
-      this.itemList,
-      this.rankOffset,
-      this.scrollController,
-      this.onTapCell,
-      this.onTapYouTubeIcon,
-      this.pageSelection})
+      {Key? key,
+      required this.itemList,
+      required this.rankOffset,
+      required this.scrollController,
+      required this.onTapCell,
+      required this.onTapYouTubeIcon,
+      required this.pageSelection})
       : super(key: key);
 
   Widget buildRankingList() {
@@ -77,15 +77,15 @@ class VTuberRankingList extends StatelessWidget {
 
 class RankingListTile extends StatelessWidget {
   const RankingListTile({
-    Key key,
-    @required this.item,
-    @required this.displayRank,
-    @required this.subscribers,
-    @required this.views,
-    @required this.published,
-    @required this.updated,
-    this.onTap,
-    this.onTapYouTubeIcon,
+    Key? key,
+    required this.item,
+    required this.displayRank,
+    required this.subscribers,
+    required this.views,
+    required this.published,
+    required this.updated,
+    required this.onTap,
+    required this.onTapYouTubeIcon,
   }) : super(key: key);
 
   final ChannelInfo item;

@@ -1,3 +1,4 @@
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html';
 import 'dart:math';
 import 'package:flutter/foundation.dart';
@@ -8,9 +9,7 @@ import 'package:thaivtuberranking/common/component/custom_constraints.dart';
 import 'package:thaivtuberranking/common/component/error_dialog.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
 import 'package:thaivtuberranking/pages/channel/channel_repository.dart';
-import 'package:thaivtuberranking/pages/channel/component/ads_view.dart';
-import 'package:thaivtuberranking/pages/channel/component/chart_view.dart';
-import 'package:thaivtuberranking/pages/channel/component/youtube_view.dart';
+import 'package:thaivtuberranking/pages/channel/component/channel_chart_view.dart';
 import 'package:thaivtuberranking/pages/channel/entity/channel_chart_data.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/result.dart';
@@ -21,7 +20,7 @@ import 'package:transparent_image/transparent_image.dart';
 import 'package:oktoast/oktoast.dart';
 
 class ChannelPage extends StatefulWidget {
-  ChannelPage({Key key, this.channelId}) : super(key: key);
+  ChannelPage({Key? key, required this.channelId}) : super(key: key);
 
   static const String route = '/channel';
 
@@ -32,12 +31,12 @@ class ChannelPage extends StatefulWidget {
 }
 
 class _ChannelPageState extends State<ChannelPage> {
-  ChannelInfo _channelInfo;
-  ChannelChartData _channelChartData;
+  ChannelInfo? _channelInfo;
+  ChannelChartData? _channelChartData;
   ChannelRepository _repository = ChannelRepository();
 
-  double width;
-  double height;
+  late double width;
+  late double height;
 
   @override
   void initState() {
@@ -94,11 +93,9 @@ class _ChannelPageState extends State<ChannelPage> {
                       buildBasicInfo(),
                       buildDescription(),
                       Padding(padding: EdgeInsets.all(8)),
-                      // _buildAnnotationText('วิดีโอล่าสุด'),
-                      // _buildYoutubeView(),
-                      _buildAnnotationText('กราฟความเปลี่ยนแปลง'),
+                      _buildAnnotationText(),
                       _buildChartDataView(),
-                      AdsView(),
+                      _buildRawDataLink()
                     ],
                   ),
                   constraints: CustomConstraints.pageBoxConstraints)));
@@ -106,10 +103,7 @@ class _ChannelPageState extends State<ChannelPage> {
       body = CenterCircularProgressIndicator();
     }
 
-    String title = "";
-    if (_channelInfo != null) {
-      title = _channelInfo.channelName;
-    }
+    String title = _channelInfo?.channelName ?? "";
 
     return Scaffold(
       appBar: PreferredSize(
@@ -121,13 +115,15 @@ class _ChannelPageState extends State<ChannelPage> {
     );
   }
 
-  void launchChannelUrl() {
-    UrlLauncher.launchURL(_channelInfo.getChannelUrl());
-    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.click_vtuber_url, {
-      'name': _channelInfo.channelName,
-      'url': _channelInfo.getChannelUrl(),
-      'location': 'icon_url'
-    });
+  void _launchChannelUrl() {
+    if (_channelInfo != null) {
+      UrlLauncher.launchURL(_channelInfo!.getChannelUrl());
+      MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.click_vtuber_url, {
+        'name': _channelInfo!.channelName,
+        'url': _channelInfo!.getChannelUrl(),
+        'location': 'icon_url'
+      });
+    }
   }
 
   Widget _buildShareButton() {
@@ -151,18 +147,22 @@ class _ChannelPageState extends State<ChannelPage> {
     return inkWell;
   }
 
-  Widget _buildAnnotationText(String text) {
+  Widget _buildAnnotationText() {
     return Container(
       padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
-      child: ThaiText(text: text, fontSize: 14, color: Colors.grey[500]),
-      alignment: Alignment.centerLeft,
+      child: ThaiText(
+          text: 'กราฟความเปลี่ยนแปลง',
+          fontSize: 14,
+          color: Colors.grey[500] ?? Colors.grey),
+      alignment: Alignment.bottomLeft,
     );
   }
 
   Widget buildDescription() {
-    var description = _channelInfo.description.isEmpty
-        ? 'ไม่มีคำอธิบาย'
-        : _channelInfo.description;
+    String description = 'ไม่มีคำอธิบาย';
+    if (_channelInfo != null && _channelInfo!.description.isNotEmpty) {
+      description = _channelInfo!.description;
+    }
 
     return Container(
       decoration: BoxDecoration(
@@ -178,108 +178,116 @@ class _ChannelPageState extends State<ChannelPage> {
   }
 
   Widget buildBasicInfo() {
-    var fadeInImage = ClipRRect(
-        borderRadius: BorderRadius.circular(60),
-        child: FadeInImage.memoryNetwork(
-          height: 120.0,
-          width: 120.0,
-          placeholder: kTransparentImage,
-          image: _channelInfo.iconUrl,
-          fit: BoxFit.contain,
-          fadeInDuration: Duration(milliseconds: 300),
-        ));
+    if (_channelInfo != null) {
+      var fadeInImage = ClipRRect(
+          borderRadius: BorderRadius.circular(60),
+          child: FadeInImage.memoryNetwork(
+            height: 120.0,
+            width: 120.0,
+            placeholder: kTransparentImage,
+            image: _channelInfo!.iconUrl,
+            fit: BoxFit.contain,
+            fadeInDuration: Duration(milliseconds: 300),
+          ));
 
-    var youtubeIcon = Container(
-      child: Image.asset('assets/images/youtube_button.png'),
-      padding: EdgeInsets.all(4),
-      width: 120.0,
-    );
-
-    var imageWithYoutubeIcon = Column(
-      children: [fadeInImage, youtubeIcon],
-    );
-
-    var subscribers = _channelInfo.getSubscribers();
-    var views = _channelInfo.getViews();
-    var updated = _channelInfo.getLastPublishedVideoAtString();
-    var published = _channelInfo.getPublishedAt();
-
-    return Container(
-        child: Row(children: [
-          InkWell(
-            child: imageWithYoutubeIcon,
-            onTap: () {
-              launchChannelUrl();
-            },
-          ),
-          Padding(
-            padding: EdgeInsets.all(8),
-          ),
-          Expanded(
-            child: Column(
-              children: [
-                InkWell(
-                  child: ThaiText(
-                      text: _channelInfo.channelName,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      overflow: TextOverflow.ellipsis),
-                  onTap: () {
-                    launchChannelUrl();
-                  },
-                ),
-                Padding(
-                  padding: EdgeInsets.all(4),
-                ),
-                ThaiText(
-                    text: 'ผู้ติดตาม $subscribers คน\nดู $views ครั้ง',
-                    fontSize: 16),
-                Padding(
-                  padding: EdgeInsets.all(4),
-                ),
-                ThaiText(
-                    text: 'คลิปล่าสุด $updated\nวันเปิดแชนแนล $published',
-                    fontSize: 14,
-                    color: Colors.black54),
-                Padding(
-                  padding: EdgeInsets.all(4),
-                ),
-                _buildShareButton()
-              ],
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-            ),
-          )
-        ]),
-        padding: EdgeInsets.all(16));
-  }
-
-  Widget _buildYoutubeView() {
-    try {
-      var video = _channelInfo.getLatestVideo();
-      var videoId = video.id;
-
-      return YouTubeVideoHtmlView(
-          videoId: videoId, width: width, height: height);
-    } catch (e) {
-      var videoView = Container(
-        child: Center(child: ThaiText(text: 'No video')),
-        color: Colors.grey[300],
+      var youtubeIcon = Container(
+        child: Image.asset('assets/images/youtube_button.png'),
+        padding: EdgeInsets.all(4),
+        width: 120.0,
       );
 
-      return SizedBox(width: width, height: height, child: videoView);
+      var imageWithYoutubeIcon = Column(
+        children: [fadeInImage, youtubeIcon],
+      );
+
+      var subscribers = _channelInfo!.getSubscribers();
+      var views = _channelInfo!.getViews();
+      var updated = _channelInfo!.getLastPublishedVideoAtString();
+      var published = _channelInfo!.getPublishedAt();
+
+      return Container(
+          child: Row(children: [
+            InkWell(
+              child: imageWithYoutubeIcon,
+              onTap: () {
+                _launchChannelUrl();
+              },
+            ),
+            Padding(
+              padding: EdgeInsets.all(8),
+            ),
+            Expanded(
+              child: Column(
+                children: [
+                  InkWell(
+                    child: ThaiText(
+                        text: _channelInfo!.channelName,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        overflow: TextOverflow.ellipsis),
+                    onTap: () {
+                      _launchChannelUrl();
+                    },
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(4),
+                  ),
+                  ThaiText(
+                      text: 'ผู้ติดตาม $subscribers คน\nดู $views ครั้ง',
+                      fontSize: 16),
+                  Padding(
+                    padding: EdgeInsets.all(4),
+                  ),
+                  ThaiText(
+                      text: 'คลิปล่าสุด $updated\nวันเปิดแชนแนล $published',
+                      fontSize: 14,
+                      color: Colors.black54),
+                  Padding(
+                    padding: EdgeInsets.all(4),
+                  ),
+                  _buildShareButton()
+                ],
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+              ),
+            )
+          ]),
+          padding: EdgeInsets.all(16));
+    } else {
+      return Container();
     }
   }
 
   Widget _buildChartDataView() {
     if (_channelChartData != null) {
-      return ChartView(
-        channelChartData: _channelChartData,
-        width: width,
-        height: height,
-      );
+      return ChannelChartView(
+          channelChartData: _channelChartData!, width: width, height: height);
     } else {
       return Container();
     }
+  }
+
+  Widget _buildRawDataLink() {
+    return Container(
+      child: InkWell(
+        child: ThaiText(
+          text: "API",
+          fontSize: 12,
+          color: Colors.blue,
+        ),
+        onTap: () {
+          UrlLauncher.launchURL(
+              'https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/chart_data/' +
+                  widget.channelId +
+                  '.json');
+          MyApp.analytics
+              .sendAnalyticsEvent(AnalyticsEvent.click_channel_statistics_api, {
+            'id': widget.channelId,
+          });
+        },
+      ),
+      alignment: Alignment.bottomRight,
+      padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
+    );
   }
 }

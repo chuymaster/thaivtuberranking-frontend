@@ -21,7 +21,7 @@ class ErrorDialog {
             ),
           ),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
               child: Text('ปิด'),
               onPressed: () {
                 Navigator.of(context).pop();

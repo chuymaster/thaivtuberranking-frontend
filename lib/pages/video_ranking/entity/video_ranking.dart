@@ -35,18 +35,18 @@ class VideoRanking {
         json['title'],
         json['channelId'],
         json['channelTitle'],
-        json['viewCount'],
-        json['commentCount'],
-        json['dislikeCount'],
-        json['favoriteCount'],
-        json["likeCounts"],
+        json['viewCount'] ?? 0,
+        json['commentCount'] ?? 0,
+        json['dislikeCount'] ?? 0,
+        json['favoriteCount'] ?? 0,
+        json["likeCount"] ?? 0,
         json['thumbnailImageUrl'],
         json['publishedAt'],
         json['isRebranded']);
     return videoRanking;
   }
 
-  DateTime getPublishedVideoAt() {
+  DateTime? getPublishedVideoAt() {
     if (publishedAt.isEmpty) {
       return null;
     }

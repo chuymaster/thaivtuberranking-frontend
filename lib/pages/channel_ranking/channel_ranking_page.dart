@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/common/component/custom_constraints.dart';
+import 'package:thaivtuberranking/common/component/empty_error_notification.dart';
 import 'package:thaivtuberranking/pages/channel/channel_page.dart';
 import 'package:thaivtuberranking/pages/channel_ranking/channel_ranking_repository.dart';
 import 'package:thaivtuberranking/pages/home/component/page_selection.dart';
@@ -16,7 +17,8 @@ import '../../main.dart';
 class ChannelRankingPage extends StatefulWidget {
   final List<ChannelInfo> channelList;
 
-  const ChannelRankingPage({Key key, this.channelList}) : super(key: key);
+  const ChannelRankingPage({Key? key, required this.channelList})
+      : super(key: key);
 
   @override
   _ChannelRankingPageState createState() => _ChannelRankingPageState();
@@ -32,9 +34,9 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
   final int _itemPerPage = 20;
 
   List<Tab> _tabBarTabs = [];
-  int _tabBarInitialIndex;
+  late int _tabBarInitialIndex;
 
-  TabController _tabController;
+  late TabController _tabController;
   ScrollController _scrollController = ScrollController();
 
   final List<FilterItem> filterItems = <FilterItem>[
@@ -129,12 +131,19 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
         ),
         constraints: BoxConstraints.expand());
 
+    Widget body;
+    if (widget.channelList.isEmpty) {
+      body = EmptyErrorNotification();
+    } else {
+      body = _buildTabBarView(_tabBarTabs);
+    }
+
     return DefaultTabController(
       length: _tabBarTabs.length,
       child: Builder(
         builder: (BuildContext context) {
-          final TabController tabController = DefaultTabController.of(context);
-          tabController.addListener(() {
+          final TabController? tabController = DefaultTabController.of(context);
+          tabController?.addListener(() {
             if (!tabController.indexIsChanging) {
               FilterItem newItem = filterItems[tabController.index];
               MyApp.analytics.sendAnalyticsEvent(
@@ -152,7 +161,7 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
               child: Container(child: tabBar),
               preferredSize: Size.fromHeight(40),
             ),
-            body: _buildTabBarView(_tabBarTabs),
+            body: body,
           );
         },
       ),

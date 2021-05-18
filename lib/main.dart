@@ -12,13 +12,12 @@ void main() {
   runApp(MyApp());
 }
 
-// ignore: must_be_immutable
 class MyApp extends StatelessWidget {
   static String title = "จัดอันดับ VTuber ไทย";
 
-  static FirebaseAnalytics _analytics;
-  static FirebaseAnalyticsObserver _observer;
-  static Analytics analytics;
+  static FirebaseAnalytics? _analytics;
+  static FirebaseAnalyticsObserver? _observer;
+  static late Analytics analytics;
 
   // Init Analytics object only on release mode
   initAnalytics() {
@@ -26,11 +25,12 @@ class MyApp extends StatelessWidget {
         EnvironmentSetting.shared.deployEnvironment ==
             DeployEnvironment.Production) {
       _analytics = FirebaseAnalytics();
-      _observer = FirebaseAnalyticsObserver(analytics: _analytics);
+      _observer = FirebaseAnalyticsObserver(analytics: _analytics!);
       analytics = Analytics(analytics: _analytics, observer: _observer);
     } else {
       analytics = Analytics(analytics: null, observer: null);
     }
+    analytics = Analytics();
   }
 
   // This widget is the root of your application.
