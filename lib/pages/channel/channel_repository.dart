@@ -36,15 +36,9 @@ class ChannelRepository {
 
         videoDocs.forEach((videoDoc) {
           var data = videoDoc.data();
-          if (data != null) {
-            var video = new Video(
-                videoDoc.id,
-                data['title'],
-                data['description'],
-                data['published_at'],
-                data['thumbnail_image_url']);
-            videos.add(video);
-          }
+          var video = new Video(videoDoc.id, data['title'], data['description'],
+              data['published_at'], data['thumbnail_image_url']);
+          videos.add(video);
         });
 
         channelInfo.videos = videos;

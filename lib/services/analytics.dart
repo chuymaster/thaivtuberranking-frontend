@@ -1,20 +1,19 @@
-// import 'package:firebase_analytics/firebase_analytics.dart';
-// import 'package:firebase_analytics/observer.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:thaivtuberranking/services/environment_setting.dart';
 
 class Analytics {
-  // FIXME:- Enable when null-safety is supported
-  // final FirebaseAnalytics? analytics;
-  // final FirebaseAnalyticsObserver? observer;
+  final FirebaseAnalytics? analytics;
+  final FirebaseAnalyticsObserver? observer;
 
-  // Analytics({this.analytics, this.observer});
+  Analytics({this.analytics, this.observer});
 
   Future<void> sendAnalyticsEvent(
       String name, Map<String, dynamic> parameters) async {
     if (EnvironmentSetting.shared.isReleaseMode &&
         EnvironmentSetting.shared.deployEnvironment ==
             DeployEnvironment.Production) {
-      // await analytics?.logEvent(name: name, parameters: parameters);
+      await analytics?.logEvent(name: name, parameters: parameters);
     }
   }
 }
@@ -38,6 +37,7 @@ class AnalyticsEvent {
   static String copy_channel_url = "copy_channel_url";
   static String view_search_page = 'view_search_page';
   static String search = 'search';
+  static String click_channel_statistics_api = 'click_channel_statistics_api';
 
   // Load screen
   static String page_loaded = "screen_loaded";

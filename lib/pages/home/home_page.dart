@@ -5,7 +5,7 @@ import 'package:thaivtuberranking/common/component/error_dialog.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
 import 'package:thaivtuberranking/common/strings.dart';
 import 'package:thaivtuberranking/pages/channel_ranking/channel_ranking_page.dart';
-import 'package:thaivtuberranking/pages/search/search_page.dart';
+import 'package:thaivtuberranking/pages/home/component/search_icon_button.dart';
 import 'package:thaivtuberranking/pages/video_ranking/video_ranking_container_page.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/environment_setting.dart';
@@ -84,7 +84,6 @@ class _HomePageState extends State<HomePage> {
       case OriginType.All:
         return _channelList;
     }
-    return [];
   }
 
   /// Build All
@@ -96,33 +95,23 @@ class _HomePageState extends State<HomePage> {
             _title,
             style: TextStyle(fontFamily: ThaiText.kanit),
           ),
-          actions: [
-            IconButton(
-                icon: Icon(Icons.search),
-                onPressed: () {
-                  Navigator.pushNamed(context, SearchPage.route, arguments: [
-                    _getFilteredChannelList(),
-                    _currentOriginType
-                  ]);
-                }),
-            IconButton(
-              icon: Icon(Icons.add_circle),
-              onPressed: () {
-                _navigateToAddPage('appbar_add_button');
-              },
-            ),
-          ]),
+          actions: [SearchIconButton(channelList: _getFilteredChannelList())]),
       drawer: _buildDrawer(),
       body: _buildBottomNavigationBarChildren()[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
           items: [
             BottomNavigationBarItem(
-                icon: Icon(Icons.ondemand_video), title: Text("วิดีโอ")),
+                icon: Icon(Icons.ondemand_video), label: "วิดีโอ"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.person_pin), title: Text("แชนแนล"))
+                icon: Icon(Icons.person_pin), label: "แชนแนล")
           ],
           onTap: _onBottomNavigationBarTabTapped),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add_circle),
+        tooltip: 'แจ้งเพิ่มแชนแนล VTuber',
+        onPressed: () => _navigateToAddPage('appbar_add_button'),
+      ),
     );
   }
 

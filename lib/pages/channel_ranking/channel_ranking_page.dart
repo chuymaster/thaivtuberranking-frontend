@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/common/component/custom_constraints.dart';
+import 'package:thaivtuberranking/common/component/empty_error_notification.dart';
 import 'package:thaivtuberranking/pages/channel/channel_page.dart';
 import 'package:thaivtuberranking/pages/channel_ranking/channel_ranking_repository.dart';
 import 'package:thaivtuberranking/pages/home/component/page_selection.dart';
@@ -130,6 +131,13 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
         ),
         constraints: BoxConstraints.expand());
 
+    Widget body;
+    if (widget.channelList.isEmpty) {
+      body = EmptyErrorNotification();
+    } else {
+      body = _buildTabBarView(_tabBarTabs);
+    }
+
     return DefaultTabController(
       length: _tabBarTabs.length,
       child: Builder(
@@ -153,7 +161,7 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
               child: Container(child: tabBar),
               preferredSize: Size.fromHeight(40),
             ),
-            body: _buildTabBarView(_tabBarTabs),
+            body: body,
           );
         },
       ),
