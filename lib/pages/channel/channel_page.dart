@@ -10,6 +10,7 @@ import 'package:thaivtuberranking/common/component/error_dialog.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
 import 'package:thaivtuberranking/pages/channel/channel_repository.dart';
 import 'package:thaivtuberranking/pages/channel/component/chart_view.dart';
+import 'package:thaivtuberranking/pages/channel/component/sync_chart.dart';
 import 'package:thaivtuberranking/pages/channel/entity/channel_chart_data.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/result.dart';
@@ -21,6 +22,7 @@ import 'package:oktoast/oktoast.dart';
 
 import 'component/sample_chart.dart';
 
+// TODO:- link to original json 'https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/chart_data/UCqhhWjpw23dWhJ5rRwCCrMA.json'
 class ChannelPage extends StatefulWidget {
   ChannelPage({Key? key, required this.channelId}) : super(key: key);
 
@@ -279,14 +281,8 @@ class _ChannelPageState extends State<ChannelPage> {
 
   Widget _buildChartDataView() {
     if (_channelChartData != null) {
-      return LineChartSample2(
-        channelChartData: _channelChartData!,
-      );
-      // return ChartView(
-      //   channelChartData: _channelChartData!,
-      //   width: width,
-      //   height: height,
-      // );
+      return ChannelChartView(
+          channelChartData: _channelChartData!, width: width, height: height);
     } else {
       return Container();
     }
