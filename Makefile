@@ -10,5 +10,5 @@ run-qa: # Run application in QA environment
 run-prod: # Run application in production environment
 	flutter run -d chrome --dart-define=DEPLOY_ENVIRONMENT=Production --web-renderer html
 
-build: # Build the app for release
+build-for-release: # Build the app for release
 	flutter build web --release --web-renderer html
