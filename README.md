@@ -12,14 +12,7 @@ A Flutter Web client application for [Thai VTuber Ranking](https://vtuber.chuysa
 
 ## Local Command
 
-- Debug environment
-`flutter run -d chrome --web-renderer html`
-
-- QA environment 
- `flutter run -d chrome --dart-define=DEPLOY_ENVIRONMENT=Qa --web-renderer html`
-
-- Production environment
- `flutter run -d chrome --dart-define=DEPLOY_ENVIRONMENT=Production --web-renderer html`
+See `Makefile`. Run `make help` to see the available commands.
 
  ## API Document
  
