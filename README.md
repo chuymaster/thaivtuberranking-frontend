@@ -14,9 +14,9 @@ A Flutter Web client application for [Thai VTuber Ranking](https://vtuber.chuysa
 
 See `Makefile`. Run `make help` to see the available commands.
 
- ## API Document
- 
- See https://github.com/chuymaster/thai-vtuber-ranking-docs
+## API Document
+
+See https://github.com/chuymaster/thai-vtuber-ranking-docs
 
 ## Automated Deployment
 
