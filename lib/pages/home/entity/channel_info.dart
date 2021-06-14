@@ -11,8 +11,6 @@ class ChannelInfo {
   final String description;
   final bool isRebranded;
 
-  List<Video> videos = [];
-
   final int updatedAt;
   String featureVideoUrl = '';
   String twitterUserName = '';
@@ -87,15 +85,6 @@ class ChannelInfo {
 
   String getViews() {
     return _formatter.format(totalViews);
-  }
-
-  Video? getLatestVideo() {
-    if (videos.isEmpty) {
-      return null;
-    } else {
-      videos.sort((a, b) => b.getPublishedAt().compareTo(a.getPublishedAt()));
-      return videos.first;
-    }
   }
 
   /// Equatable

@@ -12,18 +12,11 @@ A Flutter Web client application for [Thai VTuber Ranking](https://vtuber.chuysa
 
 ## Local Command
 
-- Debug environment
-`flutter run -d chrome --web-renderer html`
+See `Makefile`. Run `make help` to see the available commands.
 
-- QA environment 
- `flutter run -d chrome --dart-define=DEPLOY_ENVIRONMENT=Qa --web-renderer html`
+## API Document
 
-- Production environment
- `flutter run -d chrome --dart-define=DEPLOY_ENVIRONMENT=Production --web-renderer html`
-
- ## API Document
- 
- See https://github.com/chuymaster/thai-vtuber-ranking-docs
+See https://github.com/chuymaster/thai-vtuber-ranking-docs
 
 ## Automated Deployment
 
