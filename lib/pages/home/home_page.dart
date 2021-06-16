@@ -6,6 +6,7 @@ import 'package:thaivtuberranking/common/component/thai_text.dart';
 import 'package:thaivtuberranking/common/strings.dart';
 import 'package:thaivtuberranking/pages/channel_ranking/channel_ranking_page.dart';
 import 'package:thaivtuberranking/pages/home/component/search_icon_button.dart';
+import 'package:thaivtuberranking/pages/live/live_page.dart';
 import 'package:thaivtuberranking/pages/video_ranking/video_ranking_container_page.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/environment_setting.dart';
@@ -102,9 +103,11 @@ class _HomePageState extends State<HomePage> {
           currentIndex: _currentIndex,
           items: [
             BottomNavigationBarItem(
-                icon: Icon(Icons.ondemand_video), label: "วิดีโอ"),
+                icon: Icon(Icons.tv_rounded), label: "ไลฟ์"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.person_pin), label: "แชนแนล")
+                icon: Icon(Icons.person_pin), label: "แชนแนล"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.ondemand_video), label: "วิดีโอ"),
           ],
           onTap: _onBottomNavigationBarTabTapped),
       floatingActionButton: FloatingActionButton(
@@ -122,9 +125,11 @@ class _HomePageState extends State<HomePage> {
       _currentIndex = index;
       // เปลี่ยนชื่อ title ตาม tab
       if (index == 0) {
-        _title = "จัดอันดับวิดีโอ VTuber ไทย";
-      } else {
+        _title = "ตารางไลฟ์ VTuber ไทย";
+      } else if (index == 1) {
         _title = "จัดอันดับแชนแนล VTuber ไทย";
+      } else {
+        _title = "จัดอันดับวิดีโอ VTuber ไทย";
       }
     });
   }
@@ -145,10 +150,11 @@ class _HomePageState extends State<HomePage> {
       );
     }
     return [
+      LivePage(),
+      channelRankingPage,
       VideoRankingContainerPage(
         originType: _currentOriginType,
       ),
-      channelRankingPage
     ];
   }
 
