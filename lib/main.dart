@@ -38,24 +38,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     initAnalytics();
 
-    return Column(
-      children: [
-        OKToast(
-            child: MaterialApp(
-          initialRoute: HomePage.route,
-          title: title,
-          onGenerateRoute: router.generateRoute,
-          theme: ThemeData(
-              primarySwatch: Colors.blue,
-              visualDensity: VisualDensity.adaptivePlatformDensity,
-              fontFamily: ThaiText.sarabun),
-          home: HomePage(),
-        )),
-        SizedBox(
-          // Blank space for AdSense on index.html
-          height: 100,
-        )
-      ],
+    return Container(
+      child: OKToast(
+          child: MaterialApp(
+        initialRoute: HomePage.route,
+        title: title,
+        onGenerateRoute: router.generateRoute,
+        theme: ThemeData(
+            primarySwatch: Colors.blue,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            fontFamily: ThaiText.sarabun),
+        home: HomePage(),
+      )),
+      margin:
+          EdgeInsets.only(bottom: 100), // Blank space for AdSense in index.html
     );
   }
 }
