@@ -230,8 +230,7 @@ class _HomePageState extends State<HomePage> {
             title: ThaiText(text: "API Document"),
             trailing: Icon(Icons.developer_mode),
             onTap: () {
-              var url =
-                  "https://github.com/chuymaster/thai-vtuber-ranking-docs";
+              var url = "https://github.com/chuymaster/thaivtuberranking-docs";
               UrlLauncher.launchURL(url);
               MyApp.analytics.sendAnalyticsEvent(
                   AnalyticsEvent.open_drawer_url, {'url': url});
