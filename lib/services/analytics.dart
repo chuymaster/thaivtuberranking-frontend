@@ -57,4 +57,5 @@ class AnalyticsPageName {
   static String channel = "channel";
   static String error = "error";
   static String search = "search";
+  static String live = "live";
 }

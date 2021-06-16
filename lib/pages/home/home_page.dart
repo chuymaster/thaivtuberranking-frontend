@@ -150,7 +150,9 @@ class _HomePageState extends State<HomePage> {
       );
     }
     return [
-      LivePage(),
+      LivePage(
+        originType: _currentOriginType,
+      ),
       channelRankingPage,
       VideoRankingContainerPage(
         originType: _currentOriginType,
