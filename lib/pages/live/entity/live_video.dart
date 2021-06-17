@@ -7,6 +7,7 @@ class LiveVideo {
   final String title;
   final String channelId;
   final String channelTitle;
+  final String channelThumbnailImageUrl;
   final String description;
   final String thumbnailImageUrl;
   final String publishedAt;
@@ -23,6 +24,7 @@ class LiveVideo {
       this.title,
       this.channelId,
       this.channelTitle,
+      this.channelThumbnailImageUrl,
       this.description,
       this.thumbnailImageUrl,
       this.publishedAt,
@@ -39,11 +41,12 @@ class LiveVideo {
         json['id'],
         json['title'],
         json['channel_id'],
-        channelTitle,
+        json['channel_title'] ?? "",
+        json['channel_thumbnail_image_url'] ?? "",
         json['description'],
         json['thumbnail_image_url'],
         json['published_at'],
-        isRebranded,
+        json['is_rebranded'] ?? false,
         LiveStatus.values[json['live_status']],
         json['live_schedule'] ?? null,
         json['live_start'] ?? null,
@@ -72,6 +75,14 @@ class LiveVideo {
     }
     return DateFormat('d/M/yyyy HH:mm')
         .format(DateTime.parse(liveStart!).toLocal());
+  }
+
+  String getLiveScheduleString() {
+    if (liveSchedule == null) {
+      return '-';
+    }
+    return DateFormat('d/M/yyyy HH:mm')
+        .format(DateTime.parse(liveSchedule!).toLocal());
   }
 
   String getConcurrentViewerCount() {
