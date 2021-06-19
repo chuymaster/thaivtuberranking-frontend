@@ -16,7 +16,7 @@ See `Makefile`. Run `make help` to see the available commands.
 
 ## API Document
 
-See https://github.com/chuymaster/thaivtuberranking-docs
+See https://github.com/chuymaster/thai-vtuber-ranking-docs
 
 ## Automated Deployment
 
