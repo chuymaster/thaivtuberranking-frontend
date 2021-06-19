@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
+import 'package:thaivtuberranking/pages/live/live_page.dart';
+import 'package:thaivtuberranking/pages/live/live_repository.dart';
 import 'package:thaivtuberranking/pages/video_ranking/video_ranking_page.dart';
 import 'package:thaivtuberranking/pages/video_ranking/video_ranking_repository.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
@@ -21,6 +23,7 @@ class _VideoRankingContainerPageState extends State<VideoRankingContainerPage>
   late TabController _tabController;
 
   final List<Tab> _tabBarTabs = [
+    Tab(text: "Live/Coming Soon"),
     Tab(
       text: "24 ชั่วโมงที่ผ่านมา",
     ),
@@ -68,6 +71,7 @@ class _VideoRankingContainerPageState extends State<VideoRankingContainerPage>
         constraints: BoxConstraints.expand());
 
     var tabBody = TabBarView(children: [
+      LivePage(originType: widget.originType),
       VideoRankingPage(
         originType: widget.originType,
         rankingType: VideoRankingType.OneDay,

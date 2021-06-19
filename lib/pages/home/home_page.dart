@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.ondemand_video), label: "วิดีโอ"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.person_pin), label: "แชนแนล")
+                icon: Icon(Icons.person_pin), label: "แชนแนล"),
           ],
           onTap: _onBottomNavigationBarTabTapped),
       floatingActionButton: FloatingActionButton(
@@ -148,7 +148,7 @@ class _HomePageState extends State<HomePage> {
       VideoRankingContainerPage(
         originType: _currentOriginType,
       ),
-      channelRankingPage
+      channelRankingPage,
     ];
   }
 
@@ -230,8 +230,7 @@ class _HomePageState extends State<HomePage> {
             title: ThaiText(text: "API Document"),
             trailing: Icon(Icons.developer_mode),
             onTap: () {
-              var url =
-                  "https://github.com/chuymaster/thai-vtuber-ranking-docs";
+              var url = "https://github.com/chuymaster/thaivtuberranking-docs";
               UrlLauncher.launchURL(url);
               MyApp.analytics.sendAnalyticsEvent(
                   AnalyticsEvent.open_drawer_url, {'url': url});
