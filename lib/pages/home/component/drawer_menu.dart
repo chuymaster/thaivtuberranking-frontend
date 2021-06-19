@@ -86,74 +86,101 @@ class _DrawerMenuState extends State<DrawerMenu> {
               },
             ),
           ),
-          ListTile(
-            title: ThaiText(text: "แจ้งเพิ่มแชนแนล"),
-            trailing: Icon(Icons.add),
-            onTap: () => {widget.onTapAddChannelMenu()},
-          ),
-          ListTile(
-            title: ThaiText(text: "แจ้งปัญหาหรือเสนอฟีเจอร์"),
-            trailing: Icon(Icons.open_in_new),
-            onTap: () {
-              var url = "https://twitter.com/chuymaster";
-              UrlLauncher.launchURL(url);
-              MyApp.analytics.sendAnalyticsEvent(
-                  AnalyticsEvent.open_drawer_url, {'url': url});
-            },
-          ),
-          ListTile(
-            title: ThaiText(text: "API Document"),
-            trailing: Icon(Icons.developer_mode),
-            onTap: () {
-              var url = "https://github.com/chuymaster/thaivtuberranking-docs";
-              UrlLauncher.launchURL(url);
-              MyApp.analytics.sendAnalyticsEvent(
-                  AnalyticsEvent.open_drawer_url, {'url': url});
-            },
-          ),
-          ListTile(
-            title: ThaiText(text: "Release Notes"),
-            trailing: Icon(Icons.open_in_new),
-            onTap: () {
-              var url =
-                  "https://www.notion.so/Public-Release-Notes-fddbe59f838949038fcaa4d774a4f2fc";
-              UrlLauncher.launchURL(url);
-              MyApp.analytics.sendAnalyticsEvent(
-                  AnalyticsEvent.open_drawer_url, {'url': url});
-            },
-          ),
-          ListTile(
-            title: ThaiText(text: "บล็อกผู้พัฒนา"),
-            trailing: Icon(Icons.open_in_new),
-            onTap: () {
-              var url = "https://chuysan.com/";
-              UrlLauncher.launchURL(url);
-              MyApp.analytics.sendAnalyticsEvent(
-                  AnalyticsEvent.open_drawer_url, {'url': url});
-            },
-          ),
-          ListTile(
-            title: ThaiText(text: "ข้อมูล VTuber ไทยอ้างอิงจาก @PageABup"),
-            trailing: Icon(Icons.open_in_new),
-            onTap: () {
-              var url =
-                  "https://docs.google.com/spreadsheets/d/13V8K9cyBs8AtuAQM2Psfgt9vj9ZUe1gd2V45Fr1yEgk/";
-              UrlLauncher.launchURL(url);
-              MyApp.analytics.sendAnalyticsEvent(
-                  AnalyticsEvent.open_drawer_url, {'url': url});
-            },
-          ),
-          ListTile(
-            title: ThaiText(text: "คำสงวนสิทธิ์"),
-            trailing: Icon(Icons.open_in_new),
-            onTap: () {
-              var url =
-                  "https://www.notion.so/f97473612ebc4166b1e8293624fb9062";
-              UrlLauncher.launchURL(url);
-              MyApp.analytics.sendAnalyticsEvent(
-                  AnalyticsEvent.open_drawer_url, {'url': url});
-            },
-          ),
+          Card(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: EdgeInsets.fromLTRB(16, 8, 4, 8),
+                child: ThaiText(
+                  text: "เมนู",
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              ListTile(
+                title: ThaiText(text: "แจ้งเพิ่มแชนแนล"),
+                trailing: Icon(Icons.add),
+                onTap: () => {widget.onTapAddChannelMenu()},
+              ),
+              ListTile(
+                title:
+                    ThaiText(text: "แจ้งปัญหา/แจ้งข้อมูลแชนแนลผิด/เสนอฟีเจอร์"),
+                trailing: Icon(Icons.open_in_new),
+                onTap: () {
+                  var url = "https://twitter.com/chuymaster";
+                  UrlLauncher.launchURL(url);
+                  MyApp.analytics.sendAnalyticsEvent(
+                      AnalyticsEvent.open_drawer_url, {'url': url});
+                },
+              ),
+              ListTile(
+                title: ThaiText(text: "API Document"),
+                trailing: Icon(Icons.developer_mode),
+                onTap: () {
+                  var url =
+                      "https://github.com/chuymaster/thaivtuberranking-docs";
+                  UrlLauncher.launchURL(url);
+                  MyApp.analytics.sendAnalyticsEvent(
+                      AnalyticsEvent.open_drawer_url, {'url': url});
+                },
+              ),
+              ListTile(
+                title: ThaiText(text: "Release Notes"),
+                trailing: Icon(Icons.open_in_new),
+                onTap: () {
+                  var url =
+                      "https://www.notion.so/Public-Release-Notes-fddbe59f838949038fcaa4d774a4f2fc";
+                  UrlLauncher.launchURL(url);
+                  MyApp.analytics.sendAnalyticsEvent(
+                      AnalyticsEvent.open_drawer_url, {'url': url});
+                },
+              ),
+              ListTile(
+                title: ThaiText(text: "บล็อกผู้พัฒนา"),
+                trailing: Icon(Icons.open_in_new),
+                onTap: () {
+                  var url = "https://chuysan.com/";
+                  UrlLauncher.launchURL(url);
+                  MyApp.analytics.sendAnalyticsEvent(
+                      AnalyticsEvent.open_drawer_url, {'url': url});
+                },
+              ),
+              ListTile(
+                title: ThaiText(text: "คำสงวนสิทธิ์"),
+                trailing: Icon(Icons.open_in_new),
+                onTap: () {
+                  var url =
+                      "https://www.notion.so/f97473612ebc4166b1e8293624fb9062";
+                  UrlLauncher.launchURL(url);
+                  MyApp.analytics.sendAnalyticsEvent(
+                      AnalyticsEvent.open_drawer_url, {'url': url});
+                },
+              ),
+            ],
+          )),
+          Card(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: EdgeInsets.fromLTRB(16, 8, 4, 8),
+                child: ThaiText(
+                  text: "ข้อมูลอื่นๆ",
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              ListTile(
+                title: ThaiText(text: "VTuberTH Twitter List"),
+                trailing: Icon(Icons.open_in_new),
+                onTap: () {
+                  var url = "https://twitter.com/i/lists/1349029647896350726";
+                  UrlLauncher.launchURL(url);
+                  MyApp.analytics.sendAnalyticsEvent(
+                      AnalyticsEvent.open_drawer_url, {'url': url});
+                },
+              ),
+            ],
+          )),
         ],
       ),
     );
