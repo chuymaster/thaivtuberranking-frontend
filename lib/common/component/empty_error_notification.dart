@@ -12,10 +12,12 @@ class EmptyErrorNotification extends StatelessWidget {
           children: [
             ThaiText(
               text: "เกิดข้อผิดพลาดจึงไม่สามารถแสดงข้อมูลได้",
+              color: Colors.black54,
             ),
             ThaiText(
               text:
                   "กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ต\nหรือแจ้งผู้พัฒนาเพื่อทำการแก้ไข",
+              color: Colors.black54,
             ),
             InkWell(
               child: Padding(
