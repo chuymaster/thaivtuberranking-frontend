@@ -23,10 +23,7 @@ class _VideoRankingContainerPageState extends State<VideoRankingContainerPage>
   late TabController _tabController;
 
   final List<Tab> _tabBarTabs = [
-    Tab(text: "Live Now"),
-    Tab(
-      text: "Coming Soon",
-    ),
+    Tab(text: "Live/Coming Soon"),
     Tab(
       text: "24 ชั่วโมงที่ผ่านมา",
     ),
@@ -74,10 +71,7 @@ class _VideoRankingContainerPageState extends State<VideoRankingContainerPage>
         constraints: BoxConstraints.expand());
 
     var tabBody = TabBarView(children: [
-      LivePage(
-          originType: widget.originType, liveVideoType: LiveVideoType.Live),
-      LivePage(
-          originType: widget.originType, liveVideoType: LiveVideoType.Upcoming),
+      LivePage(originType: widget.originType),
       VideoRankingPage(
         originType: widget.originType,
         rankingType: VideoRankingType.OneDay,

@@ -15,11 +15,8 @@ import 'package:thaivtuberranking/services/url_launcher.dart';
 
 class LivePage extends StatefulWidget {
   final OriginType originType;
-  final LiveVideoType liveVideoType;
 
-  const LivePage(
-      {Key? key, required this.originType, required this.liveVideoType})
-      : super(key: key);
+  const LivePage({Key? key, required this.originType}) : super(key: key);
 
   @override
   _LivePageState createState() => _LivePageState();
@@ -39,7 +36,7 @@ class _LivePageState extends State<LivePage> {
   }
 
   void loadData() async {
-    final result = await _repository.getLiveVideos(widget.liveVideoType);
+    final result = await _repository.getLiveVideos();
     if (result is SuccessState) {
       setState(() {
         _liveVideos = result.value;
@@ -112,7 +109,7 @@ class _LivePageState extends State<LivePage> {
         itemBuilder: (context, index) {
           return Container(
               child: Ink(
-                  color: (index % 2 != 0 ? Colors.blue[50] : Colors.white),
+                  color: _buildRowColor(index, _liveVideos[index]),
                   child: LiveVideoListTile(
                     item: _liveVideos[index],
                     onTap: (liveVideo) {
@@ -138,6 +135,15 @@ class _LivePageState extends State<LivePage> {
       return Container(
         child: listView,
       );
+    }
+  }
+
+  Color? _buildRowColor(int index, LiveVideo liveVideo) {
+    switch (liveVideo.liveStatus) {
+      case LiveStatus.Live:
+        return index % 2 != 0 ? Colors.orange[50] : Colors.orange[100];
+      default:
+        return index % 2 != 0 ? Colors.blue[50] : Colors.white;
     }
   }
 }
