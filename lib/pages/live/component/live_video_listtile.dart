@@ -77,7 +77,10 @@ class LiveVideoListTile extends StatelessWidget {
           height: 32,
           width: 32,
           placeholder: kTransparentImage,
-          image: item.channelThumbnailImageUrl,
+          image: item.makeSmallChannelThumbnailImageUrl(),
+          imageErrorBuilder: (context, error, stackTrace) {
+            return Icon(Icons.error_outline);
+          },
           fit: BoxFit.fill,
           fadeInDuration: Duration(milliseconds: 300),
         ));
