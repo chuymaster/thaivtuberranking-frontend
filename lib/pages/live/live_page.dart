@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/common/component/center_circular_progress_indicator.dart';
 import 'package:thaivtuberranking/common/component/custom_constraints.dart';
-import 'package:thaivtuberranking/common/component/empty_error_notification.dart';
 import 'package:thaivtuberranking/common/component/error_dialog.dart';
 import 'package:thaivtuberranking/main.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
@@ -64,7 +63,9 @@ class _LivePageState extends State<LivePage> {
   List<LiveVideo> _getFilteredLiveVideos() {
     switch (widget.originType) {
       case OriginType.OriginalOnly:
-        return _liveVideos.where((element) => (!element.isRebranded)).toList();
+        return _liveVideos
+            .where((element) => (!element.channelIsRebranded))
+            .toList();
       case OriginType.All:
         return _liveVideos;
     }

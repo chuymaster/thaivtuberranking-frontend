@@ -31,7 +31,7 @@ class LiveRepository {
         final liveVideosJsons =
             json.decode(utf8.decode(response.bodyBytes))['result'];
         for (final json in liveVideosJsons) {
-          liveVideos.add(LiveVideo.fromJson(json, "title", false));
+          liveVideos.add(LiveVideo.fromJson(json));
         }
       } else {
         return Result.error(response.statusCode.toString());
