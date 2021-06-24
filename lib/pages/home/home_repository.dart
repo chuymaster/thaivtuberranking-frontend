@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:async';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thaivtuberranking/services/result.dart';
 
 import 'entity/channel_info.dart';
@@ -50,5 +51,20 @@ class HomeRepository {
     } catch (error) {
       return Result.error(error.toString());
     }
+  }
+
+  late SharedPreferences prefs;
+
+  static const _didPressDeleteChannelAnnouncementKey =
+      'did_press_delete_channel_announcement';
+
+  void pressDeleteChannelAnnouncement() async {
+    prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_didPressDeleteChannelAnnouncementKey, true);
+  }
+
+  Future<bool> getDidPressDeleteChannelAnnouncement() async {
+    prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_didPressDeleteChannelAnnouncementKey) ?? false;
   }
 }
