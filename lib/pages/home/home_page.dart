@@ -95,11 +95,7 @@ class _HomePageState extends State<HomePage> {
   /// Build All
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: _didPressDeleteChannelAnnouncement
-          ? [_buildScaffold()]
-          : [_buildScaffold(), _buildDeleteChannelAnnouncement()],
-    );
+    return _buildScaffold();
   }
 
   Widget _buildScaffold() {
@@ -119,7 +115,14 @@ class _HomePageState extends State<HomePage> {
                 })
               },
           onTapAddChannelMenu: () => {this._navigateToAddPage("drawer_menu")}),
-      body: _buildBottomNavigationBarChildren()[_currentIndex],
+      body: _didPressDeleteChannelAnnouncement
+          ? _buildBottomNavigationBarChildren()[_currentIndex]
+          : Stack(
+              children: [
+                _buildBottomNavigationBarChildren()[_currentIndex],
+                _buildDeleteChannelAnnouncement()
+              ],
+            ),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
           items: [
@@ -139,13 +142,14 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildDeleteChannelAnnouncement() {
     return Positioned.fill(
-        bottom: 52,
+        bottom: 0,
         child: Align(
           alignment: Alignment.bottomCenter,
           child: Container(
             child: AnnouncementBanner(onPressed: () {
               MyApp.analytics.sendAnalyticsEvent(
-                  AnalyticsEvent.click_delete_channel_announcement, {});
+                  AnalyticsEvent.click_delete_channel_announcement,
+                  {"from": "home"});
               UrlLauncher.launchURL(
                   "https://www.notion.so/Public-d92d99d2b88a4747814834bcbdd9989f");
               _repository.pressDeleteChannelAnnouncement();
