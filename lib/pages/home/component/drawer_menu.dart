@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:thaivtuberranking/common/component/announcement_banner.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
 import 'package:thaivtuberranking/common/strings.dart';
 import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
@@ -90,6 +91,16 @@ class _DrawerMenuState extends State<DrawerMenu> {
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Padding(
+                padding: EdgeInsets.all(8),
+                child: Container(child: AnnouncementBanner(onPressed: () {
+                  MyApp.analytics.sendAnalyticsEvent(
+                      AnalyticsEvent.click_delete_channel_announcement,
+                      {"from": "drawer"});
+                  UrlLauncher.launchURL(
+                      "https://www.notion.so/Public-d92d99d2b88a4747814834bcbdd9989f");
+                })),
+              ),
               Container(
                 padding: EdgeInsets.fromLTRB(16, 8, 4, 8),
                 child: ThaiText(
