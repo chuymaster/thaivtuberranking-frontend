@@ -38,6 +38,8 @@ class AnalyticsEvent {
   static String view_search_page = 'view_search_page';
   static String search = 'search';
   static String click_channel_statistics_api = 'click_channel_statistics_api';
+  static String click_delete_channel_announcement =
+      'click_delete_channel_announcement';
 
   // Load screen
   static String page_loaded = "screen_loaded";
