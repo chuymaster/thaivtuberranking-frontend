@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:thaivtuberranking/common/component/announcement_banner.dart';
 import 'package:thaivtuberranking/common/component/center_circular_progress_indicator.dart';
 import 'package:thaivtuberranking/common/component/error_dialog.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
@@ -12,7 +11,6 @@ import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/result.dart';
 import 'package:thaivtuberranking/main.dart';
 import 'package:thaivtuberranking/pages/add/add_page.dart';
-import 'package:thaivtuberranking/services/url_launcher.dart';
 import 'dart:core';
 import 'entity/origin_type.dart';
 import 'entity/channel_info.dart';
@@ -32,7 +30,6 @@ class _HomePageState extends State<HomePage> {
   final _repository = HomeRepository();
   List<ChannelInfo> _channelList = [];
   bool _isLoading = true;
-  bool _didPressDeleteChannelAnnouncement = false;
 
   String _lastUpdated = "";
 
@@ -52,12 +49,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   void loadData() async {
-    final didPressDeleteChannelAnnouncement =
-        await _repository.getDidPressDeleteChannelAnnouncement();
-    setState(() {
-      _didPressDeleteChannelAnnouncement = didPressDeleteChannelAnnouncement;
-    });
-
     final result = await _repository.getVTuberChannelData();
     if (result is SuccessState) {
       setState(() {
@@ -115,14 +106,7 @@ class _HomePageState extends State<HomePage> {
                 })
               },
           onTapAddChannelMenu: () => {this._navigateToAddPage("drawer_menu")}),
-      body: _didPressDeleteChannelAnnouncement
-          ? _buildBottomNavigationBarChildren()[_currentIndex]
-          : Stack(
-              children: [
-                _buildBottomNavigationBarChildren()[_currentIndex],
-                _buildDeleteChannelAnnouncement()
-              ],
-            ),
+      body: _buildBottomNavigationBarChildren()[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
           items: [
@@ -138,28 +122,6 @@ class _HomePageState extends State<HomePage> {
         onPressed: () => _navigateToAddPage('appbar_add_button'),
       ),
     );
-  }
-
-  Widget _buildDeleteChannelAnnouncement() {
-    return Positioned.fill(
-        bottom: 0,
-        child: Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            child: AnnouncementBanner(onPressed: () {
-              MyApp.analytics.sendAnalyticsEvent(
-                  AnalyticsEvent.click_delete_channel_announcement,
-                  {"from": "home"});
-              UrlLauncher.launchURL(
-                  "https://www.notion.so/Public-d92d99d2b88a4747814834bcbdd9989f");
-              _repository.pressDeleteChannelAnnouncement();
-              setState(() {
-                _didPressDeleteChannelAnnouncement = true;
-              });
-            }),
-            height: 48,
-          ),
-        ));
   }
 
   void _onBottomNavigationBarTabTapped(int index) {
