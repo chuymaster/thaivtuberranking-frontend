@@ -167,6 +167,17 @@ class _DrawerMenuState extends State<DrawerMenu> {
                       AnalyticsEvent.open_drawer_url, {'url': url});
                 },
               ),
+              ListTile(
+                title: ThaiText(text: "สนับสนุนผู้พัฒนา"),
+                trailing: Icon(Icons.open_in_new),
+                onTap: () {
+                  var url = "https://ko-fi.com/chuymaster";
+                  UrlLauncher.launchURL(url);
+                  MyApp.analytics.sendAnalyticsEvent(
+                      AnalyticsEvent.open_drawer_url, {'url': url});
+                },
+                tileColor: Colors.orange[50],
+              ),
             ],
           )),
           Card(
