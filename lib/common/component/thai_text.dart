@@ -26,12 +26,13 @@ class ThaiText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextStyle style = TextStyle(
-      height: textHeight,
-      color: color,
-      fontSize: fontSize,
-      fontWeight: fontWeight,
-      fontFamily: fontFamily,
-    );
+        height: textHeight,
+        color: color,
+        fontSize: fontSize,
+        fontWeight: fontWeight,
+        fontFamily: fontFamily,
+        // Workaround for iOS 15 freeze https://github.com/flutter/flutter/issues/90705#issuecomment-927944039
+        inherit: false);
     return Text(text, style: style);
   }
 }
