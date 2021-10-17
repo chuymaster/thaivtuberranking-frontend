@@ -29,7 +29,7 @@ class LivePage extends StatefulWidget {
 }
 
 class _LivePageState extends State<LivePage> {
-  late LiveViewModel liveViewModel = LiveViewModel(widget.originType);
+  late LiveViewModel _liveViewModel = LiveViewModel(widget.originType);
   ScrollController _scrollController = ScrollController();
 
   @override
@@ -46,7 +46,7 @@ class _LivePageState extends State<LivePage> {
         widget.didScrollUp();
       }
     });
-    liveViewModel.getLiveVideos();
+    _liveViewModel.getLiveVideos();
   }
 
   @override
@@ -58,9 +58,9 @@ class _LivePageState extends State<LivePage> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => liveViewModel,
+        create: (context) => _liveViewModel,
         child: Consumer<LiveViewModel>(
-          builder: (context, liveViewModel, child) {
+          builder: (context, liveViewModel, _) {
             // if (liveViewModel.errorMessage != null) {
             //   ErrorDialog.showErrorDialog(
             //       'ไม่สามารถโหลดข้อมูลไลฟ์ได้\nโปรดลองใหม่ในภายหลัง',
@@ -91,16 +91,16 @@ class _LivePageState extends State<LivePage> {
   }
 
   Widget get _liveVideosWidget {
-    int itemCount = liveViewModel.filteredLiveVideos.length;
+    int itemCount = _liveViewModel.filteredLiveVideos.length;
     var listView = ListView.builder(
       controller: _scrollController,
       itemBuilder: (context, index) {
         return Container(
             child: Ink(
                 color: _buildRowColor(
-                    index, liveViewModel.filteredLiveVideos[index]),
+                    index, _liveViewModel.filteredLiveVideos[index]),
                 child: LiveVideoListTile(
-                  item: liveViewModel.filteredLiveVideos[index],
+                  item: _liveViewModel.filteredLiveVideos[index],
                   onTap: (liveVideo) {
                     UrlLauncher.launchURL(liveVideo.getVideoUrl());
                     MyApp.analytics.sendAnalyticsEvent(
