@@ -71,15 +71,15 @@ class _LivePageState extends State<LivePage> {
             if (liveViewModel.isLoading) {
               return CenterCircularProgressIndicator();
             } else if (liveViewModel.getFilteredLiveVideos().isEmpty) {
-              return _buildEmptyWidget();
+              return _emptyVideoWidget;
             } else {
-              return _buildLiveVideosWidget();
+              return _liveVideosWidget;
             }
           },
         ));
   }
 
-  Widget _buildEmptyWidget() {
+  Widget get _emptyVideoWidget {
     return Container(
       child: Align(
           alignment: Alignment.center,
@@ -90,7 +90,7 @@ class _LivePageState extends State<LivePage> {
     );
   }
 
-  Widget _buildLiveVideosWidget() {
+  Widget get _liveVideosWidget {
     final filteredLiveVideos = liveViewModel.getFilteredLiveVideos();
     int itemCount = filteredLiveVideos.length;
     var listView = ListView.builder(
