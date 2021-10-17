@@ -37,6 +37,8 @@ class _HomePageState extends State<HomePage> {
 
   String _title = "จัดอันดับวิดีโอ VTuber ไทย";
 
+  bool _isBottomNavigationBarHidden = false;
+
   // MARK:- Functions
 
   @override
@@ -107,21 +109,27 @@ class _HomePageState extends State<HomePage> {
               },
           onTapAddChannelMenu: () => {this._navigateToAddPage("drawer_menu")}),
       body: _buildBottomNavigationBarChildren()[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.ondemand_video), label: "วิดีโอ"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person_pin), label: "แชนแนล"),
-          ],
-          onTap: _onBottomNavigationBarTabTapped),
+      bottomNavigationBar: _buildBottomNavigationBar(),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add_circle),
         tooltip: 'แจ้งเพิ่มแชนแนล VTuber',
         onPressed: () => _navigateToAddPage('appbar_add_button'),
       ),
     );
+  }
+
+  Widget _buildBottomNavigationBar() {
+    return Container(
+        height: _isBottomNavigationBarHidden ? 0 : 56,
+        child: BottomNavigationBar(
+            currentIndex: _currentIndex,
+            items: [
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.ondemand_video), label: "วิดีโอ"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.person_pin), label: "แชนแนล"),
+            ],
+            onTap: _onBottomNavigationBarTabTapped));
   }
 
   void _onBottomNavigationBarTabTapped(int index) {
@@ -147,17 +155,44 @@ class _HomePageState extends State<HomePage> {
   }
 
   List<Widget> _buildBottomNavigationBarChildren() {
-    Widget channelRankingPage = CenterCircularProgressIndicator();
-    if (!_isLoading) {
-      channelRankingPage = ChannelRankingPage(
-        channelList: _getFilteredChannelList(),
-      );
+    if (_isLoading) {
+      return [
+        CenterCircularProgressIndicator(),
+        CenterCircularProgressIndicator()
+      ];
+    } else {
+      return [
+        VideoRankingContainerPage(
+          originType: _currentOriginType,
+          didScrollDown: () {
+            if (!_isBottomNavigationBarHidden) {
+              _isBottomNavigationBarHidden = true;
+              setState(() {});
+            }
+          },
+          didScrollUp: () {
+            if (_isBottomNavigationBarHidden) {
+              _isBottomNavigationBarHidden = false;
+              setState(() {});
+            }
+          },
+        ),
+        ChannelRankingPage(
+          channelList: _getFilteredChannelList(),
+          didScrollDown: () {
+            if (!_isBottomNavigationBarHidden) {
+              _isBottomNavigationBarHidden = true;
+              setState(() {});
+            }
+          },
+          didScrollUp: () {
+            if (_isBottomNavigationBarHidden) {
+              _isBottomNavigationBarHidden = false;
+              setState(() {});
+            }
+          },
+        ),
+      ];
     }
-    return [
-      VideoRankingContainerPage(
-        originType: _currentOriginType,
-      ),
-      channelRankingPage,
-    ];
   }
 }

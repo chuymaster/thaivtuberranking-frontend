@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:thaivtuberranking/common/component/center_circular_progress_indicator.dart';
 import 'package:thaivtuberranking/common/component/custom_constraints.dart';
 import 'package:thaivtuberranking/common/component/error_dialog.dart';
@@ -15,8 +16,15 @@ import 'package:thaivtuberranking/services/url_launcher.dart';
 
 class LivePage extends StatefulWidget {
   final OriginType originType;
+  final VoidCallback didScrollDown;
+  final VoidCallback didScrollUp;
 
-  const LivePage({Key? key, required this.originType}) : super(key: key);
+  const LivePage(
+      {Key? key,
+      required this.originType,
+      required this.didScrollDown,
+      required this.didScrollUp})
+      : super(key: key);
 
   @override
   _LivePageState createState() => _LivePageState();
@@ -26,13 +34,29 @@ class _LivePageState extends State<LivePage> {
   final LiveRepository _repository = LiveRepository();
   List<LiveVideo> _liveVideos = [];
   bool _isLoading = true;
+  ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
     MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.page_loaded,
         {AnalyticsParameterName.page_name: AnalyticsPageName.live});
+
+    _scrollController.addListener(() {
+      if (_scrollController.position.userScrollDirection ==
+          ScrollDirection.reverse) {
+        widget.didScrollDown();
+      } else {
+        widget.didScrollUp();
+      }
+    });
     loadData();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _scrollController.dispose();
   }
 
   void loadData() async {
@@ -106,6 +130,7 @@ class _LivePageState extends State<LivePage> {
     } else {
       int itemCount = _liveVideos.length;
       var listView = ListView.builder(
+        controller: _scrollController,
         itemBuilder: (context, index) {
           return Container(
               child: Ink(
