@@ -27,7 +27,7 @@ class LiveViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<LiveVideo> getFilteredLiveVideos() {
+  List<LiveVideo> get filteredLiveVideos {
     switch (originType) {
       case OriginType.OriginalOnly:
         return _liveVideos

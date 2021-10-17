@@ -70,7 +70,7 @@ class _LivePageState extends State<LivePage> {
             // }
             if (liveViewModel.isLoading) {
               return CenterCircularProgressIndicator();
-            } else if (liveViewModel.getFilteredLiveVideos().isEmpty) {
+            } else if (liveViewModel.filteredLiveVideos.isEmpty) {
               return _emptyVideoWidget;
             } else {
               return _liveVideosWidget;
@@ -91,16 +91,16 @@ class _LivePageState extends State<LivePage> {
   }
 
   Widget get _liveVideosWidget {
-    final filteredLiveVideos = liveViewModel.getFilteredLiveVideos();
-    int itemCount = filteredLiveVideos.length;
+    int itemCount = liveViewModel.filteredLiveVideos.length;
     var listView = ListView.builder(
       controller: _scrollController,
       itemBuilder: (context, index) {
         return Container(
             child: Ink(
-                color: _buildRowColor(index, filteredLiveVideos[index]),
+                color: _buildRowColor(
+                    index, liveViewModel.filteredLiveVideos[index]),
                 child: LiveVideoListTile(
-                  item: filteredLiveVideos[index],
+                  item: liveViewModel.filteredLiveVideos[index],
                   onTap: (liveVideo) {
                     UrlLauncher.launchURL(liveVideo.getVideoUrl());
                     MyApp.analytics.sendAnalyticsEvent(
