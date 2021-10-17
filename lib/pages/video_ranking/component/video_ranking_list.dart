@@ -4,6 +4,7 @@ import 'package:thaivtuberranking/pages/video_ranking/entity/video_ranking.dart'
 
 class VideoRankingList extends StatelessWidget {
   final List<VideoRanking> videoRankingList;
+  final ScrollController scrollController;
 
   final Function(VideoRanking) onTap;
   final Function(VideoRanking) onTapChannelName;
@@ -11,7 +12,8 @@ class VideoRankingList extends StatelessWidget {
       {Key? key,
       required this.videoRankingList,
       required this.onTap,
-      required this.onTapChannelName})
+      required this.onTapChannelName,
+      required this.scrollController})
       : super(key: key);
 
   @override
@@ -19,6 +21,7 @@ class VideoRankingList extends StatelessWidget {
     int itemCount = videoRankingList.length;
 
     var listView = ListView.builder(
+      controller: scrollController,
       itemBuilder: (context, index) {
         return Container(
             child: Ink(

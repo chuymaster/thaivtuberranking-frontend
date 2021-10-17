@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
 import 'package:thaivtuberranking/pages/live/live_page.dart';
-import 'package:thaivtuberranking/pages/live/live_repository.dart';
 import 'package:thaivtuberranking/pages/video_ranking/video_ranking_page.dart';
 import 'package:thaivtuberranking/pages/video_ranking/video_ranking_repository.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
@@ -10,8 +10,14 @@ import '../../main.dart';
 
 class VideoRankingContainerPage extends StatefulWidget {
   final OriginType originType;
+  final VoidCallback didScrollDown;
+  final VoidCallback didScrollUp;
 
-  const VideoRankingContainerPage({Key? key, required this.originType})
+  const VideoRankingContainerPage(
+      {Key? key,
+      required this.originType,
+      required this.didScrollDown,
+      required this.didScrollUp})
       : super(key: key);
   @override
   _VideoRankingContainerPageState createState() =>
@@ -71,18 +77,28 @@ class _VideoRankingContainerPageState extends State<VideoRankingContainerPage>
         constraints: BoxConstraints.expand());
 
     var tabBody = TabBarView(children: [
-      LivePage(originType: widget.originType),
+      LivePage(
+        originType: widget.originType,
+        didScrollDown: () => widget.didScrollDown(),
+        didScrollUp: () => widget.didScrollUp(),
+      ),
       VideoRankingPage(
         originType: widget.originType,
         rankingType: VideoRankingType.OneDay,
+        didScrollDown: () => widget.didScrollDown(),
+        didScrollUp: () => widget.didScrollUp(),
       ),
       VideoRankingPage(
         originType: widget.originType,
         rankingType: VideoRankingType.ThreeDay,
+        didScrollDown: () => widget.didScrollDown(),
+        didScrollUp: () => widget.didScrollUp(),
       ),
       VideoRankingPage(
         originType: widget.originType,
         rankingType: VideoRankingType.SevenDay,
+        didScrollDown: () => widget.didScrollDown(),
+        didScrollUp: () => widget.didScrollUp(),
       ),
     ]);
 

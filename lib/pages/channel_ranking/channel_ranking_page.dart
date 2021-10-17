@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:thaivtuberranking/common/component/custom_constraints.dart';
 import 'package:thaivtuberranking/common/component/empty_error_notification.dart';
 import 'package:thaivtuberranking/pages/channel/channel_page.dart';
@@ -16,8 +17,14 @@ import '../../main.dart';
 
 class ChannelRankingPage extends StatefulWidget {
   final List<ChannelInfo> channelList;
+  final VoidCallback didScrollDown;
+  final VoidCallback didScrollUp;
 
-  const ChannelRankingPage({Key? key, required this.channelList})
+  const ChannelRankingPage(
+      {Key? key,
+      required this.channelList,
+      required this.didScrollDown,
+      required this.didScrollUp})
       : super(key: key);
 
   @override
@@ -56,6 +63,15 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
     // สร้าง widget สำหรับแต่ละ tabs
     filterItems.forEach((element) {
       _tabBarTabs.add(Tab(text: element.text));
+    });
+
+    _scrollController.addListener(() {
+      if (_scrollController.position.userScrollDirection ==
+          ScrollDirection.reverse) {
+        widget.didScrollDown();
+      } else {
+        widget.didScrollUp();
+      }
     });
 
     loadData();
