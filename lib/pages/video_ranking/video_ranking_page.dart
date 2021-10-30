@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:thaivtuberranking/common/component/center_circular_progress_indicator.dart';
-import 'package:thaivtuberranking/common/component/custom_constraints.dart';
 import 'package:thaivtuberranking/common/component/empty_error_notification.dart';
 import 'package:thaivtuberranking/common/component/error_dialog.dart';
 import 'package:thaivtuberranking/main.dart';
@@ -122,7 +121,6 @@ class _VideoRankingPageState extends State<VideoRankingPage> {
     return Align(
       child: Container(
         child: body,
-        constraints: CustomConstraints.pageBoxConstraints,
       ),
       alignment: Alignment.topCenter,
     );

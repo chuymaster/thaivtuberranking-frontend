@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:thaivtuberranking/common/component/center_circular_progress_indicator.dart';
-import 'package:thaivtuberranking/common/component/custom_constraints.dart';
-import 'package:thaivtuberranking/common/component/error_dialog.dart';
+import 'package:thaivtuberranking/common/component/retryable_error_view.dart';
 import 'package:thaivtuberranking/main.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
 import 'package:thaivtuberranking/pages/channel/channel_page.dart';
 import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
 import 'package:thaivtuberranking/pages/live/component/live_video_listtile.dart';
 import 'package:thaivtuberranking/pages/live/entity/live_video.dart';
-import 'package:thaivtuberranking/pages/live/live_repository.dart';
+import 'package:thaivtuberranking/pages/live/live_view_model.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/result.dart';
 import 'package:thaivtuberranking/services/url_launcher.dart';
+import 'package:provider/provider.dart';
 
 class LivePage extends StatefulWidget {
   final OriginType originType;
@@ -31,9 +31,7 @@ class LivePage extends StatefulWidget {
 }
 
 class _LivePageState extends State<LivePage> {
-  final LiveRepository _repository = LiveRepository();
-  List<LiveVideo> _liveVideos = [];
-  bool _isLoading = true;
+  late LiveViewModel _liveViewModel = LiveViewModel(widget.originType);
   ScrollController _scrollController = ScrollController();
 
   @override
@@ -50,7 +48,7 @@ class _LivePageState extends State<LivePage> {
         widget.didScrollUp();
       }
     });
-    loadData();
+    _liveViewModel.getLiveVideos();
   }
 
   @override
@@ -59,61 +57,32 @@ class _LivePageState extends State<LivePage> {
     _scrollController.dispose();
   }
 
-  void loadData() async {
-    final result = await _repository.getLiveVideos();
-    if (result is SuccessState) {
-      setState(() {
-        _liveVideos = result.value;
-        _isLoading = false;
-      });
-    } else if (result is ErrorState) {
-      ErrorDialog.showErrorDialog(
-          'ไม่สามารถโหลดข้อมูลไลฟ์ได้\nโปรดลองใหม่ในภายหลัง',
-          result.msg,
-          context);
-      setState(() {
-        _isLoading = false;
-      });
-    } else {
-      setState(() {
-        _isLoading = true;
-      });
-    }
-  }
-
-  List<LiveVideo> _getFilteredLiveVideos() {
-    switch (widget.originType) {
-      case OriginType.OriginalOnly:
-        return _liveVideos
-            .where((element) => (!element.channelIsRebranded))
-            .toList();
-      case OriginType.All:
-        return _liveVideos;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    Widget body;
-    if (_isLoading) {
-      body = CenterCircularProgressIndicator();
-    } else {
-      List<LiveVideo> liveVideos = _getFilteredLiveVideos();
-      if (liveVideos.isEmpty) {
-        body = _buildEmptyWidget();
-      } else {
-        body = _buildLiveVideosWidget();
-      }
-    }
-    return Center(
-      child: Container(
-        child: body,
-        constraints: CustomConstraints.pageBoxConstraints,
-      ),
-    );
+    return ChangeNotifierProvider(
+        create: (context) => _liveViewModel,
+        child: Consumer<LiveViewModel>(
+          builder: (context, liveViewModel, _) {
+            if (liveViewModel.viewState is LoadingState) {
+              return CenterCircularProgressIndicator();
+            } else if (liveViewModel.viewState is ErrorState) {
+              final errorMessage = (liveViewModel.viewState as ErrorState).msg;
+              return RetryableErrorView(
+                message: errorMessage,
+                retryAction: () {
+                  _liveViewModel.getLiveVideos();
+                },
+              );
+            } else if (liveViewModel.filteredLiveVideos.isEmpty) {
+              return _emptyVideoWidget;
+            } else {
+              return _liveVideosWidget;
+            }
+          },
+        ));
   }
 
-  Widget _buildEmptyWidget() {
+  Widget get _emptyVideoWidget {
     return Container(
       child: Align(
           alignment: Alignment.center,
@@ -124,43 +93,40 @@ class _LivePageState extends State<LivePage> {
     );
   }
 
-  Widget _buildLiveVideosWidget() {
-    if (_liveVideos.isEmpty) {
-      return _buildEmptyWidget();
-    } else {
-      int itemCount = _liveVideos.length;
-      var listView = ListView.builder(
-        controller: _scrollController,
-        itemBuilder: (context, index) {
-          return Container(
-              child: Ink(
-                  color: _buildRowColor(index, _liveVideos[index]),
-                  child: LiveVideoListTile(
-                    item: _liveVideos[index],
-                    onTap: (liveVideo) {
-                      UrlLauncher.launchURL(liveVideo.getVideoUrl());
-                      MyApp.analytics.sendAnalyticsEvent(
-                          AnalyticsEvent.open_video_url,
-                          {'url': liveVideo.getVideoUrl()});
-                    },
-                    onTapChannelName: (liveVideo) {
-                      Navigator.pushNamed(context, ChannelPage.route,
-                          arguments: liveVideo.channelId);
-                      MyApp.analytics.sendAnalyticsEvent(
-                          AnalyticsEvent.view_detail, {
-                        'channel_id': liveVideo.channelId,
-                        'channel_name': liveVideo.channelTitle
-                      });
-                    },
-                  )));
-        },
-        itemCount: itemCount,
-      );
+  Widget get _liveVideosWidget {
+    int itemCount = _liveViewModel.filteredLiveVideos.length;
+    var listView = ListView.builder(
+      controller: _scrollController,
+      itemBuilder: (context, index) {
+        return Container(
+            child: Ink(
+                color: _buildRowColor(
+                    index, _liveViewModel.filteredLiveVideos[index]),
+                child: LiveVideoListTile(
+                  item: _liveViewModel.filteredLiveVideos[index],
+                  onTap: (liveVideo) {
+                    UrlLauncher.launchURL(liveVideo.getVideoUrl());
+                    MyApp.analytics.sendAnalyticsEvent(
+                        AnalyticsEvent.open_video_url,
+                        {'url': liveVideo.getVideoUrl()});
+                  },
+                  onTapChannelName: (liveVideo) {
+                    Navigator.pushNamed(context, ChannelPage.route,
+                        arguments: liveVideo.channelId);
+                    MyApp.analytics.sendAnalyticsEvent(
+                        AnalyticsEvent.view_detail, {
+                      'channel_id': liveVideo.channelId,
+                      'channel_name': liveVideo.channelTitle
+                    });
+                  },
+                )));
+      },
+      itemCount: itemCount,
+    );
 
-      return Container(
-        child: listView,
-      );
-    }
+    return Container(
+      child: listView,
+    );
   }
 
   Color? _buildRowColor(int index, LiveVideo liveVideo) {
