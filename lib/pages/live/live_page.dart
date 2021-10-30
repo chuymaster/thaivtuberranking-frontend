@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:thaivtuberranking/common/component/center_circular_progress_indicator.dart';
+import 'package:thaivtuberranking/common/component/retryable_error_view.dart';
 import 'package:thaivtuberranking/main.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
 import 'package:thaivtuberranking/pages/channel/channel_page.dart';
@@ -9,6 +10,7 @@ import 'package:thaivtuberranking/pages/live/component/live_video_listtile.dart'
 import 'package:thaivtuberranking/pages/live/entity/live_video.dart';
 import 'package:thaivtuberranking/pages/live/live_view_model.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
+import 'package:thaivtuberranking/services/result.dart';
 import 'package:thaivtuberranking/services/url_launcher.dart';
 import 'package:provider/provider.dart';
 
@@ -61,15 +63,16 @@ class _LivePageState extends State<LivePage> {
         create: (context) => _liveViewModel,
         child: Consumer<LiveViewModel>(
           builder: (context, liveViewModel, _) {
-            // if (liveViewModel.errorMessage != null) {
-            //   ErrorDialog.showErrorDialog(
-            //       'ไม่สามารถโหลดข้อมูลไลฟ์ได้\nโปรดลองใหม่ในภายหลัง',
-            //       liveViewModel.errorMessage,
-            //       context);
-            //   liveViewModel.clearErrorMessage();
-            // }
-            if (liveViewModel.isLoading) {
+            if (liveViewModel.viewState is LoadingState) {
               return CenterCircularProgressIndicator();
+            } else if (liveViewModel.viewState is ErrorState) {
+              final errorMessage = (liveViewModel.viewState as ErrorState).msg;
+              return RetryableErrorView(
+                message: errorMessage,
+                retryAction: () {
+                  _liveViewModel.getLiveVideos();
+                },
+              );
             } else if (liveViewModel.filteredLiveVideos.isEmpty) {
               return _emptyVideoWidget;
             } else {

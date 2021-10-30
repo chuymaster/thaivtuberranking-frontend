@@ -8,37 +8,29 @@ class LiveViewModel extends ChangeNotifier {
   final OriginType originType;
   final LiveRepository _repository = LiveRepository();
 
-  bool isLoading = false;
-  String? errorMessage;
-
-  List<LiveVideo> _liveVideos = [];
+  Result viewState = Result.loading();
 
   LiveViewModel(this.originType);
 
   void getLiveVideos() async {
-    isLoading = true;
+    viewState = Result.loading();
     final result = await _repository.getLiveVideos();
-    isLoading = false;
-    if (result is SuccessState) {
-      _liveVideos = result.value;
-    } else if (result is ErrorState) {
-      errorMessage = result.msg;
-    }
+    viewState = result;
     notifyListeners();
   }
 
   List<LiveVideo> get filteredLiveVideos {
-    switch (originType) {
-      case OriginType.OriginalOnly:
-        return _liveVideos
-            .where((element) => (!element.channelIsRebranded))
-            .toList();
-      case OriginType.All:
-        return _liveVideos;
+    if (viewState is SuccessState<List<LiveVideo>>) {
+      final liveVideos = (viewState as SuccessState<List<LiveVideo>>).value;
+      switch (originType) {
+        case OriginType.OriginalOnly:
+          return liveVideos
+              .where((element) => (!element.channelIsRebranded))
+              .toList();
+        case OriginType.All:
+          return liveVideos;
+      }
     }
-  }
-
-  void clearErrorMessage() {
-    errorMessage = null;
+    return [];
   }
 }

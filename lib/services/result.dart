@@ -1,7 +1,7 @@
 class Result<T> {
   Result._();
 
-  factory Result.loading(T msg) = LoadingState<T>;
+  factory Result.loading() = LoadingState<T>;
 
   factory Result.success(T value) = SuccessState<T>;
 
@@ -9,8 +9,7 @@ class Result<T> {
 }
 
 class LoadingState<T> extends Result<T> {
-  LoadingState(this.msg) : super._();
-  final T msg;
+  LoadingState() : super._();
 }
 
 class ErrorState<T> extends Result<T> {
