@@ -39,6 +39,7 @@ dependencies:
   fl_chart: ^0.40.0
   search_page: ^2.0.0+1
   syncfusion_flutter_charts: ^19.1.63
+  provider: ^6.0.0
 
 dev_dependencies:
   flutter_test:

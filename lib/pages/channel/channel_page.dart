@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:thaivtuberranking/common/component/center_circular_progress_indicator.dart';
-import 'package:thaivtuberranking/common/component/custom_constraints.dart';
 import 'package:thaivtuberranking/common/component/error_dialog.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
 import 'package:thaivtuberranking/pages/channel/channel_repository.dart';
@@ -97,8 +96,7 @@ class _ChannelPageState extends State<ChannelPage> {
                       _buildChartDataView(),
                       _buildRawDataLink()
                     ],
-                  ),
-                  constraints: CustomConstraints.pageBoxConstraints)));
+                  ))));
     } else {
       body = CenterCircularProgressIndicator();
     }
