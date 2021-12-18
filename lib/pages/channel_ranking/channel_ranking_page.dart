@@ -93,6 +93,9 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
         builder: (BuildContext context) {
           final TabController? tabController = DefaultTabController.of(context);
           tabController?.addListener(() {
+            setState(() {
+              _viewModel.setPageNumber(1);
+            });
             if (!tabController.indexIsChanging) {
               FilterItem newItem = _viewModel.filterItems[tabController.index];
               MyApp.analytics.sendAnalyticsEvent(
