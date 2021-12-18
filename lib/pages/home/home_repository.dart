@@ -6,7 +6,7 @@ import 'package:thaivtuberranking/services/result.dart';
 import 'entity/channel_info.dart';
 
 class HomeRepository {
-  Future<Result> getVTuberChannelData() async {
+  Future<Result> getChannelList() async {
     // Must set CORS for storage -  https://firebase.google.com/docs/storage/web/download-files
     /** 
         [

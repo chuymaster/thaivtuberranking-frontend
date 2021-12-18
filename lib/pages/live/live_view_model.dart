@@ -14,8 +14,7 @@ class LiveViewModel extends ChangeNotifier {
 
   void getLiveVideos() async {
     viewState = Result.loading();
-    final result = await _repository.getLiveVideos();
-    viewState = result;
+    viewState = await _repository.getLiveVideos();
     notifyListeners();
   }
 

@@ -31,7 +31,7 @@ class LivePage extends StatefulWidget {
 }
 
 class _LivePageState extends State<LivePage> {
-  late LiveViewModel _liveViewModel = LiveViewModel(widget.originType);
+  late LiveViewModel _viewModel = LiveViewModel(widget.originType);
   ScrollController _scrollController = ScrollController();
 
   @override
@@ -48,7 +48,7 @@ class _LivePageState extends State<LivePage> {
         widget.didScrollUp();
       }
     });
-    _liveViewModel.getLiveVideos();
+    _viewModel.getLiveVideos();
   }
 
   @override
@@ -60,7 +60,7 @@ class _LivePageState extends State<LivePage> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => _liveViewModel,
+        create: (context) => _viewModel,
         child: Consumer<LiveViewModel>(
           builder: (context, liveViewModel, _) {
             if (liveViewModel.viewState is LoadingState) {
@@ -70,7 +70,7 @@ class _LivePageState extends State<LivePage> {
               return RetryableErrorView(
                 message: errorMessage,
                 retryAction: () {
-                  _liveViewModel.getLiveVideos();
+                  _viewModel.getLiveVideos();
                 },
               );
             } else if (liveViewModel.filteredLiveVideos.isEmpty) {
@@ -94,16 +94,16 @@ class _LivePageState extends State<LivePage> {
   }
 
   Widget get _liveVideosWidget {
-    int itemCount = _liveViewModel.filteredLiveVideos.length;
+    int itemCount = _viewModel.filteredLiveVideos.length;
     var listView = ListView.builder(
       controller: _scrollController,
       itemBuilder: (context, index) {
         return Container(
             child: Ink(
-                color: _buildRowColor(
-                    index, _liveViewModel.filteredLiveVideos[index]),
+                color:
+                    _buildRowColor(index, _viewModel.filteredLiveVideos[index]),
                 child: LiveVideoListTile(
-                  item: _liveViewModel.filteredLiveVideos[index],
+                  item: _viewModel.filteredLiveVideos[index],
                   onTap: (liveVideo) {
                     UrlLauncher.launchURL(liveVideo.getVideoUrl());
                     MyApp.analytics.sendAnalyticsEvent(
