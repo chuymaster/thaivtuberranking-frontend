@@ -14,7 +14,6 @@ import 'package:thaivtuberranking/services/result.dart';
 import 'package:thaivtuberranking/main.dart';
 import 'package:thaivtuberranking/pages/add/add_page.dart';
 import 'dart:core';
-import 'entity/origin_type.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -26,10 +25,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  OriginType _currentOriginType = OriginType.OriginalOnly;
   final _viewModel = HomeViewModel();
-
-  // MARK:- Functions
 
   @override
   void initState() {
@@ -40,7 +36,6 @@ class _HomePageState extends State<HomePage> {
     _viewModel.getChannelList();
   }
 
-  /// Build All
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -52,16 +47,14 @@ class _HomePageState extends State<HomePage> {
           final errorMessage = (viewModel.viewState as ErrorState).msg;
           return RetryableErrorView(
               message: errorMessage,
-              retryAction: () {
-                viewModel.getChannelList();
-              });
+              retryAction: () => viewModel.getChannelList());
         } else if (viewModel.channelList.isEmpty) {
           return EmptyErrorNotification();
         } else {
           return Scaffold(
             appBar: _appBar,
             drawer: _drawerMenu,
-            body: _buildBottomNavigationBarChildren()[_viewModel.index],
+            body: _body,
             bottomNavigationBar: _bottomNavigationBar,
             floatingActionButton: _floatingActionButton,
           );
@@ -73,25 +66,22 @@ class _HomePageState extends State<HomePage> {
   PreferredSizeWidget get _appBar {
     return AppBar(
         title: Text(
-          _viewModel.title,
+          _viewModel.tabIndex == 0
+              ? "จัดอันดับวิดีโอ VTuber ไทย"
+              : "จัดอันดับแชนแนล VTuber ไทย",
           style: TextStyle(fontFamily: ThaiText.kanit),
         ),
         actions: [
-          SearchIconButton(
-              channelList:
-                  _viewModel.getFilteredChannelList(_currentOriginType))
+          SearchIconButton(channelList: _viewModel.filteredChannelList)
         ]);
   }
 
   Widget get _drawerMenu {
     return DrawerMenu(
-        currentOriginType: _currentOriginType,
+        currentOriginType: _viewModel.originType,
         lastUpdatedAt: _viewModel.lastUpdated,
-        onChangeOriginType: (originType) => {
-              setState(() {
-                this._currentOriginType = originType;
-              })
-            },
+        onChangeOriginType: (originType) =>
+            _viewModel.changeOriginType(originType),
         onTapAddChannelMenu: () => {this._navigateToAddPage("drawer_menu")});
   }
 
@@ -99,7 +89,7 @@ class _HomePageState extends State<HomePage> {
     return Container(
         height: _viewModel.isBottomNavigationBarHidden ? 0 : 56,
         child: BottomNavigationBar(
-          currentIndex: _viewModel.index,
+          currentIndex: _viewModel.tabIndex,
           items: [
             BottomNavigationBarItem(
                 icon: Icon(Icons.ondemand_video), label: "วิดีโอ"),
@@ -109,7 +99,7 @@ class _HomePageState extends State<HomePage> {
           onTap: (index) {
             MyApp.analytics.sendAnalyticsEvent(
                 AnalyticsEvent.change_bottom_tab, {"index": index});
-            _viewModel.changeIndex(index);
+            _viewModel.changeTabIndex(index);
           },
         ));
   }
@@ -123,23 +113,22 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _navigateToAddPage(String location) {
-    var channelIdList = _viewModel.channelList.map((e) => e.channelId).toList();
-
-    Navigator.pushNamed(context, AddPage.route, arguments: channelIdList);
+    Navigator.pushNamed(context, AddPage.route,
+        arguments: _viewModel.channelIdList);
     MyApp.analytics.sendAnalyticsEvent(
         AnalyticsEvent.view_add_page, {'location': location});
   }
 
-  List<Widget> _buildBottomNavigationBarChildren() {
-    return [
-      VideoRankingContainerPage(
-          originType: _currentOriginType,
+  Widget get _body {
+    if (_viewModel.tabIndex == 0) {
+      return VideoRankingContainerPage(
+          originType: _viewModel.originType,
           didScrollDown: () => _viewModel.hideBottomNavigationBar(),
-          didScrollUp: () => _viewModel.showBottomNavigationBar()),
-      ChannelRankingPage(
-          channelList: _viewModel.getFilteredChannelList(_currentOriginType),
-          didScrollDown: () => _viewModel.hideBottomNavigationBar(),
-          didScrollUp: () => _viewModel.showBottomNavigationBar()),
-    ];
+          didScrollUp: () => _viewModel.showBottomNavigationBar());
+    }
+    return ChannelRankingPage(
+        channelList: _viewModel.filteredChannelList,
+        didScrollDown: () => _viewModel.hideBottomNavigationBar(),
+        didScrollUp: () => _viewModel.showBottomNavigationBar());
   }
 }

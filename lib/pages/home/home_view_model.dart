@@ -8,27 +8,27 @@ class HomeViewModel extends ChangeNotifier {
   final HomeRepository _repository = HomeRepository();
 
   String _lastUpdated = "";
-  int _index = 0;
-  bool _isBottomNavigationBarHidden = false;
-  String _title = "จัดอันดับวิดีโอ VTuber ไทย";
-
-  Result viewState = Result.loading();
-
-  String get title {
-    return _title;
-  }
-
-  int get index {
-    return _index;
-  }
-
   String get lastUpdated {
     return _lastUpdated;
   }
 
+  int _tabIndex = 0;
+  int get tabIndex {
+    return _tabIndex;
+  }
+
+  bool _isBottomNavigationBarHidden = false;
+
   bool get isBottomNavigationBarHidden {
     return _isBottomNavigationBarHidden;
   }
+
+  OriginType _originType = OriginType.OriginalOnly;
+  OriginType get originType {
+    return _originType;
+  }
+
+  Result viewState = Result.loading();
 
   void getChannelList() async {
     viewState = Result.loading();
@@ -44,8 +44,12 @@ class HomeViewModel extends ChangeNotifier {
     return [];
   }
 
-  List<ChannelInfo> getFilteredChannelList(OriginType originType) {
-    switch (originType) {
+  List<String> get channelIdList {
+    return channelList.map((e) => e.channelId).toList();
+  }
+
+  List<ChannelInfo> get filteredChannelList {
+    switch (_originType) {
       case OriginType.OriginalOnly:
         return channelList.where((element) => (!element.isRebranded)).toList();
       case OriginType.All:
@@ -53,13 +57,13 @@ class HomeViewModel extends ChangeNotifier {
     }
   }
 
-  void changeIndex(int index) {
-    _index = index;
-    if (index == 0) {
-      _title = "จัดอันดับวิดีโอ VTuber ไทย";
-    } else {
-      _title = "จัดอันดับแชนแนล VTuber ไทย";
-    }
+  void changeTabIndex(int index) {
+    _tabIndex = index;
+    notifyListeners();
+  }
+
+  void changeOriginType(OriginType originType) {
+    _originType = originType;
     notifyListeners();
   }
 
