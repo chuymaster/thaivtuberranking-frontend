@@ -1,10 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:thaivtuberranking/common/component/empty_error_notification.dart';
 import 'package:thaivtuberranking/pages/channel/channel_page.dart';
-import 'package:thaivtuberranking/pages/channel_ranking/channel_ranking_repository.dart';
+import 'package:thaivtuberranking/pages/channel_ranking/channel_ranking_view_model.dart';
 import 'package:thaivtuberranking/pages/home/component/page_selection.dart';
 import 'package:thaivtuberranking/pages/home/component/vtuber_ranking_list.dart';
 import 'package:thaivtuberranking/pages/home/entity/filter_item.dart';
@@ -32,25 +30,15 @@ class ChannelRankingPage extends StatefulWidget {
 
 class _ChannelRankingPageState extends State<ChannelRankingPage>
     with SingleTickerProviderStateMixin {
-  final _repository = ChannelRankingRepository();
+  late final _viewModel = ChannelRankingViewModel(widget.channelList);
+  late final List<Tab> _tabs = _viewModel.filterItems
+      .map((e) => Tab(
+            text: e.text,
+          ))
+      .toList();
+  late final TabController _tabController;
 
-  int channelCount = 0;
-  int currentPageNumber = 1;
-  int maxPageNumber = 1;
-  final int _itemPerPage = 20;
-
-  List<Tab> _tabBarTabs = [];
-  late int _tabBarInitialIndex;
-
-  late TabController _tabController;
-  ScrollController _scrollController = ScrollController();
-
-  final List<FilterItem> filterItems = <FilterItem>[
-    FilterItem(Filter.Subscriber),
-    FilterItem(Filter.View),
-    FilterItem(Filter.PublishedDate),
-    FilterItem(Filter.UpdatedDate)
-  ];
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -58,11 +46,6 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
 
     MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.page_loaded,
         {AnalyticsParameterName.page_name: AnalyticsPageName.channel_ranking});
-
-    // สร้าง widget สำหรับแต่ละ tabs
-    filterItems.forEach((element) {
-      _tabBarTabs.add(Tab(text: element.text));
-    });
 
     _scrollController.addListener(() {
       if (_scrollController.position.userScrollDirection ==
@@ -73,57 +56,8 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
       }
     });
 
-    loadData();
-  }
-
-  void loadData() async {
-    final value = await _repository.getFilterIndex();
-    setState(() {
-      setMaxPageNumber();
-      _tabBarInitialIndex = value;
-      _tabController = TabController(
-          vsync: this,
-          length: _tabBarTabs.length,
-          initialIndex: _tabBarInitialIndex);
-    });
-  }
-
-  int getOffset() {
-    return (currentPageNumber - 1) * _itemPerPage;
-  }
-
-  /// ลิสต์อันดับที่ผ่านการ filter แล้ว ใช้โชว์จริง
-  List<ChannelInfo> displayItemList(Filter filter) {
-    List<ChannelInfo> _itemList = widget.channelList;
-
-    switch (filter) {
-      case Filter.Subscriber:
-        // sort desc (b > a)
-        _itemList
-            .sort((a, b) => b.totalSubscribers.compareTo(a.totalSubscribers));
-        break;
-      case Filter.View:
-        _itemList.sort((a, b) => b.totalViews.compareTo(a.totalViews));
-        break;
-      case Filter.PublishedDate:
-        _itemList.sort((a, b) => b
-            .getPublishedAtForComparison()
-            .compareTo(a.getPublishedAtForComparison()));
-        break;
-      case Filter.UpdatedDate:
-        _itemList.sort(
-            (a, b) => b.lastPublishedVideoAt.compareTo(a.lastPublishedVideoAt));
-        break;
-    }
-
-    int end = min(_itemList.length, getOffset() + _itemPerPage);
-
-    return _itemList.getRange(getOffset(), end).toList();
-  }
-
-  void setMaxPageNumber() {
-    channelCount = widget.channelList.length;
-    maxPageNumber = (channelCount / _itemPerPage).ceil();
+    _tabController =
+        TabController(vsync: this, length: _tabs.length, initialIndex: 0);
   }
 
   @override
@@ -140,7 +74,7 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
           child: TabBar(
             isScrollable: true,
             indicatorColor: Colors.orangeAccent,
-            tabs: _tabBarTabs,
+            tabs: _tabs,
           ),
           color: Theme.of(context).colorScheme.primary,
         ),
@@ -150,27 +84,24 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
     if (widget.channelList.isEmpty) {
       body = EmptyErrorNotification();
     } else {
-      body = _buildTabBarView(_tabBarTabs);
+      body = _tabBarView;
     }
 
     return DefaultTabController(
-      length: _tabBarTabs.length,
+      length: _tabs.length,
       child: Builder(
         builder: (BuildContext context) {
           final TabController? tabController = DefaultTabController.of(context);
           tabController?.addListener(() {
+            setState(() {
+              _viewModel.setPageNumber(1);
+            });
             if (!tabController.indexIsChanging) {
-              FilterItem newItem = filterItems[tabController.index];
+              FilterItem newItem = _viewModel.filterItems[tabController.index];
               MyApp.analytics.sendAnalyticsEvent(
                   AnalyticsEvent.set_filter, {'text': newItem.text});
-              // เวลาเปลี่ยนฟิลเตอร์เรียงอันดับ
-              setState(() {
-                // เซฟฟิลเตอร์ที่เลือกไว้ใช้ตอนโหลดแอพใหม่
-                _repository.setFilterIndex(tabController.index);
-              });
             }
           });
-
           return Scaffold(
             appBar: PreferredSize(
               child: Container(child: tabBar),
@@ -183,10 +114,19 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
     );
   }
 
-  Widget _buildVTuberRankingList(Filter filter) {
+  Widget get _tabBarView {
+    List<Widget> rankingList = [];
+    _tabs.asMap().forEach((index, _) {
+      rankingList.add(_buildTabBarView(index));
+    });
+
+    return TabBarView(children: rankingList);
+  }
+
+  Widget _buildTabBarView(int filterIndex) {
     PageSelection pageSelection = PageSelection(
-      currentPageNumber: currentPageNumber,
-      maxPageNumber: maxPageNumber,
+      currentPageNumber: _viewModel.currentPageNumber,
+      maxPageNumber: _viewModel.maxPageNumber,
       onPageChanged: (destinationPageNumber) {
         MyApp.analytics.sendAnalyticsEvent(
             AnalyticsEvent.change_page, {'page_number': destinationPageNumber});
@@ -195,51 +135,39 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
               _scrollController.position.minScrollExtent,
               duration: Duration(milliseconds: 100),
               curve: Curves.easeOut);
-          currentPageNumber = destinationPageNumber;
+          _viewModel.setPageNumber(destinationPageNumber);
         });
       },
     );
 
     return Center(
-        child: Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          VTuberRankingList(
-            itemList: displayItemList(filter),
-            pageSelection: pageSelection,
-            rankOffset: getOffset(),
-            scrollController: _scrollController,
-            onTapCell: (channelInfo) {
-              Navigator.pushNamed(context, ChannelPage.route,
-                  arguments: channelInfo.channelId);
-              MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.view_detail, {
-                'channel_id': channelInfo.channelId,
-                'channel_name': channelInfo.channelName
-              });
-            },
-            onTapYouTubeIcon: (channelInfo) {
-              UrlLauncher.launchURL(channelInfo.getChannelUrl());
-              MyApp.analytics
-                  .sendAnalyticsEvent(AnalyticsEvent.click_vtuber_url, {
-                'name': channelInfo.channelName,
-                'url': channelInfo.getChannelUrl(),
-                'location': 'top_youtube_icon'
-              });
-            },
-          ),
-        ],
-      ),
+        child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        VTuberRankingList(
+          itemList: _viewModel.getDisplayChannelList(filterIndex),
+          pageSelection: pageSelection,
+          rankOffset: _viewModel.startIndex,
+          scrollController: _scrollController,
+          onTapCell: (channelInfo) {
+            Navigator.pushNamed(context, ChannelPage.route,
+                arguments: channelInfo.channelId);
+            MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.view_detail, {
+              'channel_id': channelInfo.channelId,
+              'channel_name': channelInfo.channelName
+            });
+          },
+          onTapYouTubeIcon: (channelInfo) {
+            UrlLauncher.launchURL(channelInfo.getChannelUrl());
+            MyApp.analytics
+                .sendAnalyticsEvent(AnalyticsEvent.click_vtuber_url, {
+              'name': channelInfo.channelName,
+              'url': channelInfo.getChannelUrl(),
+              'location': 'top_youtube_icon'
+            });
+          },
+        ),
+      ],
     ));
-  }
-
-  Widget _buildTabBarView(List<Tab> tabs) {
-    List<Widget> rankingList = [];
-
-    tabs.asMap().forEach((index, value) {
-      rankingList.add(_buildVTuberRankingList(filterItems[index].filter));
-    });
-
-    return TabBarView(children: rankingList);
   }
 }
