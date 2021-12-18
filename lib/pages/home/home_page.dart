@@ -42,14 +42,15 @@ class _HomePageState extends State<HomePage> {
       create: (context) => _viewModel,
       child: Consumer<HomeViewModel>(builder: (context, viewModel, _) {
         if (viewModel.viewState is LoadingState) {
-          return CenterCircularProgressIndicator();
+          return Scaffold(body: CenterCircularProgressIndicator());
         } else if (viewModel.viewState is ErrorState) {
           final errorMessage = (viewModel.viewState as ErrorState).msg;
-          return RetryableErrorView(
-              message: errorMessage,
-              retryAction: () => viewModel.getChannelList());
+          return Scaffold(
+              body: RetryableErrorView(
+                  message: errorMessage,
+                  retryAction: () => viewModel.getChannelList()));
         } else if (viewModel.channelList.isEmpty) {
-          return EmptyErrorNotification();
+          return Scaffold(body: EmptyErrorNotification());
         } else {
           return Scaffold(
             appBar: _appBar,

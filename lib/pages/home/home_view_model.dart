@@ -32,6 +32,7 @@ class HomeViewModel extends ChangeNotifier {
 
   void getChannelList() async {
     viewState = Result.loading();
+    notifyListeners();
     viewState = await _repository.getChannelList();
     notifyListeners();
   }
