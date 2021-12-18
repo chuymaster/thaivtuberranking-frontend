@@ -29,14 +29,6 @@ class _HomePageState extends State<HomePage> {
   OriginType _currentOriginType = OriginType.OriginalOnly;
   final _viewModel = HomeViewModel();
 
-  String _lastUpdated = "";
-
-  int _currentIndex = 0;
-
-  String _title = "จัดอันดับวิดีโอ VTuber ไทย";
-
-  bool _isBottomNavigationBarHidden = false;
-
   // MARK:- Functions
 
   @override
@@ -69,7 +61,7 @@ class _HomePageState extends State<HomePage> {
           return Scaffold(
             appBar: _appBar,
             drawer: _drawerMenu,
-            body: _buildBottomNavigationBarChildren()[_currentIndex],
+            body: _buildBottomNavigationBarChildren()[_viewModel.index],
             bottomNavigationBar: _bottomNavigationBar,
             floatingActionButton: _floatingActionButton,
           );
@@ -81,7 +73,7 @@ class _HomePageState extends State<HomePage> {
   PreferredSizeWidget get _appBar {
     return AppBar(
         title: Text(
-          _title,
+          _viewModel.title,
           style: TextStyle(fontFamily: ThaiText.kanit),
         ),
         actions: [
@@ -94,7 +86,7 @@ class _HomePageState extends State<HomePage> {
   Widget get _drawerMenu {
     return DrawerMenu(
         currentOriginType: _currentOriginType,
-        lastUpdatedAt: _lastUpdated,
+        lastUpdatedAt: _viewModel.lastUpdated,
         onChangeOriginType: (originType) => {
               setState(() {
                 this._currentOriginType = originType;
@@ -105,9 +97,9 @@ class _HomePageState extends State<HomePage> {
 
   Widget get _bottomNavigationBar {
     return Container(
-        height: _isBottomNavigationBarHidden ? 0 : 56,
+        height: _viewModel.isBottomNavigationBarHidden ? 0 : 56,
         child: BottomNavigationBar(
-          currentIndex: _currentIndex,
+          currentIndex: _viewModel.index,
           items: [
             BottomNavigationBarItem(
                 icon: Icon(Icons.ondemand_video), label: "วิดีโอ"),
@@ -117,15 +109,7 @@ class _HomePageState extends State<HomePage> {
           onTap: (index) {
             MyApp.analytics.sendAnalyticsEvent(
                 AnalyticsEvent.change_bottom_tab, {"index": index});
-            setState(() {
-              _currentIndex = index;
-              // เปลี่ยนชื่อ title ตาม tab
-              if (index == 0) {
-                _title = "จัดอันดับวิดีโอ VTuber ไทย";
-              } else {
-                _title = "จัดอันดับแชนแนล VTuber ไทย";
-              }
-            });
+            _viewModel.changeIndex(index);
           },
         ));
   }
@@ -149,35 +133,13 @@ class _HomePageState extends State<HomePage> {
   List<Widget> _buildBottomNavigationBarChildren() {
     return [
       VideoRankingContainerPage(
-        originType: _currentOriginType,
-        didScrollDown: () {
-          if (!_isBottomNavigationBarHidden) {
-            _isBottomNavigationBarHidden = true;
-            setState(() {});
-          }
-        },
-        didScrollUp: () {
-          if (_isBottomNavigationBarHidden) {
-            _isBottomNavigationBarHidden = false;
-            setState(() {});
-          }
-        },
-      ),
+          originType: _currentOriginType,
+          didScrollDown: () => _viewModel.hideBottomNavigationBar(),
+          didScrollUp: () => _viewModel.showBottomNavigationBar()),
       ChannelRankingPage(
-        channelList: _viewModel.getFilteredChannelList(_currentOriginType),
-        didScrollDown: () {
-          if (!_isBottomNavigationBarHidden) {
-            _isBottomNavigationBarHidden = true;
-            setState(() {});
-          }
-        },
-        didScrollUp: () {
-          if (_isBottomNavigationBarHidden) {
-            _isBottomNavigationBarHidden = false;
-            setState(() {});
-          }
-        },
-      ),
+          channelList: _viewModel.getFilteredChannelList(_currentOriginType),
+          didScrollDown: () => _viewModel.hideBottomNavigationBar(),
+          didScrollUp: () => _viewModel.showBottomNavigationBar()),
     ];
   }
 }
