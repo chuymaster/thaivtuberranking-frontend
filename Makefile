@@ -12,3 +12,6 @@ run-prod: # Run application in production environment
 
 build-for-release: # Build the app for release
 	flutter build web --release --web-renderer html
+
+build-mock: # Generate http mocks
+	flutter pub run build_runner build
