@@ -100,8 +100,7 @@ class _LivePageState extends State<LivePage> {
       itemBuilder: (context, index) {
         return Container(
             child: Ink(
-                color:
-                    _buildRowColor(index, _viewModel.filteredLiveVideos[index]),
+                color: _buildRowColor(index),
                 child: LiveVideoListTile(
                   item: _viewModel.filteredLiveVideos[index],
                   onTap: (liveVideo) {
@@ -129,7 +128,8 @@ class _LivePageState extends State<LivePage> {
     );
   }
 
-  Color? _buildRowColor(int index, LiveVideo liveVideo) {
+  Color? _buildRowColor(int index) {
+    var liveVideo = _viewModel.filteredLiveVideos[index];
     switch (liveVideo.liveStatus) {
       case LiveStatus.Live:
         return index % 2 != 0 ? Colors.orange[50] : Colors.orange[100];
