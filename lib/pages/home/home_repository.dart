@@ -5,11 +5,18 @@ import 'package:thaivtuberranking/services/result.dart';
 
 import 'entity/channel_info.dart';
 
-class HomeRepository {
+abstract class AbstractHomeRepository {
   final http.Client client;
+  const AbstractHomeRepository(this.client);
+  Future<Result> getChannelList() async {
+    throw UnimplementedError();
+  }
+}
 
-  const HomeRepository(this.client);
+class HomeRepository extends AbstractHomeRepository {
+  HomeRepository(http.Client client) : super(client);
 
+  @override
   Future<Result> getChannelList() async {
     // Must set CORS for storage -  https://firebase.google.com/docs/storage/web/download-files
     /** 
