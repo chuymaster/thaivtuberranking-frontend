@@ -39,8 +39,8 @@ class _VideoRankingPageState extends State<VideoRankingPage> {
   @override
   void initState() {
     super.initState();
-    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.page_loaded,
-        {AnalyticsParameterName.page_name: AnalyticsPageName.video_ranking});
+    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.screenLoaded,
+        {AnalyticsParameterName.screenName: AnalyticsPageName.videoRanking});
     _scrollController.addListener(() {
       if (_scrollController.position.userScrollDirection ==
           ScrollDirection.reverse) {
@@ -95,12 +95,12 @@ class _VideoRankingPageState extends State<VideoRankingPage> {
       onTap: (item) {
         UrlLauncher.launchURL(item.getVideoUrl());
         MyApp.analytics.sendAnalyticsEvent(
-            AnalyticsEvent.open_video_url, {'url': item.getVideoUrl()});
+            AnalyticsEvent.openVideoUrl, {'url': item.getVideoUrl()});
       },
       onTapChannelName: (item) {
         Navigator.pushNamed(context, ChannelPage.route,
             arguments: item.channelId);
-        MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.view_detail,
+        MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.viewDetail,
             {'channel_id': item.channelId, 'channel_name': item.channelTitle});
       },
     );

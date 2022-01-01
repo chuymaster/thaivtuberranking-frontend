@@ -37,8 +37,8 @@ class _LivePageState extends State<LivePage> {
   @override
   void initState() {
     super.initState();
-    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.page_loaded,
-        {AnalyticsParameterName.page_name: AnalyticsPageName.live});
+    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.screenLoaded,
+        {AnalyticsParameterName.screenName: AnalyticsPageName.live});
 
     _scrollController.addListener(() {
       if (_scrollController.position.userScrollDirection ==
@@ -107,14 +107,14 @@ class _LivePageState extends State<LivePage> {
                   onTap: (liveVideo) {
                     UrlLauncher.launchURL(liveVideo.getVideoUrl());
                     MyApp.analytics.sendAnalyticsEvent(
-                        AnalyticsEvent.open_video_url,
+                        AnalyticsEvent.openVideoUrl,
                         {'url': liveVideo.getVideoUrl()});
                   },
                   onTapChannelName: (liveVideo) {
                     Navigator.pushNamed(context, ChannelPage.route,
                         arguments: liveVideo.channelId);
                     MyApp.analytics.sendAnalyticsEvent(
-                        AnalyticsEvent.view_detail, {
+                        AnalyticsEvent.viewDetail, {
                       'channel_id': liveVideo.channelId,
                       'channel_name': liveVideo.channelTitle
                     });

@@ -10,8 +10,10 @@ class ChannelRegistrationCompletePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.page_loaded,
-        {AnalyticsParameterName.page_name: AnalyticsPageName.add_complete});
+    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.screenLoaded, {
+      AnalyticsParameterName.screenName:
+          AnalyticsPageName.channelRegistrationComplete
+    });
 
     return Scaffold(
         appBar: AppBar(

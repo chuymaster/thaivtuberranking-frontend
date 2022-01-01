@@ -45,9 +45,8 @@ class _VideoRankingContainerPageState extends State<VideoRankingContainerPage>
   @override
   void initState() {
     super.initState();
-    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.page_loaded, {
-      AnalyticsParameterName.page_name:
-          AnalyticsPageName.video_ranking_container
+    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.screenLoaded, {
+      AnalyticsParameterName.screenName: AnalyticsPageName.videoRankingContainer
     });
 
     _tabController = TabController(
@@ -109,7 +108,7 @@ class _VideoRankingContainerPageState extends State<VideoRankingContainerPage>
           tabController.addListener(() {
             if (!tabController.indexIsChanging) {
               MyApp.analytics.sendAnalyticsEvent(
-                  AnalyticsEvent.change_video_ranking_tab,
+                  AnalyticsEvent.changeVideoRankingTab,
                   {'index': tabController.index});
             }
           });

@@ -13,8 +13,8 @@ class ErrorPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.page_loaded,
-        {AnalyticsParameterName.page_name: AnalyticsPageName.error});
+    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.screenLoaded,
+        {AnalyticsParameterName.screenName: AnalyticsPageName.error});
     return Scaffold(
       appBar: AppBar(
         title: Text(name),
