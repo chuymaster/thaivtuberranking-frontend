@@ -122,15 +122,20 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget get _body {
+    // Attach `key` here to force reinit the page therefore passing new value from the viewModel.
     if (_viewModel.tabIndex == 0) {
       return VideoRankingContainerPage(
           originType: _viewModel.originType,
           didScrollDown: () => _viewModel.hideBottomNavigationBar(),
-          didScrollUp: () => _viewModel.showBottomNavigationBar());
+          didScrollUp: () => _viewModel.showBottomNavigationBar(),
+          key: Key(
+              "VideoRankingContainerPage_" + _viewModel.originType.toString()));
     }
     return ChannelRankingPage(
         channelList: _viewModel.filteredChannelList,
         didScrollDown: () => _viewModel.hideBottomNavigationBar(),
-        didScrollUp: () => _viewModel.showBottomNavigationBar());
+        didScrollUp: () => _viewModel.showBottomNavigationBar(),
+        key: Key("ChannelRankingPage_" +
+            _viewModel.filteredChannelList.length.toString()));
   }
 }
