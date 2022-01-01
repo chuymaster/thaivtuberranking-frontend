@@ -73,7 +73,7 @@ class _AddPageState extends State<AddPage> {
           } else {
             return ListView(
               children: [
-                _buildRequestAddChannelBox(),
+                _channelRegistrationBox,
                 Padding(
                   padding: EdgeInsets.all(8),
                 ),
@@ -96,7 +96,7 @@ class _AddPageState extends State<AddPage> {
     );
   }
 
-  Widget _buildTypeRadio() {
+  Widget get _typeRadio {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -152,7 +152,7 @@ class _AddPageState extends State<AddPage> {
     }
   }
 
-  Widget _buildRequestAddChannelBox() {
+  Widget get _channelRegistrationBox {
     var channelIdLength = 24;
     var textFormField = TextFormField(
       maxLength: channelIdLength, // แชนแนล YouTube ยาว 24 ตัวอักษร
@@ -166,23 +166,21 @@ class _AddPageState extends State<AddPage> {
             return 'แชนแนล ID ต้องขึ้นต้นด้วย UC';
           } else if (value.length != channelIdLength) {
             return 'แชนแนล ID ต้องมีความยาว $channelIdLength ตัวอักษร';
+          } else if (widget.vTuberChannelIdList.contains(value)) {
+            return AddErrorMessage.alreadyAdded;
           }
-          // } else if (widget.vTuberChannelIdList.contains(value)) {
-          //   return AddErrorMessage.alreadyAdded;
-          // }
         }
         return null;
       },
       controller: _textEditingController,
     );
 
-    var submitButton = RaisedButton(
+    var submitButton = ElevatedButton(
       child: ThaiText(
         text: "ส่งข้อมูล",
         fontWeight: FontWeight.bold,
         color: Colors.white,
       ),
-      color: Theme.of(context).accentColor,
       onPressed: _isSubmitButtonDisabled
           ? null
           : () {
@@ -222,7 +220,7 @@ class _AddPageState extends State<AddPage> {
         "โปรดเลือกประเภทของช่องที่ต้องการแจ้ง",
         style: defaultStyle,
       ));
-      columnWidgets.add(_buildTypeRadio());
+      columnWidgets.add(_typeRadio);
       columnWidgets.add(Padding(padding: EdgeInsets.all(8)));
 
       var channelUrl =
@@ -280,10 +278,6 @@ class _AddPageState extends State<AddPage> {
 
 class AddErrorMessage {
   static const String alreadyAdded = "แชนแนลนี้อยู่ในฐานข้อมูลจัดอันดับแล้ว";
-  static const String tooManyAttempts =
-      "คุณกดปุ่มตรวจสอบถี่เกินไป โปรดลองใหม่ในอีก 30 วินาทีให้หลัง";
-  static const String failedToConnectToYouTube =
-      "ไม่สามารถเชื่อมต่อกับระบบ YouTube ได้ กรุณาลองใหม่ในภายหลัง";
   static const String failedToSubmit =
       "เกิดปัญหาในการส่งข้อมูล กรุณาลองใหม่ในภายหลัง";
 }
