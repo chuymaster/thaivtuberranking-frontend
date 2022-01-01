@@ -6,9 +6,10 @@ import 'package:thaivtuberranking/services/result.dart';
 import 'package:http/http.dart' as http;
 
 class HomeViewModel extends ChangeNotifier {
-  final HomeRepository _repository = HomeRepository(http.Client());
+  AbstractHomeRepository repository = HomeRepository(http.Client());
 
   String _lastUpdated = "";
+
   String get lastUpdated {
     return _lastUpdated;
   }
@@ -31,16 +32,16 @@ class HomeViewModel extends ChangeNotifier {
 
   Result viewState = Result.loading();
 
-  void getChannelList() async {
+  Future<void> getChannelList() async {
     viewState = Result.loading();
     notifyListeners();
-    viewState = await _repository.getChannelList();
+    viewState = await repository.getChannelList();
     notifyListeners();
   }
 
   List<ChannelInfo> get channelList {
-    if (viewState is SuccessState<List<ChannelInfo>>) {
-      final channelList = (viewState as SuccessState<List<ChannelInfo>>).value;
+    if (viewState is SuccessState) {
+      final channelList = (viewState as SuccessState).value;
       return channelList;
     }
     return [];
