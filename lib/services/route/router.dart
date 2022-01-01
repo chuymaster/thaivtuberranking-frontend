@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:thaivtuberranking/pages/channel_registration/channel_registration_complete_page.dart';
+import 'package:thaivtuberranking/pages/channel_registration/channel_registration_page.dart';
 import 'string_extension.dart';
 import 'routing_data.dart';
-import '../../pages/add/add_complete_page.dart';
-import '../../pages/add/add_page.dart';
 import '../../pages/channel/channel_page.dart';
 import '../../pages/error/error_page.dart';
 import '../../pages/home/home_page.dart';
@@ -39,23 +39,24 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         return MaterialPageRoute(
             builder: (context) => HomePage(),
             settings: RouteSettings(name: HomePage.route));
-      case AddPage.route:
+      case ChannelRegistrationPage.route:
         List<String>? vTuberChannelIdList = settings.arguments as List<String>?;
         if (vTuberChannelIdList != null) {
           return MaterialPageRoute(
-              builder: (context) => AddPage(
+              builder: (context) => ChannelRegistrationPage(
                     vTuberChannelIdList: vTuberChannelIdList,
                   ),
-              settings: RouteSettings(name: AddPage.route));
+              settings: RouteSettings(name: ChannelRegistrationPage.route));
         } else {
           return MaterialPageRoute(
               builder: (context) => _buildNotFoundPage(routingData.route),
               settings: RouteSettings(name: ErrorPage.route));
         }
-      case AddCompletePage.route:
+      case ChannelRegistrationCompletePage.route:
         return MaterialPageRoute(
-            builder: (context) => AddCompletePage(),
-            settings: RouteSettings(name: AddCompletePage.route));
+            builder: (context) => ChannelRegistrationCompletePage(),
+            settings:
+                RouteSettings(name: ChannelRegistrationCompletePage.route));
       default:
         return MaterialPageRoute(
             builder: (context) => _buildNotFoundPage(routingData.route),
