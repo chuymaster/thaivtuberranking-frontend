@@ -1,8 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:thaivtuberranking/common/component/center_circular_progress_indicator.dart';
 import 'package:thaivtuberranking/common/component/error_dialog.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
 import 'package:thaivtuberranking/common/strings.dart';
+import 'package:thaivtuberranking/pages/add/channel_registration_view_model.dart';
 import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/result.dart';
@@ -10,7 +13,6 @@ import 'package:thaivtuberranking/services/url_launcher.dart';
 
 import '../../main.dart';
 import 'add_complete_page.dart';
-import 'add_repository.dart';
 import 'component/description_box.dart';
 
 class AddPage extends StatefulWidget {
@@ -29,7 +31,8 @@ class _AddPageState extends State<AddPage> {
   final _formKey = GlobalKey<FormState>();
 
   final _textEditingController = TextEditingController();
-  final _repository = AddRepository();
+  final _viewModel = ChannelRegistrationViewModel();
+
   bool _isSubmitButtonDisabled = true;
   bool _isValidated = false;
 
@@ -41,26 +44,55 @@ class _AddPageState extends State<AddPage> {
 
     MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.page_loaded,
         {AnalyticsParameterName.page_name: AnalyticsPageName.add});
+
+    // else if (viewModel.viewState is ErrorState) {
+    //     var errorMessage = (viewModel.viewState as ErrorState).msg;
+    //     ErrorDialog.showErrorDialog(
+    //         AddErrorMessage.failedToSubmit, errorMessage, context);
+    //     // setState(() {
+    //     //   _isSubmitButtonDisabled = false;
+    //     // });
+    //   } else if (viewModel.viewState is SuccessState) {
+    //     // Navigator.pushNamedAndRemoveUntil(
+    //     //     context, AddCompletePage.route, (route) => false);
+    //     // setState(() {
+    //     //   _isSubmitButtonDisabled = false;
+    //     // });
+    //     return Container();
+    //   }
   }
 
   @override
   Widget build(BuildContext context) {
+    var body = ChangeNotifierProvider(
+      create: (context) => _viewModel,
+      child: Consumer<ChannelRegistrationViewModel>(
+        builder: (context, viewModel, _) {
+          if (viewModel.viewState is LoadingState) {
+            return CenterCircularProgressIndicator();
+          } else {
+            return ListView(
+              children: [
+                _buildRequestAddChannelBox(),
+                Padding(
+                  padding: EdgeInsets.all(8),
+                ),
+                DescriptionBox(),
+                Padding(
+                  padding: EdgeInsets.all(8),
+                ),
+              ],
+            );
+          }
+        },
+      ),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text("แจ้งเพิ่มแชนแนล VTuber"),
       ),
-      body: ListView(
-        children: [
-          _buildRequestAddChannelBox(),
-          Padding(
-            padding: EdgeInsets.all(8),
-          ),
-          DescriptionBox(),
-          Padding(
-            padding: EdgeInsets.all(8),
-          ),
-        ],
-      ),
+      body: body,
     );
   }
 
@@ -134,9 +166,10 @@ class _AddPageState extends State<AddPage> {
             return 'แชนแนล ID ต้องขึ้นต้นด้วย UC';
           } else if (value.length != channelIdLength) {
             return 'แชนแนล ID ต้องมีความยาว $channelIdLength ตัวอักษร';
-          } else if (widget.vTuberChannelIdList.contains(value)) {
-            return AddErrorMessage.alreadyAdded;
           }
+          // } else if (widget.vTuberChannelIdList.contains(value)) {
+          //   return AddErrorMessage.alreadyAdded;
+          // }
         }
         return null;
       },
@@ -157,7 +190,7 @@ class _AddPageState extends State<AddPage> {
                 _isSubmitButtonDisabled = true;
               });
               if (_formKey.currentState?.validate() ?? false) {
-                _requestAddChannel(_textEditingController.text);
+                _registerChannel(_textEditingController.text);
               } else {
                 setState(() {
                   _isSubmitButtonDisabled = false;
@@ -227,7 +260,7 @@ class _AddPageState extends State<AddPage> {
         ));
   }
 
-  void _requestAddChannel(String id) async {
+  void _registerChannel(String id) async {
     MyApp.analytics.sendAnalyticsEvent(
         AnalyticsEvent.request_add_channel, {'channel_id': id});
 
@@ -240,28 +273,8 @@ class _AddPageState extends State<AddPage> {
         type = 'all';
         break;
     }
-    var result = await _repository.sendAddChannelRequest(id, type);
 
-    if (result is SuccessState) {
-      Navigator.pushNamedAndRemoveUntil(
-          context, AddCompletePage.route, (route) => false);
-      setState(() {
-        _isSubmitButtonDisabled = false;
-      });
-    } else if (result is ErrorState) {
-      _showError(AddErrorMessage.failedToSubmit, result.msg);
-    } else {
-      setState(() {
-        _isSubmitButtonDisabled = true;
-      });
-    }
-  }
-
-  void _showError(String title, String description) {
-    ErrorDialog.showErrorDialog(title, description, context);
-    setState(() {
-      _isSubmitButtonDisabled = false;
-    });
+    _viewModel.registerChannel(id, type);
   }
 }
 
