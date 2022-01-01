@@ -44,8 +44,8 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
   void initState() {
     super.initState();
 
-    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.page_loaded,
-        {AnalyticsParameterName.page_name: AnalyticsPageName.channel_ranking});
+    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.screenLoaded,
+        {AnalyticsParameterName.screenName: AnalyticsPageName.channelRanking});
 
     _scrollController.addListener(() {
       if (_scrollController.position.userScrollDirection ==
@@ -99,7 +99,7 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
             if (!tabController.indexIsChanging) {
               FilterItem newItem = _viewModel.filterItems[tabController.index];
               MyApp.analytics.sendAnalyticsEvent(
-                  AnalyticsEvent.set_filter, {'text': newItem.text});
+                  AnalyticsEvent.setFilter, {'text': newItem.text});
             }
           });
           return Scaffold(
@@ -129,7 +129,7 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
       maxPageNumber: _viewModel.maxPageNumber,
       onPageChanged: (destinationPageNumber) {
         MyApp.analytics.sendAnalyticsEvent(
-            AnalyticsEvent.change_page, {'page_number': destinationPageNumber});
+            AnalyticsEvent.changePage, {'page_number': destinationPageNumber});
         setState(() {
           _scrollController.animateTo(
               _scrollController.position.minScrollExtent,
@@ -152,15 +152,14 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
           onTapCell: (channelInfo) {
             Navigator.pushNamed(context, ChannelPage.route,
                 arguments: channelInfo.channelId);
-            MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.view_detail, {
+            MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.viewDetail, {
               'channel_id': channelInfo.channelId,
               'channel_name': channelInfo.channelName
             });
           },
           onTapYouTubeIcon: (channelInfo) {
             UrlLauncher.launchURL(channelInfo.getChannelUrl());
-            MyApp.analytics
-                .sendAnalyticsEvent(AnalyticsEvent.click_vtuber_url, {
+            MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.clickVtuberUrl, {
               'name': channelInfo.channelName,
               'url': channelInfo.getChannelUrl(),
               'location': 'top_youtube_icon'

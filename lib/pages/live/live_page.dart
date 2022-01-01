@@ -37,8 +37,8 @@ class _LivePageState extends State<LivePage> {
   @override
   void initState() {
     super.initState();
-    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.page_loaded,
-        {AnalyticsParameterName.page_name: AnalyticsPageName.live});
+    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.screenLoaded,
+        {AnalyticsParameterName.screenName: AnalyticsPageName.live});
 
     _scrollController.addListener(() {
       if (_scrollController.position.userScrollDirection ==
@@ -100,21 +100,20 @@ class _LivePageState extends State<LivePage> {
       itemBuilder: (context, index) {
         return Container(
             child: Ink(
-                color:
-                    _buildRowColor(index, _viewModel.filteredLiveVideos[index]),
+                color: _buildRowColor(index),
                 child: LiveVideoListTile(
                   item: _viewModel.filteredLiveVideos[index],
                   onTap: (liveVideo) {
                     UrlLauncher.launchURL(liveVideo.getVideoUrl());
                     MyApp.analytics.sendAnalyticsEvent(
-                        AnalyticsEvent.open_video_url,
+                        AnalyticsEvent.openVideoUrl,
                         {'url': liveVideo.getVideoUrl()});
                   },
                   onTapChannelName: (liveVideo) {
                     Navigator.pushNamed(context, ChannelPage.route,
                         arguments: liveVideo.channelId);
                     MyApp.analytics.sendAnalyticsEvent(
-                        AnalyticsEvent.view_detail, {
+                        AnalyticsEvent.viewDetail, {
                       'channel_id': liveVideo.channelId,
                       'channel_name': liveVideo.channelTitle
                     });
@@ -129,7 +128,8 @@ class _LivePageState extends State<LivePage> {
     );
   }
 
-  Color? _buildRowColor(int index, LiveVideo liveVideo) {
+  Color? _buildRowColor(int index) {
+    var liveVideo = _viewModel.filteredLiveVideos[index];
     switch (liveVideo.liveStatus) {
       case LiveStatus.Live:
         return index % 2 != 0 ? Colors.orange[50] : Colors.orange[100];

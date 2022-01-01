@@ -22,7 +22,7 @@ class LiveVideoListTile extends StatelessWidget {
       text: item.title,
       fontWeight: FontWeight.bold,
     ));
-    columnChildren.addAll(_buildVideoDescription(item));
+    columnChildren.addAll(_videoDescription);
     columnChildren.addAll([
       Padding(
         padding: EdgeInsets.all(2),
@@ -30,7 +30,7 @@ class LiveVideoListTile extends StatelessWidget {
       InkWell(
           child: Row(
             children: [
-              _buildChannelThumbnailImage(),
+              _channelThumbnailImage,
               Padding(
                 padding: EdgeInsets.all(2),
               ),
@@ -52,7 +52,7 @@ class LiveVideoListTile extends StatelessWidget {
     return ListTile(
       title: Row(
         children: [
-          _buildVideoThumbnailImage(),
+          _videoThumbnailImage,
           Padding(
             padding: EdgeInsets.all(8),
           ),
@@ -70,7 +70,7 @@ class LiveVideoListTile extends StatelessWidget {
     );
   }
 
-  Widget _buildChannelThumbnailImage() {
+  Widget get _channelThumbnailImage {
     return ClipRRect(
         borderRadius: BorderRadius.circular(16),
         child: FadeInImage.memoryNetwork(
@@ -86,7 +86,7 @@ class LiveVideoListTile extends StatelessWidget {
         ));
   }
 
-  Widget _buildVideoThumbnailImage() {
+  Widget get _videoThumbnailImage {
     return FadeInImage.memoryNetwork(
       height: 88.0,
       width: 160.0,
@@ -97,7 +97,7 @@ class LiveVideoListTile extends StatelessWidget {
     );
   }
 
-  List<Widget> _buildVideoDescription(LiveVideo item) {
+  List<Widget> get _videoDescription {
     switch (item.liveStatus) {
       case LiveStatus.Live:
         return [

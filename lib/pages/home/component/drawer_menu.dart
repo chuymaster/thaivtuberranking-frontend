@@ -81,7 +81,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                       break;
                   }
                   MyApp.analytics.sendAnalyticsEvent(
-                      AnalyticsEvent.set_type, {'type': typeLog});
+                      AnalyticsEvent.setType, {'type': typeLog});
                   widget.onChangeOriginType(newType);
                 }
               },
@@ -95,7 +95,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 padding: EdgeInsets.all(8),
                 child: Container(child: AnnouncementBanner(onPressed: () {
                   MyApp.analytics.sendAnalyticsEvent(
-                      AnalyticsEvent.click_delete_channel_announcement,
+                      AnalyticsEvent.clickDeleteChannelAnnouncement,
                       {"from": "drawer"});
                   UrlLauncher.launchURL(
                       "https://www.notion.so/Public-d92d99d2b88a4747814834bcbdd9989f");
@@ -121,7 +121,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                   var url = "https://twitter.com/chuymaster";
                   UrlLauncher.launchURL(url);
                   MyApp.analytics.sendAnalyticsEvent(
-                      AnalyticsEvent.open_drawer_url, {'url': url});
+                      AnalyticsEvent.openDrawerUrl, {'url': url});
                 },
               ),
               ListTile(
@@ -132,7 +132,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                       "https://github.com/chuymaster/thaivtuberranking-docs";
                   UrlLauncher.launchURL(url);
                   MyApp.analytics.sendAnalyticsEvent(
-                      AnalyticsEvent.open_drawer_url, {'url': url});
+                      AnalyticsEvent.openDrawerUrl, {'url': url});
                 },
               ),
               ListTile(
@@ -143,7 +143,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                       "https://www.notion.so/Public-Release-Notes-fddbe59f838949038fcaa4d774a4f2fc";
                   UrlLauncher.launchURL(url);
                   MyApp.analytics.sendAnalyticsEvent(
-                      AnalyticsEvent.open_drawer_url, {'url': url});
+                      AnalyticsEvent.openDrawerUrl, {'url': url});
                 },
               ),
               ListTile(
@@ -153,7 +153,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                   var url = "https://chuysan.com/";
                   UrlLauncher.launchURL(url);
                   MyApp.analytics.sendAnalyticsEvent(
-                      AnalyticsEvent.open_drawer_url, {'url': url});
+                      AnalyticsEvent.openDrawerUrl, {'url': url});
                 },
               ),
               ListTile(
@@ -164,7 +164,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                       "https://www.notion.so/f97473612ebc4166b1e8293624fb9062";
                   UrlLauncher.launchURL(url);
                   MyApp.analytics.sendAnalyticsEvent(
-                      AnalyticsEvent.open_drawer_url, {'url': url});
+                      AnalyticsEvent.openDrawerUrl, {'url': url});
                 },
               ),
               ListTile(
@@ -174,7 +174,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                   var url = "https://ko-fi.com/chuymaster";
                   UrlLauncher.launchURL(url);
                   MyApp.analytics.sendAnalyticsEvent(
-                      AnalyticsEvent.open_drawer_url, {'url': url});
+                      AnalyticsEvent.openDrawerUrl, {'url': url});
                 },
                 tileColor: Colors.orange[50],
               ),
@@ -198,7 +198,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                   var url = "https://twitter.com/i/lists/1349029647896350726";
                   UrlLauncher.launchURL(url);
                   MyApp.analytics.sendAnalyticsEvent(
-                      AnalyticsEvent.open_drawer_url, {'url': url});
+                      AnalyticsEvent.openDrawerUrl, {'url': url});
                 },
               ),
             ],

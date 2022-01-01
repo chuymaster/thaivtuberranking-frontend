@@ -33,8 +33,9 @@ class _ChannelRegistrationPageState extends State<ChannelRegistrationPage> {
   void initState() {
     super.initState();
 
-    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.page_loaded,
-        {AnalyticsParameterName.page_name: AnalyticsPageName.add});
+    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.screenLoaded, {
+      AnalyticsParameterName.screenName: AnalyticsPageName.channelRegistration
+    });
 
     _viewModel.addListener(() {
       if (_viewModel.viewState is ErrorState) {
@@ -153,7 +154,7 @@ class _ChannelRegistrationPageState extends State<ChannelRegistrationPage> {
             recognizer: TapGestureRecognizer()
               ..onTap = () {
                 MyApp.analytics.sendAnalyticsEvent(
-                    AnalyticsEvent.tap_channel_url_before_submit_add_request,
+                    AnalyticsEvent.tapChannelUrlBeforeRegister,
                     {'channel_id': _viewModel.inputChannelId});
                 UrlLauncher.launchURL(_viewModel.inputChannelUrl);
               }),
@@ -197,7 +198,7 @@ class _ChannelRegistrationPageState extends State<ChannelRegistrationPage> {
         onPressed: _viewModel.isRegisterButtonEnabled
             ? () {
                 MyApp.analytics.sendAnalyticsEvent(
-                    AnalyticsEvent.request_add_channel,
+                    AnalyticsEvent.registerChannel,
                     {'channel_id': _viewModel.textEditingController.text});
                 _viewModel.registerChannel();
               }

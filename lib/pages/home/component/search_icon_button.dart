@@ -51,7 +51,7 @@ class SearchIconButton extends StatelessWidget {
                       Navigator.pushNamed(context, ChannelPage.route,
                           arguments: channelInfo.channelId);
                       MyApp.analytics
-                          .sendAnalyticsEvent(AnalyticsEvent.view_detail, {
+                          .sendAnalyticsEvent(AnalyticsEvent.viewDetail, {
                         'channel_id': channelInfo.channelId,
                         'channel_name': channelInfo.channelName,
                         'location': 'search_page'
@@ -60,7 +60,7 @@ class SearchIconButton extends StatelessWidget {
                     onTapYouTubeIcon: (channelInfo) {
                       UrlLauncher.launchURL(channelInfo.getChannelUrl());
                       MyApp.analytics
-                          .sendAnalyticsEvent(AnalyticsEvent.click_vtuber_url, {
+                          .sendAnalyticsEvent(AnalyticsEvent.clickVtuberUrl, {
                         'name': channelInfo.channelName,
                         'url': channelInfo.getChannelUrl(),
                         'location': 'search_youtube_icon'
