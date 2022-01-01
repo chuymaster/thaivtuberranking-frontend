@@ -5,8 +5,8 @@ import 'package:thaivtuberranking/services/analytics.dart';
 
 import '../../main.dart';
 
-class AddCompletePage extends StatelessWidget {
-  static const String route = '/add_completed';
+class ChannelRegistrationCompletePage extends StatelessWidget {
+  static const String route = '/register_complete';
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +31,11 @@ class AddCompletePage extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.all(8),
                     ),
-                    RaisedButton(
+                    ElevatedButton(
                       child: ThaiText(
                         text: "กลับสู่หน้าแรก",
                         color: Colors.white,
                       ),
-                      color: Theme.of(context).accentColor,
                       onPressed: () {
                         // ไม่ให้กลับมาหน้านี้อีกรอบ https://stackoverflow.com/a/46713257/10322917
                         Navigator.pushNamedAndRemoveUntil(
