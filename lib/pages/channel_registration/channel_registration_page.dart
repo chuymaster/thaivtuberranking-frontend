@@ -4,27 +4,28 @@ import 'package:provider/provider.dart';
 import 'package:thaivtuberranking/common/component/center_circular_progress_indicator.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
 import 'package:thaivtuberranking/common/strings.dart';
-import 'package:thaivtuberranking/pages/add/channel_registration_view_model.dart';
 import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/result.dart';
 import 'package:thaivtuberranking/services/url_launcher.dart';
 
 import '../../main.dart';
+import 'channel_registration_view_model.dart';
 import 'component/description_box.dart';
 
-class AddPage extends StatefulWidget {
-  static const String route = '/add';
+class ChannelRegistrationPage extends StatefulWidget {
+  static const String route = '/register';
 
   final List<String> vTuberChannelIdList;
 
-  const AddPage({Key? key, required this.vTuberChannelIdList})
+  const ChannelRegistrationPage({Key? key, required this.vTuberChannelIdList})
       : super(key: key);
   @override
-  _AddPageState createState() => _AddPageState();
+  _ChannelRegistrationPageState createState() =>
+      _ChannelRegistrationPageState();
 }
 
-class _AddPageState extends State<AddPage> {
+class _ChannelRegistrationPageState extends State<ChannelRegistrationPage> {
   late final _viewModel =
       ChannelRegistrationViewModel(widget.vTuberChannelIdList);
 

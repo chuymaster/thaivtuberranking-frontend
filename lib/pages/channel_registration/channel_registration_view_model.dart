@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/common/component/error_dialog.dart';
-import 'package:thaivtuberranking/pages/add/add_repository.dart';
 import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
 import 'package:thaivtuberranking/services/result.dart';
 
-import 'add_complete_page.dart';
+import 'channel_registration_complete_page.dart';
+import 'channel_registration_repository.dart';
 
 class ChannelRegistrationViewModel extends ChangeNotifier {
-  final _repository = AddRepository();
+  final _repository = ChannelRegistrationRepository();
   final List<String> _channelIdList;
 
   // Form key for input https://flutter.dev/docs/cookbook/forms/validation
@@ -87,7 +87,7 @@ class ChannelRegistrationViewModel extends ChangeNotifier {
 
   void navigateToCompletePage(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(
-        context, AddCompletePage.route, (route) => false);
+        context, ChannelRegistrationCompletePage.route, (route) => false);
   }
 
   void showErrorDialog(BuildContext context) {

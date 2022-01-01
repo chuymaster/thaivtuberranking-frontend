@@ -5,6 +5,7 @@ import 'package:thaivtuberranking/common/component/empty_error_notification.dart
 import 'package:thaivtuberranking/common/component/retryable_error_view.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
 import 'package:thaivtuberranking/pages/channel_ranking/channel_ranking_page.dart';
+import 'package:thaivtuberranking/pages/channel_registration/channel_registration_page.dart';
 import 'package:thaivtuberranking/pages/home/component/drawer_menu.dart';
 import 'package:thaivtuberranking/pages/home/component/search_icon_button.dart';
 import 'package:thaivtuberranking/pages/home/home_view_model.dart';
@@ -12,7 +13,6 @@ import 'package:thaivtuberranking/pages/video_ranking/video_ranking_container_pa
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/result.dart';
 import 'package:thaivtuberranking/main.dart';
-import 'package:thaivtuberranking/pages/add/add_page.dart';
 import 'dart:core';
 
 class HomePage extends StatefulWidget {
@@ -83,7 +83,8 @@ class _HomePageState extends State<HomePage> {
         lastUpdatedAt: _viewModel.lastUpdated,
         onChangeOriginType: (originType) =>
             _viewModel.changeOriginType(originType),
-        onTapAddChannelMenu: () => {this._navigateToAddPage("drawer_menu")});
+        onTapAddChannelMenu: () =>
+            {this._navigateToChannelRegistrationPage("drawer_menu")});
   }
 
   Widget get _bottomNavigationBar {
@@ -109,12 +110,12 @@ class _HomePageState extends State<HomePage> {
     return FloatingActionButton(
       child: Icon(Icons.add_circle),
       tooltip: 'แจ้งเพิ่มแชนแนล VTuber',
-      onPressed: () => _navigateToAddPage('appbar_add_button'),
+      onPressed: () => _navigateToChannelRegistrationPage('appbar_add_button'),
     );
   }
 
-  void _navigateToAddPage(String location) {
-    Navigator.pushNamed(context, AddPage.route,
+  void _navigateToChannelRegistrationPage(String location) {
+    Navigator.pushNamed(context, ChannelRegistrationPage.route,
         arguments: _viewModel.channelIdList);
     MyApp.analytics.sendAnalyticsEvent(
         AnalyticsEvent.view_add_page, {'location': location});
