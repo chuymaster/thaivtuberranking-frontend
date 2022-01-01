@@ -30,8 +30,8 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.page_loaded,
-        {AnalyticsParameterName.page_name: AnalyticsPageName.home});
+    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.screenLoaded,
+        {AnalyticsParameterName.screenName: AnalyticsPageName.home});
 
     _viewModel.getChannelList();
   }
@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage> {
           ],
           onTap: (index) {
             MyApp.analytics.sendAnalyticsEvent(
-                AnalyticsEvent.change_bottom_tab, {"index": index});
+                AnalyticsEvent.changeBottomTab, {"index": index});
             _viewModel.changeTabIndex(index);
           },
         ));
@@ -118,7 +118,7 @@ class _HomePageState extends State<HomePage> {
     Navigator.pushNamed(context, ChannelRegistrationPage.route,
         arguments: _viewModel.channelIdList);
     MyApp.analytics.sendAnalyticsEvent(
-        AnalyticsEvent.view_add_page, {'location': location});
+        AnalyticsEvent.viewChannelRegistrationPage, {'location': location});
   }
 
   Widget get _body {

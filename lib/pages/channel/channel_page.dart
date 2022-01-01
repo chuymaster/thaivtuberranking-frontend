@@ -36,8 +36,8 @@ class _ChannelPageState extends State<ChannelPage> {
   @override
   void initState() {
     super.initState();
-    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.page_loaded,
-        {AnalyticsParameterName.page_name: AnalyticsPageName.channel});
+    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.screenLoaded,
+        {AnalyticsParameterName.screenName: AnalyticsPageName.channel});
 
     _viewModel.getChannelInfo(widget.channelId);
   }
@@ -94,7 +94,7 @@ class _ChannelPageState extends State<ChannelPage> {
   void _launchChannelUrl() {
     if (_viewModel.channelInfo != null) {
       UrlLauncher.launchURL(_viewModel.channelInfo!.getChannelUrl());
-      MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.click_vtuber_url, {
+      MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.clickVtuberUrl, {
         'name': _viewModel.channelInfo!.channelName,
         'url': _viewModel.channelInfo!.getChannelUrl(),
         'location': 'icon_url'
@@ -116,7 +116,7 @@ class _ChannelPageState extends State<ChannelPage> {
         final channelUrl = "$host/#/channel?channel_id=$id";
         await Clipboard.setData(new ClipboardData(text: channelUrl));
         showToast("Copy URL แล้ว");
-        MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.copy_channel_url,
+        MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.copyChannelUrl,
             {"channel_id": widget.channelId, "url": channelUrl});
       },
     );
@@ -256,7 +256,7 @@ class _ChannelPageState extends State<ChannelPage> {
                   widget.channelId +
                   '.json');
           MyApp.analytics
-              .sendAnalyticsEvent(AnalyticsEvent.click_channel_statistics_api, {
+              .sendAnalyticsEvent(AnalyticsEvent.clickChannelStatisticsApi, {
             'id': widget.channelId,
           });
         },

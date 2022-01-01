@@ -19,45 +19,40 @@ class Analytics {
 }
 
 class AnalyticsEvent {
-  static String open_drawer_url = 'open_drawer_url';
-  static String set_type = 'set_type';
-  static String click_vtuber_url = 'click_vtuber_url';
-  static String view_detail = 'view_detail';
-  static String change_page = 'change_page';
-  static String view_add_page = 'view_add_page';
-  static String set_filter = 'set_filter';
-  static String video_loaded = 'video_loaded';
-  static String request_add_channel = 'request_add_channel';
-  static String tap_channel_url_before_submit_add_request =
-      'tap_channel_url_before_submit_add_request';
-  static String open_video_url = 'open_video_url';
-  static String change_bottom_tab = 'change_bottom_tab';
-  static String change_video_ranking_tab = 'change_bottom_tab';
-  static String load_ad = 'load_ad';
-  static String copy_channel_url = "copy_channel_url";
-  static String view_search_page = 'view_search_page';
+  static String openDrawerUrl = 'open_drawer_url';
+  static String setType = 'set_type';
+  static String clickVtuberUrl = 'click_vtuber_url';
+  static String viewDetail = 'view_detail';
+  static String changePage = 'change_page';
+  static String viewChannelRegistrationPage = 'view_channel_registration_page';
+  static String setFilter = 'set_filter';
+  static String registerChannel = 'register_channel';
+  static String tapChannelUrlBeforeRegister = 'tap_channel_url_before_register';
+  static String openVideoUrl = 'open_video_url';
+  static String changeBottomTab = 'change_bottom_tab';
+  static String changeVideoRankingTab = 'change_video_ranking_tab';
+  static String copyChannelUrl = "copy_channel_url";
   static String search = 'search';
-  static String click_channel_statistics_api = 'click_channel_statistics_api';
-  static String click_delete_channel_announcement =
+  static String clickChannelStatisticsApi = 'click_channel_statistics_api';
+  static String clickDeleteChannelAnnouncement =
       'click_delete_channel_announcement';
 
   // Load screen
-  static String page_loaded = "screen_loaded";
+  static String screenLoaded = "screen_loaded";
 }
 
 class AnalyticsParameterName {
-  static String page_name = "screen_name";
+  static String screenName = "screen_name";
 }
 
 class AnalyticsPageName {
-  static String add = "add";
-  static String add_complete = "add_complete";
+  static String channelRegistration = "channel_registration";
+  static String channelRegistrationComplete = "channel_registration_complete";
   static String home = "home";
-  static String video_ranking = "video_ranking";
-  static String video_ranking_container = "video_ranking_container";
-  static String channel_ranking = "channel_ranking";
+  static String videoRanking = "video_ranking";
+  static String videoRankingContainer = "video_ranking_container";
+  static String channelRanking = "channel_ranking";
   static String channel = "channel";
   static String error = "error";
-  static String search = "search";
   static String live = "live";
 }

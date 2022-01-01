@@ -62,15 +62,16 @@ class PageSelection extends StatelessWidget {
   }
 
   Widget buildPageButton(int pageNumber) {
+    final ButtonStyle buttonStyle = ElevatedButton.styleFrom(
+        textStyle: TextStyle(color: Colors.white),
+        primary:
+            (pageNumber == currentPageNumber) ? Colors.blue : Colors.grey[600],
+        shape: CircleBorder());
     return SizedBox(
       width: 50,
-      child: RaisedButton(
+      child: ElevatedButton(
           child: Text('$pageNumber'),
-          color: (pageNumber == currentPageNumber)
-              ? Colors.blue
-              : Colors.grey[600],
-          textColor: Colors.white,
-          shape: CircleBorder(),
+          style: buttonStyle,
           onPressed: () => {onPageChanged(pageNumber)}),
     );
   }
