@@ -3,9 +3,10 @@ import 'package:thaivtuberranking/pages/home/entity/channel_info.dart';
 import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
 import 'package:thaivtuberranking/pages/home/home_repository.dart';
 import 'package:thaivtuberranking/services/result.dart';
+import 'package:http/http.dart' as http;
 
 class HomeViewModel extends ChangeNotifier {
-  final HomeRepository _repository = HomeRepository();
+  final HomeRepository _repository = HomeRepository(http.Client());
 
   String _lastUpdated = "";
   String get lastUpdated {

@@ -6,6 +6,10 @@ import 'package:thaivtuberranking/services/result.dart';
 import 'entity/channel_info.dart';
 
 class HomeRepository {
+  final http.Client client;
+
+  const HomeRepository(this.client);
+
   Future<Result> getChannelList() async {
     // Must set CORS for storage -  https://firebase.google.com/docs/storage/web/download-files
     /** 
@@ -22,7 +26,7 @@ class HomeRepository {
         "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/list.json");
 
     try {
-      final response = await http.get(channelListJson);
+      final response = await client.get(channelListJson);
 
       List<ChannelInfo> _itemList = [];
 
