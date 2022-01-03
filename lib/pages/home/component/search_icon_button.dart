@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:search_page/search_page.dart';
+import 'package:thaivtuberranking/common/screenFactor.dart';
 import 'package:thaivtuberranking/main.dart';
 import 'package:thaivtuberranking/pages/channel/channel_page.dart';
 import 'package:thaivtuberranking/pages/home/component/vtuber_ranking_list.dart';
@@ -40,33 +41,37 @@ class SearchIconButton extends StatelessWidget {
                   return [channelInfo.channelName];
                 },
                 builder: (channelInfo) {
-                  return RankingListTile(
-                    item: channelInfo,
-                    displayRank: 0,
-                    subscribers: channelInfo.getSubscribers(),
-                    views: channelInfo.getViews(),
-                    published: channelInfo.getPublishedAt(),
-                    updated: channelInfo.getLastPublishedVideoAtString(),
-                    onTap: (channelInfo) {
-                      Navigator.pushNamed(context, ChannelPage.route,
-                          arguments: channelInfo.channelId);
-                      MyApp.analytics
-                          .sendAnalyticsEvent(AnalyticsEvent.viewDetail, {
-                        'channel_id': channelInfo.channelId,
-                        'channel_name': channelInfo.channelName,
-                        'location': 'search_page'
-                      });
-                    },
-                    onTapYouTubeIcon: (channelInfo) {
-                      UrlLauncher.launchURL(channelInfo.getChannelUrl());
-                      MyApp.analytics
-                          .sendAnalyticsEvent(AnalyticsEvent.clickVtuberUrl, {
-                        'name': channelInfo.channelName,
-                        'url': channelInfo.getChannelUrl(),
-                        'location': 'search_youtube_icon'
-                      });
-                    },
-                  );
+                  return Center(
+                      child: SizedBox(
+                    width: getContentWidth(context),
+                    child: RankingListTile(
+                      item: channelInfo,
+                      displayRank: 0,
+                      subscribers: channelInfo.getSubscribers(),
+                      views: channelInfo.getViews(),
+                      published: channelInfo.getPublishedAt(),
+                      updated: channelInfo.getLastPublishedVideoAtString(),
+                      onTap: (channelInfo) {
+                        Navigator.pushNamed(context, ChannelPage.route,
+                            arguments: channelInfo.channelId);
+                        MyApp.analytics
+                            .sendAnalyticsEvent(AnalyticsEvent.viewDetail, {
+                          'channel_id': channelInfo.channelId,
+                          'channel_name': channelInfo.channelName,
+                          'location': 'search_page'
+                        });
+                      },
+                      onTapYouTubeIcon: (channelInfo) {
+                        UrlLauncher.launchURL(channelInfo.getChannelUrl());
+                        MyApp.analytics
+                            .sendAnalyticsEvent(AnalyticsEvent.clickVtuberUrl, {
+                          'name': channelInfo.channelName,
+                          'url': channelInfo.getChannelUrl(),
+                          'location': 'search_youtube_icon'
+                        });
+                      },
+                    ),
+                  ));
                 },
               ));
         });

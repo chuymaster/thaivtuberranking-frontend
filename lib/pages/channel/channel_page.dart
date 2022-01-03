@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:thaivtuberranking/common/component/center_circular_progress_indicator.dart';
 import 'package:thaivtuberranking/common/component/retryable_error_view.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
+import 'package:thaivtuberranking/common/screenFactor.dart';
 import 'package:thaivtuberranking/pages/channel/channel_view_model.dart';
 import 'package:thaivtuberranking/pages/channel/component/channel_chart_view.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
@@ -44,9 +45,6 @@ class _ChannelPageState extends State<ChannelPage> {
 
   @override
   Widget build(BuildContext context) {
-    width = min(600, MediaQuery.of(context).size.width) - 20;
-    height = width * 9 / 16;
-
     return ChangeNotifierProvider(
       create: (context) => _viewModel,
       child: Consumer<ChannelViewModel>(builder: (context, viewModel, _) {
@@ -72,20 +70,22 @@ class _ChannelPageState extends State<ChannelPage> {
                   )),
               body: Align(
                   alignment: Alignment.topCenter,
-                  child: SingleChildScrollView(
-                      child: Container(
-                          alignment: Alignment.topCenter,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              _basicInfo,
-                              _description,
-                              Padding(padding: EdgeInsets.all(8)),
-                              _annotationText,
-                              _chartDataView,
-                              _rawDataLink
-                            ],
-                          )))));
+                  child: SizedBox(
+                      width: getContentWidth(context),
+                      child: SingleChildScrollView(
+                          child: Container(
+                              alignment: Alignment.topCenter,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  _basicInfo,
+                                  _description,
+                                  Padding(padding: EdgeInsets.all(8)),
+                                  _annotationText,
+                                  _chartDataView,
+                                  _rawDataLink
+                                ],
+                              ))))));
         }
       }),
     );
