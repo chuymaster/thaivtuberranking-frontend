@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:thaivtuberranking/common/component/center_circular_progress_indicator.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
+import 'package:thaivtuberranking/common/screenFactor.dart';
 import 'package:thaivtuberranking/common/strings.dart';
 import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
@@ -73,11 +74,16 @@ class _ChannelRegistrationPageState extends State<ChannelRegistrationPage> {
     );
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("แจ้งเพิ่มแชนแนล VTuber"),
-      ),
-      body: body,
-    );
+        appBar: AppBar(
+          title: Text("แจ้งเพิ่มแชนแนล VTuber"),
+        ),
+        body: Center(
+            child: SizedBox(
+                width: getContentWidth(context),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: body,
+                ))));
   }
 
   Widget get _typeRadio {
@@ -165,16 +171,11 @@ class _ChannelRegistrationPageState extends State<ChannelRegistrationPage> {
 
     columnWidgets
         .add(Align(alignment: Alignment.centerRight, child: _submitButton));
-    return Align(
-        alignment: Alignment.center,
-        child: Container(
-          child: Form(
-              key: _viewModel.formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: columnWidgets,
-              )),
-          width: 300,
+    return Form(
+        key: _viewModel.formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: columnWidgets,
         ));
   }
 

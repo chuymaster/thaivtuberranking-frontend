@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:thaivtuberranking/common/component/empty_error_notification.dart';
+import 'package:thaivtuberranking/common/screenFactor.dart';
 import 'package:thaivtuberranking/pages/channel/channel_page.dart';
 import 'package:thaivtuberranking/pages/channel_ranking/channel_ranking_view_model.dart';
 import 'package:thaivtuberranking/pages/home/component/page_selection.dart';
@@ -140,10 +141,9 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
       },
     );
 
-    return Center(
-        child: Column(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
+      children: [
         VTuberRankingList(
           itemList: _viewModel.getDisplayChannelList(filterIndex),
           pageSelection: pageSelection,
@@ -167,6 +167,6 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
           },
         ),
       ],
-    ));
+    );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
+import 'package:thaivtuberranking/common/screenFactor.dart';
 import 'page_selection.dart';
 import '../entity/channel_info.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -26,13 +27,10 @@ class VTuberRankingList extends StatelessWidget {
     return Expanded(
       child: ListView.separated(
           itemBuilder: (BuildContext context, int index) {
-            if (itemList.length == 0) {
-              return Padding(
-                padding: EdgeInsets.all(0),
-              );
-            } else if (index == 0 || index == itemList.length + 1) {
+            Widget child;
+            if (index == 0 || index == itemList.length + 1) {
               // แถวแรก/สุดท้ายให้เป็น page selection
-              return pageSelection;
+              child = pageSelection;
             } else {
               int fixedIndex = index - 1;
               ChannelInfo item = itemList[fixedIndex];
@@ -42,7 +40,7 @@ class VTuberRankingList extends StatelessWidget {
               var published = item.getPublishedAt();
               var displayRank = rank + rankOffset;
               var updated = item.getLastPublishedVideoAtString();
-              return Container(
+              child = Container(
                   child: Ink(
                       color: (fixedIndex % 2 != 0
                           ? Colors.blue[50]
@@ -58,6 +56,8 @@ class VTuberRankingList extends StatelessWidget {
                         onTapYouTubeIcon: onTapYouTubeIcon,
                       )));
             }
+            return Center(
+                child: SizedBox(width: getContentWidth(context), child: child));
           },
           controller: scrollController,
           separatorBuilder: (context, index) {

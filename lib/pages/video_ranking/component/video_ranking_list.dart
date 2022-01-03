@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:thaivtuberranking/common/screenFactor.dart';
 import 'package:thaivtuberranking/pages/video_ranking/component/video_ranking_listtile.dart';
 import 'package:thaivtuberranking/pages/video_ranking/entity/video_ranking.dart';
 
@@ -23,15 +24,17 @@ class VideoRankingList extends StatelessWidget {
     var listView = ListView.builder(
       controller: scrollController,
       itemBuilder: (context, index) {
-        return Container(
-            child: Ink(
-                color: (index % 2 != 0 ? Colors.blue[50] : Colors.white),
-                child: VideoRankingListTile(
-                  item: videoRankingList[index],
-                  displayRank: index + 1,
-                  onTap: onTap,
-                  onTapChannelName: onTapChannelName,
-                )));
+        return Center(
+            child: SizedBox(
+                width: getContentWidth(context),
+                child: Ink(
+                    color: (index % 2 != 0 ? Colors.blue[50] : Colors.white),
+                    child: VideoRankingListTile(
+                      item: videoRankingList[index],
+                      displayRank: index + 1,
+                      onTap: onTap,
+                      onTapChannelName: onTapChannelName,
+                    ))));
       },
       itemCount: itemCount,
     );

@@ -1,12 +1,10 @@
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html';
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:thaivtuberranking/common/component/center_circular_progress_indicator.dart';
 import 'package:thaivtuberranking/common/component/retryable_error_view.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
+import 'package:thaivtuberranking/common/screenFactor.dart';
 import 'package:thaivtuberranking/pages/channel/channel_view_model.dart';
 import 'package:thaivtuberranking/pages/channel/component/channel_chart_view.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
@@ -30,9 +28,6 @@ class ChannelPage extends StatefulWidget {
 class _ChannelPageState extends State<ChannelPage> {
   ChannelViewModel _viewModel = ChannelViewModel();
 
-  late double width;
-  late double height;
-
   @override
   void initState() {
     super.initState();
@@ -44,9 +39,6 @@ class _ChannelPageState extends State<ChannelPage> {
 
   @override
   Widget build(BuildContext context) {
-    width = min(600, MediaQuery.of(context).size.width) - 20;
-    height = width * 9 / 16;
-
     return ChangeNotifierProvider(
       create: (context) => _viewModel,
       child: Consumer<ChannelViewModel>(builder: (context, viewModel, _) {
@@ -72,20 +64,22 @@ class _ChannelPageState extends State<ChannelPage> {
                   )),
               body: Align(
                   alignment: Alignment.topCenter,
-                  child: SingleChildScrollView(
-                      child: Container(
-                          alignment: Alignment.topCenter,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              _basicInfo,
-                              _description,
-                              Padding(padding: EdgeInsets.all(8)),
-                              _annotationText,
-                              _chartDataView,
-                              _rawDataLink
-                            ],
-                          )))));
+                  child: SizedBox(
+                      width: getContentWidth(context),
+                      child: SingleChildScrollView(
+                          child: Container(
+                              alignment: Alignment.topCenter,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  _basicInfo,
+                                  _description,
+                                  Padding(padding: EdgeInsets.all(8)),
+                                  _annotationText,
+                                  _chartDataView,
+                                  _rawDataLink
+                                ],
+                              ))))));
         }
       }),
     );
@@ -112,8 +106,8 @@ class _ChannelPageState extends State<ChannelPage> {
       ),
       onTap: () async {
         final id = widget.channelId;
-        final host = window.location.host;
-        final channelUrl = "$host/#/channel?channel_id=$id";
+        final channelUrl =
+            "https://vtuber.chuysan.com/#/channel?channel_id=$id";
         await Clipboard.setData(new ClipboardData(text: channelUrl));
         showToast("Copy URL แล้ว");
         MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.copyChannelUrl,
@@ -233,10 +227,11 @@ class _ChannelPageState extends State<ChannelPage> {
 
   Widget get _chartDataView {
     if (_viewModel.chartData != null) {
+      double width = getContentWidth(context);
       return ChannelChartView(
           channelChartData: _viewModel.chartData!,
           width: width,
-          height: height);
+          height: width * 9 / 16);
     } else {
       return Container();
     }

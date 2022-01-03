@@ -77,12 +77,7 @@ class _VideoRankingPageState extends State<VideoRankingPage> {
             } else if (videoRankingViewModel.filteredVideoRanking.isEmpty) {
               return EmptyErrorNotification();
             } else {
-              return Align(
-                child: Container(
-                  child: _videoRankingWidget,
-                ),
-                alignment: Alignment.topCenter,
-              );
+              return _videoRankingWidget;
             }
           },
         ));

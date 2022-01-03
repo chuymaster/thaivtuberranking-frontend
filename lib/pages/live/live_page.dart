@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:thaivtuberranking/common/component/center_circular_progress_indicator.dart';
 import 'package:thaivtuberranking/common/component/retryable_error_view.dart';
+import 'package:thaivtuberranking/common/screenFactor.dart';
 import 'package:thaivtuberranking/main.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
 import 'package:thaivtuberranking/pages/channel/channel_page.dart';
@@ -98,27 +99,30 @@ class _LivePageState extends State<LivePage> {
     var listView = ListView.builder(
       controller: _scrollController,
       itemBuilder: (context, index) {
-        return Container(
-            child: Ink(
-                color: _buildRowColor(index),
-                child: LiveVideoListTile(
-                  item: _viewModel.filteredLiveVideos[index],
-                  onTap: (liveVideo) {
-                    UrlLauncher.launchURL(liveVideo.getVideoUrl());
-                    MyApp.analytics.sendAnalyticsEvent(
-                        AnalyticsEvent.openVideoUrl,
-                        {'url': liveVideo.getVideoUrl()});
-                  },
-                  onTapChannelName: (liveVideo) {
-                    Navigator.pushNamed(context, ChannelPage.route,
-                        arguments: liveVideo.channelId);
-                    MyApp.analytics.sendAnalyticsEvent(
-                        AnalyticsEvent.viewDetail, {
-                      'channel_id': liveVideo.channelId,
-                      'channel_name': liveVideo.channelTitle
-                    });
-                  },
-                )));
+        return Center(
+            child: SizedBox(
+                width: getContentWidth(context),
+                child: Container(
+                    child: Ink(
+                        color: _buildRowColor(index),
+                        child: LiveVideoListTile(
+                          item: _viewModel.filteredLiveVideos[index],
+                          onTap: (liveVideo) {
+                            UrlLauncher.launchURL(liveVideo.getVideoUrl());
+                            MyApp.analytics.sendAnalyticsEvent(
+                                AnalyticsEvent.openVideoUrl,
+                                {'url': liveVideo.getVideoUrl()});
+                          },
+                          onTapChannelName: (liveVideo) {
+                            Navigator.pushNamed(context, ChannelPage.route,
+                                arguments: liveVideo.channelId);
+                            MyApp.analytics.sendAnalyticsEvent(
+                                AnalyticsEvent.viewDetail, {
+                              'channel_id': liveVideo.channelId,
+                              'channel_name': liveVideo.channelTitle
+                            });
+                          },
+                        )))));
       },
       itemCount: itemCount,
     );
