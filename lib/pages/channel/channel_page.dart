@@ -1,6 +1,3 @@
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html';
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -30,9 +27,6 @@ class ChannelPage extends StatefulWidget {
 
 class _ChannelPageState extends State<ChannelPage> {
   ChannelViewModel _viewModel = ChannelViewModel();
-
-  late double width;
-  late double height;
 
   @override
   void initState() {
@@ -112,8 +106,8 @@ class _ChannelPageState extends State<ChannelPage> {
       ),
       onTap: () async {
         final id = widget.channelId;
-        final host = window.location.host;
-        final channelUrl = "$host/#/channel?channel_id=$id";
+        final channelUrl =
+            "https://vtuber.chuysan.com/#/channel?channel_id=$id";
         await Clipboard.setData(new ClipboardData(text: channelUrl));
         showToast("Copy URL แล้ว");
         MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.copyChannelUrl,
@@ -233,10 +227,11 @@ class _ChannelPageState extends State<ChannelPage> {
 
   Widget get _chartDataView {
     if (_viewModel.chartData != null) {
+      double width = getContentWidth(context);
       return ChannelChartView(
           channelChartData: _viewModel.chartData!,
           width: width,
-          height: height);
+          height: width * 9 / 16);
     } else {
       return Container();
     }
