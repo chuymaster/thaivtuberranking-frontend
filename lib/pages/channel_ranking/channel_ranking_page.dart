@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:thaivtuberranking/common/component/empty_error_notification.dart';
-import 'package:thaivtuberranking/common/screenFactor.dart';
 import 'package:thaivtuberranking/pages/channel/channel_page.dart';
 import 'package:thaivtuberranking/pages/channel_ranking/channel_ranking_view_model.dart';
 import 'package:thaivtuberranking/pages/home/component/page_selection.dart';

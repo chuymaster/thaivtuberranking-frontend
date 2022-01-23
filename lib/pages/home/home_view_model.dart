@@ -8,10 +8,12 @@ import 'package:http/http.dart' as http;
 class HomeViewModel extends ChangeNotifier {
   AbstractHomeRepository repository = HomeRepository(http.Client());
 
-  String _lastUpdated = "";
-
   String get lastUpdated {
-    return _lastUpdated;
+    if (channelList.isNotEmpty) {
+      channelList.sort((a, b) => a.updatedAt - b.updatedAt);
+      return channelList[0].getUpdatedAt();
+    }
+    return "";
   }
 
   int _tabIndex = 0;
