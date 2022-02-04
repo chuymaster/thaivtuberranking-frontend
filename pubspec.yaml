@@ -32,10 +32,10 @@ dependencies:
   transparent_image: ^2.0.0-nullsafety.0
   intl: ^0.17.0
   firebase_core: ^1.0.4
-  firebase_analytics: ^8.0.1
+  firebase_analytics: ^9.1.0
   http: ^0.13.0-nullsafety.0
   oktoast: ^3.0.0
-  fl_chart: ^0.40.0
+  fl_chart: ^0.41.0
   search_page: ^2.0.0+1
   syncfusion_flutter_charts: ^19.1.63
   provider: ^6.0.0

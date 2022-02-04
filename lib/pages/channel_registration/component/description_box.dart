@@ -57,7 +57,7 @@ class DescriptionBox extends StatelessWidget {
                         text: "\n\n2. " +
                             Strings.halfVtuber +
                             "\n- แชนแนลที่นำโมเดล VTuber มาแสดงเป็นหลักหลังจากเปิดแชนแนลและอัพโหลดคอนเทนต์อื่นไปแล้ว จะปรากฏในการจัดอันดับหมวด " +
-                            Strings.fullVtuber +
+                            Strings.allVtuber +
                             "เท่านั้น"),
                     TextSpan(
                         text:
