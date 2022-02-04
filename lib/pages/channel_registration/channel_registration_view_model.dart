@@ -71,9 +71,9 @@ class ChannelRegistrationViewModel extends ChangeNotifier {
         return 'แชนแนล ID ต้องขึ้นต้นด้วย UC';
       } else if (value.length != channelIdLength) {
         return 'แชนแนล ID ต้องมีความยาว $channelIdLength ตัวอักษร';
+      } else if (_channelIdList.contains(value)) {
+        return ChannelRegistrationErrorMessage.alreadyAdded;
       }
-    } else if (_channelIdList.contains(value)) {
-      return ChannelRegistrationErrorMessage.alreadyAdded;
     }
     return null;
   }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
 import 'package:thaivtuberranking/services/environment_setting.dart';
 import 'common/component/thai_text.dart';
 import 'pages/home/home_page.dart';
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
     if (EnvironmentSetting.shared.isReleaseMode &&
         EnvironmentSetting.shared.deployEnvironment ==
             DeployEnvironment.Production) {
-      _analytics = FirebaseAnalytics();
+      _analytics = FirebaseAnalytics.instance;
       _observer = FirebaseAnalyticsObserver(analytics: _analytics!);
       analytics = Analytics(analytics: _analytics, observer: _observer);
     } else {
