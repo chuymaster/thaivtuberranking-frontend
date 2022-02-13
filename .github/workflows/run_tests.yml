@@ -19,6 +19,10 @@ jobs:
           java-version: "11"
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: "2.8.1"
+          flutter-version: "2.10.1"
+      - uses: szenius/set-timezone@v1.0
+        with:
+          timezoneLinux: "Asia/Tokyo"
+          timezoneMacos: "Asia/Tokyo"
       - run: flutter pub get
       - run: flutter test
