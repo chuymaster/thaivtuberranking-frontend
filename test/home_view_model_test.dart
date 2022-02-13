@@ -9,9 +9,7 @@ import 'http_client.mocks.dart';
 
 void main() {
   group('getChannelList', () {
-    test(
-        'viewState is updated to loading and success when getChannelList has completed',
-        () async {
+    test('viewState is updated correctly', () async {
       final viewModel = HomeViewModel();
       viewModel.repository = MockHomeRepository(MockClient());
       expect(viewModel.viewState, isA<LoadingState>());

@@ -6,7 +6,7 @@ import 'package:thaivtuberranking/services/result.dart';
 import 'package:http/http.dart' as http;
 
 class VideoRankingViewModel extends ChangeNotifier {
-  final AbstractVideoRankingRepository _repository =
+  AbstractVideoRankingRepository repository =
       VideoRankingRepository(http.Client());
   final OriginType originType;
   final VideoRankingType videoRankingType;
@@ -15,9 +15,10 @@ class VideoRankingViewModel extends ChangeNotifier {
 
   VideoRankingViewModel(this.videoRankingType, this.originType);
 
-  void getVideoRanking() async {
+  Future<void> getVideoRanking() async {
     viewState = Result.loading();
-    viewState = await _repository.getVideoRanking(videoRankingType);
+    notifyListeners();
+    viewState = await repository.getVideoRanking(videoRankingType);
     notifyListeners();
   }
 

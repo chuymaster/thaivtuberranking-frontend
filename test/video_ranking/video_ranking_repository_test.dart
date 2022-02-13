@@ -5,7 +5,7 @@ import 'package:thaivtuberranking/pages/video_ranking/entity/video_ranking.dart'
 import 'package:thaivtuberranking/pages/video_ranking/video_ranking_repository.dart';
 import 'package:thaivtuberranking/services/result.dart';
 
-import 'http_client.mocks.dart';
+import '../http_client.mocks.dart';
 
 void main() {
   String _mockJson = '''
