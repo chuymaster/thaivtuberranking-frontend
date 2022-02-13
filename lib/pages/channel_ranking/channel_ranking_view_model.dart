@@ -52,8 +52,9 @@ class ChannelRankingViewModel {
             .compareTo(a.getPublishedAtForComparison()));
         break;
       case Filter.UpdatedDate:
-        displayChannelList.sort(
-            (a, b) => b.lastPublishedVideoAt.compareTo(a.lastPublishedVideoAt));
+        displayChannelList.sort((a, b) => b
+            .getLastPublishedVideoAtString()
+            .compareTo(a.getLastPublishedVideoAtString()));
         break;
     }
 

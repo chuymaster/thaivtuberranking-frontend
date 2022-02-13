@@ -6,8 +6,8 @@ class ChannelInfo {
   final int totalSubscribers;
   final int totalViews;
   final String iconUrl;
-  final String publishedAt;
-  final String lastPublishedVideoAt; // nullable
+  final String? publishedAt;
+  final String? lastPublishedVideoAt;
   final String description;
   final bool isRebranded;
 
@@ -39,8 +39,8 @@ class ChannelInfo {
         totalSubscribers: json['subscribers'] ?? 0,
         totalViews: json['views'] ?? 0,
         iconUrl: json['thumbnail_icon_url'],
-        publishedAt: json['published_at'] ?? "-",
-        lastPublishedVideoAt: json['last_published_video_at'] ?? "-",
+        publishedAt: json['published_at'],
+        lastPublishedVideoAt: json['last_published_video_at'],
         description: json['description'] ?? "",
         isRebranded: json['is_rebranded'] ?? false,
         updatedAt: json['updated_at'] ?? 0);
@@ -51,11 +51,18 @@ class ChannelInfo {
   }
 
   String getPublishedAt() {
-    return DateFormat('d/M/yyyy').format(DateTime.parse(publishedAt).toLocal());
+    if (publishedAt == null || publishedAt!.isEmpty) {
+      return '-';
+    }
+    return DateFormat('d/M/yyyy')
+        .format(DateTime.parse(publishedAt!).toLocal());
   }
 
   String getPublishedAtForComparison() {
-    return publishedAt.split("T")[0];
+    if (publishedAt == null || publishedAt!.isEmpty) {
+      return '-';
+    }
+    return publishedAt!.split("T")[0];
   }
 
   /// เวลาที่ข้อมูลถูกอัพเดตบน database ไม่เกี่ยวกับข้อมูลยูทูป
@@ -64,19 +71,12 @@ class ChannelInfo {
         .format(DateTime.fromMillisecondsSinceEpoch(updatedAt));
   }
 
-  DateTime? getLastPublishedVideoAt() {
-    if (lastPublishedVideoAt.isEmpty) {
-      return null;
-    }
-    return DateTime.parse(lastPublishedVideoAt);
-  }
-
   String getLastPublishedVideoAtString() {
-    if (lastPublishedVideoAt.isEmpty) {
+    if (lastPublishedVideoAt == null || lastPublishedVideoAt!.isEmpty) {
       return '-';
     }
     return DateFormat('d/M/yyyy HH:mm')
-        .format(DateTime.parse(lastPublishedVideoAt).toLocal());
+        .format(DateTime.parse(lastPublishedVideoAt!).toLocal());
   }
 
   String getSubscribers() {
@@ -95,19 +95,4 @@ class ChannelInfo {
 
   @override
   int get hashCode => channelId.hashCode;
-}
-
-class Video {
-  final String id;
-  final String title;
-  final String description;
-  final String publishedAt;
-  final String thumbnailImageUrl;
-
-  Video(this.id, this.title, this.description, this.publishedAt,
-      this.thumbnailImageUrl);
-
-  DateTime getPublishedAt() {
-    return DateTime.parse(publishedAt);
-  }
 }
