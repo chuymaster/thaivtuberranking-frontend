@@ -3,15 +3,16 @@ import 'package:thaivtuberranking/pages/home/entity/channel_info.dart';
 import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
 import 'package:thaivtuberranking/pages/home/home_repository.dart';
 import 'package:thaivtuberranking/services/result.dart';
-import 'package:http/http.dart' as http;
 
 class HomeViewModel extends ChangeNotifier {
-  AbstractHomeRepository repository = HomeRepository(http.Client());
+  final AbstractHomeRepository repository;
+
+  HomeViewModel({required this.repository});
 
   String get lastUpdated {
     if (channelList.isNotEmpty) {
       channelList.sort((a, b) => a.updatedAt - b.updatedAt);
-      return channelList[0].getUpdatedAt();
+      return channelList[0].updatedAtString;
     }
     return "";
   }

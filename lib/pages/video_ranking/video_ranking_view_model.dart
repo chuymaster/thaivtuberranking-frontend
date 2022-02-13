@@ -5,24 +5,27 @@ import 'package:thaivtuberranking/pages/video_ranking/video_ranking_repository.d
 import 'package:thaivtuberranking/services/result.dart';
 
 class VideoRankingViewModel extends ChangeNotifier {
+  final AbstractVideoRankingRepository repository;
   final OriginType originType;
   final VideoRankingType videoRankingType;
-  final VideoRankingRepository _repository = VideoRankingRepository();
 
   Result viewState = Result.loading();
 
-  VideoRankingViewModel(this.videoRankingType, this.originType);
+  VideoRankingViewModel(
+      {required this.videoRankingType,
+      required this.originType,
+      required this.repository});
 
-  void getVideoRanking() async {
+  Future<void> getVideoRanking() async {
     viewState = Result.loading();
-    viewState = await _repository.getVideoRanking(videoRankingType);
+    notifyListeners();
+    viewState = await repository.getVideoRanking(videoRankingType);
     notifyListeners();
   }
 
   List<VideoRanking> get filteredVideoRanking {
-    if (viewState is SuccessState<List<VideoRanking>>) {
-      final videoRanking =
-          (viewState as SuccessState<List<VideoRanking>>).value;
+    if (viewState is SuccessState) {
+      final List<VideoRanking> videoRanking = (viewState as SuccessState).value;
       switch (originType) {
         case OriginType.OriginalOnly:
           return videoRanking

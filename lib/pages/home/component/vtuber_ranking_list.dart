@@ -35,11 +35,11 @@ class VTuberRankingList extends StatelessWidget {
               int fixedIndex = index - 1;
               ChannelInfo item = itemList[fixedIndex];
               int rank = fixedIndex + 1;
-              var subscribers = item.getSubscribers();
-              var views = item.getViews();
-              var published = item.getPublishedAt();
+              var subscribers = item.subscribersString;
+              var views = item.viewsString;
+              var published = item.publishedAtString;
               var displayRank = rank + rankOffset;
-              var updated = item.getLastPublishedVideoAtString();
+              var updated = item.lastPublishedVideoAtString;
               child = Container(
                   child: Ink(
                       color: (fixedIndex % 2 != 0

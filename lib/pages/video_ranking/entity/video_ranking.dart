@@ -46,14 +46,7 @@ class VideoRanking {
     return videoRanking;
   }
 
-  DateTime? getPublishedVideoAt() {
-    if (publishedAt.isEmpty) {
-      return null;
-    }
-    return DateTime.parse(publishedAt);
-  }
-
-  String getPublishedVideoAtString() {
+  String get publishedAtString {
     if (publishedAt.isEmpty) {
       return '-';
     }
@@ -61,11 +54,11 @@ class VideoRanking {
         .format(DateTime.parse(publishedAt).toLocal());
   }
 
-  String getViews() {
+  String get views {
     return _formatter.format(viewCount);
   }
 
-  String getVideoUrl() {
+  String get videoUrl {
     return 'http://youtube.com/watch?v=$id';
   }
 }

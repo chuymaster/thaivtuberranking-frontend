@@ -13,10 +13,10 @@ abstract class AbstractHomeRepository {
   }
 }
 
-class HomeRepository extends AbstractHomeRepository {
-  HomeRepository(http.Client client) : super(client);
+class HomeRepository implements AbstractHomeRepository {
+  final http.Client client;
+  HomeRepository(this.client);
 
-  @override
   Future<Result> getChannelList() async {
     // Must set CORS for storage -  https://firebase.google.com/docs/storage/web/download-files
     /** 

@@ -87,10 +87,10 @@ class _ChannelPageState extends State<ChannelPage> {
 
   void _launchChannelUrl() {
     if (_viewModel.channelInfo != null) {
-      UrlLauncher.launchURL(_viewModel.channelInfo!.getChannelUrl());
+      UrlLauncher.launchURL(_viewModel.channelInfo!.channelUrl);
       MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.clickVtuberUrl, {
         'name': _viewModel.channelInfo!.channelName,
-        'url': _viewModel.channelInfo!.getChannelUrl(),
+        'url': _viewModel.channelInfo!.channelUrl,
         'location': 'icon_url'
       });
     }
@@ -171,10 +171,10 @@ class _ChannelPageState extends State<ChannelPage> {
         children: [fadeInImage, youtubeIcon],
       );
 
-      final subscribers = _viewModel.channelInfo!.getSubscribers();
-      final views = _viewModel.channelInfo!.getViews();
-      final updated = _viewModel.channelInfo!.getLastPublishedVideoAtString();
-      final published = _viewModel.channelInfo!.getPublishedAt();
+      final subscribers = _viewModel.channelInfo!.subscribersString;
+      final views = _viewModel.channelInfo!.viewsString;
+      final updated = _viewModel.channelInfo!.lastPublishedVideoAtString;
+      final published = _viewModel.channelInfo!.publishedAtString;
 
       return Container(
           child: Row(children: [

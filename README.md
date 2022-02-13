@@ -23,6 +23,16 @@ See https://github.com/chuymaster/thaivtuberranking-docs
 - Auto trigger deploy to Netlify when `main` branch is updated. Host: https://vtuber.chuysan.com/#/
 - Auto trigger deploy to Netlify when `develop` branch is updated. Host: https://vtuber-qa-chuysan.netlify.app/#/
 
+## Unit Tests
+
+This project use [mockito](https://pub.dev/packages/mockito) to generate mock classes.
+
+`http.Client` mock is already generated but if you need to generate new mock class, read the document, add `@GenerateMocks` annotation then run `make build-mock` to generate.
+
+See `home_repository.dart` and `home_repository_test.dart` for example of API stub implementation.
+
+Run `flutter test` to test all cases.
+
 ### Netlify Build Command
 
 Build commands that run when the branch is updated are listed below.

@@ -1,19 +1,17 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/src/client.dart';
+import 'package:http/src/client.dart' as http;
 import 'package:thaivtuberranking/pages/home/entity/channel_info.dart';
 import 'package:thaivtuberranking/pages/home/home_repository.dart';
 import 'package:thaivtuberranking/pages/home/home_view_model.dart';
 import 'package:thaivtuberranking/services/result.dart';
 
-import 'home_repository_test.mocks.dart';
+import '../http_client.mocks.dart';
 
 void main() {
   group('getChannelList', () {
-    test(
-        'viewState is updated to loading and success when getChannelList has completed',
-        () async {
-      final viewModel = HomeViewModel();
-      viewModel.repository = MockHomeRepository(MockClient());
+    test('viewState is updated correctly', () async {
+      final viewModel =
+          HomeViewModel(repository: MockHomeRepository(MockClient()));
       expect(viewModel.viewState, isA<LoadingState>());
 
       List<Result> results = [];
@@ -30,17 +28,17 @@ void main() {
   });
 }
 
-class MockHomeRepository extends AbstractHomeRepository {
-  MockHomeRepository(Client client) : super(client);
+class MockHomeRepository implements AbstractHomeRepository {
+  final http.Client client;
+  MockHomeRepository(this.client);
 
-  @override
   Future<Result> getChannelList() async {
     List<ChannelInfo> channelList = [];
     channelList.add(ChannelInfo(
         channelId: "id",
         channelName: "name",
-        totalSubscribers: 0,
-        totalViews: 0,
+        subscribers: 0,
+        views: 0,
         iconUrl: "https://",
         publishedAt: "",
         lastPublishedVideoAt: "",

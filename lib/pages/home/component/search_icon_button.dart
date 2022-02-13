@@ -17,7 +17,7 @@ class SearchIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     channelList.sort((a, b) {
-      return b.totalSubscribers.compareTo(a.totalSubscribers);
+      return b.subscribers.compareTo(a.subscribers);
     });
     return IconButton(
         icon: Icon(Icons.search),
@@ -47,10 +47,10 @@ class SearchIconButton extends StatelessWidget {
                     child: RankingListTile(
                       item: channelInfo,
                       displayRank: 0,
-                      subscribers: channelInfo.getSubscribers(),
-                      views: channelInfo.getViews(),
-                      published: channelInfo.getPublishedAt(),
-                      updated: channelInfo.getLastPublishedVideoAtString(),
+                      subscribers: channelInfo.subscribersString,
+                      views: channelInfo.viewsString,
+                      published: channelInfo.publishedAtString,
+                      updated: channelInfo.lastPublishedVideoAtString,
                       onTap: (channelInfo) {
                         Navigator.pushNamed(context, ChannelPage.route,
                             arguments: channelInfo.channelId);
@@ -62,11 +62,11 @@ class SearchIconButton extends StatelessWidget {
                         });
                       },
                       onTapYouTubeIcon: (channelInfo) {
-                        UrlLauncher.launchURL(channelInfo.getChannelUrl());
+                        UrlLauncher.launchURL(channelInfo.channelUrl);
                         MyApp.analytics
                             .sendAnalyticsEvent(AnalyticsEvent.clickVtuberUrl, {
                           'name': channelInfo.channelName,
-                          'url': channelInfo.getChannelUrl(),
+                          'url': channelInfo.channelUrl,
                           'location': 'search_youtube_icon'
                         });
                       },
