@@ -46,13 +46,6 @@ class VideoRanking {
     return videoRanking;
   }
 
-  DateTime? getPublishedVideoAt() {
-    if (publishedAt.isEmpty) {
-      return null;
-    }
-    return DateTime.parse(publishedAt);
-  }
-
   String getPublishedVideoAtString() {
     if (publishedAt.isEmpty) {
       return '-';
