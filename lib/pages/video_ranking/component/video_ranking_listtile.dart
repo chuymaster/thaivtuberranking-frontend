@@ -28,7 +28,7 @@ class VideoRankingListTile extends StatelessWidget {
       fadeInDuration: Duration(milliseconds: 300),
     );
 
-    var views = item.getViews();
+    var views = item.views;
     return ListTile(
       title: Row(
         children: [
@@ -44,7 +44,7 @@ class VideoRankingListTile extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
               ThaiText(
-                text: 'ดู $views ครั้ง | ' + item.getPublishedVideoAtString(),
+                text: 'ดู $views ครั้ง | ' + item.publishedAtString,
                 color: Colors.black54,
                 fontSize: 12,
               ),

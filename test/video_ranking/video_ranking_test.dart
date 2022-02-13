@@ -38,9 +38,9 @@ void main() {
     });
     test('computed properties', () {
       final entity = VideoRanking.fromJson(json.decode(_json));
-      expect(entity.getPublishedVideoAtString(), '12/2/2022 22:24');
-      expect(entity.getViews(), '1,000');
-      expect(entity.getVideoUrl(), 'http://youtube.com/watch?v=id');
+      expect(entity.publishedAtString, '12/2/2022 22:24');
+      expect(entity.views, '1,000');
+      expect(entity.videoUrl, 'http://youtube.com/watch?v=id');
     });
   });
 }

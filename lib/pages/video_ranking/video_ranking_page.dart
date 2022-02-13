@@ -91,9 +91,9 @@ class _VideoRankingPageState extends State<VideoRankingPage> {
       scrollController: _scrollController,
       videoRankingList: _viewModel.filteredVideoRanking,
       onTap: (item) {
-        UrlLauncher.launchURL(item.getVideoUrl());
+        UrlLauncher.launchURL(item.videoUrl);
         MyApp.analytics.sendAnalyticsEvent(
-            AnalyticsEvent.openVideoUrl, {'url': item.getVideoUrl()});
+            AnalyticsEvent.openVideoUrl, {'url': item.videoUrl});
       },
       onTapChannelName: (item) {
         Navigator.pushNamed(context, ChannelPage.route,
