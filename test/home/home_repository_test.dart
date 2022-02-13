@@ -5,7 +5,7 @@ import 'package:thaivtuberranking/pages/home/entity/channel_info.dart';
 import 'package:thaivtuberranking/pages/home/home_repository.dart';
 import 'package:thaivtuberranking/services/result.dart';
 
-import 'http_client.mocks.dart';
+import '../http_client.mocks.dart';
 
 void main() {
   group('getChannelList', () {
