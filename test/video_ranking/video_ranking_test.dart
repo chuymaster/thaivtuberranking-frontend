@@ -38,7 +38,8 @@ void main() {
     });
     test('computed properties', () {
       final entity = VideoRanking.fromJson(json.decode(_json));
-      expect(entity.publishedAtString, '12/2/2022 22:24');
+      expect(entity.publishedAtString,
+          '12/2/2022 22:24'); // Note: Must test with Asia/Tokyo timezone (GMT+9)
       expect(entity.views, '1,000');
       expect(entity.videoUrl, 'http://youtube.com/watch?v=id');
     });
