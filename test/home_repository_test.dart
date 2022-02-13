@@ -1,14 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:thaivtuberranking/pages/home/entity/channel_info.dart';
 import 'package:thaivtuberranking/pages/home/home_repository.dart';
 import 'package:thaivtuberranking/services/result.dart';
 
-import 'home_repository_test.mocks.dart';
+import 'http_client.mocks.dart';
 
-@GenerateMocks([http.Client])
 void main() {
   group('getChannelList', () {
     test('returns unique channel list if the http call completes successfully',

@@ -7,13 +7,23 @@ import 'entity/video_ranking.dart';
 
 enum VideoRankingType { OneDay, ThreeDay, SevenDay }
 
-class VideoRankingRepository {
+abstract class AbstractVideoRankingRepository {
+  final http.Client client;
+  const AbstractVideoRankingRepository(this.client);
+  Future<Result> getVideoRanking(VideoRankingType type) async {
+    throw UnimplementedError();
+  }
+}
+
+class VideoRankingRepository extends AbstractVideoRankingRepository {
   Uri _oneDayRankingJson = Uri.parse(
       "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/one_day_ranking.json");
   Uri _threeDayRankingJson = Uri.parse(
       "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/three_days_ranking.json");
   Uri _sevenDayRankingJson = Uri.parse(
       "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/seven_days_ranking.json");
+
+  VideoRankingRepository(http.Client client) : super(client);
 
   Future<Result> getVideoRanking(VideoRankingType type) async {
     var url = _oneDayRankingJson;
@@ -30,7 +40,7 @@ class VideoRankingRepository {
     }
 
     try {
-      final response = await http.get(url);
+      final response = await client.get(url);
 
       List<VideoRanking> _itemList = [];
 
