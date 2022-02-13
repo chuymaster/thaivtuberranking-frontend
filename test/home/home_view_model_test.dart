@@ -37,8 +37,8 @@ class MockHomeRepository implements AbstractHomeRepository {
     channelList.add(ChannelInfo(
         channelId: "id",
         channelName: "name",
-        totalSubscribers: 0,
-        totalViews: 0,
+        subscribers: 0,
+        views: 0,
         iconUrl: "https://",
         publishedAt: "",
         lastPublishedVideoAt: "",

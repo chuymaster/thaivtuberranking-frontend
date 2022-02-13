@@ -41,20 +41,18 @@ class ChannelRankingViewModel {
       case Filter.Subscriber:
         // sort desc (b > a)
         displayChannelList
-            .sort((a, b) => b.totalSubscribers.compareTo(a.totalSubscribers));
+            .sort((a, b) => b.subscribers.compareTo(a.subscribers));
         break;
       case Filter.View:
-        displayChannelList.sort((a, b) => b.totalViews.compareTo(a.totalViews));
+        displayChannelList.sort((a, b) => b.views.compareTo(a.views));
         break;
       case Filter.PublishedDate:
-        displayChannelList.sort((a, b) => b
-            .getPublishedAtForComparison()
-            .compareTo(a.getPublishedAtForComparison()));
+        displayChannelList.sort((a, b) => b.publishedAtStringForComparison
+            .compareTo(a.publishedAtStringForComparison));
         break;
       case Filter.UpdatedDate:
-        displayChannelList.sort((a, b) => b
-            .getLastPublishedVideoAtString()
-            .compareTo(a.getLastPublishedVideoAtString()));
+        displayChannelList.sort((a, b) => b.lastPublishedVideoAtString
+            .compareTo(a.lastPublishedVideoAtString));
         break;
     }
 

@@ -12,7 +12,7 @@ class HomeViewModel extends ChangeNotifier {
   String get lastUpdated {
     if (channelList.isNotEmpty) {
       channelList.sort((a, b) => a.updatedAt - b.updatedAt);
-      return channelList[0].getUpdatedAt();
+      return channelList[0].updatedAtString;
     }
     return "";
   }

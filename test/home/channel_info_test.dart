@@ -26,8 +26,8 @@ void main() {
       final entity = ChannelInfo.fromJson(json.decode(_json));
       expect(entity.channelId, 'channelId');
       expect(entity.channelName, 'test');
-      expect(entity.totalSubscribers, 1000);
-      expect(entity.totalViews, 1000);
+      expect(entity.subscribers, 1000);
+      expect(entity.views, 1000);
       expect(entity.iconUrl, 'https://');
       expect(entity.publishedAt, "2020-11-11T12:58:49.610362Z");
       expect(entity.lastPublishedVideoAt, "2021-12-31T13:08:37Z");
@@ -37,13 +37,13 @@ void main() {
     });
     test('computed properties', () {
       final entity = ChannelInfo.fromJson(json.decode(_json));
-      expect(entity.getChannelUrl(), "https://youtube.com/channel/channelId");
-      expect(entity.getPublishedAt(), "11/11/2020");
-      expect(entity.getPublishedAtForComparison(), "2020-11-11");
-      expect(entity.getUpdatedAt(), "1/1/2022 12:00");
-      expect(entity.getLastPublishedVideoAtString(), "31/12/2021 22:08");
-      expect(entity.getSubscribers(), '1,000');
-      expect(entity.getViews(), '1,000');
+      expect(entity.channelUrl, "https://youtube.com/channel/channelId");
+      expect(entity.publishedAtString, "11/11/2020");
+      expect(entity.publishedAtStringForComparison, "2020-11-11");
+      expect(entity.updatedAtString, "1/1/2022 12:00");
+      expect(entity.lastPublishedVideoAtString, "31/12/2021 22:08");
+      expect(entity.subscribersString, '1,000');
+      expect(entity.viewsString, '1,000');
     });
     test('published at conversions with null value', () {
       final _json = '''
@@ -64,9 +64,9 @@ void main() {
     }
 ''';
       final entity = ChannelInfo.fromJson(json.decode(_json));
-      expect(entity.getPublishedAt(), '-');
-      expect(entity.getPublishedAtForComparison(), '-');
-      expect(entity.getLastPublishedVideoAtString(), '-');
+      expect(entity.publishedAtString, '-');
+      expect(entity.publishedAtStringForComparison, '-');
+      expect(entity.lastPublishedVideoAtString, '-');
     });
     test('published at conversions with empty string', () {
       final _json = '''
@@ -87,9 +87,9 @@ void main() {
     }
 ''';
       final entity = ChannelInfo.fromJson(json.decode(_json));
-      expect(entity.getPublishedAt(), '-');
-      expect(entity.getPublishedAtForComparison(), '-');
-      expect(entity.getLastPublishedVideoAtString(), '-');
+      expect(entity.publishedAtString, '-');
+      expect(entity.publishedAtStringForComparison, '-');
+      expect(entity.lastPublishedVideoAtString, '-');
     });
   });
 }

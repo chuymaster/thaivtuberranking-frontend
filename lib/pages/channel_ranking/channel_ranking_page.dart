@@ -157,10 +157,10 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
             });
           },
           onTapYouTubeIcon: (channelInfo) {
-            UrlLauncher.launchURL(channelInfo.getChannelUrl());
+            UrlLauncher.launchURL(channelInfo.channelUrl);
             MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.clickVtuberUrl, {
               'name': channelInfo.channelName,
-              'url': channelInfo.getChannelUrl(),
+              'url': channelInfo.channelUrl,
               'location': 'top_youtube_icon'
             });
           },
