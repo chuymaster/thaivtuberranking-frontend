@@ -12,7 +12,9 @@ void main() {
   group('Initialization', () {
     test('initial values are as expected', () {
       final viewModel = VideoRankingViewModel(
-          VideoRankingType.OneDay, OriginType.OriginalOnly);
+          videoRankingType: VideoRankingType.OneDay,
+          originType: OriginType.OriginalOnly,
+          repository: MockVideoRankingRepository(MockClient()));
       expect(viewModel.originType, OriginType.OriginalOnly);
       expect(viewModel.videoRankingType, VideoRankingType.OneDay);
       expect(viewModel.viewState, isA<LoadingState>());
@@ -21,8 +23,9 @@ void main() {
   group('getVideoRanking', () {
     test('viewState is updated correctly', () async {
       final viewModel = VideoRankingViewModel(
-          VideoRankingType.OneDay, OriginType.OriginalOnly);
-      viewModel.repository = MockVideoRankingRepository(MockClient());
+          videoRankingType: VideoRankingType.OneDay,
+          originType: OriginType.OriginalOnly,
+          repository: MockVideoRankingRepository(MockClient()));
 
       List<Result> results = [];
       viewModel.addListener(() {
@@ -41,8 +44,9 @@ void main() {
   group('filteredVideoRanking', () {
     test('video ranking is filtered to OriginalOnly', () async {
       final viewModel = VideoRankingViewModel(
-          VideoRankingType.OneDay, OriginType.OriginalOnly);
-      viewModel.repository = MockVideoRankingRepository(MockClient());
+          videoRankingType: VideoRankingType.OneDay,
+          originType: OriginType.OriginalOnly,
+          repository: MockVideoRankingRepository(MockClient()));
 
       await viewModel.getVideoRanking();
 
@@ -51,9 +55,10 @@ void main() {
       expect(viewModel.filteredVideoRanking[0].isRebranded, false);
     });
     test('video ranking is filtered to All', () async {
-      final viewModel =
-          VideoRankingViewModel(VideoRankingType.OneDay, OriginType.All);
-      viewModel.repository = MockVideoRankingRepository(MockClient());
+      final viewModel = VideoRankingViewModel(
+          videoRankingType: VideoRankingType.OneDay,
+          originType: OriginType.All,
+          repository: MockVideoRankingRepository(MockClient()));
 
       await viewModel.getVideoRanking();
 

@@ -8,12 +8,14 @@ import 'package:thaivtuberranking/pages/channel_ranking/channel_ranking_page.dar
 import 'package:thaivtuberranking/pages/channel_registration/channel_registration_page.dart';
 import 'package:thaivtuberranking/pages/home/component/drawer_menu.dart';
 import 'package:thaivtuberranking/pages/home/component/search_icon_button.dart';
+import 'package:thaivtuberranking/pages/home/home_repository.dart';
 import 'package:thaivtuberranking/pages/home/home_view_model.dart';
 import 'package:thaivtuberranking/pages/video_ranking/video_ranking_container_page.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/result.dart';
 import 'package:thaivtuberranking/main.dart';
 import 'dart:core';
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -25,7 +27,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _viewModel = HomeViewModel();
+  final _viewModel = HomeViewModel(repository: HomeRepository(http.Client()));
 
   @override
   void initState() {

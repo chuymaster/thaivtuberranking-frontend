@@ -10,8 +10,8 @@ import 'http_client.mocks.dart';
 void main() {
   group('getChannelList', () {
     test('viewState is updated correctly', () async {
-      final viewModel = HomeViewModel();
-      viewModel.repository = MockHomeRepository(MockClient());
+      final viewModel =
+          HomeViewModel(repository: MockHomeRepository(MockClient()));
       expect(viewModel.viewState, isA<LoadingState>());
 
       List<Result> results = [];

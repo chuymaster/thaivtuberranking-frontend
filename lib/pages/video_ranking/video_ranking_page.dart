@@ -13,6 +13,7 @@ import 'package:thaivtuberranking/pages/video_ranking/video_ranking_view_model.d
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/result.dart';
 import 'package:thaivtuberranking/services/url_launcher.dart';
+import 'package:http/http.dart' as http;
 
 class VideoRankingPage extends StatefulWidget {
   final OriginType originType;
@@ -32,8 +33,10 @@ class VideoRankingPage extends StatefulWidget {
 }
 
 class _VideoRankingPageState extends State<VideoRankingPage> {
-  late VideoRankingViewModel _viewModel =
-      VideoRankingViewModel(widget.rankingType, widget.originType);
+  late VideoRankingViewModel _viewModel = VideoRankingViewModel(
+      videoRankingType: widget.rankingType,
+      originType: widget.originType,
+      repository: VideoRankingRepository(http.Client()));
   ScrollController _scrollController = ScrollController();
 
   @override
