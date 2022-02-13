@@ -32,6 +32,36 @@ void main() {
       await viewModel.getVideoRanking();
 
       expect(results, [isA<LoadingState>(), isA<SuccessState>()]);
+      List<VideoRanking> videoRankingList =
+          (viewModel.viewState as SuccessState).value;
+      expect(videoRankingList.length, 2);
+      expect(videoRankingList[0].id, "id1");
+    });
+  });
+  group('filteredVideoRanking', () {
+    test('video ranking is filtered to OriginalOnly', () async {
+      final viewModel = VideoRankingViewModel(
+          VideoRankingType.OneDay, OriginType.OriginalOnly);
+      viewModel.repository = MockVideoRankingRepository(MockClient());
+
+      await viewModel.getVideoRanking();
+
+      expect(viewModel.filteredVideoRanking.length, 1);
+      expect(viewModel.filteredVideoRanking[0].id, "id2");
+      expect(viewModel.filteredVideoRanking[0].isRebranded, false);
+    });
+    test('video ranking is filtered to All', () async {
+      final viewModel =
+          VideoRankingViewModel(VideoRankingType.OneDay, OriginType.All);
+      viewModel.repository = MockVideoRankingRepository(MockClient());
+
+      await viewModel.getVideoRanking();
+
+      expect(viewModel.filteredVideoRanking.length, 2);
+      expect(viewModel.filteredVideoRanking[0].id, "id1");
+      expect(viewModel.filteredVideoRanking[0].isRebranded, true);
+      expect(viewModel.filteredVideoRanking[1].id, "id2");
+      expect(viewModel.filteredVideoRanking[1].isRebranded, false);
     });
   });
 }
@@ -42,7 +72,9 @@ class MockVideoRankingRepository extends AbstractVideoRankingRepository {
   @override
   Future<Result> getVideoRanking(VideoRankingType type) async {
     List<VideoRanking> videoRankingList = [];
-    videoRankingList.add(VideoRanking("id", "title", "channelId",
+    videoRankingList.add(VideoRanking("id1", "title", "channelId",
+        "channelTitle", 1, 1, 1, 1, 1, "https://", "", true));
+    videoRankingList.add(VideoRanking("id2", "title", "channelId",
         "channelTitle", 1, 1, 1, 1, 1, "https://", "", false));
     return Result.success(videoRankingList);
   }

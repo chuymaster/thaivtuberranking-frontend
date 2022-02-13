@@ -23,9 +23,8 @@ class VideoRankingViewModel extends ChangeNotifier {
   }
 
   List<VideoRanking> get filteredVideoRanking {
-    if (viewState is SuccessState<List<VideoRanking>>) {
-      final videoRanking =
-          (viewState as SuccessState<List<VideoRanking>>).value;
+    if (viewState is SuccessState) {
+      final List<VideoRanking> videoRanking = (viewState as SuccessState).value;
       switch (originType) {
         case OriginType.OriginalOnly:
           return videoRanking
