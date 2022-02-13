@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
 import 'package:thaivtuberranking/pages/video_ranking/entity/video_ranking.dart';
 import 'package:thaivtuberranking/pages/video_ranking/video_ranking_repository.dart';
@@ -66,10 +66,10 @@ void main() {
   });
 }
 
-class MockVideoRankingRepository extends AbstractVideoRankingRepository {
-  MockVideoRankingRepository(Client client) : super(client);
+class MockVideoRankingRepository implements AbstractVideoRankingRepository {
+  final http.Client client;
+  MockVideoRankingRepository(this.client);
 
-  @override
   Future<Result> getVideoRanking(VideoRankingType type) async {
     List<VideoRanking> videoRankingList = [];
     videoRankingList.add(VideoRanking("id1", "title", "channelId",

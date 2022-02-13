@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/src/client.dart';
+import 'package:http/src/client.dart' as http;
 import 'package:thaivtuberranking/pages/home/entity/channel_info.dart';
 import 'package:thaivtuberranking/pages/home/home_repository.dart';
 import 'package:thaivtuberranking/pages/home/home_view_model.dart';
@@ -28,10 +28,10 @@ void main() {
   });
 }
 
-class MockHomeRepository extends AbstractHomeRepository {
-  MockHomeRepository(Client client) : super(client);
+class MockHomeRepository implements AbstractHomeRepository {
+  final http.Client client;
+  MockHomeRepository(this.client);
 
-  @override
   Future<Result> getChannelList() async {
     List<ChannelInfo> channelList = [];
     channelList.add(ChannelInfo(

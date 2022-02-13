@@ -15,7 +15,8 @@ abstract class AbstractVideoRankingRepository {
   }
 }
 
-class VideoRankingRepository extends AbstractVideoRankingRepository {
+class VideoRankingRepository implements AbstractVideoRankingRepository {
+  final http.Client client;
   Uri _oneDayRankingJson = Uri.parse(
       "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/one_day_ranking.json");
   Uri _threeDayRankingJson = Uri.parse(
@@ -23,7 +24,7 @@ class VideoRankingRepository extends AbstractVideoRankingRepository {
   Uri _sevenDayRankingJson = Uri.parse(
       "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/seven_days_ranking.json");
 
-  VideoRankingRepository(http.Client client) : super(client);
+  VideoRankingRepository(this.client);
 
   Future<Result> getVideoRanking(VideoRankingType type) async {
     var url = _oneDayRankingJson;
