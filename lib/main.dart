@@ -29,7 +29,6 @@ class MyApp extends StatelessWidget {
     } else {
       analytics = Analytics(analytics: null, observer: null);
     }
-    analytics = Analytics();
   }
 
   // This widget is the root of your application.
