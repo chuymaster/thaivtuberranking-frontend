@@ -21,11 +21,10 @@ class LivePage extends StatefulWidget {
   final VoidCallback didScrollUp;
 
   const LivePage(
-      {Key? key,
+      {super.key,
       required this.originType,
       required this.didScrollDown,
-      required this.didScrollUp})
-      : super(key: key);
+      required this.didScrollUp});
 
   @override
   _LivePageState createState() => _LivePageState();

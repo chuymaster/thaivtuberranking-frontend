@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:thaivtuberranking/common/component/center_circular_progress_indicator.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
 import 'package:thaivtuberranking/common/screenFactor.dart';
-import 'package:thaivtuberranking/common/strings.dart';
 import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/result.dart';
@@ -19,8 +18,7 @@ class ChannelRegistrationPage extends StatefulWidget {
 
   final List<String> vTuberChannelIdList;
 
-  const ChannelRegistrationPage({Key? key, required this.vTuberChannelIdList})
-      : super(key: key);
+  const ChannelRegistrationPage({super.key, required this.vTuberChannelIdList});
   @override
   _ChannelRegistrationPageState createState() =>
       _ChannelRegistrationPageState();

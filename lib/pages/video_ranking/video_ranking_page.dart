@@ -23,12 +23,11 @@ class VideoRankingPage extends StatefulWidget {
   final VoidCallback didScrollUp;
 
   const VideoRankingPage(
-      {Key? key,
+      {super.key,
       required this.originType,
       required this.rankingType,
       required this.didScrollDown,
-      required this.didScrollUp})
-      : super(key: key);
+      required this.didScrollUp});
   @override
   _VideoRankingPageState createState() => _VideoRankingPageState();
 }

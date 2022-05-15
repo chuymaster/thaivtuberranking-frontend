@@ -8,8 +8,7 @@ class DrawerOriginTypeRadioFilter extends StatefulWidget {
   final Function(OriginType) onChanged;
 
   const DrawerOriginTypeRadioFilter(
-      {Key? key, required this.currentOriginType, required this.onChanged})
-      : super(key: key);
+      {super.key, required this.currentOriginType, required this.onChanged});
 
   @override
   _DrawerOriginTypeRadioFilterState createState() =>

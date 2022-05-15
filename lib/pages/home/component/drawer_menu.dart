@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/common/component/announcement_banner.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
-import 'package:thaivtuberranking/common/strings.dart';
 import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/environment_setting.dart';
@@ -17,12 +16,11 @@ class DrawerMenu extends StatefulWidget {
   final Function onTapAddChannelMenu;
 
   const DrawerMenu(
-      {Key? key,
+      {super.key,
       required this.currentOriginType,
       required this.lastUpdatedAt,
       required this.onChangeOriginType,
-      required this.onTapAddChannelMenu})
-      : super(key: key);
+      required this.onTapAddChannelMenu});
 
   @override
   _DrawerMenuState createState() => _DrawerMenuState();

@@ -18,7 +18,7 @@ import 'dart:core';
 import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  HomePage({super.key});
 
   static const String route = '/';
 

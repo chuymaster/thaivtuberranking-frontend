@@ -13,15 +13,14 @@ class ThaiText extends StatelessWidget {
   static const String sarabun = 'Sarabun';
 
   ThaiText(
-      {Key? key,
+      {super.key,
       required this.text,
       this.fontWeight = FontWeight.normal,
       this.textHeight = 1.35, // จำเป็นต้องเซ็ตความสูงเพื่อให้ภาษาไทยไม่ตกร่อง
       this.color = Colors.black,
       this.fontSize = 16,
       this.overflow = TextOverflow.ellipsis,
-      this.fontFamily = ThaiText.sarabun})
-      : super(key: key);
+      this.fontFamily = ThaiText.sarabun});
 
   @override
   Widget build(BuildContext context) {
