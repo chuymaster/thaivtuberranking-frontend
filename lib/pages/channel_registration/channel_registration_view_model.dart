@@ -8,7 +8,6 @@ import 'channel_registration_repository.dart';
 
 class ChannelRegistrationViewModel extends ChangeNotifier {
   final _repository = ChannelRegistrationRepository();
-  final List<String> _channelIdList;
 
   // Form key for input https://flutter.dev/docs/cookbook/forms/validation
   final formKey = GlobalKey<FormState>();
@@ -18,8 +17,6 @@ class ChannelRegistrationViewModel extends ChangeNotifier {
   bool _isInputValidated = false;
 
   Result viewState = Result.idle();
-
-  ChannelRegistrationViewModel(this._channelIdList);
 
   String get inputChannelId {
     return textEditingController.text;
@@ -54,7 +51,7 @@ class ChannelRegistrationViewModel extends ChangeNotifier {
     }
   }
 
-  String? validateFormValue(String? value) {
+  String? validateFormValue(String? value, List<String> channelIdList) {
     if (value != null) {
       if (value.isEmpty) {
         return 'โปรดกรอกแชนแนล ID';
@@ -62,7 +59,7 @@ class ChannelRegistrationViewModel extends ChangeNotifier {
         return 'แชนแนล ID ต้องขึ้นต้นด้วย UC';
       } else if (value.length != channelIdLength) {
         return 'แชนแนล ID ต้องมีความยาว $channelIdLength ตัวอักษร';
-      } else if (_channelIdList.contains(value)) {
+      } else if (channelIdList.contains(value)) {
         return ChannelRegistrationErrorMessage.alreadyAdded;
       }
     }
