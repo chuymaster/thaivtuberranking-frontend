@@ -4,19 +4,24 @@ import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
 
 class HomeViewModel extends ChangeNotifier {
   int _tabIndex = 0;
-  int get tabIndex {
-    return _tabIndex;
+  int get tabIndex => _tabIndex;
+  set tabIndex(int index) {
+    _tabIndex = index;
+    notifyListeners();
   }
 
   bool _isBottomNavigationBarHidden = false;
-
-  bool get isBottomNavigationBarHidden {
-    return _isBottomNavigationBarHidden;
+  bool get isBottomNavigationBarHidden => _isBottomNavigationBarHidden;
+  set isBottomNavigationBarHidden(bool isBottomNavigationBarHidden) {
+    _isBottomNavigationBarHidden = isBottomNavigationBarHidden;
+    notifyListeners();
   }
 
   OriginType _originType = OriginType.OriginalOnly;
-  OriginType get originType {
-    return _originType;
+  OriginType get originType => _originType;
+  set originType(OriginType originType) {
+    _originType = originType;
+    notifyListeners();
   }
 
   List<ChannelInfo> getFilteredChannelList(List<ChannelInfo> channelList) {
@@ -25,30 +30,6 @@ class HomeViewModel extends ChangeNotifier {
         return channelList.where((element) => (!element.isRebranded)).toList();
       case OriginType.All:
         return channelList;
-    }
-  }
-
-  void changeTabIndex(int index) {
-    _tabIndex = index;
-    notifyListeners();
-  }
-
-  void changeOriginType(OriginType originType) {
-    _originType = originType;
-    notifyListeners();
-  }
-
-  void hideBottomNavigationBar() {
-    if (!_isBottomNavigationBarHidden) {
-      _isBottomNavigationBarHidden = true;
-      notifyListeners();
-    }
-  }
-
-  void showBottomNavigationBar() {
-    if (_isBottomNavigationBarHidden) {
-      _isBottomNavigationBarHidden = false;
-      notifyListeners();
     }
   }
 }

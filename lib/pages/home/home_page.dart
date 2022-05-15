@@ -85,8 +85,7 @@ class _HomePageState extends State<HomePage> {
     return DrawerMenu(
         currentOriginType: _viewModel.originType,
         lastUpdatedAt: lastUpdatedAt,
-        onChangeOriginType: (originType) =>
-            _viewModel.changeOriginType(originType),
+        onChangeOriginType: (originType) => _viewModel.originType = originType,
         onTapAddChannelMenu: () =>
             {this._navigateToChannelRegistrationPage("drawer_menu")});
   }
@@ -105,7 +104,7 @@ class _HomePageState extends State<HomePage> {
           onTap: (index) {
             MyApp.analytics.sendAnalyticsEvent(
                 AnalyticsEvent.changeBottomTab, {"index": index});
-            _viewModel.changeTabIndex(index);
+            _viewModel.tabIndex = index;
           },
         ));
   }
@@ -129,15 +128,15 @@ class _HomePageState extends State<HomePage> {
     if (_viewModel.tabIndex == 0) {
       return VideoRankingContainerPage(
           originType: _viewModel.originType,
-          didScrollDown: () => _viewModel.hideBottomNavigationBar(),
-          didScrollUp: () => _viewModel.showBottomNavigationBar(),
+          didScrollDown: () => {_viewModel.isBottomNavigationBarHidden = true},
+          didScrollUp: () => {_viewModel.isBottomNavigationBarHidden = false},
           key: Key(
               "VideoRankingContainerPage_" + _viewModel.originType.toString()));
     }
     return ChannelRankingPage(
         channelList: _viewModel.getFilteredChannelList(channelList),
-        didScrollDown: () => _viewModel.hideBottomNavigationBar(),
-        didScrollUp: () => _viewModel.showBottomNavigationBar(),
+        didScrollDown: () => {_viewModel.isBottomNavigationBarHidden = true},
+        didScrollUp: () => {_viewModel.isBottomNavigationBarHidden = false},
         key: Key("ChannelRankingPage_" +
             _viewModel.getFilteredChannelList(channelList).length.toString()));
   }

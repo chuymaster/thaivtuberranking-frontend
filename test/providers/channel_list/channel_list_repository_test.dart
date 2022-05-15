@@ -2,17 +2,17 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 import 'package:thaivtuberranking/pages/home/entity/channel_info.dart';
-import 'package:thaivtuberranking/pages/home/home_repository.dart';
+import 'package:thaivtuberranking/providers/channel_list/channel_list_repository.dart';
 import 'package:thaivtuberranking/services/result.dart';
 
-import '../http_client.mocks.dart';
+import '../../http_client.mocks.dart';
 
 void main() {
   group('getChannelList', () {
     test('returns unique channel list if the http call completes successfully',
         () async {
       final client = MockClient();
-      final repository = HomeRepository(client);
+      final repository = ChannelListRepository(client);
 
       Uri url = Uri.parse(
           "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/list.json");
@@ -66,7 +66,7 @@ void main() {
     });
     test('returns error if http call completes with error', () async {
       final client = MockClient();
-      final repository = HomeRepository(client);
+      final repository = ChannelListRepository(client);
 
       Uri url = Uri.parse(
           "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/list.json");
