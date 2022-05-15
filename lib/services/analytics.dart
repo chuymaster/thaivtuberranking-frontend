@@ -1,20 +1,15 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
-import 'package:thaivtuberranking/services/environment_setting.dart';
 
 class Analytics {
-  final FirebaseAnalytics? analytics;
-  final FirebaseAnalyticsObserver? observer;
+  late FirebaseAnalytics? _analytics;
 
-  Analytics({this.analytics, this.observer});
+  Analytics({analytics: FirebaseAnalytics}) {
+    this._analytics = analytics;
+  }
 
   Future<void> sendAnalyticsEvent(
       String name, Map<String, dynamic> parameters) async {
-    if (EnvironmentSetting.shared.isReleaseMode &&
-        EnvironmentSetting.shared.deployEnvironment ==
-            DeployEnvironment.Production) {
-      await analytics?.logEvent(name: name, parameters: parameters);
-    }
+    await _analytics?.logEvent(name: name, parameters: parameters);
   }
 }
 

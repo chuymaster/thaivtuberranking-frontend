@@ -7,11 +7,10 @@ class RetryableErrorView extends StatelessWidget {
   final Function() retryAction;
 
   const RetryableErrorView(
-      {Key? key,
+      {super.key,
       this.title = "Error",
       required this.message,
-      required this.retryAction})
-      : super(key: key);
+      required this.retryAction});
 
   @override
   Widget build(BuildContext context) {

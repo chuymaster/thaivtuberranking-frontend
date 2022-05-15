@@ -18,11 +18,10 @@ class ChannelRankingPage extends StatefulWidget {
   final VoidCallback didScrollUp;
 
   const ChannelRankingPage(
-      {Key? key,
+      {super.key,
       required this.channelList,
       required this.didScrollDown,
-      required this.didScrollUp})
-      : super(key: key);
+      required this.didScrollUp});
 
   @override
   _ChannelRankingPageState createState() => _ChannelRankingPageState();

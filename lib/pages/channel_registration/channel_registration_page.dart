@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:thaivtuberranking/common/component/center_circular_progress_indicator.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
 import 'package:thaivtuberranking/common/screenFactor.dart';
-import 'package:thaivtuberranking/common/strings.dart';
 import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
+import 'package:thaivtuberranking/providers/channel_list/channel_list_provider.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/result.dart';
 import 'package:thaivtuberranking/services/url_launcher.dart';
@@ -16,19 +16,13 @@ import 'component/description_box.dart';
 
 class ChannelRegistrationPage extends StatefulWidget {
   static const String route = '/register';
-
-  final List<String> vTuberChannelIdList;
-
-  const ChannelRegistrationPage({Key? key, required this.vTuberChannelIdList})
-      : super(key: key);
   @override
   _ChannelRegistrationPageState createState() =>
       _ChannelRegistrationPageState();
 }
 
 class _ChannelRegistrationPageState extends State<ChannelRegistrationPage> {
-  late final _viewModel =
-      ChannelRegistrationViewModel(widget.vTuberChannelIdList);
+  final _viewModel = ChannelRegistrationViewModel();
 
   @override
   void initState() {
@@ -51,8 +45,8 @@ class _ChannelRegistrationPageState extends State<ChannelRegistrationPage> {
   Widget build(BuildContext context) {
     var body = ChangeNotifierProvider(
       create: (context) => _viewModel,
-      child: Consumer<ChannelRegistrationViewModel>(
-        builder: (context, viewModel, _) {
+      child: Consumer2<ChannelListProvider, ChannelRegistrationViewModel>(
+        builder: (context, provider, viewModel, _) {
           if (viewModel.shouldShowLoadingIndicator) {
             return CenterCircularProgressIndicator();
           } else {
@@ -164,13 +158,16 @@ class _ChannelRegistrationPageState extends State<ChannelRegistrationPage> {
   }
 
   Widget get _channelIdTextFormField {
-    return TextFormField(
-      maxLength: _viewModel.channelIdLength,
-      decoration: InputDecoration(hintText: "UCqhhWjpw23dWhJ5rRwCCrMA"),
-      onChanged: (text) => {_viewModel.validateInputText()},
-      validator: (value) => _viewModel.validateFormValue(value),
-      controller: _viewModel.textEditingController,
-    );
+    return Consumer<ChannelListProvider>(builder: (context, provider, _) {
+      return TextFormField(
+        maxLength: _viewModel.channelIdLength,
+        decoration: InputDecoration(hintText: "UCqhhWjpw23dWhJ5rRwCCrMA"),
+        onChanged: (text) => {_viewModel.validateInputText()},
+        validator: (value) =>
+            _viewModel.validateFormValue(value, provider.channelIdList),
+        controller: _viewModel.textEditingController,
+      );
+    });
   }
 
   Widget get _submitButton {

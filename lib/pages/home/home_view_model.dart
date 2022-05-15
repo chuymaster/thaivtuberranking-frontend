@@ -1,89 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/pages/home/entity/channel_info.dart';
 import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
-import 'package:thaivtuberranking/pages/home/home_repository.dart';
-import 'package:thaivtuberranking/services/result.dart';
 
 class HomeViewModel extends ChangeNotifier {
-  final AbstractHomeRepository repository;
-
-  HomeViewModel({required this.repository});
-
-  String get lastUpdated {
-    if (channelList.isNotEmpty) {
-      channelList.sort((a, b) => a.updatedAt - b.updatedAt);
-      return channelList[0].updatedAtString;
-    }
-    return "";
-  }
-
   int _tabIndex = 0;
-  int get tabIndex {
-    return _tabIndex;
+  int get tabIndex => _tabIndex;
+  set tabIndex(int index) {
+    _tabIndex = index;
+    notifyListeners();
   }
 
   bool _isBottomNavigationBarHidden = false;
-
-  bool get isBottomNavigationBarHidden {
-    return _isBottomNavigationBarHidden;
+  bool get isBottomNavigationBarHidden => _isBottomNavigationBarHidden;
+  set isBottomNavigationBarHidden(bool isBottomNavigationBarHidden) {
+    _isBottomNavigationBarHidden = isBottomNavigationBarHidden;
+    notifyListeners();
   }
 
   OriginType _originType = OriginType.OriginalOnly;
-  OriginType get originType {
-    return _originType;
-  }
-
-  Result viewState = Result.loading();
-
-  Future<void> getChannelList() async {
-    viewState = Result.loading();
-    notifyListeners();
-    viewState = await repository.getChannelList();
+  OriginType get originType => _originType;
+  set originType(OriginType originType) {
+    _originType = originType;
     notifyListeners();
   }
 
-  List<ChannelInfo> get channelList {
-    if (viewState is SuccessState) {
-      final channelList = (viewState as SuccessState).value;
-      return channelList;
-    }
-    return [];
-  }
-
-  List<String> get channelIdList {
-    return channelList.map((e) => e.channelId).toList();
-  }
-
-  List<ChannelInfo> get filteredChannelList {
+  List<ChannelInfo> getFilteredChannelList(List<ChannelInfo> channelList) {
     switch (_originType) {
       case OriginType.OriginalOnly:
         return channelList.where((element) => (!element.isRebranded)).toList();
       case OriginType.All:
         return channelList;
-    }
-  }
-
-  void changeTabIndex(int index) {
-    _tabIndex = index;
-    notifyListeners();
-  }
-
-  void changeOriginType(OriginType originType) {
-    _originType = originType;
-    notifyListeners();
-  }
-
-  void hideBottomNavigationBar() {
-    if (!_isBottomNavigationBarHidden) {
-      _isBottomNavigationBarHidden = true;
-      notifyListeners();
-    }
-  }
-
-  void showBottomNavigationBar() {
-    if (_isBottomNavigationBarHidden) {
-      _isBottomNavigationBarHidden = false;
-      notifyListeners();
     }
   }
 }

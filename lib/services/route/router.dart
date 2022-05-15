@@ -40,18 +40,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
             builder: (context) => HomePage(),
             settings: RouteSettings(name: HomePage.route));
       case ChannelRegistrationPage.route:
-        List<String>? vTuberChannelIdList = settings.arguments as List<String>?;
-        if (vTuberChannelIdList != null) {
-          return MaterialPageRoute(
-              builder: (context) => ChannelRegistrationPage(
-                    vTuberChannelIdList: vTuberChannelIdList,
-                  ),
-              settings: RouteSettings(name: ChannelRegistrationPage.route));
-        } else {
-          return MaterialPageRoute(
-              builder: (context) => _buildNotFoundPage(routingData.route),
-              settings: RouteSettings(name: ErrorPage.route));
-        }
+        return MaterialPageRoute(
+            builder: (context) => ChannelRegistrationPage(),
+            settings: RouteSettings(name: ChannelRegistrationPage.route));
       case ChannelRegistrationCompletePage.route:
         return MaterialPageRoute(
             builder: (context) => ChannelRegistrationCompletePage(),

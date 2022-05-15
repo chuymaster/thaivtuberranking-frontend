@@ -1,21 +1,20 @@
 import 'dart:convert';
 import 'dart:async';
 import 'package:http/http.dart' as http;
+import 'package:thaivtuberranking/pages/home/entity/channel_info.dart';
 import 'package:thaivtuberranking/services/result.dart';
 
-import 'entity/channel_info.dart';
-
-abstract class AbstractHomeRepository {
+abstract class AbstractChannelListRepository {
   final http.Client client;
-  const AbstractHomeRepository(this.client);
+  const AbstractChannelListRepository(this.client);
   Future<Result> getChannelList() async {
     throw UnimplementedError();
   }
 }
 
-class HomeRepository implements AbstractHomeRepository {
+class ChannelListRepository implements AbstractChannelListRepository {
   final http.Client client;
-  HomeRepository(this.client);
+  ChannelListRepository(this.client);
 
   Future<Result> getChannelList() async {
     // Must set CORS for storage -  https://firebase.google.com/docs/storage/web/download-files

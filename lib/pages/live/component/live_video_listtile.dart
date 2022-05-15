@@ -5,11 +5,11 @@ import 'package:transparent_image/transparent_image.dart';
 
 class LiveVideoListTile extends StatelessWidget {
   const LiveVideoListTile({
-    Key? key,
+    super.key,
     required this.item,
     required this.onTap,
     required this.onTapChannelName,
-  }) : super(key: key);
+  });
 
   final LiveVideo item;
   final Function(LiveVideo) onTap;

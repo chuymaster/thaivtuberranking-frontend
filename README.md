@@ -20,8 +20,13 @@ See https://github.com/chuymaster/thaivtuberranking-docs
 
 ## Automated Deployment
 
-- Auto trigger deploy to Netlify when `main` branch is updated. Host: https://vtuber.chuysan.com/#/
-- Auto trigger deploy to Netlify when `develop` branch is updated. Host: https://vtuber-qa-chuysan.netlify.app/#/
+- Auto trigger deploy to Netlify production site when `production` branch is updated. Host: https://vtuber.chuysan.com/#/
+- Auto trigger deploy to Netlify QA site when `main` branch is updated. Host: https://vtuber-qa-chuysan.netlify.app/#/
+
+## Branch Strategy
+
+- Use only `main` branch without long-live feature branch. ([GitHub Flow](https://www.flagship.io/git-branching-strategies/))
+- PR will be generated automatically by GitHub action. Merge it to promote to `production` when ready.
 
 ## Unit Tests
 
@@ -37,16 +42,16 @@ Run `flutter test` to test all cases.
 
 Build commands that run when the branch is updated are listed below.
 
-- QA Environment
+- QA (Staging) Environment
 
 ```
-if cd flutter; then git pull && cd ..; else git clone https://github.com/flutter/flutter.git; fi && flutter/bin/flutter channel stable && flutter/bin/flutter upgrade && flutter/bin/flutter config --enable-web && flutter/bin/flutter build web --release --dart-define=DEPLOY_ENVIRONMENT=Qa --web-renderer html && sh update_html.sh
+if cd flutter; then git pull && cd ..; else git clone https://github.com/flutter/flutter.git; fi && flutter/bin/flutter channel stable && flutter/bin/flutter upgrade && flutter/bin/flutter config --enable-web && flutter/bin/flutter build web --release --dart-define=DEPLOY_ENVIRONMENT=Qa --web-renderer html
 ```
 
 - Production Environment
 
 ```
-if cd flutter; then git pull && cd ..; else git clone https://github.com/flutter/flutter.git; fi && flutter/bin/flutter channel stable && flutter/bin/flutter upgrade && flutter/bin/flutter config --enable-web && flutter/bin/flutter build web --release --dart-define=DEPLOY_ENVIRONMENT=Production --web-renderer html && sh update_html.sh
+if cd flutter; then git pull && cd ..; else git clone https://github.com/flutter/flutter.git; fi && flutter/bin/flutter channel stable && flutter/bin/flutter upgrade && flutter/bin/flutter config --enable-web && flutter/bin/flutter build web --release --dart-define=DEPLOY_ENVIRONMENT=Production --web-renderer html
 ```
 
 # Contributing

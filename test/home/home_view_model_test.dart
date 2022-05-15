@@ -1,50 +1,123 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/src/client.dart' as http;
 import 'package:thaivtuberranking/pages/home/entity/channel_info.dart';
-import 'package:thaivtuberranking/pages/home/home_repository.dart';
+import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
 import 'package:thaivtuberranking/pages/home/home_view_model.dart';
-import 'package:thaivtuberranking/services/result.dart';
-
-import '../http_client.mocks.dart';
 
 void main() {
-  group('getChannelList', () {
-    test('viewState is updated correctly', () async {
-      final viewModel =
-          HomeViewModel(repository: MockHomeRepository(MockClient()));
-      expect(viewModel.viewState, isA<LoadingState>());
-
-      List<Result> results = [];
-      viewModel.addListener(() {
-        results.add(viewModel.viewState);
-      });
-
-      await viewModel.getChannelList();
-
-      expect(results, [isA<LoadingState>(), isA<SuccessState>()]);
-      expect(viewModel.channelList.length, 1);
-      expect(viewModel.channelIdList, ['id']);
+  group('Initialization', () {
+    test('Initial values are as expected', () async {
+      final viewModel = HomeViewModel();
+      expect(viewModel.tabIndex, 0);
+      expect(viewModel.isBottomNavigationBarHidden, false);
+      expect(viewModel.originType, OriginType.OriginalOnly);
     });
   });
-}
+  group('getFilteredChannelList', () {
+    test('Get only original channel list', () {
+      final viewModel = HomeViewModel();
+      final channelList = [
+        ChannelInfo(
+            channelId: "1",
+            channelName: "",
+            subscribers: 0,
+            views: 0,
+            iconUrl: "",
+            publishedAt: "",
+            lastPublishedVideoAt: "",
+            description: "",
+            isRebranded: false,
+            updatedAt: 0),
+        ChannelInfo(
+            channelId: "2",
+            channelName: "",
+            subscribers: 0,
+            views: 0,
+            iconUrl: "",
+            publishedAt: "",
+            lastPublishedVideoAt: "",
+            description: "",
+            isRebranded: true,
+            updatedAt: 0)
+      ];
 
-class MockHomeRepository implements AbstractHomeRepository {
-  final http.Client client;
-  MockHomeRepository(this.client);
+      expect(
+          viewModel
+              .getFilteredChannelList(channelList)
+              .map((e) => e.channelId)
+              .toList(),
+          ["1"]);
+    });
+    test('Get all channel list', () {
+      final viewModel = HomeViewModel();
+      final channelList = [
+        ChannelInfo(
+            channelId: "1",
+            channelName: "",
+            subscribers: 0,
+            views: 0,
+            iconUrl: "",
+            publishedAt: "",
+            lastPublishedVideoAt: "",
+            description: "",
+            isRebranded: false,
+            updatedAt: 0),
+        ChannelInfo(
+            channelId: "2",
+            channelName: "",
+            subscribers: 0,
+            views: 0,
+            iconUrl: "",
+            publishedAt: "",
+            lastPublishedVideoAt: "",
+            description: "",
+            isRebranded: true,
+            updatedAt: 0)
+      ];
 
-  Future<Result> getChannelList() async {
-    List<ChannelInfo> channelList = [];
-    channelList.add(ChannelInfo(
-        channelId: "id",
-        channelName: "name",
-        subscribers: 0,
-        views: 0,
-        iconUrl: "https://",
-        publishedAt: "",
-        lastPublishedVideoAt: "",
-        description: "description",
-        isRebranded: false,
-        updatedAt: 0));
-    return Result.success(channelList);
-  }
+      viewModel.originType = OriginType.All;
+      expect(
+          viewModel
+              .getFilteredChannelList(channelList)
+              .map((e) => e.channelId)
+              .toList(),
+          ["1", "2"]);
+    });
+  });
+
+  group('tabIndex setter', () {
+    test('Tab index is changed', () {
+      int listenerCallCount = 0;
+      final viewModel = HomeViewModel()
+        ..addListener(() {
+          listenerCallCount += 1;
+        });
+      viewModel.tabIndex = 1;
+      expect(viewModel.tabIndex, 1);
+      expect(listenerCallCount, 1);
+    });
+  });
+  group('originType setter', () {
+    test('OriginType is changed', () {
+      int listenerCallCount = 0;
+      final viewModel = HomeViewModel()
+        ..addListener(() {
+          listenerCallCount += 1;
+        });
+      viewModel.originType = OriginType.All;
+      expect(viewModel.originType, OriginType.All);
+      expect(listenerCallCount, 1);
+    });
+  });
+  group('isBottomNavigationBarHidden setter', () {
+    test('isBottomNavigationBarHidden is changed', () {
+      int listenerCallCount = 0;
+      final viewModel = HomeViewModel()
+        ..addListener(() {
+          listenerCallCount += 1;
+        });
+      viewModel.isBottomNavigationBarHidden = true;
+      expect(viewModel.isBottomNavigationBarHidden, true);
+      expect(listenerCallCount, 1);
+    });
+  });
 }

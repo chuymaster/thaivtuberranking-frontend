@@ -8,9 +8,10 @@ import 'package:thaivtuberranking/pages/channel_ranking/channel_ranking_page.dar
 import 'package:thaivtuberranking/pages/channel_registration/channel_registration_page.dart';
 import 'package:thaivtuberranking/pages/home/component/drawer_menu.dart';
 import 'package:thaivtuberranking/pages/home/component/search_icon_button.dart';
-import 'package:thaivtuberranking/pages/home/home_repository.dart';
+import 'package:thaivtuberranking/pages/home/entity/channel_info.dart';
 import 'package:thaivtuberranking/pages/home/home_view_model.dart';
 import 'package:thaivtuberranking/pages/video_ranking/video_ranking_container_page.dart';
+import 'package:thaivtuberranking/providers/channel_list/channel_list_provider.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/result.dart';
 import 'package:thaivtuberranking/main.dart';
@@ -18,7 +19,7 @@ import 'dart:core';
 import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  HomePage({super.key});
 
   static const String route = '/';
 
@@ -27,37 +28,36 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _viewModel = HomeViewModel(repository: HomeRepository(http.Client()));
+  final _viewModel = HomeViewModel();
 
   @override
   void initState() {
     super.initState();
     MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.screenLoaded,
         {AnalyticsParameterName.screenName: AnalyticsPageName.home});
-
-    _viewModel.getChannelList();
   }
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => _viewModel,
-      child: Consumer<HomeViewModel>(builder: (context, viewModel, _) {
-        if (viewModel.viewState is LoadingState) {
+      child: Consumer2<ChannelListProvider, HomeViewModel>(
+          builder: (context, provider, viewModel, _) {
+        if (provider.viewState is LoadingState) {
           return Scaffold(body: CenterCircularProgressIndicator());
-        } else if (viewModel.viewState is ErrorState) {
-          final errorMessage = (viewModel.viewState as ErrorState).msg;
+        } else if (provider.viewState is ErrorState) {
+          final errorMessage = (provider.viewState as ErrorState).msg;
           return Scaffold(
               body: RetryableErrorView(
                   message: errorMessage,
-                  retryAction: () => viewModel.getChannelList()));
-        } else if (viewModel.channelList.isEmpty) {
+                  retryAction: () => provider.getChannelList()));
+        } else if (provider.channelList.isEmpty) {
           return Scaffold(body: EmptyErrorNotification());
         } else {
           return Scaffold(
-            appBar: _appBar,
-            drawer: _drawerMenu,
-            body: _body,
+            appBar: _buildAppBar(provider.channelList),
+            drawer: _buildDrawerMenu(provider.channelListLastUpdatedAt),
+            body: _buildBody(provider.channelList),
             bottomNavigationBar: _bottomNavigationBar,
             floatingActionButton: _floatingActionButton,
           );
@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  PreferredSizeWidget get _appBar {
+  PreferredSizeWidget _buildAppBar(List<ChannelInfo> channelList) {
     return AppBar(
         title: Text(
           _viewModel.tabIndex == 0
@@ -75,16 +75,16 @@ class _HomePageState extends State<HomePage> {
           style: TextStyle(fontFamily: ThaiText.kanit),
         ),
         actions: [
-          SearchIconButton(channelList: _viewModel.filteredChannelList)
+          SearchIconButton(
+              channelList: _viewModel.getFilteredChannelList(channelList))
         ]);
   }
 
-  Widget get _drawerMenu {
+  Widget _buildDrawerMenu(String lastUpdatedAt) {
     return DrawerMenu(
         currentOriginType: _viewModel.originType,
-        lastUpdatedAt: _viewModel.lastUpdated,
-        onChangeOriginType: (originType) =>
-            _viewModel.changeOriginType(originType),
+        lastUpdatedAt: lastUpdatedAt,
+        onChangeOriginType: (originType) => _viewModel.originType = originType,
         onTapAddChannelMenu: () =>
             {this._navigateToChannelRegistrationPage("drawer_menu")});
   }
@@ -103,7 +103,7 @@ class _HomePageState extends State<HomePage> {
           onTap: (index) {
             MyApp.analytics.sendAnalyticsEvent(
                 AnalyticsEvent.changeBottomTab, {"index": index});
-            _viewModel.changeTabIndex(index);
+            _viewModel.tabIndex = index;
           },
         ));
   }
@@ -117,27 +117,27 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _navigateToChannelRegistrationPage(String location) {
-    Navigator.pushNamed(context, ChannelRegistrationPage.route,
-        arguments: _viewModel.channelIdList);
+    Navigator.pushNamed(context, ChannelRegistrationPage.route);
     MyApp.analytics.sendAnalyticsEvent(
         AnalyticsEvent.viewChannelRegistrationPage, {'location': location});
   }
 
-  Widget get _body {
+  Widget _buildBody(List<ChannelInfo> channelList) {
     // Attach `key` here to force reinit the page therefore passing new value from the viewModel.
+    // REF: https://www.raywenderlich.com/22416843-unlocking-your-flutter-widgets-with-keys#toc-anchor-006
     if (_viewModel.tabIndex == 0) {
       return VideoRankingContainerPage(
           originType: _viewModel.originType,
-          didScrollDown: () => _viewModel.hideBottomNavigationBar(),
-          didScrollUp: () => _viewModel.showBottomNavigationBar(),
+          didScrollDown: () => {_viewModel.isBottomNavigationBarHidden = true},
+          didScrollUp: () => {_viewModel.isBottomNavigationBarHidden = false},
           key: Key(
               "VideoRankingContainerPage_" + _viewModel.originType.toString()));
     }
     return ChannelRankingPage(
-        channelList: _viewModel.filteredChannelList,
-        didScrollDown: () => _viewModel.hideBottomNavigationBar(),
-        didScrollUp: () => _viewModel.showBottomNavigationBar(),
+        channelList: _viewModel.getFilteredChannelList(channelList),
+        didScrollDown: () => {_viewModel.isBottomNavigationBarHidden = true},
+        didScrollUp: () => {_viewModel.isBottomNavigationBarHidden = false},
         key: Key("ChannelRankingPage_" +
-            _viewModel.filteredChannelList.length.toString()));
+            _viewModel.getFilteredChannelList(channelList).length.toString()));
   }
 }
