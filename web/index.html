@@ -1,92 +1,129 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <head>
+    <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
 
-  <!-- HTML Meta Tags -->
-  <title>จัดอันดับ VTuber ไทย | Thai VTuber Ranking</title>
-  <meta name="description" content="จัดอันดับ VTuber (Virtual YouTuber) ไทย เว็บนี้จัดทำเพื่อส่งเสริมวงการ VTuber ไทย ผ่านการจัดอันดับแชนแนลบนยูทูป | Thailand VTuber Ranking">
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
 
-  <!-- Google / Search Engine Tags -->
-  <meta itemprop="name" content="จัดอันดับ VTuber ไทย | Thai VTuber Ranking">
-  <meta itemprop="description" content="จัดอันดับ VTuber (Virtual YouTuber) ไทย เว็บนี้จัดทำเพื่อส่งเสริมวงการ VTuber ไทย ผ่านการจัดอันดับแชนแนลบนยูทูป | Thailand VTuber Ranking">
-  <meta itemprop="image" content="https://vtuber.chuysan.com/screenshot-20210906.png">
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
 
-  <!-- Facebook Meta Tags -->
-  <meta property="og:url" content="https://vtuber.chuysan.com">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="จัดอันดับ VTuber ไทย | Thai VTuber Ranking">
-  <meta property="og:description" content="จัดอันดับ VTuber (Virtual YouTuber) ไทย เว็บนี้จัดทำเพื่อส่งเสริมวงการ VTuber ไทย ผ่านการจัดอันดับแชนแนลบนยูทูป | Thailand VTuber Ranking">
-  <meta property="og:image" content="https://vtuber.chuysan.com/screenshot-20210906.png">
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+    <base href="$FLUTTER_BASE_HREF" />
 
-  <!-- Twitter Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="จัดอันดับ VTuber ไทย | Thai VTuber Ranking">
-  <meta name="twitter:description" content="จัดอันดับ VTuber (Virtual YouTuber) ไทย เว็บนี้จัดทำเพื่อส่งเสริมวงการ VTuber ไทย ผ่านการจัดอันดับแชนแนลบนยูทูป | Thailand VTuber Ranking">
-  <meta name="twitter:image" content="https://vtuber.chuysan.com/screenshot-20210906.png">
+    <link rel="stylesheet" href="styles.css" />
 
-  <!-- Meta Tags Generated via http://heymeta.com -->
+    <meta charset="UTF-8" />
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
 
-  <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="จัดอันดับ VTuber ไทย">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+    <!-- HTML Meta Tags -->
+    <title>จัดอันดับ VTuber ไทย | Thai VTuber Ranking</title>
+    <meta
+      name="description"
+      content="จัดอันดับ VTuber (Virtual YouTuber) ไทย เว็บนี้จัดทำเพื่อส่งเสริมวงการ VTuber ไทย ผ่านการจัดอันดับแชนแนลบนยูทูป | Thailand VTuber Ranking"
+    />
 
-  <!-- Favicon -->
-  <link rel="shortcut icon" type="image/png" href="favicon.png?v=2"/>
-  
-  <link rel="manifest" href="manifest.json">
+    <!-- Google / Search Engine Tags -->
+    <meta
+      itemprop="name"
+      content="จัดอันดับ VTuber ไทย | Thai VTuber Ranking"
+    />
+    <meta
+      itemprop="description"
+      content="จัดอันดับ VTuber (Virtual YouTuber) ไทย เว็บนี้จัดทำเพื่อส่งเสริมวงการ VTuber ไทย ผ่านการจัดอันดับแชนแนลบนยูทูป | Thailand VTuber Ranking"
+    />
+    <meta
+      itemprop="image"
+      content="https://vtuber.chuysan.com/screenshot-20210906.png"
+    />
 
-	<link rel="stylesheet" type="text/css" href="styles.css">
-</head>
-<body>
-    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://vtuber.chuysan.com" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="จัดอันดับ VTuber ไทย | Thai VTuber Ranking"
+    />
+    <meta
+      property="og:description"
+      content="จัดอันดับ VTuber (Virtual YouTuber) ไทย เว็บนี้จัดทำเพื่อส่งเสริมวงการ VTuber ไทย ผ่านการจัดอันดับแชนแนลบนยูทูป | Thailand VTuber Ranking"
+    />
+    <meta
+      property="og:image"
+      content="https://vtuber.chuysan.com/screenshot-20210906.png"
+    />
 
-  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/7.17.0/firebase-app.js"></script>
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="จัดอันดับ VTuber ไทย | Thai VTuber Ranking"
+    />
+    <meta
+      name="twitter:description"
+      content="จัดอันดับ VTuber (Virtual YouTuber) ไทย เว็บนี้จัดทำเพื่อส่งเสริมวงการ VTuber ไทย ผ่านการจัดอันดับแชนแนลบนยูทูป | Thailand VTuber Ranking"
+    />
+    <meta
+      name="twitter:image"
+      content="https://vtuber.chuysan.com/screenshot-20210906.png"
+    />
 
-  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
-  <script src="https://www.gstatic.com/firebasejs/7.17.0/firebase-analytics.js"></script>
+    <!-- Meta Tags Generated via http://heymeta.com -->
 
-  <!-- Add Firebase products that you want to use -->
-  <script src="https://www.gstatic.com/firebasejs/7.17.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.17.0/firebase-firestore.js"></script>
+    <!-- iOS meta tags & icons -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="จัดอันดับ VTuber ไทย" />
+    <link rel="apple-touch-icon" href="icons/Icon-192.png" />
 
-  <script>
-    // Your web app's Firebase configuration
-    var firebaseConfig = {
-      apiKey: "AIzaSyCoKcVbXJL9qo-OggKxLz1sIfqQhLvdkBo",
-      authDomain: "thaivtuberranking.firebaseapp.com",
-      databaseURL: "https://thaivtuberranking.firebaseio.com",
-      projectId: "thaivtuberranking",
-      storageBucket: "thaivtuberranking.appspot.com",
-      messagingSenderId: "492764029487",
-      appId: "1:492764029487:web:071f103c42928b7e405cda",
-      measurementId: "G-4QDH9NFZ2Z"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-  </script>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png" />
 
-  <!-- This script installs service_worker.js to provide PWA functionality to
-       application. For more information, see:
-       https://developers.google.com/web/fundamentals/primers/service-workers -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function () {
-        navigator.serviceWorker.register('flutter_service_worker.js');
-      });
-    }
-  </script>
+    <link rel="manifest" href="manifest.json" />
 
-  <div class="center" style="text-align:center;color:black"><img src="icons/Icon-512.png" /><br /><b>จัดอันดับ VTuber ไทย | Thai VTuber Ranking</b></div>
-  <div class="loading">
-    <div class="loader"></div>
-  </div>
-  <script src="main.dart.js" type="application/javascript"></script>
+    <script>
+      // The value below is injected by flutter build, do not touch.
+      var serviceWorkerVersion = null
+    </script>
+    <!-- This script adds the flutter initialization JS code -->
+    <script src="flutter.js" defer></script>
+  </head>
+  <body>
+    <!-- Loading animation from https://github.com/flutter/gallery/blob/master/web/index.html -->
+    <div id="loading">
+      <img src="icons/Icon-192.png" alt="Loading indicator..." />
+    </div>
 
-</body>
+    <script>
+      window.addEventListener("load", function () {
+        var loading = document.querySelector("#loading")
+        _flutter.loader
+          .loadEntrypoint({
+            serviceWorker: {
+              serviceWorkerVersion: serviceWorkerVersion,
+            },
+          })
+          .then(function (engineInitializer) {
+            loading.classList.add("main_done")
+            return engineInitializer.initializeEngine()
+          })
+          .then(function (appRunner) {
+            loading.classList.add("init_done")
+            return appRunner.runApp()
+          })
+          .then(function (app) {
+            // Wait a few milliseconds so users can see the "zoooom" animation
+            // before getting rid of the "loading" div.
+            window.setTimeout(function () {
+              loading.remove()
+            }, 200)
+          })
+      })
+    </script>
+  </body>
 </html>
