@@ -8,8 +8,8 @@ void main() {
       expect(OriginType.All.toString(), "VTuber ทั้งหมด");
     });
     test('parameterValue', () {
-      expect(OriginType.OriginalOnly.parameterValue, "original");
-      expect(OriginType.All.parameterValue, "all");
+      expect(OriginType.OriginalOnly.parameterValue, "1");
+      expect(OriginType.All.parameterValue, "2");
     });
   });
 }
