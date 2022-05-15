@@ -10,6 +10,7 @@ import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
 import 'package:thaivtuberranking/pages/video_ranking/component/video_ranking_list.dart';
 import 'package:thaivtuberranking/pages/video_ranking/video_ranking_repository.dart';
 import 'package:thaivtuberranking/pages/video_ranking/video_ranking_view_model.dart';
+import 'package:thaivtuberranking/pages/video_ranking/entity/video_ranking_type.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/result.dart';
 import 'package:thaivtuberranking/services/url_launcher.dart';
