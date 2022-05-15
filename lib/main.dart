@@ -1,34 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:thaivtuberranking/services/environment_setting.dart';
 import 'common/component/thai_text.dart';
 import 'pages/home/home_page.dart';
 import 'services/route/router.dart' as router;
 
-void main() {
+Future<void> main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   static String title = "จัดอันดับ VTuber ไทย";
 
-  static FirebaseAnalytics? _analytics;
-  static FirebaseAnalyticsObserver? _observer;
   static late Analytics analytics;
 
-  // Init Analytics object only on release mode
   initAnalytics() {
-    if (EnvironmentSetting.shared.isReleaseMode &&
-        EnvironmentSetting.shared.deployEnvironment ==
-            DeployEnvironment.Production) {
-      _analytics = FirebaseAnalytics.instance;
-      _observer = FirebaseAnalyticsObserver(analytics: _analytics!);
-      analytics = Analytics(analytics: _analytics, observer: _observer);
-    } else {
-      analytics = Analytics(analytics: null, observer: null);
-    }
+    analytics = Analytics(
+        analytics: shouldUseAnalytics ? FirebaseAnalytics.instance : null);
   }
 
   // This widget is the root of your application.
@@ -38,6 +33,9 @@ class MyApp extends StatelessWidget {
 
     return OKToast(
         child: MaterialApp(
+      navigatorObservers: shouldUseAnalytics
+          ? [FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance)]
+          : [],
       initialRoute: HomePage.route,
       title: title,
       onGenerateRoute: router.generateRoute,
@@ -48,4 +46,9 @@ class MyApp extends StatelessWidget {
       home: HomePage(),
     ));
   }
+
+  bool get shouldUseAnalytics =>
+      EnvironmentSetting.shared.isReleaseMode &&
+      EnvironmentSetting.shared.deployEnvironment ==
+          DeployEnvironment.Production;
 }
