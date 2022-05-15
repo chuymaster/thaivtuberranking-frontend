@@ -5,7 +5,7 @@ import 'package:thaivtuberranking/pages/channel/channel_page.dart';
 import 'package:thaivtuberranking/pages/channel_ranking/channel_ranking_view_model.dart';
 import 'package:thaivtuberranking/pages/home/component/page_selection.dart';
 import 'package:thaivtuberranking/pages/home/component/vtuber_ranking_list.dart';
-import 'package:thaivtuberranking/pages/home/entity/filter_item.dart';
+import 'package:thaivtuberranking/pages/home/entity/filter.dart';
 import 'package:thaivtuberranking/pages/home/entity/channel_info.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/url_launcher.dart';
@@ -31,9 +31,9 @@ class ChannelRankingPage extends StatefulWidget {
 class _ChannelRankingPageState extends State<ChannelRankingPage>
     with SingleTickerProviderStateMixin {
   late final _viewModel = ChannelRankingViewModel(widget.channelList);
-  late final List<Tab> _tabs = _viewModel.filterItems
-      .map((e) => Tab(
-            text: e.text,
+  late final List<Tab> _tabs = _viewModel.filters
+      .map((filter) => Tab(
+            text: filter.toString(),
           ))
       .toList();
   late final TabController _tabController;
@@ -97,9 +97,9 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
               _viewModel.setPageNumber(1);
             });
             if (!tabController.indexIsChanging) {
-              FilterItem newItem = _viewModel.filterItems[tabController.index];
+              Filter newFilter = _viewModel.filters[tabController.index];
               MyApp.analytics.sendAnalyticsEvent(
-                  AnalyticsEvent.setFilter, {'text': newItem.text});
+                  AnalyticsEvent.setFilter, {'text': newFilter.toString()});
             }
           });
           return Scaffold(

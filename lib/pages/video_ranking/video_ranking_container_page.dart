@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
 import 'package:thaivtuberranking/pages/live/live_page.dart';
 import 'package:thaivtuberranking/pages/video_ranking/video_ranking_page.dart';
-import 'package:thaivtuberranking/pages/video_ranking/video_ranking_repository.dart';
+import 'package:thaivtuberranking/pages/video_ranking/entity/video_ranking_type.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 
 import '../../main.dart';

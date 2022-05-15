@@ -1,18 +1,13 @@
 import 'dart:math';
 
 import 'package:thaivtuberranking/pages/home/entity/channel_info.dart';
-import 'package:thaivtuberranking/pages/home/entity/filter_item.dart';
+import 'package:thaivtuberranking/pages/home/entity/filter.dart';
 
 class ChannelRankingViewModel {
   final List<ChannelInfo> channelList;
   final int _itemPerPage = 20;
 
-  final List<FilterItem> filterItems = <FilterItem>[
-    FilterItem(Filter.Subscriber),
-    FilterItem(Filter.View),
-    FilterItem(Filter.PublishedDate),
-    FilterItem(Filter.UpdatedDate)
-  ];
+  final List<Filter> filters = Filter.values;
 
   int _currentPageNumber = 1;
   int get currentPageNumber {
@@ -35,7 +30,7 @@ class ChannelRankingViewModel {
 
   List<ChannelInfo> getDisplayChannelList(int filterIndex) {
     List<ChannelInfo> displayChannelList = channelList;
-    Filter filter = filterItems[filterIndex].filter;
+    Filter filter = filters[filterIndex];
 
     switch (filter) {
       case Filter.Subscriber:
