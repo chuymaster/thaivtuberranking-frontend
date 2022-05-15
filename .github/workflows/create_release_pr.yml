@@ -1,0 +1,16 @@
+name: Create Release Pull Request
+on:
+  workflow_dispatch:
+
+jobs:
+  create_release_pr:
+    name: Create Release Pull Request
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          base: main
+          branch: develop
+          title: Deploy to production 🚀
