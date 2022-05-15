@@ -1,22 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/pages/home/entity/channel_info.dart';
 import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
-import 'package:thaivtuberranking/pages/home/home_repository.dart';
-import 'package:thaivtuberranking/services/result.dart';
 
 class HomeViewModel extends ChangeNotifier {
-  final AbstractHomeRepository repository;
-
-  HomeViewModel({required this.repository});
-
-  String get lastUpdated {
-    if (channelList.isNotEmpty) {
-      channelList.sort((a, b) => a.updatedAt - b.updatedAt);
-      return channelList[0].updatedAtString;
-    }
-    return "";
-  }
-
   int _tabIndex = 0;
   int get tabIndex {
     return _tabIndex;
@@ -33,28 +19,7 @@ class HomeViewModel extends ChangeNotifier {
     return _originType;
   }
 
-  Result viewState = Result.loading();
-
-  Future<void> getChannelList() async {
-    viewState = Result.loading();
-    notifyListeners();
-    viewState = await repository.getChannelList();
-    notifyListeners();
-  }
-
-  List<ChannelInfo> get channelList {
-    if (viewState is SuccessState) {
-      final channelList = (viewState as SuccessState).value;
-      return channelList;
-    }
-    return [];
-  }
-
-  List<String> get channelIdList {
-    return channelList.map((e) => e.channelId).toList();
-  }
-
-  List<ChannelInfo> get filteredChannelList {
+  List<ChannelInfo> getFilteredChannelList(List<ChannelInfo> channelList) {
     switch (_originType) {
       case OriginType.OriginalOnly:
         return channelList.where((element) => (!element.isRebranded)).toList();
