@@ -9,7 +9,6 @@ import 'package:thaivtuberranking/pages/channel_registration/channel_registratio
 import 'package:thaivtuberranking/pages/home/component/drawer_menu.dart';
 import 'package:thaivtuberranking/pages/home/component/search_icon_button.dart';
 import 'package:thaivtuberranking/pages/home/entity/channel_info.dart';
-import 'package:thaivtuberranking/pages/home/home_repository.dart';
 import 'package:thaivtuberranking/pages/home/home_view_model.dart';
 import 'package:thaivtuberranking/pages/video_ranking/video_ranking_container_page.dart';
 import 'package:thaivtuberranking/providers/channel_list/channel_list_provider.dart';
