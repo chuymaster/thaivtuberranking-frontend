@@ -9,9 +9,9 @@ enum OriginType {
   String toString() {
     switch (this) {
       case OriginalOnly:
-        return Strings.fullVtuber;
+        return Strings.fullVTuber;
       case All:
-        return Strings.allVtuber;
+        return Strings.allVTuber;
       default:
         throw Exception("Unknown enum type $this");
     }

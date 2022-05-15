@@ -88,40 +88,24 @@ class _ChannelRegistrationPageState extends State<ChannelRegistrationPage> {
 
   Widget get _typeRadio {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Radio(
-              value: OriginType.OriginalOnly,
-              groupValue: _viewModel.currentOriginType,
-              onChanged: (OriginType? value) {
-                _viewModel.onOriginTypeChanged(value);
-              },
-            ),
-            ThaiText(
-              text: OriginType.OriginalOnly.toString(),
-              fontSize: 12,
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Radio(
-              value: OriginType.All,
-              groupValue: _viewModel.currentOriginType,
-              onChanged: (OriginType? value) {
-                _viewModel.onOriginTypeChanged(value);
-              },
-            ),
-            ThaiText(
-              text: OriginType.All.toString(),
-              fontSize: 12,
-            ),
-          ],
-        )
-      ],
-    );
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: OriginType.values
+            .map((value) => Row(
+                  children: [
+                    Radio(
+                      value: value,
+                      groupValue: _viewModel.currentOriginType,
+                      onChanged: (OriginType? value) {
+                        _viewModel.onOriginTypeChanged(value);
+                      },
+                    ),
+                    ThaiText(
+                      text: value.toString(),
+                      fontSize: 12,
+                    ),
+                  ],
+                ))
+            .toList());
   }
 
   Widget get _channelRegistrationBox {

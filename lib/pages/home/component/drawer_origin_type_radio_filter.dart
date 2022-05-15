@@ -50,7 +50,7 @@ class _DrawerOriginTypeRadioFilterState
                     }
                   },
                 ),
-                ThaiText(text: Strings.fullVtuber),
+                ThaiText(text: Strings.fullVTuber),
               ],
             ),
             Row(
@@ -66,7 +66,7 @@ class _DrawerOriginTypeRadioFilterState
                     }
                   },
                 ),
-                ThaiText(text: Strings.allVtuber),
+                ThaiText(text: Strings.allVTuber),
               ],
             )
           ],
@@ -75,7 +75,7 @@ class _DrawerOriginTypeRadioFilterState
           padding: EdgeInsets.fromLTRB(16, 8, 8, 8),
           child: ThaiText(
               text: "'" +
-                  Strings.fullVtuber +
+                  Strings.fullVTuber +
                   "' หมายถึงแชนแนลที่เดบิวต์ตัวเองเป็น VTuber และทำคอนเทนต์ VTuber ตั้งแต่ต้น ไม่ได้เปลี่ยนมาจากคอนเทนต์อื่น",
               fontSize: 12,
               color: Colors.black54),
