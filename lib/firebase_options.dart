@@ -62,4 +62,50 @@ class DefaultFirebaseOptions {
     storageBucket: 'thaivtuberranking.appspot.com',
     measurementId: 'G-4QDH9NFZ2Z',
   );
+
+  static FirebaseOptions get currentDevPlatform {
+    if (kIsWeb) {
+      return webDev;
+    }
+    switch (defaultTargetPlatform) {
+      case TargetPlatform.android:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for android - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
+      case TargetPlatform.iOS:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
+      case TargetPlatform.macOS:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
+      case TargetPlatform.windows:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for windows - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
+      case TargetPlatform.linux:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for linux - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
+      default:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions are not supported for this platform.',
+        );
+    }
+  }
+
+  static const FirebaseOptions webDev = FirebaseOptions(
+    apiKey: 'AIzaSyAUeGTBjrwi4JSvDkA_pxQ3vdFeNVjPakk',
+    appId: '1:190320569435:web:f73046c513f5bbf941237e',
+    messagingSenderId: '190320569435',
+    projectId: 'thaivtuberranking-dev',
+    authDomain: 'thaivtuberranking-dev.firebaseapp.com',
+    storageBucket: 'thaivtuberranking-dev.appspot.com',
+  );
 }

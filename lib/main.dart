@@ -11,10 +11,16 @@ import 'services/route/router.dart' as router;
 
 Future<void> main() async {
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+    options: _isProduction
+        ? DefaultFirebaseOptions.currentPlatform
+        : DefaultFirebaseOptions.currentDevPlatform,
   );
   runApp(MyApp());
 }
+
+bool get _isProduction =>
+    EnvironmentSetting.shared.isReleaseMode &&
+    EnvironmentSetting.shared.deployEnvironment == DeployEnvironment.Production;
 
 class MyApp extends StatelessWidget {
   static String title = "จัดอันดับ VTuber ไทย";
@@ -22,8 +28,7 @@ class MyApp extends StatelessWidget {
   static late Analytics analytics;
 
   initAnalytics() {
-    analytics = Analytics(
-        analytics: shouldUseAnalytics ? FirebaseAnalytics.instance : null);
+    analytics = Analytics(analytics: FirebaseAnalytics.instance);
   }
 
   // This widget is the root of your application.
@@ -33,9 +38,9 @@ class MyApp extends StatelessWidget {
 
     return OKToast(
         child: MaterialApp(
-      navigatorObservers: shouldUseAnalytics
-          ? [FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance)]
-          : [],
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance)
+      ],
       initialRoute: HomePage.route,
       title: title,
       onGenerateRoute: router.generateRoute,
@@ -46,9 +51,4 @@ class MyApp extends StatelessWidget {
       home: HomePage(),
     ));
   }
-
-  bool get shouldUseAnalytics =>
-      EnvironmentSetting.shared.isReleaseMode &&
-      EnvironmentSetting.shared.deployEnvironment ==
-          DeployEnvironment.Production;
 }
