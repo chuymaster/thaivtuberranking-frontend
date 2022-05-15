@@ -16,4 +16,15 @@ enum OriginType {
         throw Exception("Unknown enum type $this");
     }
   }
+
+  String get parameterValue {
+    switch (this) {
+      case OriginalOnly:
+        return "1";
+      case All:
+        return "2";
+      default:
+        throw Exception("Unknown enum type $this");
+    }
+  }
 }

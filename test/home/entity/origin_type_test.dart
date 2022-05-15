@@ -7,5 +7,9 @@ void main() {
       expect(OriginType.OriginalOnly.toString(), "VTuber เต็มตัว");
       expect(OriginType.All.toString(), "VTuber ทั้งหมด");
     });
+    test('parameterValue', () {
+      expect(OriginType.OriginalOnly.parameterValue, "original");
+      expect(OriginType.All.parameterValue, "all");
+    });
   });
 }

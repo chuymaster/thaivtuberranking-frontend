@@ -39,19 +39,10 @@ class ChannelRegistrationViewModel extends ChangeNotifier {
   }
 
   void registerChannel() async {
-    var type = 'undefined';
-    switch (currentOriginType) {
-      case OriginType.OriginalOnly:
-        type = 'original';
-        break;
-      case OriginType.All:
-        type = 'all';
-        break;
-    }
-
     viewState = Result.loading();
     notifyListeners();
-    viewState = await _repository.sendAddChannelRequest(inputChannelId, type);
+    viewState = await _repository.sendAddChannelRequest(
+        inputChannelId, currentOriginType.parameterValue);
     notifyListeners();
   }
 
