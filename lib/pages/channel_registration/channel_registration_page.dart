@@ -100,7 +100,7 @@ class _ChannelRegistrationPageState extends State<ChannelRegistrationPage> {
               },
             ),
             ThaiText(
-              text: Strings.fullVtuber,
+              text: OriginType.OriginalOnly.toString(),
               fontSize: 12,
             ),
           ],
@@ -115,7 +115,7 @@ class _ChannelRegistrationPageState extends State<ChannelRegistrationPage> {
               },
             ),
             ThaiText(
-              text: Strings.halfVtuber,
+              text: OriginType.All.toString(),
               fontSize: 12,
             ),
           ],
