@@ -11,8 +11,7 @@ import 'package:thaivtuberranking/services/url_launcher.dart';
 class SearchIconButton extends StatelessWidget {
   final List<ChannelInfo> channelList;
 
-  const SearchIconButton({Key? key, required this.channelList})
-      : super(key: key);
+  const SearchIconButton({super.key, required this.channelList});
 
   @override
   Widget build(BuildContext context) {

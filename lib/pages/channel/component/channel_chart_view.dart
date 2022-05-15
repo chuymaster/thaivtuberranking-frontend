@@ -5,11 +5,10 @@ import 'package:thaivtuberranking/pages/channel/entity/channel_chart_data.dart';
 
 class ChannelChartView extends StatefulWidget {
   ChannelChartView(
-      {Key? key,
+      {super.key,
       required this.channelChartData,
       required this.width,
-      required this.height})
-      : super(key: key);
+      required this.height});
   final ChannelChartData channelChartData;
   final double width;
   final double height;

@@ -10,12 +10,11 @@ class VideoRankingList extends StatelessWidget {
   final Function(VideoRanking) onTap;
   final Function(VideoRanking) onTapChannelName;
   const VideoRankingList(
-      {Key? key,
+      {super.key,
       required this.videoRankingList,
       required this.onTap,
       required this.onTapChannelName,
-      required this.scrollController})
-      : super(key: key);
+      required this.scrollController});
 
   @override
   Widget build(BuildContext context) {

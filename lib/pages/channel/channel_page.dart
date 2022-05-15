@@ -15,7 +15,7 @@ import 'package:transparent_image/transparent_image.dart';
 import 'package:oktoast/oktoast.dart';
 
 class ChannelPage extends StatefulWidget {
-  ChannelPage({Key? key, required this.channelId}) : super(key: key);
+  ChannelPage({super.key, required this.channelId});
 
   static const String route = '/channel';
 

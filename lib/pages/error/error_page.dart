@@ -6,8 +6,7 @@ import '../../main.dart';
 class ErrorPage extends StatelessWidget {
   final String name;
   final String errorMessage;
-  const ErrorPage({Key? key, required this.name, required this.errorMessage})
-      : super(key: key);
+  const ErrorPage({super.key, required this.name, required this.errorMessage});
 
   static const String route = '/error';
 

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
 
 class AnnouncementBanner extends StatelessWidget {
-  const AnnouncementBanner({Key? key, required this.onPressed})
-      : super(key: key);
+  const AnnouncementBanner({super.key, required this.onPressed});
 
   final Function onPressed;
 
