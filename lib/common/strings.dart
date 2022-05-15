@@ -1,5 +1,4 @@
 class Strings {
-  static final fullVtuber = "VTuber เต็มตัว";
-  static final halfVtuber = "กึ่ง VTuber";
-  static final allVtuber = "VTuber ทั้งหมด";
+  static final fullVTuber = "VTuber เต็มตัว";
+  static final allVTuber = "VTuber ทั้งหมด";
 }

@@ -71,15 +71,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
               currentOriginType: widget.currentOriginType,
               onChanged: (newType) {
                 if (newType != widget.currentOriginType) {
-                  var typeLog = "";
-                  switch (newType) {
-                    case OriginType.OriginalOnly:
-                      typeLog = Strings.fullVtuber;
-                      break;
-                    case OriginType.All:
-                      typeLog = Strings.allVtuber;
-                      break;
-                  }
+                  var typeLog = newType.toString();
                   MyApp.analytics.sendAnalyticsEvent(
                       AnalyticsEvent.setType, {'type': typeLog});
                   widget.onChangeOriginType(newType);

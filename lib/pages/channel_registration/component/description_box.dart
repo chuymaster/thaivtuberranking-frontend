@@ -50,14 +50,14 @@ class DescriptionBox extends StatelessWidget {
                     ),
                     TextSpan(
                       text: "\n\n1. " +
-                          Strings.fullVtuber +
+                          Strings.fullVTuber +
                           "\n- แชนแนลที่นำแสดงโดยโมเดล VTuber (โมเดล Live2D หรือ 3D) เป็นหลักตั้งแต่คอนเทนต์แรก และมีโมเดล VTuber เป็นตัวเอกของคอนเทนต์",
                     ),
                     TextSpan(
                         text: "\n\n2. " +
-                            Strings.halfVtuber +
+                            Strings.allVTuber +
                             "\n- แชนแนลที่นำโมเดล VTuber มาแสดงเป็นหลักหลังจากเปิดแชนแนลและอัพโหลดคอนเทนต์อื่นไปแล้ว จะปรากฏในการจัดอันดับหมวด " +
-                            Strings.allVtuber +
+                            Strings.allVTuber +
                             "เท่านั้น"),
                     TextSpan(
                         text:
