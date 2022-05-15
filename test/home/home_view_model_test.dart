@@ -86,23 +86,38 @@ void main() {
 
   group('tabIndex setter', () {
     test('Tab index is changed', () {
-      final viewModel = HomeViewModel();
+      int listenerCallCount = 0;
+      final viewModel = HomeViewModel()
+        ..addListener(() {
+          listenerCallCount += 1;
+        });
       viewModel.tabIndex = 1;
       expect(viewModel.tabIndex, 1);
+      expect(listenerCallCount, 1);
     });
   });
   group('originType setter', () {
     test('OriginType is changed', () {
-      final viewModel = HomeViewModel();
+      int listenerCallCount = 0;
+      final viewModel = HomeViewModel()
+        ..addListener(() {
+          listenerCallCount += 1;
+        });
       viewModel.originType = OriginType.All;
       expect(viewModel.originType, OriginType.All);
+      expect(listenerCallCount, 1);
     });
   });
   group('isBottomNavigationBarHidden setter', () {
     test('isBottomNavigationBarHidden is changed', () {
-      final viewModel = HomeViewModel();
+      int listenerCallCount = 0;
+      final viewModel = HomeViewModel()
+        ..addListener(() {
+          listenerCallCount += 1;
+        });
       viewModel.isBottomNavigationBarHidden = true;
       expect(viewModel.isBottomNavigationBarHidden, true);
+      expect(listenerCallCount, 1);
     });
   });
 }

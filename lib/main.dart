@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
+import 'package:thaivtuberranking/common/strings.dart';
 import 'package:thaivtuberranking/providers/channel_list/channel_list_provider.dart';
 import 'package:thaivtuberranking/providers/channel_list/channel_list_repository.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
@@ -27,8 +28,6 @@ bool get _isProduction =>
     EnvironmentSetting.shared.deployEnvironment == DeployEnvironment.Production;
 
 class MyApp extends StatelessWidget {
-  static String title = "จัดอันดับ VTuber ไทย";
-
   static late Analytics analytics;
 
   ChannelListProvider _channelListProvider =
@@ -53,7 +52,7 @@ class MyApp extends StatelessWidget {
           FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance)
         ],
         initialRoute: HomePage.route,
-        title: title,
+        title: Strings.siteTitle,
         onGenerateRoute: router.generateRoute,
         theme: ThemeData(
             primarySwatch: Colors.blue,

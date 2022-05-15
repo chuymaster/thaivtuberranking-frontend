@@ -124,6 +124,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildBody(List<ChannelInfo> channelList) {
     // Attach `key` here to force reinit the page therefore passing new value from the viewModel.
+    // REF: https://www.raywenderlich.com/22416843-unlocking-your-flutter-widgets-with-keys#toc-anchor-006
     if (_viewModel.tabIndex == 0) {
       return VideoRankingContainerPage(
           originType: _viewModel.originType,

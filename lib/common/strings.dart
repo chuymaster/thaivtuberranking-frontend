@@ -1,4 +1,5 @@
 class Strings {
-  static final fullVTuber = "VTuber เต็มตัว";
-  static final allVTuber = "VTuber ทั้งหมด";
+  static const siteTitle = "จัดอันดับ VTuber ไทย";
+  static const fullVTuber = "VTuber เต็มตัว";
+  static const allVTuber = "VTuber ทั้งหมด";
 }
