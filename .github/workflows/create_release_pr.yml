@@ -1,16 +1,20 @@
-name: Create Release Pull Request
+name: Create production promotion pull request
 on:
-  workflow_dispatch:
-
+  push:
+    branches:
+      - main
 jobs:
-  create_release_pr:
-    name: Create Release Pull Request
+  productionPromotion:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: production
+      - name: Reset promotion branch
+        run: |
+          git fetch origin main:main
+          git reset --hard main
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
-          base: release
-          branch: main
-          title: Deploy to production release branch 🚀
+          branch: production-promotion
