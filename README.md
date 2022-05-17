@@ -14,6 +14,8 @@ A Flutter Web client application for [Thai VTuber Ranking](https://vtuber.chuysa
 
 See `Makefile`. Run `make help` to see the available commands.
 
+Run `make run` to start the application locally.
+
 ## API Document
 
 See https://github.com/chuymaster/thaivtuberranking-docs
@@ -34,7 +36,7 @@ This project use [mockito](https://pub.dev/packages/mockito) to generate mock cl
 
 `http.Client` mock is already generated but if you need to generate new mock class, read the document, add `@GenerateMocks` annotation then run `make build-mock` to generate.
 
-See `home_repository.dart` and `home_repository_test.dart` for example of API stub implementation.
+See `video_ranking_repository.dart` and `video_ranking_repository_test.dart` for example of API stub implementation.
 
 Run `flutter test` to test all cases.
 
