@@ -109,12 +109,25 @@ void main() {
     });
   });
   group('isBottomNavigationBarHidden setter', () {
-    test('isBottomNavigationBarHidden is changed', () {
+    test('listener is notified', () {
       int listenerCallCount = 0;
       final viewModel = HomeViewModel()
         ..addListener(() {
           listenerCallCount += 1;
         });
+      viewModel.isBottomNavigationBarHidden = true;
+      expect(viewModel.isBottomNavigationBarHidden, true);
+      viewModel.isBottomNavigationBarHidden = false;
+      expect(viewModel.isBottomNavigationBarHidden, false);
+      expect(listenerCallCount, 2);
+    });
+    test('listener is notified only once if value is not changed', () {
+      int listenerCallCount = 0;
+      final viewModel = HomeViewModel()
+        ..addListener(() {
+          listenerCallCount += 1;
+        });
+      viewModel.isBottomNavigationBarHidden = true;
       viewModel.isBottomNavigationBarHidden = true;
       expect(viewModel.isBottomNavigationBarHidden, true);
       expect(listenerCallCount, 1);
