@@ -13,6 +13,9 @@ class HomeViewModel extends ChangeNotifier {
   bool _isBottomNavigationBarHidden = false;
   bool get isBottomNavigationBarHidden => _isBottomNavigationBarHidden;
   set isBottomNavigationBarHidden(bool isBottomNavigationBarHidden) {
+    if (_isBottomNavigationBarHidden == isBottomNavigationBarHidden) {
+      return;
+    }
     _isBottomNavigationBarHidden = isBottomNavigationBarHidden;
     notifyListeners();
   }
