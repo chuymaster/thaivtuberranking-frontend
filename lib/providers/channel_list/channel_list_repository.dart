@@ -29,7 +29,7 @@ class ChannelListRepository implements AbstractChannelListRepository {
         gsutil cors set cors.json gs://thaivtuberranking.appspot.com
      */
     Uri channelListJson = Uri.parse(
-        "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/list.json");
+        "https://storage.googleapis.com/thaivtuberranking.appspot.com/v2/channel_data/list.json");
 
     try {
       final response = await client.get(channelListJson);
@@ -37,26 +37,13 @@ class ChannelListRepository implements AbstractChannelListRepository {
       List<ChannelInfo> _itemList = [];
 
       if (response.statusCode == 200) {
-        final channelListChunk =
+        final List<dynamic> channelInfoList =
             json.decode(utf8.decode(response.bodyBytes))['result'];
-        for (List<dynamic> channelList in channelListChunk) {
-          for (Map<String, dynamic> channel in channelList) {
-            var info = ChannelInfo.fromJson(channel);
-            _itemList.add(info);
-          }
-        }
+        return Result<List<ChannelInfo>>.success(
+            channelInfoList.map((e) => ChannelInfo.fromJson(e)).toList());
       } else {
         return Result.error(response.statusCode.toString());
       }
-
-      /// Remove duplicated channel ID
-      Map<String, ChannelInfo> mp = {};
-      for (var item in _itemList) {
-        mp[item.channelId] = item;
-      }
-      _itemList = mp.values.toList();
-
-      return Result<List<ChannelInfo>>.success(_itemList);
     } catch (error) {
       return Result.error(error.toString());
     }
