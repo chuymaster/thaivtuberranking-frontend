@@ -8,16 +8,16 @@ void main() {
       {
          "id":"id",
          "title":"title",
-         "channelId":"channelId",
-         "channelTitle":"channelTitle",
-         "viewCount":1000,
-         "commentCount":1,
-         "dislikeCount":null,
-         "favoriteCount":0,
-         "likeCount":0,
-         "thumbnailImageUrl":"https://",
-         "publishedAt":"2022-02-12T13:24:36Z",
-         "isRebranded":false
+         "channel_id":"channelId",
+         "channel_title":"channelTitle",
+         "view_count":1000,
+         "comment_count":1,
+         "dislike_count":null,
+         "favorite_count":0,
+         "like_count":0,
+         "thumbnail_image_url":"https://",
+         "published_at":"2022-02-12T13:24:36Z",
+         "is_rebranded":false
       }
 ''';
   group('VideoRanking entity tests', () {

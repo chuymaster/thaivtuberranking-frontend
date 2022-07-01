@@ -33,16 +33,16 @@ class VideoRanking {
     var videoRanking = VideoRanking(
         json['id'],
         json['title'],
-        json['channelId'],
-        json['channelTitle'],
-        json['viewCount'] ?? 0,
-        json['commentCount'] ?? 0,
-        json['dislikeCount'] ?? 0,
-        json['favoriteCount'] ?? 0,
-        json["likeCount"] ?? 0,
-        json['thumbnailImageUrl'],
-        json['publishedAt'],
-        json['isRebranded']);
+        json['channel_id'],
+        json['channel_title'],
+        json['view_count'] ?? 0,
+        json['comment_count'] ?? 0,
+        json['dislike_count'] ?? 0,
+        json['favorite_count'] ?? 0,
+        json["like_count"] ?? 0,
+        json['thumbnail_image_url'],
+        json['published_at'],
+        json['is_rebranded']);
     return videoRanking;
   }
 
