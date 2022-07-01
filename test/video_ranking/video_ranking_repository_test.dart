@@ -15,16 +15,16 @@ void main() {
       {
          "id":"id",
          "title":"title",
-         "channelId":"channelId",
-         "channelTitle":"channelTitle",
-         "viewCount":1,
-         "commentCount":1,
-         "dislikeCount":null,
-         "favoriteCount":0,
-         "likeCount":0,
-         "thumbnailImageUrl":"https://",
-         "publishedAt":"2022-02-12T13:24:36Z",
-         "isRebranded":false
+         "channel_id":"channelId",
+         "channel_title":"channelTitle",
+         "view_count":1,
+         "comment_count":1,
+         "dislike_count":0,
+         "favorite_count":0,
+         "like_count":0,
+         "thumbnail_image_url":"https://",
+         "published_at":"2022-02-12T13:24:36Z",
+         "is_rebranded":false
       }
    ]
 }
@@ -38,7 +38,7 @@ void main() {
       final repository = VideoRankingRepository(client);
 
       Uri url = Uri.parse(
-          "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/one_day_ranking.json");
+          "https://storage.googleapis.com/thaivtuberranking.appspot.com/v2/channel_data/one_day_ranking.json");
 
       when(client.get(url))
           .thenAnswer((_) async => http.Response(_mockJson, 200));
@@ -58,7 +58,7 @@ void main() {
       final repository = VideoRankingRepository(client);
 
       Uri url = Uri.parse(
-          "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/three_days_ranking.json");
+          "https://storage.googleapis.com/thaivtuberranking.appspot.com/v2/channel_data/three_days_ranking.json");
 
       when(client.get(url))
           .thenAnswer((_) async => http.Response(_mockJson, 200));
@@ -79,7 +79,7 @@ void main() {
       final repository = VideoRankingRepository(client);
 
       Uri url = Uri.parse(
-          "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/seven_days_ranking.json");
+          "https://storage.googleapis.com/thaivtuberranking.appspot.com/v2/channel_data/seven_days_ranking.json");
 
       when(client.get(url))
           .thenAnswer((_) async => http.Response(_mockJson, 200));
@@ -98,7 +98,7 @@ void main() {
       final repositoory = VideoRankingRepository(client);
 
       Uri url = Uri.parse(
-          "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/one_day_ranking.json");
+          "https://storage.googleapis.com/thaivtuberranking.appspot.com/v2/channel_data/one_day_ranking.json");
 
       when(client.get(url)).thenAnswer((_) async => http.Response('', 500));
 
