@@ -38,6 +38,7 @@ dependencies:
   search_page: ^2.0.0+1
   syncfusion_flutter_charts: ^20.1.55
   provider: ^6.0.0
+  flutterfire_ui: ^0.4.2+2
 
 dev_dependencies:
   flutter_test:

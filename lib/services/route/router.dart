@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/pages/channel_registration/channel_registration_complete_page.dart';
 import 'package:thaivtuberranking/pages/channel_registration/channel_registration_page.dart';
+import '../../admin/admin_auth_gate/admin_auth_gate_page.dart';
 import 'string_extension.dart';
 import 'routing_data.dart';
 import '../../pages/channel/channel_page.dart';
@@ -48,6 +49,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
             builder: (context) => ChannelRegistrationCompletePage(),
             settings:
                 RouteSettings(name: ChannelRegistrationCompletePage.route));
+      case AdminAuthGatePage.route:
+        return MaterialPageRoute(
+            builder: (context) => AdminAuthGatePage(),
+            settings: RouteSettings(name: AdminAuthGatePage.route));
       default:
         return MaterialPageRoute(
             builder: (context) => _buildNotFoundPage(routingData.route),
