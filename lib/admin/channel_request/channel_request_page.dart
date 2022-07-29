@@ -32,29 +32,6 @@ class _ChannelRequestPageState extends State<ChannelRequestPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(44.0),
-            child: AppBar(
-              title: const Text("Channel Request"),
-              actions: [
-                IconButton(
-                  icon: const Icon(Icons.logout),
-                  tooltip: 'Logout',
-                  onPressed: () {
-                    ConfirmDialog.show(
-                        "Confirm Logout",
-                        "Would you like to logout?",
-                        _viewModel.logout,
-                        context);
-                  },
-                ),
-              ],
-            )),
-        body: _body);
-  }
-
-  Widget get _body {
     return ChangeNotifierProvider(
       create: (context) => _viewModel,
       child: Consumer<ChannelRequestViewModel>(
@@ -124,6 +101,7 @@ class _ChannelRequestPageState extends State<ChannelRequestPage> {
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
       child: Wrap(
         spacing: 8,
+        runSpacing: 8,
         children: [
           ElevatedButton(
             child: const Text("Accept"),

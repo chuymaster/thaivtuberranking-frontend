@@ -8,8 +8,7 @@ class ChannelRequestDataTable extends StatefulWidget {
       {Key? key,
       required this.channelRequests,
       required this.onLongPressRow,
-      required this.onSelectedChanged})
-      : super(key: key);
+      required this.onSelectedChanged});
 
   final List<ChannelRequest> channelRequests;
   final Function(int index) onLongPressRow;
