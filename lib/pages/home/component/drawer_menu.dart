@@ -81,16 +81,6 @@ class _DrawerMenuState extends State<DrawerMenu> {
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsets.all(8),
-                child: Container(child: AnnouncementBanner(onPressed: () {
-                  MyApp.analytics.sendAnalyticsEvent(
-                      AnalyticsEvent.clickDeleteChannelAnnouncement,
-                      {"from": "drawer"});
-                  UrlLauncher.launchURL(
-                      "https://www.notion.so/Public-d92d99d2b88a4747814834bcbdd9989f");
-                })),
-              ),
               Container(
                 padding: EdgeInsets.fromLTRB(16, 8, 4, 8),
                 child: ThaiText(
@@ -113,6 +103,41 @@ class _DrawerMenuState extends State<DrawerMenu> {
                   MyApp.analytics.sendAnalyticsEvent(
                       AnalyticsEvent.openDrawerUrl, {'url': url});
                 },
+              ),
+              ListTile(
+                title: ThaiText(text: "เกณฑ์การลบแชนแนลโดยอัตโนมัติ"),
+                trailing: Icon(Icons.open_in_new),
+                onTap: () {
+                  var url =
+                      "https://www.notion.so/Public-d92d99d2b88a4747814834bcbdd9989f";
+                  UrlLauncher.launchURL(url);
+                  MyApp.analytics.sendAnalyticsEvent(
+                      AnalyticsEvent.openDrawerUrl, {'url': url});
+                },
+              ),
+              ListTile(
+                title: ThaiText(text: "คำสงวนสิทธิ์"),
+                trailing: Icon(Icons.open_in_new),
+                onTap: () {
+                  var url =
+                      "https://www.notion.so/f97473612ebc4166b1e8293624fb9062";
+                  UrlLauncher.launchURL(url);
+                  MyApp.analytics.sendAnalyticsEvent(
+                      AnalyticsEvent.openDrawerUrl, {'url': url});
+                },
+              ),
+            ],
+          )),
+          Card(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: EdgeInsets.fromLTRB(16, 8, 4, 8),
+                child: ThaiText(
+                  text: "ข้อมูลสำหรับนักพัฒนา",
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               ListTile(
                 title: ThaiText(text: "API Document"),
@@ -146,28 +171,6 @@ class _DrawerMenuState extends State<DrawerMenu> {
                       AnalyticsEvent.openDrawerUrl, {'url': url});
                 },
               ),
-              ListTile(
-                title: ThaiText(text: "คำสงวนสิทธิ์"),
-                trailing: Icon(Icons.open_in_new),
-                onTap: () {
-                  var url =
-                      "https://www.notion.so/f97473612ebc4166b1e8293624fb9062";
-                  UrlLauncher.launchURL(url);
-                  MyApp.analytics.sendAnalyticsEvent(
-                      AnalyticsEvent.openDrawerUrl, {'url': url});
-                },
-              ),
-              ListTile(
-                title: ThaiText(text: "สนับสนุนผู้พัฒนา"),
-                trailing: Icon(Icons.open_in_new),
-                onTap: () {
-                  var url = "https://ko-fi.com/chuymaster";
-                  UrlLauncher.launchURL(url);
-                  MyApp.analytics.sendAnalyticsEvent(
-                      AnalyticsEvent.openDrawerUrl, {'url': url});
-                },
-                tileColor: Colors.orange[50],
-              ),
             ],
           )),
           Card(
@@ -177,15 +180,26 @@ class _DrawerMenuState extends State<DrawerMenu> {
               Container(
                 padding: EdgeInsets.fromLTRB(16, 8, 4, 8),
                 child: ThaiText(
-                  text: "ข้อมูลอื่นๆ",
+                  text: "แหล่งข้อมูล VTuber",
                   fontWeight: FontWeight.bold,
                 ),
               ),
               ListTile(
-                title: ThaiText(text: "VTuberTH Twitter List"),
+                title: ThaiText(text: "Twitter #VTuberTH"),
                 trailing: Icon(Icons.open_in_new),
                 onTap: () {
-                  var url = "https://twitter.com/i/lists/1349029647896350726";
+                  var url = "https://twitter.com/hashtag/VtuberTH";
+                  UrlLauncher.launchURL(url);
+                  MyApp.analytics.sendAnalyticsEvent(
+                      AnalyticsEvent.openDrawerUrl, {'url': url});
+                },
+              ),
+              ListTile(
+                title:
+                    ThaiText(text: "VTuber Indonesia / Malaysia / Philippines"),
+                trailing: Icon(Icons.open_in_new),
+                onTap: () {
+                  var url = "https://vtuber.asia/";
                   UrlLauncher.launchURL(url);
                   MyApp.analytics.sendAnalyticsEvent(
                       AnalyticsEvent.openDrawerUrl, {'url': url});
