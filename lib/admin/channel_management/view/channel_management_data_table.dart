@@ -64,12 +64,14 @@ class _ChannelManagementDataTableState
 
   List<DataCell> makeDataCells(Channel channel) {
     return [
-      DataCell(_makeChannelInfoRow(channel.title, channel.thumbnailImageUrl)),
+      DataCell(_makeChannelInfoRow(
+          channel.title, channel.channelId, channel.thumbnailImageUrl)),
       DataCell(_makeTypeChip(channel.type)),
     ];
   }
 
-  Widget _makeChannelInfoRow(String title, String thumbnailImageUrl) {
+  Widget _makeChannelInfoRow(
+      String title, String channelId, String thumbnailImageUrl) {
     return Row(
       children: [
         _makeThumbnailImage(thumbnailImageUrl),
@@ -82,6 +84,13 @@ class _ChannelManagementDataTableState
               overflow: TextOverflow.ellipsis,
               style:
                   const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        ),
+        const Padding(
+          padding: EdgeInsets.all(8),
+        ),
+        Text(
+          channelId,
+          style: TextStyle(fontSize: 12, color: Colors.grey[500]),
         )
       ],
     );
