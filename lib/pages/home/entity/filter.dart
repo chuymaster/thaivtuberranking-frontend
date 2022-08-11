@@ -1,8 +1,7 @@
 enum Filter {
   Subscriber,
   View,
-  PublishedDate,
-  UpdatedDate;
+  PublishedDate;
 
   @override
   String toString() {
@@ -13,8 +12,6 @@ enum Filter {
         return "จำนวนการดู";
       case PublishedDate:
         return "วันเปิดแชนแนล";
-      case UpdatedDate:
-        return "คลิปล่าสุด";
       default:
         throw Exception("Unknown enum type $this");
     }

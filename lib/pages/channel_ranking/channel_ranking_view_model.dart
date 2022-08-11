@@ -45,10 +45,6 @@ class ChannelRankingViewModel {
         displayChannelList.sort((a, b) => b.publishedAtStringForComparison
             .compareTo(a.publishedAtStringForComparison));
         break;
-      case Filter.UpdatedDate:
-        displayChannelList.sort((a, b) => b.lastPublishedVideoAtString
-            .compareTo(a.lastPublishedVideoAtString));
-        break;
     }
 
     int endIndex = min(channelList.length, startIndex + _itemPerPage);
