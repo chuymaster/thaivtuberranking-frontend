@@ -7,7 +7,6 @@ void main() {
       expect(Filter.Subscriber.toString(), "จำนวนผู้ติดตาม");
       expect(Filter.View.toString(), "จำนวนการดู");
       expect(Filter.PublishedDate.toString(), "วันเปิดแชนแนล");
-      expect(Filter.UpdatedDate.toString(), "คลิปล่าสุด");
     });
   });
 }
