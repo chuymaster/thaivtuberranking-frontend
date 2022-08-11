@@ -73,24 +73,4 @@ class ChannelManagementRepository {
       return Result.error(error.toString());
     }
   }
-
-  Future<Result> deleteObsoleteChannels() async {
-    Uri uri = Uri.parse(Endpoint.deleteObsoleteChannels);
-    try {
-      final accessToken = await Authentication.instance.accessToken;
-      final response = await http.post(uri, headers: {
-        HttpHeaders.contentTypeHeader: "application/x-www-form-urlencoded",
-        HttpHeaders.acceptHeader: "application/json",
-        HttpHeaders.authorizationHeader: "Bearer $accessToken"
-      });
-
-      if (response.statusCode == 200) {
-        return Result<String>.success(response.body);
-      } else {
-        return Result.error(response.statusCode.toString());
-      }
-    } catch (error) {
-      return Result.error(error.toString());
-    }
-  }
 }

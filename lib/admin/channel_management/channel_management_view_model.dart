@@ -70,24 +70,6 @@ class ChannelManagementViewModel extends ChangeNotifier {
     }
   }
 
-  void deleteObsoleteChannel() async {
-    viewPostState = Result.loading();
-    notifyListeners();
-
-    Result? errorState;
-    final deleteChannelState = await _repository.deleteObsoleteChannels();
-    if (deleteChannelState is ErrorState) {
-      errorState = deleteChannelState;
-    }
-    if (errorState == null) {
-      viewPostState = Result.success(null);
-      getChannelList();
-    } else {
-      viewPostState = errorState;
-      notifyListeners();
-    }
-  }
-
   void setSelectionAsOriginal() {
     for (var element in _selectedChannelList) {
       element.type = ChannelType.original;

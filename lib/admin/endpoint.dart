@@ -33,8 +33,4 @@ class Endpoint {
   static String get deleteChannel {
     return _baseUrl + "deleteChannel";
   }
-
-  static String get deleteObsoleteChannels {
-    return _baseUrl + "deleteObsoleteChannels";
-  }
 }
