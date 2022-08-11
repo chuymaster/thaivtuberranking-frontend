@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../common/component/center_circular_progress_indicator.dart';
 import '../../../common/component/confirm_dialog.dart';
@@ -25,36 +25,14 @@ class _ChannelRequestPageState extends State<ChannelRequestPage> {
   @override
   void initState() {
     super.initState();
-    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.screenLoaded,
-        {AnalyticsParameterName.screenName: AnalyticsPageName.channelRequest});
+    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.screenLoaded, {
+      AnalyticsParameterName.screenName: AnalyticsPageName.adminChannelRequest
+    });
     _viewModel.getChannelRequests();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(44.0),
-            child: AppBar(
-              title: const Text("Channel Request"),
-              actions: [
-                IconButton(
-                  icon: const Icon(Icons.logout),
-                  tooltip: 'Logout',
-                  onPressed: () {
-                    ConfirmDialog.show(
-                        "Confirm Logout",
-                        "Would you like to logout?",
-                        _viewModel.logout,
-                        context);
-                  },
-                ),
-              ],
-            )),
-        body: _body);
-  }
-
-  Widget get _body {
     return ChangeNotifierProvider(
       create: (context) => _viewModel,
       child: Consumer<ChannelRequestViewModel>(
@@ -82,7 +60,7 @@ class _ChannelRequestPageState extends State<ChannelRequestPage> {
                       ChannelRequestDataTable(
                         channelRequests: channelRequests,
                         onLongPressRow: (index) {
-                          launch(channelRequests[index].channelUrl);
+                          launchUrlString(channelRequests[index].channelUrl);
                         },
                         onSelectedChanged: (isSelected, index) {
                           setState(() {
@@ -124,6 +102,7 @@ class _ChannelRequestPageState extends State<ChannelRequestPage> {
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
       child: Wrap(
         spacing: 8,
+        runSpacing: 8,
         children: [
           ElevatedButton(
             child: const Text("Accept"),
