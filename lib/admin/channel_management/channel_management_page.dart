@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:thaivtuberranking/admin/channel_management/channel_management_view_model.dart';
 import 'package:thaivtuberranking/admin/channel_management/entity/channel.dart';
+import 'package:thaivtuberranking/admin/channel_management/view/channel_management_data_table.dart';
 import 'package:thaivtuberranking/common/component/center_circular_progress_indicator.dart';
 import 'package:thaivtuberranking/main.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/result.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../common/component/confirm_dialog.dart';
 import '../../common/component/error_dialog_view.dart';
@@ -56,17 +58,17 @@ class _ChannelManagementPageState extends State<ChannelManagementPage> {
                 child: Column(
                   children: [
                     _menu,
-                    // ChannelRequestDataTable(
-                    //   channelRequests: channelRequests,
-                    //   onLongPressRow: (index) {
-                    //     launch(channelRequests[index].channelUrl);
-                    //   },
-                    //   onSelectedChanged: (isSelected, index) {
-                    //     setState(() {
-                    //       channelRequests[index].isSelected = isSelected;
-                    //     });
-                    //   },
-                    // )
+                    ChannelManagementDataTable(
+                      channelList: channelList,
+                      onLongPressRow: (index) {
+                        launchUrlString(channelList[index].channelUrl);
+                      },
+                      onSelectedChanged: (isSelected, index) {
+                        setState(() {
+                          channelList[index].isSelected = isSelected;
+                        });
+                      },
+                    )
                   ],
                 ),
               ),

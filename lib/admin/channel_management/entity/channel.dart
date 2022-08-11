@@ -18,10 +18,10 @@ class Channel {
 
     switch (json['is_rebranded'] as bool) {
       case true:
-        type = ChannelType.original;
+        type = ChannelType.half;
         break;
       case false:
-        type = ChannelType.half;
+        type = ChannelType.original;
         break;
     }
     return Channel(
@@ -35,8 +35,12 @@ class Channel {
     return "https://youtube.com/channel/$channelId";
   }
 
-  Map<String, dynamic> toUpdateChannelJson() =>
-      {'channel_id': channelId, 'type': _channelTypeJsonValue};
+  Map<String, dynamic> toUpdateChannelJson() => {
+        'channel_id': channelId,
+        'title': title,
+        'thumbnail_image_url': thumbnailImageUrl,
+        'type': _channelTypeJsonValue
+      };
 
   Map<String, dynamic> toDeleteChannelJson() => {'channel_id': channelId};
 
