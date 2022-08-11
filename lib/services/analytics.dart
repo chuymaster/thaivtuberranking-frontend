@@ -51,5 +51,6 @@ class AnalyticsPageName {
   static String error = "error";
   static String live = "live";
   static String adminAuthGate = "admin_auth_gate";
-  static String channelRequest = "channel_request";
+  static String adminChannelRequest = "admin_channel_request";
+  static String adminChannelManagement = "admin_channel_management";
 }

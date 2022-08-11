@@ -1,11 +1,6 @@
-// import 'package:backoffice/pages/channel_request/channel_request_repository.dart';
-// import 'package:backoffice/pages/channel_request/entity/channel_request.dart';
-// import 'package:backoffice/services/authentication.dart';
-// import 'package:backoffice/services/result.dart';
 import 'package:flutter/material.dart';
 
 import '../../../services/result.dart';
-import '../authentication.dart';
 import 'channel_request_repository.dart';
 import 'entity/channel_request.dart';
 
@@ -168,9 +163,5 @@ class ChannelRequestViewModel extends ChangeNotifier {
 
   int get selectedChannelRequestsCount {
     return _channelRequests.where((element) => element.isSelected).length;
-  }
-
-  void logout() {
-    Authentication.instance.logout();
   }
 }

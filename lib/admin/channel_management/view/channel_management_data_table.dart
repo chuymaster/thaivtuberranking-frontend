@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 
 import '../../../../common/component/status_chip.dart';
-import '../entity/channel_request.dart';
+import '../entity/channel.dart';
 
-class ChannelRequestDataTable extends StatefulWidget {
-  const ChannelRequestDataTable(
+class ChannelManagementDataTable extends StatefulWidget {
+  const ChannelManagementDataTable(
       {Key? key,
-      required this.channelRequests,
+      required this.channelList,
       required this.onLongPressRow,
       required this.onSelectedChanged});
 
-  final List<ChannelRequest> channelRequests;
+  final List<Channel> channelList;
   final Function(int index) onLongPressRow;
   final Function(bool isSelected, int index) onSelectedChanged;
 
   @override
-  State<ChannelRequestDataTable> createState() =>
-      _ChannelRequestDataTableState();
+  State<ChannelManagementDataTable> createState() =>
+      _ChannelManagementDataTableState();
 }
 
-class _ChannelRequestDataTableState extends State<ChannelRequestDataTable> {
+class _ChannelManagementDataTableState
+    extends State<ChannelManagementDataTable> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -28,9 +29,9 @@ class _ChannelRequestDataTableState extends State<ChannelRequestDataTable> {
             columnSpacing: 24,
             columns: _dataColumns,
             rows: List<DataRow>.generate(
-                widget.channelRequests.length,
+                widget.channelList.length,
                 (index) => DataRow(
-                    selected: widget.channelRequests[index].isSelected,
+                    selected: widget.channelList[index].isSelected,
                     onLongPress: () {
                       widget.onLongPressRow(index);
                     },
@@ -41,7 +42,7 @@ class _ChannelRequestDataTableState extends State<ChannelRequestDataTable> {
                         (Set<MaterialState> states) {
                       return _getCellColor(index, states);
                     }),
-                    cells: makeDataCells(widget.channelRequests[index])))));
+                    cells: makeDataCells(widget.channelList[index])))));
   }
 
   List<DataColumn> get _dataColumns {
@@ -58,25 +59,19 @@ class _ChannelRequestDataTableState extends State<ChannelRequestDataTable> {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
-      const DataColumn(
-        label: Text(
-          'Status',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-      ),
     ];
   }
 
-  List<DataCell> makeDataCells(ChannelRequest channelRequest) {
+  List<DataCell> makeDataCells(Channel channel) {
     return [
       DataCell(_makeChannelInfoRow(
-          channelRequest.title, channelRequest.thumbnailImageUrl)),
-      DataCell(_makeTypeChip(channelRequest.type)),
-      DataCell(_makeStatusTag(channelRequest.status)),
+          channel.title, channel.channelId, channel.thumbnailImageUrl)),
+      DataCell(_makeTypeChip(channel.type)),
     ];
   }
 
-  Widget _makeChannelInfoRow(String title, String thumbnailImageUrl) {
+  Widget _makeChannelInfoRow(
+      String title, String channelId, String thumbnailImageUrl) {
     return Row(
       children: [
         _makeThumbnailImage(thumbnailImageUrl),
@@ -89,6 +84,13 @@ class _ChannelRequestDataTableState extends State<ChannelRequestDataTable> {
               overflow: TextOverflow.ellipsis,
               style:
                   const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        ),
+        const Padding(
+          padding: EdgeInsets.all(8),
+        ),
+        Text(
+          channelId,
+          style: TextStyle(fontSize: 12, color: Colors.grey[500]),
         )
       ],
     );
@@ -115,23 +117,6 @@ class _ChannelRequestDataTableState extends State<ChannelRequestDataTable> {
             title: "Original", backgroundColor: Colors.deepPurple);
       case ChannelType.half:
         return const StatusChip(title: "Half", backgroundColor: Colors.pink);
-    }
-  }
-
-  Widget _makeStatusTag(ChannelRequestStatus status) {
-    switch (status) {
-      case ChannelRequestStatus.unconfirmed:
-        return const StatusChip(
-            title: "Unconfirmed", backgroundColor: Colors.blue);
-      case ChannelRequestStatus.accepted:
-        return const StatusChip(
-            title: "Accepted", backgroundColor: Colors.green);
-      case ChannelRequestStatus.pending:
-        return const StatusChip(
-            title: "Pending", backgroundColor: Colors.orange);
-      case ChannelRequestStatus.rejected:
-        return const StatusChip(
-            title: "Rejected", backgroundColor: Colors.black);
     }
   }
 
