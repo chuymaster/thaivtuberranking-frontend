@@ -25,8 +25,9 @@ class _ChannelRequestPageState extends State<ChannelRequestPage> {
   @override
   void initState() {
     super.initState();
-    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.screenLoaded,
-        {AnalyticsParameterName.screenName: AnalyticsPageName.channelRequest});
+    MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.screenLoaded, {
+      AnalyticsParameterName.screenName: AnalyticsPageName.adminChannelRequest
+    });
     _viewModel.getChannelRequests();
   }
 
