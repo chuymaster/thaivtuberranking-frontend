@@ -29,7 +29,7 @@ class ChannelListRepository implements AbstractChannelListRepository {
         gsutil cors set cors.json gs://thaivtuberranking.appspot.com
      */
     Uri channelListJson = Uri.parse(
-        "https://storage.googleapis.com/thaivtuberranking.appspot.com/v2/channel_data/list.json");
+        "https://storage.googleapis.com/thaivtuberranking.appspot.com/v2/channel_data/simple_list.json");
 
     try {
       final response = await client.get(channelListJson);
