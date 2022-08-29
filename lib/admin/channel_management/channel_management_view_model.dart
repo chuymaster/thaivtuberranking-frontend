@@ -84,23 +84,36 @@ class ChannelManagementViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<Channel> get _channelList {
+  List<Channel> get channelList {
     if (viewGetState is SuccessState) {
-      return (viewGetState as SuccessState).value;
+      List<Channel> channelList = (viewGetState as SuccessState).value;
+      return channelList
+          .where((e) =>
+              e.title.toLowerCase().contains(_filterText) ||
+              e.channelId.toLowerCase().contains(_filterText))
+          .toList();
     } else {
       return [];
     }
   }
 
   bool get hasSelection {
-    return _channelList.where((element) => element.isSelected).isNotEmpty;
+    return channelList.where((element) => element.isSelected).isNotEmpty;
   }
 
   List<Channel> get _selectedChannelList {
-    return _channelList.where((element) => element.isSelected).toList();
+    return channelList.where((element) => element.isSelected).toList();
   }
 
   int get selectedChannelListCount {
-    return _channelList.where((element) => element.isSelected).length;
+    return channelList.where((element) => element.isSelected).length;
+  }
+
+  // MARK: - Filtering
+
+  String _filterText = "";
+  void setFilterText(String value) {
+    _filterText = value.toLowerCase();
+    notifyListeners();
   }
 }

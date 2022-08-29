@@ -48,29 +48,37 @@ class _ChannelManagementPageState extends State<ChannelManagementPage> {
           return RetryableErrorView(
               message: errorMessage, retryAction: viewModel.getChannelList);
         } else {
-          final List<Channel> channelList =
-              (viewModel.viewGetState as SuccessState).value;
           List<Widget> stackChildren = [
             Align(
               alignment: Alignment.topCenter,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Column(
-                  children: [
-                    _menu,
-                    ChannelManagementDataTable(
-                      channelList: channelList,
-                      onLongPressRow: (index) {
-                        launchUrlString(channelList[index].channelUrl);
-                      },
-                      onSelectedChanged: (isSelected, index) {
-                        setState(() {
-                          channelList[index].isSelected = isSelected;
-                        });
-                      },
-                    )
-                  ],
-                ),
+              child: Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8),
+                  ),
+                  _searchBox,
+                  SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      children: [
+                        _menu,
+                        ChannelManagementDataTable(
+                          channelList: viewModel.channelList,
+                          onLongPressRow: (index) {
+                            launchUrlString(
+                                viewModel.channelList[index].channelUrl);
+                          },
+                          onSelectedChanged: (isSelected, index) {
+                            setState(() {
+                              viewModel.channelList[index].isSelected =
+                                  isSelected;
+                            });
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           ];
@@ -95,6 +103,17 @@ class _ChannelManagementPageState extends State<ChannelManagementPage> {
         }
       })),
     );
+  }
+
+  Widget get _searchBox {
+    return ConstrainedBox(
+        constraints: const BoxConstraints(minWidth: 150, maxWidth: 300),
+        child: TextField(
+            decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: "Filter",
+                hintText: "Type channel title or ID"),
+            onChanged: (value) => _viewModel.setFilterText(value)));
   }
 
   Widget get _menu {
