@@ -31,6 +31,6 @@ class ThaiText extends StatelessWidget {
       fontWeight: fontWeight,
       fontFamily: fontFamily,
     );
-    return Text(text, style: style);
+    return SelectionArea(child: Text(text, style: style));
   }
 }
