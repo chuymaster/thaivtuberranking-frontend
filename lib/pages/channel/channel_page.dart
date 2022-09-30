@@ -135,15 +135,17 @@ class _ChannelPageState extends State<ChannelPage> {
       description = _viewModel.channelInfo!.description;
     }
 
-    return Container(
-      decoration: BoxDecoration(
-          color: Colors.grey[100],
-          borderRadius: BorderRadius.all(Radius.circular(16))),
-      padding: EdgeInsets.all(16),
-      child: ThaiText(
-        text: description,
-        overflow: TextOverflow.clip,
-        fontSize: 13,
+    return SelectionArea(
+      child: Container(
+        decoration: BoxDecoration(
+            color: Colors.grey[100],
+            borderRadius: BorderRadius.all(Radius.circular(16))),
+        padding: EdgeInsets.all(16),
+        child: ThaiText(
+          text: description,
+          overflow: TextOverflow.clip,
+          fontSize: 13,
+        ),
       ),
     );
   }
@@ -186,36 +188,38 @@ class _ChannelPageState extends State<ChannelPage> {
               padding: EdgeInsets.all(8),
             ),
             Expanded(
-              child: Column(
-                children: [
-                  InkWell(
-                    child: ThaiText(
-                        text: _viewModel.channelInfo!.channelName,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        overflow: TextOverflow.ellipsis),
-                    onTap: () => _launchChannelUrl(),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(4),
-                  ),
-                  ThaiText(
-                      text: 'ผู้ติดตาม $subscribers คน\nดู $views ครั้ง',
-                      fontSize: 16),
-                  Padding(
-                    padding: EdgeInsets.all(4),
-                  ),
-                  ThaiText(
-                      text: 'คลิปล่าสุด $updated\nวันเปิดแชนแนล $published',
-                      fontSize: 14,
-                      color: Colors.black54),
-                  Padding(
-                    padding: EdgeInsets.all(4),
-                  ),
-                  _shareButton
-                ],
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: SelectionArea(
+                child: Column(
+                  children: [
+                    InkWell(
+                      child: ThaiText(
+                          text: _viewModel.channelInfo!.channelName,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          overflow: TextOverflow.ellipsis),
+                      onTap: () => _launchChannelUrl(),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(4),
+                    ),
+                    ThaiText(
+                        text: 'ผู้ติดตาม $subscribers คน\nดู $views ครั้ง',
+                        fontSize: 16),
+                    Padding(
+                      padding: EdgeInsets.all(4),
+                    ),
+                    ThaiText(
+                        text: 'คลิปล่าสุด $updated\nวันเปิดแชนแนล $published',
+                        fontSize: 14,
+                        color: Colors.black54),
+                    Padding(
+                      padding: EdgeInsets.all(4),
+                    ),
+                    _shareButton
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                ),
               ),
             )
           ]),
@@ -257,7 +261,7 @@ class _ChannelPageState extends State<ChannelPage> {
         },
       ),
       alignment: Alignment.bottomRight,
-      padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
+      padding: EdgeInsets.fromLTRB(0, 0, 8, 8),
     );
   }
 }
