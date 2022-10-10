@@ -25,3 +25,4 @@ doc/api/
 
 *.cache
 ui-debug.log
+.vscode/

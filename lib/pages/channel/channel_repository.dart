@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 class ChannelRepository {
   Future<Result> getChannelInfo(String channelId) async {
     Uri channelDetailUri = Uri.parse(
-        "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/detail/$channelId.json");
+        "https://storage.googleapis.com/thaivtuberranking.appspot.com/v2/channel_data/detail/$channelId.json");
     try {
       final response = await http.get(channelDetailUri);
 
@@ -26,7 +26,7 @@ class ChannelRepository {
 
   Future<Result> getChannelChartData(String channelId) async {
     Uri url = Uri.parse(
-        "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/chart_data/$channelId.json");
+        "https://storage.googleapis.com/thaivtuberranking.appspot.com/v2/channel_data/chart_data/$channelId.json");
 
     try {
       final response = await http.get(url);
