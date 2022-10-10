@@ -10,7 +10,7 @@ class ChannelChartData {
   factory ChannelChartData.fromJson(Map<String, dynamic> json) {
     List<ChartDataPoint> dataPoints = [];
 
-    List<dynamic> jsons = json['chartDataPoints'];
+    List<dynamic> jsons = json['chart_data_points'];
     jsons.forEach((element) {
       dataPoints.add(ChartDataPoint.fromJson(element));
     });

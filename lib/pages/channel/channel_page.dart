@@ -251,7 +251,7 @@ class _ChannelPageState extends State<ChannelPage> {
         ),
         onTap: () {
           UrlLauncher.launchURL(
-              'https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/chart_data/' +
+              'https://storage.googleapis.com/thaivtuberranking.appspot.com/v2/channel_data/chart_data/' +
                   widget.channelId +
                   '.json');
           MyApp.analytics

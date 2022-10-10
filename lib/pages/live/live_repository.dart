@@ -7,9 +7,9 @@ import 'package:thaivtuberranking/services/result.dart';
 class LiveRepository {
   Future<Result> getLiveVideos() async {
     Uri liveUri = Uri.parse(
-        "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/live_videos.json");
+        "https://storage.googleapis.com/thaivtuberranking.appspot.com/v2/channel_data/live_videos.json");
     Uri upcomingUri = Uri.parse(
-        "https://storage.googleapis.com/thaivtuberranking.appspot.com/channel_data/upcoming_videos.json");
+        "https://storage.googleapis.com/thaivtuberranking.appspot.com/v2/channel_data/upcoming_videos.json");
 
     try {
       final responses =
