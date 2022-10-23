@@ -85,8 +85,11 @@ class _HomePageState extends State<HomePage> {
   Widget _buildDrawerMenu(String lastUpdatedAt) {
     return DrawerMenu(
         currentOriginType: _viewModel.originType,
+        currentActivityType: _viewModel.activityType,
         lastUpdatedAt: lastUpdatedAt,
         onChangeOriginType: (originType) => _viewModel.originType = originType,
+        onChangeActivityType: (activityType) =>
+            _viewModel.activityType = activityType,
         onTapAddChannelMenu: () =>
             {this._navigateToChannelRegistrationPage("drawer_menu")});
   }
@@ -119,13 +122,13 @@ class _HomePageState extends State<HomePage> {
         tooltip: "แจ้งเพิ่มแชนแนล",
       ),
       ActionButton(
-          onPressed: () => _toggleDisplayInactiveChannel(),
-          icon: const Icon(Icons.visibility_off),
-          tooltip: "แสดงแชนแนลที่ไม่อัพเดตแล้ว"),
+          onPressed: () => _viewModel.toggleDisplayInactiveChannel(),
+          icon: _viewModel.activityType.icon,
+          tooltip: _viewModel.activityType.tooltip),
       ActionButton(
-          onPressed: () => _toggleVtuberOriginType(),
-          icon: const Icon(Icons.group),
-          tooltip: "แสดง VTuber ทั้งหมด")
+          onPressed: () => _viewModel.toggleChannelOriginType(),
+          icon: _viewModel.originType.icon,
+          tooltip: _viewModel.originType.tooltip)
     ]);
   }
 
@@ -133,14 +136,6 @@ class _HomePageState extends State<HomePage> {
     Navigator.pushNamed(context, ChannelRegistrationPage.route);
     MyApp.analytics.sendAnalyticsEvent(
         AnalyticsEvent.viewChannelRegistrationPage, {'location': location});
-  }
-
-  void _toggleDisplayInactiveChannel() {
-    print("aa");
-  }
-
-  void _toggleVtuberOriginType() {
-    print("bb");
   }
 
   Widget _buildBody(List<ChannelInfo> channelList) {
