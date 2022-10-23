@@ -66,7 +66,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
               child: ListTile(
                   leading: Icon(Icons.access_time),
                   title: ThaiText(
-                    text: "ข้อมูลอัพเดต " + widget.lastUpdatedAt,
+                    text: "ข้อมูลอัปเดต " + widget.lastUpdatedAt,
                     fontSize: 13,
                   ))),
           Card(
