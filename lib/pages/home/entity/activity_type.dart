@@ -10,7 +10,7 @@ enum ActivityType {
       case ActiveOnly:
         return "แชนแนลที่ยังอัปเดตอยู่";
       case All:
-        return "แชนแนลที่ไม่อัปเดตด้วย";
+        return "แชนแนลที่อัปเดตและไม่อัปเดต";
       default:
         throw Exception("Unknown enum type $this");
     }
