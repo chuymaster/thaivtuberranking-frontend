@@ -13,6 +13,7 @@ class ChannelInfo {
 
   final int updatedAt;
   final _formatter = new NumberFormat("#,###");
+  final _days_to_considered_channel_inactive = 90;
 
   ChannelInfo(
       {required this.channelId,
@@ -66,11 +67,31 @@ class ChannelInfo {
   }
 
   String get lastPublishedVideoAtString {
-    if (lastPublishedVideoAt == null || lastPublishedVideoAt!.isEmpty) {
+    if (!this.hasVideo) {
       return '-';
     }
     return DateFormat('d/M/yyyy HH:mm')
         .format(DateTime.parse(lastPublishedVideoAt!).toLocal());
+  }
+
+  bool get hasVideo {
+    if (lastPublishedVideoAt != null) {
+      return lastPublishedVideoAt?.isNotEmpty ?? false;
+    } else {
+      return false;
+    }
+  }
+
+  bool get isActive {
+    if (hasVideo) {
+      final now = DateTime.now();
+      final lastPublishedVideoAtDateTime =
+          DateTime.parse(lastPublishedVideoAt!);
+      return now.difference(lastPublishedVideoAtDateTime).inDays <
+          _days_to_considered_channel_inactive;
+    } else {
+      return false;
+    }
   }
 
   String get subscribersString {

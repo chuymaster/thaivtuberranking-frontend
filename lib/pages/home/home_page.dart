@@ -4,6 +4,8 @@ import 'package:thaivtuberranking/common/component/center_circular_progress_indi
 import 'package:thaivtuberranking/common/component/empty_error_notification.dart';
 import 'package:thaivtuberranking/common/component/retryable_error_view.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
+import 'package:thaivtuberranking/pages/channel/component/action_button.dart';
+import 'package:thaivtuberranking/pages/channel/component/expandable_fab.dart';
 import 'package:thaivtuberranking/pages/channel_ranking/channel_ranking_page.dart';
 import 'package:thaivtuberranking/pages/channel_registration/channel_registration_page.dart';
 import 'package:thaivtuberranking/pages/home/component/drawer_menu.dart';
@@ -59,7 +61,7 @@ class _HomePageState extends State<HomePage> {
             drawer: _buildDrawerMenu(provider.channelListLastUpdatedAt),
             body: _buildBody(provider.channelList),
             bottomNavigationBar: _bottomNavigationBar,
-            floatingActionButton: _floatingActionButton,
+            floatingActionButton: _expandableFab,
           );
         }
       }),
@@ -83,8 +85,11 @@ class _HomePageState extends State<HomePage> {
   Widget _buildDrawerMenu(String lastUpdatedAt) {
     return DrawerMenu(
         currentOriginType: _viewModel.originType,
+        currentActivityType: _viewModel.activityType,
         lastUpdatedAt: lastUpdatedAt,
         onChangeOriginType: (originType) => _viewModel.originType = originType,
+        onChangeActivityType: (activityType) =>
+            _viewModel.activityType = activityType,
         onTapAddChannelMenu: () =>
             {this._navigateToChannelRegistrationPage("drawer_menu")});
   }
@@ -108,12 +113,23 @@ class _HomePageState extends State<HomePage> {
         ));
   }
 
-  Widget get _floatingActionButton {
-    return FloatingActionButton(
-      child: Icon(Icons.add_circle),
-      tooltip: 'แจ้งเพิ่มแชนแนล VTuber',
-      onPressed: () => _navigateToChannelRegistrationPage('appbar_add_button'),
-    );
+  Widget get _expandableFab {
+    return ExpandableFab(distance: 80.0, children: [
+      ActionButton(
+        onPressed: () =>
+            _navigateToChannelRegistrationPage('appbar_add_button'),
+        icon: const Icon(Icons.add_circle),
+        tooltip: "แจ้งเพิ่มแชนแนล",
+      ),
+      ActionButton(
+          onPressed: () => _viewModel.toggleDisplayInactiveChannel(),
+          icon: _viewModel.activityType.icon,
+          tooltip: _viewModel.activityType.tooltip),
+      ActionButton(
+          onPressed: () => _viewModel.toggleChannelOriginType(),
+          icon: _viewModel.originType.icon,
+          tooltip: _viewModel.originType.tooltip)
+    ]);
   }
 
   void _navigateToChannelRegistrationPage(String location) {

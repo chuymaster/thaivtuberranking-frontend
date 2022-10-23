@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:thaivtuberranking/common/component/announcement_banner.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
+import 'package:thaivtuberranking/pages/home/component/drawer_activity_type_radio_filter.dart';
+import 'package:thaivtuberranking/pages/home/entity/activity_type.dart';
 import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/environment_setting.dart';
@@ -11,15 +12,19 @@ import 'drawer_origin_type_radio_filter.dart';
 
 class DrawerMenu extends StatefulWidget {
   final OriginType currentOriginType;
+  final ActivityType currentActivityType;
   final String lastUpdatedAt;
   final Function(OriginType) onChangeOriginType;
+  final Function(ActivityType) onChangeActivityType;
   final Function onTapAddChannelMenu;
 
   const DrawerMenu(
       {super.key,
       required this.currentOriginType,
+      required this.currentActivityType,
       required this.lastUpdatedAt,
       required this.onChangeOriginType,
+      required this.onChangeActivityType,
       required this.onTapAddChannelMenu});
 
   @override
@@ -61,7 +66,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
               child: ListTile(
                   leading: Icon(Icons.access_time),
                   title: ThaiText(
-                    text: "ข้อมูลอัพเดต " + widget.lastUpdatedAt,
+                    text: "ข้อมูลอัปเดต " + widget.lastUpdatedAt,
                     fontSize: 13,
                   ))),
           Card(
@@ -69,10 +74,21 @@ class _DrawerMenuState extends State<DrawerMenu> {
               currentOriginType: widget.currentOriginType,
               onChanged: (newType) {
                 if (newType != widget.currentOriginType) {
-                  var typeLog = newType.toString();
                   MyApp.analytics.sendAnalyticsEvent(
-                      AnalyticsEvent.setType, {'type': typeLog});
+                      AnalyticsEvent.setOriginType, {'type': newType.name});
                   widget.onChangeOriginType(newType);
+                }
+              },
+            ),
+          ),
+          Card(
+            child: DrawerActivityTypeRadioFilter(
+              currentActivityType: widget.currentActivityType,
+              onChanged: (newType) {
+                if (newType != widget.currentActivityType) {
+                  MyApp.analytics.sendAnalyticsEvent(
+                      AnalyticsEvent.setActivityType, {'type': newType.name});
+                  widget.onChangeActivityType(newType);
                 }
               },
             ),
