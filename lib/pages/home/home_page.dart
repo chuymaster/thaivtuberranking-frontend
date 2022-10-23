@@ -4,6 +4,8 @@ import 'package:thaivtuberranking/common/component/center_circular_progress_indi
 import 'package:thaivtuberranking/common/component/empty_error_notification.dart';
 import 'package:thaivtuberranking/common/component/retryable_error_view.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
+import 'package:thaivtuberranking/pages/channel/component/action_button.dart';
+import 'package:thaivtuberranking/pages/channel/component/expandable_fab.dart';
 import 'package:thaivtuberranking/pages/channel_ranking/channel_ranking_page.dart';
 import 'package:thaivtuberranking/pages/channel_registration/channel_registration_page.dart';
 import 'package:thaivtuberranking/pages/home/component/drawer_menu.dart';
@@ -59,7 +61,7 @@ class _HomePageState extends State<HomePage> {
             drawer: _buildDrawerMenu(provider.channelListLastUpdatedAt),
             body: _buildBody(provider.channelList),
             bottomNavigationBar: _bottomNavigationBar,
-            floatingActionButton: _floatingActionButton,
+            floatingActionButton: _expandableFab,
           );
         }
       }),
@@ -108,18 +110,37 @@ class _HomePageState extends State<HomePage> {
         ));
   }
 
-  Widget get _floatingActionButton {
-    return FloatingActionButton(
-      child: Icon(Icons.add_circle),
-      tooltip: 'แจ้งเพิ่มแชนแนล VTuber',
-      onPressed: () => _navigateToChannelRegistrationPage('appbar_add_button'),
-    );
+  Widget get _expandableFab {
+    return ExpandableFab(distance: 80.0, children: [
+      ActionButton(
+        onPressed: () =>
+            _navigateToChannelRegistrationPage('appbar_add_button'),
+        icon: const Icon(Icons.add_circle),
+        tooltip: "แจ้งเพิ่มแชนแนล",
+      ),
+      ActionButton(
+          onPressed: () => _toggleDisplayInactiveChannel(),
+          icon: const Icon(Icons.visibility_off),
+          tooltip: "แสดงแชนแนลที่ไม่อัพเดตแล้ว"),
+      ActionButton(
+          onPressed: () => _toggleVtuberOriginType(),
+          icon: const Icon(Icons.group),
+          tooltip: "แสดง VTuber ทั้งหมด")
+    ]);
   }
 
   void _navigateToChannelRegistrationPage(String location) {
     Navigator.pushNamed(context, ChannelRegistrationPage.route);
     MyApp.analytics.sendAnalyticsEvent(
         AnalyticsEvent.viewChannelRegistrationPage, {'location': location});
+  }
+
+  void _toggleDisplayInactiveChannel() {
+    print("aa");
+  }
+
+  void _toggleVtuberOriginType() {
+    print("bb");
   }
 
   Widget _buildBody(List<ChannelInfo> channelList) {
