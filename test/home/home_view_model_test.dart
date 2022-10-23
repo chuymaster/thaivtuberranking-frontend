@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:thaivtuberranking/pages/home/entity/activity_type.dart';
 import 'package:thaivtuberranking/pages/home/entity/channel_info.dart';
 import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
 import 'package:thaivtuberranking/pages/home/home_view_model.dart';
@@ -15,6 +16,7 @@ void main() {
   group('getFilteredChannelList', () {
     test('Get only original channel list', () {
       final viewModel = HomeViewModel();
+      viewModel.activityType = ActivityType.All;
       final channelList = [
         ChannelInfo(
             channelId: "1",
@@ -49,6 +51,7 @@ void main() {
     });
     test('Get all channel list', () {
       final viewModel = HomeViewModel();
+      viewModel.activityType = ActivityType.All;
       final channelList = [
         ChannelInfo(
             channelId: "1",
