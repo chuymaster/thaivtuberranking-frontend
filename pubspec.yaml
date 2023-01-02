@@ -32,12 +32,12 @@ dependencies:
   transparent_image: ^2.0.0-nullsafety.0
   intl: ^0.17.0
   firebase_core: ^2.1.1
-  firebase_analytics: ^10.0.6
+  firebase_analytics: ^10.0.8
   http: ^0.13.5
   oktoast: ^3.0.0
   search_page: ^2.0.0+1
-  syncfusion_flutter_charts: ^20.3.59
-  provider: ^6.0.4
+  syncfusion_flutter_charts: ^20.4.38
+  provider: ^6.0.5
   flutterfire_ui: ^0.4.3+18
 
 dev_dependencies:
@@ -45,7 +45,7 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.1
   mockito: ^5.3.2
-  build_runner: ^2.3.2
+  build_runner: ^2.3.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

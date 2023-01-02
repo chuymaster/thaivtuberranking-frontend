@@ -78,20 +78,21 @@ class _ChannelManagementDataTableState
         const Padding(
           padding: EdgeInsets.all(8),
         ),
-        ConstrainedBox(
-          constraints: const BoxConstraints(minWidth: 150, maxWidth: 300),
-          child: Text(title,
-              overflow: TextOverflow.ellipsis,
-              style:
-                  const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-        ),
+        Container(
+            width: 200,
+            child: Text(title,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                    fontSize: 16, fontWeight: FontWeight.bold))),
         const Padding(
           padding: EdgeInsets.all(8),
         ),
-        Text(
-          channelId,
-          style: TextStyle(fontSize: 12, color: Colors.grey[500]),
-        )
+        Container(
+            width: 200,
+            child: Text(
+              channelId,
+              style: TextStyle(fontSize: 12, color: Colors.grey[500]),
+            ))
       ],
     );
   }
