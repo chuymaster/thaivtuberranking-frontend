@@ -34,8 +34,6 @@ class ChannelListRepository implements AbstractChannelListRepository {
     try {
       final response = await client.get(channelListJson);
 
-      List<ChannelInfo> _itemList = [];
-
       if (response.statusCode == 200) {
         final List<dynamic> channelInfoList =
             json.decode(utf8.decode(response.bodyBytes))['result'];

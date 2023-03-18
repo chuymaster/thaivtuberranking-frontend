@@ -103,7 +103,7 @@ class _VideoRankingContainerPageState extends State<VideoRankingContainerPage>
       length: _tabBarTabs.length,
       child: Builder(
         builder: (context) {
-          final TabController tabController = DefaultTabController.of(context)!;
+          final TabController tabController = DefaultTabController.of(context);
           tabController.addListener(() {
             if (!tabController.indexIsChanging) {
               MyApp.analytics.sendAnalyticsEvent(

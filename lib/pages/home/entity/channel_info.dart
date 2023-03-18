@@ -13,7 +13,7 @@ class ChannelInfo {
 
   final int updatedAt;
   final _formatter = new NumberFormat("#,###");
-  final _days_to_considered_channel_inactive = 90;
+  final _daysToConsideredChannelInactive = 90;
 
   ChannelInfo(
       {required this.channelId,
@@ -88,7 +88,7 @@ class ChannelInfo {
       final lastPublishedVideoAtDateTime =
           DateTime.parse(lastPublishedVideoAt!);
       return now.difference(lastPublishedVideoAtDateTime).inDays <
-          _days_to_considered_channel_inactive;
+          _daysToConsideredChannelInactive;
     } else {
       return false;
     }

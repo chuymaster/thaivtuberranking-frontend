@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:thaivtuberranking/admin/channel_management/channel_management_view_model.dart';
-import 'package:thaivtuberranking/admin/channel_management/entity/channel.dart';
 import 'package:thaivtuberranking/admin/channel_management/view/channel_management_data_table.dart';
 import 'package:thaivtuberranking/common/component/center_circular_progress_indicator.dart';
 import 'package:thaivtuberranking/main.dart';
@@ -125,25 +124,25 @@ class _ChannelManagementPageState extends State<ChannelManagementPage> {
         children: [
           ElevatedButton(
             child: const Text("Set as Original"),
-            style: ElevatedButton.styleFrom(primary: Colors.deepPurple),
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple),
             onPressed: _viewModel.hasSelection
                 ? _viewModel.setSelectionAsOriginal
                 : null,
           ),
           ElevatedButton(
             child: const Text("Set as Half"),
-            style: ElevatedButton.styleFrom(primary: Colors.pink),
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.pink),
             onPressed:
                 _viewModel.hasSelection ? _viewModel.setSelectionAsHalf : null,
           ),
           ElevatedButton(
             child: const Text("Update"),
-            style: ElevatedButton.styleFrom(primary: Colors.green),
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
             onPressed: _viewModel.hasSelection ? _updateChannels : null,
           ),
           ElevatedButton(
             child: const Text("Delete"),
-            style: ElevatedButton.styleFrom(primary: Colors.red),
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
             onPressed: _viewModel.hasSelection ? _deleteChannels : null,
           ),
         ],

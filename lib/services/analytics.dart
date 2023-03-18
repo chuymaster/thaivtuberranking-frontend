@@ -3,7 +3,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 class Analytics {
   late FirebaseAnalytics? _analytics;
 
-  Analytics({analytics: FirebaseAnalytics}) {
+  Analytics({analytics = FirebaseAnalytics}) {
     this._analytics = analytics;
   }
 
