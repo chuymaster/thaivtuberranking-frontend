@@ -88,7 +88,7 @@ class _ChannelPageState extends State<ChannelPage> {
   void _launchChannelUrl() {
     if (_viewModel.channelInfo != null) {
       UrlLauncher.launchURL(_viewModel.channelInfo!.channelUrl);
-      MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.clickVtuberUrl, {
+      MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.clickVTuberUrl, {
         'name': _viewModel.channelInfo!.channelName,
         'url': _viewModel.channelInfo!.channelUrl,
         'location': 'icon_url'

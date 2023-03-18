@@ -17,7 +17,7 @@ class AnalyticsEvent {
   static String openDrawerUrl = 'open_drawer_url';
   static String setOriginType = 'set_origin_type';
   static String setActivityType = 'set_activity_type';
-  static String clickVtuberUrl = 'click_vtuber_url';
+  static String clickVTuberUrl = 'click_vtuber_url';
   static String viewDetail = 'view_detail';
   static String changePage = 'change_page';
   static String viewChannelRegistrationPage = 'view_channel_registration_page';

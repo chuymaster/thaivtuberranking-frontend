@@ -157,7 +157,7 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
           },
           onTapYouTubeIcon: (channelInfo) {
             UrlLauncher.launchURL(channelInfo.channelUrl);
-            MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.clickVtuberUrl, {
+            MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.clickVTuberUrl, {
               'name': channelInfo.channelName,
               'url': channelInfo.channelUrl,
               'location': 'top_youtube_icon'
