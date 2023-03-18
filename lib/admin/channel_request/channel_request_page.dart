@@ -106,36 +106,36 @@ class _ChannelRequestPageState extends State<ChannelRequestPage> {
         children: [
           ElevatedButton(
             child: const Text("Accept"),
-            style: ElevatedButton.styleFrom(primary: Colors.green),
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
             onPressed: _viewModel.hasSelection ? _approveChannelRequests : null,
           ),
           ElevatedButton(
             child: const Text(
               "Pend",
             ),
-            style: ElevatedButton.styleFrom(primary: Colors.orange),
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
             onPressed: _viewModel.hasSelection ? _pendChannelRequests : null,
           ),
           ElevatedButton(
             child: const Text("Reject"),
-            style: ElevatedButton.styleFrom(primary: Colors.black),
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
             onPressed: _viewModel.hasSelection ? _rejectChannelRequests : null,
           ),
           ElevatedButton(
             child: const Text("Delete"),
-            style: ElevatedButton.styleFrom(primary: Colors.red),
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
             onPressed: _viewModel.hasSelection ? _deleteChannelRequests : null,
           ),
           ElevatedButton(
             child: const Text("Set as Original"),
-            style: ElevatedButton.styleFrom(primary: Colors.deepPurple),
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple),
             onPressed: _viewModel.hasSelection
                 ? _viewModel.setSelectionAsOriginal
                 : null,
           ),
           ElevatedButton(
             child: const Text("Set as Half"),
-            style: ElevatedButton.styleFrom(primary: Colors.pink),
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.pink),
             onPressed:
                 _viewModel.hasSelection ? _viewModel.setSelectionAsHalf : null,
           ),

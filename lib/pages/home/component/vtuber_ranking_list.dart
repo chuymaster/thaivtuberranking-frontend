@@ -24,7 +24,7 @@ class VTuberRankingList extends StatelessWidget {
 
   Widget buildRankingList() {
     return Expanded(
-      child: ListView.separated(
+      child: ListView.builder(
           itemBuilder: (BuildContext context, int index) {
             Widget child;
             if (index == 0 || index == itemList.length + 1) {
@@ -59,11 +59,6 @@ class VTuberRankingList extends StatelessWidget {
                 child: SizedBox(width: getContentWidth(context), child: child));
           },
           controller: scrollController,
-          separatorBuilder: (context, index) {
-            return Divider(
-              height: 4,
-            );
-          },
           itemCount: itemList.length + 2),
     );
   }

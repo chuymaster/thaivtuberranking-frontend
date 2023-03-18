@@ -30,7 +30,7 @@ bool get _isProduction =>
 class MyApp extends StatelessWidget {
   static late Analytics analytics;
 
-  ChannelListProvider _channelListProvider =
+  final ChannelListProvider _channelListProvider =
       ChannelListProvider(repository: ChannelListRepository(http.Client()));
 
   _initAnalytics() {

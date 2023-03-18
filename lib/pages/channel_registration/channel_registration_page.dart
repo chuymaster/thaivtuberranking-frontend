@@ -128,21 +128,19 @@ class _ChannelRegistrationPageState extends State<ChannelRegistrationPage> {
       ));
       columnWidgets.add(_typeRadio);
       columnWidgets.add(Padding(padding: EdgeInsets.all(8)));
-
+      columnWidgets.add(Text("โปรดตรวจสอบแชนแนลอีกครั้งก่อนส่งข้อมูล",
+          style: defaultRedStyle));
       columnWidgets.add(RichText(
-          text: TextSpan(style: defaultRedStyle, children: [
-        TextSpan(text: 'โปรดตรวจสอบแชนแนลอีกครั้งก่อนส่งข้อมูล\n'),
-        TextSpan(
-            text: _viewModel.inputChannelUrl,
-            style: linkStyle,
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-                MyApp.analytics.sendAnalyticsEvent(
-                    AnalyticsEvent.tapChannelUrlBeforeRegister,
-                    {'channel_id': _viewModel.inputChannelId});
-                UrlLauncher.launchURL(_viewModel.inputChannelUrl);
-              }),
-      ])));
+          text: TextSpan(
+              text: _viewModel.inputChannelUrl,
+              style: linkStyle,
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  MyApp.analytics.sendAnalyticsEvent(
+                      AnalyticsEvent.tapChannelUrlBeforeRegister,
+                      {'channel_id': _viewModel.inputChannelId});
+                  UrlLauncher.launchURL(_viewModel.inputChannelUrl);
+                })));
 
       columnWidgets.add(Padding(padding: EdgeInsets.all(8)));
     }

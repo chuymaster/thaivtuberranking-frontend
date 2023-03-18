@@ -63,7 +63,7 @@ class SearchIconButton extends StatelessWidget {
                       onTapYouTubeIcon: (channelInfo) {
                         UrlLauncher.launchURL(channelInfo.channelUrl);
                         MyApp.analytics
-                            .sendAnalyticsEvent(AnalyticsEvent.clickVtuberUrl, {
+                            .sendAnalyticsEvent(AnalyticsEvent.clickVTuberUrl, {
                           'name': channelInfo.channelName,
                           'url': channelInfo.channelUrl,
                           'location': 'search_youtube_icon'
