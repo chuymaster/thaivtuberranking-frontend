@@ -1,11 +1,11 @@
 {
-    "name": "จัดอันดับ VTuber ไทย | Thai VTuber Ranking",
+    "name": "ลิสต์รายชื่อ VTuber ไทย | Thai VTubers Directory",
     "short_name": "thaivtuberranking",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "จัดอันดับ VTuber (Virtual YouTuber) ไทย เว็บนี้จัดทำเพื่อส่งเสริมวงการ VTuber ไทย ผ่านการจัดอันดับแชนแนลบนยูทูป",
+    "description": "ลิสต์รายชื่อ VTuber (Virtual YouTuber) ไทย เว็บนี้จัดทำเพื่อส่งเสริมวงการ VTuber ไทย ผ่านการลิสต์รายชื่อแชนแนลบนยูทูป",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

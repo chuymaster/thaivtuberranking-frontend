@@ -70,9 +70,7 @@ class _HomePageState extends State<HomePage> {
   PreferredSizeWidget _buildAppBar(List<ChannelInfo> channelList) {
     return AppBar(
         title: Text(
-          _viewModel.tabIndex == 0
-              ? "จัดอันดับวิดีโอ VTuber ไทย"
-              : "จัดอันดับแชนแนล VTuber ไทย",
+          _viewModel.tabIndex == 0 ? "วิดีโอ VTuber ไทย" : "แชนแนล VTuber ไทย",
           style: TextStyle(fontFamily: ThaiText.kanit),
         ),
         actions: [

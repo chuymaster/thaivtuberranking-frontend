@@ -88,7 +88,7 @@ class ChannelRegistrationViewModel extends ChangeNotifier {
 }
 
 class ChannelRegistrationErrorMessage {
-  static const String alreadyAdded = "แชนแนลนี้อยู่ในฐานข้อมูลจัดอันดับแล้ว";
+  static const String alreadyAdded = "แชนแนลนี้อยู่ในฐานข้อมูลแล้ว";
   static const String failedToSubmit =
       "เกิดปัญหาในการส่งข้อมูล กรุณาลองใหม่ในภายหลัง";
 }

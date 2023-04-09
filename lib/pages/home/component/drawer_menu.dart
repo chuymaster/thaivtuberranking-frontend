@@ -45,14 +45,14 @@ class _DrawerMenuState extends State<DrawerMenu> {
         children: [
           UserAccountsDrawerHeader(
             accountName: ThaiText(
-              text: prefix + "Thai VTuber Ranking",
+              text: prefix + "Thai VTubers Directory",
               color: Colors.white,
               fontWeight: FontWeight.bold,
               fontFamily: ThaiText.kanit,
             ),
             accountEmail: ThaiText(
               text:
-                  "เว็บนี้จัดทำเพื่อส่งเสริมวงการ VTuber ไทย\nผ่านการจัดอันดับแชนแนลบนยูทูป",
+                  "เว็บนี้จัดทำเพื่อส่งเสริมวงการ VTuber ไทย\nผ่านการเรียบเรียงรายชื่อแชนแนล VTuber คนไทยบนยูทูป",
               color: Colors.white,
               fontSize: 13,
             ),
