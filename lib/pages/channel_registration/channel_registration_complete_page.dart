@@ -28,7 +28,7 @@ class ChannelRegistrationCompletePage extends StatelessWidget {
                       padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
                       child: ThaiText(
                           text:
-                              "ขอบคุณที่ส่งข้อมูลแชนแนล ทางทีมงานจะพิจารณาและนำเข้าสู่การจัดอันดับหากข้อมูลถูกต้อง"),
+                              "ขอบคุณที่ส่งข้อมูลแชนแนล ทางทีมงานจะพิจารณาและนำเข้าสู่ฐานข้อมูลหากข้อมูลถูกต้อง"),
                     ),
                     Padding(
                       padding: EdgeInsets.all(8),

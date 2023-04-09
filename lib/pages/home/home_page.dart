@@ -71,8 +71,8 @@ class _HomePageState extends State<HomePage> {
     return AppBar(
         title: Text(
           _viewModel.tabIndex == 0
-              ? "จัดอันดับวิดีโอ VTuber ไทย"
-              : "จัดอันดับแชนแนล VTuber ไทย",
+              ? "ลิสต์วิดีโอ VTuber ไทย"
+              : "ลิสต์แชนแนล VTuber ไทย",
           style: TextStyle(fontFamily: ThaiText.kanit),
         ),
         actions: [

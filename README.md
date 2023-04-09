@@ -2,7 +2,7 @@
 
 # thaivtuberranking-frontend
 
-A Flutter Web client application for [Thai VTuber Ranking](https://vtuber.chuysan.com/) website.
+A Flutter Web client application for [Thai VTubers Directory](https://vtuber.chuysan.com/) website.
 
 ![](docs/repository-open-graph.png)
 

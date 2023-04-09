@@ -45,14 +45,14 @@ class _DrawerMenuState extends State<DrawerMenu> {
         children: [
           UserAccountsDrawerHeader(
             accountName: ThaiText(
-              text: prefix + "Thai VTuber Ranking",
+              text: prefix + "Thai VTubers Directory",
               color: Colors.white,
               fontWeight: FontWeight.bold,
               fontFamily: ThaiText.kanit,
             ),
             accountEmail: ThaiText(
               text:
-                  "เว็บนี้จัดทำเพื่อส่งเสริมวงการ VTuber ไทย\nผ่านการจัดอันดับแชนแนลบนยูทูป",
+                  "เว็บนี้จัดทำเพื่อส่งเสริมวงการ VTuber ไทย\nผ่านการเรียบเรียงรายชื่อแชนแนล VTuber คนไทยบนยูทูป",
               color: Colors.white,
               fontSize: 13,
             ),
@@ -125,7 +125,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 trailing: Icon(Icons.open_in_new),
                 onTap: () {
                   var url =
-                      "https://www.notion.so/Public-d92d99d2b88a4747814834bcbdd9989f";
+                      "https://chuysan.notion.site/Public-d92d99d2b88a4747814834bcbdd9989f";
                   UrlLauncher.launchURL(url);
                   MyApp.analytics.sendAnalyticsEvent(
                       AnalyticsEvent.openDrawerUrl, {'url': url});
@@ -136,7 +136,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 trailing: Icon(Icons.open_in_new),
                 onTap: () {
                   var url =
-                      "https://www.notion.so/f97473612ebc4166b1e8293624fb9062";
+                      "https://chuysan.notion.site/Public-f97473612ebc4166b1e8293624fb9062";
                   UrlLauncher.launchURL(url);
                   MyApp.analytics.sendAnalyticsEvent(
                       AnalyticsEvent.openDrawerUrl, {'url': url});
@@ -171,7 +171,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 trailing: Icon(Icons.open_in_new),
                 onTap: () {
                   var url =
-                      "https://www.notion.so/Public-Release-Notes-fddbe59f838949038fcaa4d774a4f2fc";
+                      "https://chuysan.notion.site/Public-Release-Notes-fddbe59f838949038fcaa4d774a4f2fc";
                   UrlLauncher.launchURL(url);
                   MyApp.analytics.sendAnalyticsEvent(
                       AnalyticsEvent.openDrawerUrl, {'url': url});
