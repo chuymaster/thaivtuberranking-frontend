@@ -45,6 +45,10 @@ class DescriptionBox extends StatelessWidget {
             firstTextSpan,
             style: _defaultStyle,
           ),
+          Text.rich(
+            secondTextSpan,
+            style: _defaultStyle,
+          ),
           _columnSpace,
           Text(
             "ประเภทของแชนแนลที่อนุญาต",
