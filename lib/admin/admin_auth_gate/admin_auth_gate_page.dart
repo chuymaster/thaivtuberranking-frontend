@@ -1,13 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutterfire_ui/auth.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
 import 'package:flutter/material.dart';
-import 'package:thaivtuberranking/admin/channel_management/channel_management_page.dart';
 
 import '../../common/component/confirm_dialog.dart';
 import '../../main.dart';
 import '../../services/analytics.dart';
 import '../authentication.dart';
 import '../channel_request/channel_request_page.dart';
+import '../channel_management/channel_management_page.dart';
 
 class AdminAuthGatePage extends StatelessWidget {
   static const String route = '/megumin';
@@ -22,8 +23,8 @@ class AdminAuthGatePage extends StatelessWidget {
         if (!snapshot.hasData) {
           return SignInScreen(
             showAuthActionSwitch: false,
-            providerConfigs: [
-              GoogleProviderConfiguration(
+            providers: [
+              GoogleProvider(
                   clientId: Authentication.instance.options.appId),
             ],
             footerBuilder: (context, _) {
