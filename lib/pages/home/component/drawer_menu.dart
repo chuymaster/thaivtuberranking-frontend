@@ -211,6 +211,17 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 },
               ),
               ListTile(
+                title: ThaiText(text: "Client App Repository"),
+                trailing: Icon(Icons.developer_mode),
+                onTap: () {
+                  var url =
+                      "https://github.com/chuymaster/thaivtuberranking-frontend";
+                  UrlLauncher.launchURL(url);
+                  MyApp.analytics.sendAnalyticsEvent(
+                      AnalyticsEvent.openDrawerUrl, {'url': url});
+                },
+              ),
+              ListTile(
                 title: ThaiText(text: "Release Notes"),
                 trailing: Icon(Icons.open_in_new),
                 onTap: () {
