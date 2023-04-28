@@ -52,7 +52,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
             ),
             accountEmail: ThaiText(
               text:
-                  "เว็บนี้จัดทำเพื่อส่งเสริมวงการ VTuber ไทย\nผ่านการเรียบเรียงรายชื่อแชนแนล VTuber คนไทยบนยูทูป",
+                  "เว็บนี้จัดทำเพื่อส่งเสริมวงการ VTuber ไทย\nโดยการเรียบเรียงแชนแนล VTuber คนไทยบนยูทูป",
               color: Colors.white,
               fontSize: 13,
             ),
@@ -151,6 +151,50 @@ class _DrawerMenuState extends State<DrawerMenu> {
               Container(
                 padding: EdgeInsets.fromLTRB(16, 8, 4, 8),
                 child: ThaiText(
+                  text: "แหล่งข้อมูล VTuber ไทย",
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              ListTile(
+                title: ThaiText(text: "VTuberThaiInfo", color: Colors.blue, fontWeight: FontWeight.bold),
+                trailing: Icon(Icons.open_in_new),
+                onTap: () {
+                  var url = "https://vtuberthaiinfo.com/";
+                  UrlLauncher.launchURL(url);
+                  MyApp.analytics.sendAnalyticsEvent(
+                      AnalyticsEvent.openDrawerUrl, {'url': url});
+                },
+              ),
+              ListTile(
+                title: ThaiText(text: "Twitter #VTuberTH"),
+                trailing: Icon(Icons.open_in_new),
+                onTap: () {
+                  var url = "https://twitter.com/hashtag/VtuberTH";
+                  UrlLauncher.launchURL(url);
+                  MyApp.analytics.sendAnalyticsEvent(
+                      AnalyticsEvent.openDrawerUrl, {'url': url});
+                },
+              ),
+              ListTile(
+                title:
+                    ThaiText(text: "VTuber Indonesia / Malaysia / Philippines"),
+                trailing: Icon(Icons.open_in_new),
+                onTap: () {
+                  var url = "https://vtuber.asia/";
+                  UrlLauncher.launchURL(url);
+                  MyApp.analytics.sendAnalyticsEvent(
+                      AnalyticsEvent.openDrawerUrl, {'url': url});
+                },
+              ),
+            ],
+          )),
+          Card(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: EdgeInsets.fromLTRB(16, 8, 4, 8),
+                child: ThaiText(
                   text: "ข้อมูลสำหรับนักพัฒนา",
                   fontWeight: FontWeight.bold,
                 ),
@@ -182,40 +226,6 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 trailing: Icon(Icons.open_in_new),
                 onTap: () {
                   var url = "https://chuysan.com/";
-                  UrlLauncher.launchURL(url);
-                  MyApp.analytics.sendAnalyticsEvent(
-                      AnalyticsEvent.openDrawerUrl, {'url': url});
-                },
-              ),
-            ],
-          )),
-          Card(
-              child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: EdgeInsets.fromLTRB(16, 8, 4, 8),
-                child: ThaiText(
-                  text: "แหล่งข้อมูล VTuber",
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              ListTile(
-                title: ThaiText(text: "Twitter #VTuberTH"),
-                trailing: Icon(Icons.open_in_new),
-                onTap: () {
-                  var url = "https://twitter.com/hashtag/VtuberTH";
-                  UrlLauncher.launchURL(url);
-                  MyApp.analytics.sendAnalyticsEvent(
-                      AnalyticsEvent.openDrawerUrl, {'url': url});
-                },
-              ),
-              ListTile(
-                title:
-                    ThaiText(text: "VTuber Indonesia / Malaysia / Philippines"),
-                trailing: Icon(Icons.open_in_new),
-                onTap: () {
-                  var url = "https://vtuber.asia/";
                   UrlLauncher.launchURL(url);
                   MyApp.analytics.sendAnalyticsEvent(
                       AnalyticsEvent.openDrawerUrl, {'url': url});
