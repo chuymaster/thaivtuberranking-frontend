@@ -69,13 +69,12 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
   @override
   Widget build(BuildContext context) {
     var tabBar = Container(
-        child: Material(
-          child: TabBar(
-            isScrollable: true,
-            tabs: _tabs,
-          ),
+      child: Material(
+        child: TabBar(
+          tabs: _tabs,
         ),
-        constraints: BoxConstraints.expand());
+      ),
+    );
 
     Widget body;
     if (widget.channelList.isEmpty) {

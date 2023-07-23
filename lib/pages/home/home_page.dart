@@ -71,8 +71,8 @@ class _HomePageState extends State<HomePage> {
     return AppBar(
         title: Text(
           _viewModel.tabIndex == 0
-              ? "ลิสต์วิดีโอ VTuber ไทย"
-              : "ลิสต์แชนแนล VTuber ไทย",
+              ? "ลิสต์แชนแนล VTuber ไทย"
+              : "ลิสต์วิดีโอ VTuber ไทย",
           style: TextStyle(fontFamily: ThaiText.kanit),
         ),
         actions: [
@@ -100,9 +100,9 @@ class _HomePageState extends State<HomePage> {
           currentIndex: _viewModel.tabIndex,
           items: [
             BottomNavigationBarItem(
-                icon: Icon(Icons.ondemand_video), label: "วิดีโอ"),
-            BottomNavigationBarItem(
                 icon: Icon(Icons.person_pin), label: "แชนแนล"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.ondemand_video), label: "วิดีโอ"),
           ],
           onTap: (index) {
             MyApp.analytics.sendAnalyticsEvent(
@@ -141,18 +141,21 @@ class _HomePageState extends State<HomePage> {
     // Attach `key` here to force reinit the page therefore passing new value from the viewModel.
     // REF: https://www.raywenderlich.com/22416843-unlocking-your-flutter-widgets-with-keys#toc-anchor-006
     if (_viewModel.tabIndex == 0) {
-      return VideoRankingContainerPage(
-          originType: _viewModel.originType,
+      return ChannelRankingPage(
+          channelList: _viewModel.getFilteredChannelList(channelList),
           didScrollDown: () => {_viewModel.isBottomNavigationBarHidden = true},
           didScrollUp: () => {_viewModel.isBottomNavigationBarHidden = false},
-          key: Key(
-              "VideoRankingContainerPage_" + _viewModel.originType.toString()));
+          key: Key("ChannelRankingPage_" +
+              _viewModel
+                  .getFilteredChannelList(channelList)
+                  .length
+                  .toString()));
     }
-    return ChannelRankingPage(
-        channelList: _viewModel.getFilteredChannelList(channelList),
+    return VideoRankingContainerPage(
+        originType: _viewModel.originType,
         didScrollDown: () => {_viewModel.isBottomNavigationBarHidden = true},
         didScrollUp: () => {_viewModel.isBottomNavigationBarHidden = false},
-        key: Key("ChannelRankingPage_" +
-            _viewModel.getFilteredChannelList(channelList).length.toString()));
+        key: Key(
+            "VideoRankingContainerPage_" + _viewModel.originType.toString()));
   }
 }
