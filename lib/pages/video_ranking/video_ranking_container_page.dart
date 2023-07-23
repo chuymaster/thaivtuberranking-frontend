@@ -66,10 +66,8 @@ class _VideoRankingContainerPageState extends State<VideoRankingContainerPage>
         child: Material(
           child: TabBar(
             isScrollable: true,
-            indicatorColor: Colors.orangeAccent,
             tabs: _tabBarTabs,
           ),
-          color: Theme.of(context).colorScheme.primary,
         ),
         constraints: BoxConstraints.expand());
 

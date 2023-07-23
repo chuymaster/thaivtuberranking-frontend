@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget get _bottomNavigationBar {
     return Container(
-        height: _viewModel.isBottomNavigationBarHidden ? 0 : 56,
+        height: _viewModel.isBottomNavigationBarHidden ? 0 : 60,
         child: BottomNavigationBar(
           currentIndex: _viewModel.tabIndex,
           items: [

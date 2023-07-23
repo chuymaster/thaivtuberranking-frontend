@@ -169,12 +169,13 @@ class _ChannelRegistrationPageState extends State<ChannelRegistrationPage> {
   }
 
   Widget get _submitButton {
-    return ElevatedButton(
+    return FilledButton(
         child: ThaiText(
-          text: "ส่งข้อมูล",
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-        ),
+            text: "ส่งข้อมูล",
+            fontWeight: FontWeight.bold,
+            color: _viewModel.isRegisterButtonEnabled
+                ? Theme.of(context).colorScheme.onPrimary
+                : Theme.of(context).colorScheme.onSecondary),
         onPressed: _viewModel.isRegisterButtonEnabled
             ? () {
                 MyApp.analytics.sendAnalyticsEvent(

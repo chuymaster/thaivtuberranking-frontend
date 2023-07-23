@@ -72,10 +72,8 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
         child: Material(
           child: TabBar(
             isScrollable: true,
-            indicatorColor: Colors.orangeAccent,
             tabs: _tabs,
           ),
-          color: Theme.of(context).colorScheme.primary,
         ),
         constraints: BoxConstraints.expand());
 
@@ -124,6 +122,7 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
 
   Widget _buildTabBarView(int filterIndex) {
     PageSelection pageSelection = PageSelection(
+      context: context,
       currentPageNumber: _viewModel.currentPageNumber,
       maxPageNumber: _viewModel.maxPageNumber,
       onPageChanged: (destinationPageNumber) {
