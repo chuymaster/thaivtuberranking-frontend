@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PageSelection extends StatelessWidget {
+  final BuildContext context;
   final int currentPageNumber;
   final int maxPageNumber;
 
@@ -9,6 +10,7 @@ class PageSelection extends StatelessWidget {
 
   const PageSelection(
       {super.key,
+      required this.context,
       required this.currentPageNumber,
       required this.maxPageNumber,
       required this.onPageChanged});
@@ -56,23 +58,24 @@ class PageSelection extends StatelessWidget {
         children: buttons,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       ),
-      padding: EdgeInsets.all(4),
+      padding: EdgeInsets.all(16),
     );
   }
 
   Widget buildPageButton(int pageNumber) {
     final ButtonStyle buttonStyle = ElevatedButton.styleFrom(
-        textStyle: TextStyle(color: Colors.white),
-        backgroundColor:
-            (pageNumber == currentPageNumber) ? Colors.blue : Colors.grey[600],
+        textStyle: TextStyle(
+            color: (pageNumber == currentPageNumber)
+                ? Theme.of(context).colorScheme.onPrimary
+                : Theme.of(context).colorScheme.onBackground),
+        backgroundColor: (pageNumber == currentPageNumber)
+            ? Theme.of(context).colorScheme.primaryContainer
+            : Theme.of(context).colorScheme.background,
         shape: CircleBorder());
-    return SizedBox(
-      width: 50,
-      child: ElevatedButton(
-          child: Text('$pageNumber'),
-          style: buttonStyle,
-          onPressed: () => {onPageChanged(pageNumber)}),
-    );
+    return ElevatedButton(
+        child: Text('$pageNumber'),
+        style: buttonStyle,
+        onPressed: () => {onPageChanged(pageNumber)});
   }
 
   @override

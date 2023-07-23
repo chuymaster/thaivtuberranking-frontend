@@ -7,11 +7,11 @@ enum Filter {
   String toString() {
     switch (this) {
       case Subscriber:
-        return "เรียงตามจำนวนผู้ติดตาม";
+        return "ผู้ติดตาม";
       case View:
-        return "เรียงตามจำนวนการดู";
+        return "Views";
       case PublishedDate:
-        return "เรียงตามวันเปิดแชนแนลล่าสุด";
+        return "วันเปิดแชนแนล";
       default:
         throw Exception("Unknown enum type $this");
     }

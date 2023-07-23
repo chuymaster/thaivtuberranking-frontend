@@ -33,10 +33,10 @@ class ChannelRegistrationCompletePage extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.all(8),
                     ),
-                    ElevatedButton(
+                    FilledButton(
                       child: ThaiText(
                         text: "กลับสู่หน้าแรก",
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.onPrimary,
                       ),
                       onPressed: () {
                         // ไม่ให้กลับมาหน้านี้อีกรอบ https://stackoverflow.com/a/46713257/10322917

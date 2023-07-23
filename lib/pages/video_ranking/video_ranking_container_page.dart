@@ -27,16 +27,10 @@ class _VideoRankingContainerPageState extends State<VideoRankingContainerPage>
   late TabController _tabController;
 
   final List<Tab> _tabBarTabs = [
-    Tab(text: "Live/Coming Soon"),
-    Tab(
-      text: "24 ชั่วโมงที่ผ่านมา",
-    ),
-    Tab(
-      text: "3 วันที่ผ่านมา",
-    ),
-    Tab(
-      text: "7 วันที่ผ่านมา",
-    )
+    Tab(text: "Live"),
+    Tab(text: "24 ชม."),
+    Tab(text: "3 วัน"),
+    Tab(text: "7 วัน")
   ];
 
   int _tabBarInitialIndex = 0;
@@ -62,16 +56,10 @@ class _VideoRankingContainerPageState extends State<VideoRankingContainerPage>
 
   @override
   Widget build(BuildContext context) {
-    var tabBar = Container(
-        child: Material(
-          child: TabBar(
-            isScrollable: true,
-            indicatorColor: Colors.orangeAccent,
-            tabs: _tabBarTabs,
-          ),
-          color: Theme.of(context).colorScheme.primary,
-        ),
-        constraints: BoxConstraints.expand());
+    var tabBar = Material(
+        child: TabBar(
+      tabs: _tabBarTabs,
+    ));
 
     var tabBody = TabBarView(children: [
       LivePage(
