@@ -54,10 +54,7 @@ class MyApp extends StatelessWidget {
         initialRoute: HomePage.route,
         title: Strings.siteTitle,
         onGenerateRoute: router.generateRoute,
-        theme: ThemeData(
-            primarySwatch: Colors.blue,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-            fontFamily: ThaiText.sarabun),
+        theme: ThemeData(useMaterial3: true, fontFamily: ThaiText.sarabun),
         home: HomePage(),
       ),
     ));
