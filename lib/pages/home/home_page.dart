@@ -95,16 +95,16 @@ class _HomePageState extends State<HomePage> {
 
   Widget get _bottomNavigationBar {
     return Container(
-        height: _viewModel.isBottomNavigationBarHidden ? 0 : 60,
-        child: BottomNavigationBar(
-          currentIndex: _viewModel.tabIndex,
-          items: [
-            BottomNavigationBarItem(
+        height: _viewModel.isBottomNavigationBarHidden ? 0 : 80,
+        child: NavigationBar(
+          selectedIndex: _viewModel.tabIndex,
+          destinations: [
+            NavigationDestination(
                 icon: Icon(Icons.person_pin), label: "แชนแนล"),
-            BottomNavigationBarItem(
+            NavigationDestination(
                 icon: Icon(Icons.ondemand_video), label: "วิดีโอ"),
           ],
-          onTap: (index) {
+          onDestinationSelected: (index) {
             MyApp.analytics.sendAnalyticsEvent(
                 AnalyticsEvent.changeBottomTab, {"index": index});
             _viewModel.tabIndex = index;
