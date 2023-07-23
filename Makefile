@@ -15,3 +15,6 @@ build-for-release: # Build the app for release
 
 build-mock: # Generate http mocks
 	flutter pub run build_runner build
+
+upgrade-major: # upgrade major versions of pub
+	flutter pub upgrade --major-versions
