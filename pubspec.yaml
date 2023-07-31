@@ -39,7 +39,7 @@ dependencies:
   syncfusion_flutter_charts: ^22.1.39
   provider: ^6.0.5
   firebase_ui_auth: ^1.6.1
-  firebase_ui_oauth: ^1.4.6
+  firebase_ui_oauth: ^1.4.7
   firebase_ui_oauth_google: ^1.2.6
 
 dev_dependencies:
