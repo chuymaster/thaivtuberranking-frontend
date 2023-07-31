@@ -245,26 +245,26 @@ packages:
     dependency: transitive
     description:
       name: firebase_auth
-      sha256: acfbe55bc23e94ccc7228b7fc7b9abc0005597c1de226f6e3a0103ac29728fbe
+      sha256: "49fd35ce06f2530dd460e5dc123235731cb61dd7c76b0af4b6e190404880d04d"
       url: "https://pub.dev"
     source: hosted
-    version: "4.7.1"
+    version: "4.7.2"
   firebase_auth_platform_interface:
     dependency: transitive
     description:
       name: firebase_auth_platform_interface
-      sha256: "4ab0a8997994db2b76bf0652689d7908ca935a99314857c683251bc23d31c287"
+      sha256: "817f3ceb84ef5e9adaaf50cf7a19255f6ffcdd12c6f9e9aa4cf00fc7f2eb3cfb"
       url: "https://pub.dev"
     source: hosted
-    version: "6.16.0"
+    version: "6.16.1"
   firebase_auth_web:
     dependency: transitive
     description:
       name: firebase_auth_web
-      sha256: "2e694a612a0739c0cf5f426d515dda37ee5827bab211d16e76bcad6a082925eb"
+      sha256: e9044778287f1ff8f9f4cee7e247b03ec87bb8977e0e65ad27dc337e196132e8
       url: "https://pub.dev"
     source: hosted
-    version: "5.6.1"
+    version: "5.6.2"
   firebase_core:
     dependency: "direct main"
     description:
@@ -309,10 +309,10 @@ packages:
     dependency: "direct main"
     description:
       name: firebase_ui_auth
-      sha256: "307f2a9f4ba33a8fd5b73ac7403982027c302789c7cbf336432e1235f242e3a1"
+      sha256: e439571fcad7ed48450eed8d64c70b93765526b876327055469806a51101eff0
       url: "https://pub.dev"
     source: hosted
-    version: "1.6.1"
+    version: "1.6.2"
   firebase_ui_localizations:
     dependency: transitive
     description:
@@ -325,18 +325,18 @@ packages:
     dependency: "direct main"
     description:
       name: firebase_ui_oauth
-      sha256: "666a6831e93c3dc30e8a69acfdd665d9c630d34cdc0d797f86f5c0fc4c32c4f9"
+      sha256: "2cbe5a8996134f1a57205a5ebfa5863c5d599c03a07aae70867de2ecdfbbde0e"
       url: "https://pub.dev"
     source: hosted
-    version: "1.4.6"
+    version: "1.4.7"
   firebase_ui_oauth_google:
     dependency: "direct main"
     description:
       name: firebase_ui_oauth_google
-      sha256: "4f4019a25b3ac19da5b955cd7951ae3b79002094929d01f4366f01e092267b8e"
+      sha256: "0e255ced67023871040b3d349c966a281a54ce1a093128733ccbd0a6b00a95d1"
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.6"
+    version: "1.2.7"
   firebase_ui_shared:
     dependency: transitive
     description:
