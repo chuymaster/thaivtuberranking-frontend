@@ -15,7 +15,7 @@ class RealityAdListTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(45),
           child: Image.asset('assets/images/reality_app_icon.png')),
       padding: EdgeInsets.fromLTRB(0, 4, 0, 0),
-      width: 80.0,
+      width: 90.0,
     );
 
     return Container(
@@ -34,9 +34,7 @@ class RealityAdListTile extends StatelessWidget {
                     text: 'REALITY - Become an Anime Avatar',
                     fontWeight: FontWeight.bold,
                     overflow: TextOverflow.ellipsis),
-                ThaiText(
-                    text:
-                        '[โฆษณา] สร้างอวาตาร์อนิเมะมาไลฟ์เหมือน VTuber ด้วยสมาร์ทโฟนกัน!'),
+                ThaiText(text: 'สร้างอวาตาร์อนิเมะมาไลฟ์แบบ VTuber เลย!'),
               ],
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
