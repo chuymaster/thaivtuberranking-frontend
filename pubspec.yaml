@@ -31,16 +31,16 @@ dependencies:
   url_launcher: ^6.1.8
   transparent_image: ^2.0.1
   intl: ^0.18.0
-  firebase_core: ^2.15.0
   firebase_analytics: ^10.4.5
+  firebase_core: ^2.15.1
   http: ^1.1.0
   oktoast: ^3.0.0
   search_page: ^2.0.0+1
-  syncfusion_flutter_charts: ^22.2.8
+  syncfusion_flutter_charts: ^22.2.9
   provider: ^6.0.5
   firebase_ui_auth: ^1.6.2
   firebase_ui_oauth: ^1.4.6
-  firebase_ui_oauth_google: ^1.2.7
+  firebase_ui_oauth_google: ^1.2.8
 
 dev_dependencies:
   flutter_test:
