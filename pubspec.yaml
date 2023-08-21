@@ -32,7 +32,7 @@ dependencies:
   transparent_image: ^2.0.1
   intl: ^0.18.0
   firebase_core: ^2.15.0
-  firebase_analytics: ^10.4.4
+  firebase_analytics: ^10.4.5
   http: ^1.1.0
   oktoast: ^3.0.0
   search_page: ^2.0.0+1
