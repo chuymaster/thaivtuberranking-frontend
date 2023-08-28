@@ -38,7 +38,7 @@ dependencies:
   search_page: ^2.0.0+1
   syncfusion_flutter_charts: ^22.2.10
   provider: ^6.0.5
-  firebase_ui_auth: ^1.6.4
+  firebase_ui_auth: ^1.6.5
   firebase_ui_oauth: ^1.4.6
   firebase_ui_oauth_google: ^1.2.8
 
