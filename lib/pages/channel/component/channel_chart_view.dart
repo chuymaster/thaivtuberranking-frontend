@@ -23,6 +23,8 @@ class _ChannelChartViewState extends State<ChannelChartView> {
   late TooltipBehavior _tooltipBehavior =
       TooltipBehavior(enable: true, shared: true);
 
+  String _viewsAxis = 'viewsAxis';
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -38,6 +40,24 @@ class _ChannelChartViewState extends State<ChannelChartView> {
               yValueMapper: (ChartDataPoint data, _) => data.subscribers,
               dataLabelSettings: DataLabelSettings(isVisible: false),
               enableTooltip: true),
+          LineSeries<ChartDataPoint, DateTime>(
+              name: 'Views',
+              color: Colors.redAccent,
+              dataSource: _chartData,
+              xValueMapper: (ChartDataPoint data, _) => data.date,
+              yValueMapper: (ChartDataPoint data, _) => data.views,
+              yAxisName: _viewsAxis,
+              dataLabelSettings: DataLabelSettings(isVisible: false),
+              enableTooltip: true)
+        ],
+        // adding multiple axis
+        axes: <ChartAxis>[
+          NumericAxis(
+              name: _viewsAxis,
+              opposedPosition: true,
+              title: AxisTitle(text: 'Views'),
+              labelFormat: '{value}',
+              numberFormat: NumberFormat.compact()),
         ],
         primaryXAxis: DateTimeAxis(dateFormat: DateFormat('d/M/yyyy')),
         primaryYAxis: NumericAxis(
