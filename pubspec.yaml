@@ -40,7 +40,7 @@ dependencies:
   provider: ^6.1.1
   firebase_ui_auth: ^1.8.0
   firebase_ui_oauth: ^1.4.15
-  firebase_ui_oauth_google: ^1.2.14
+  firebase_ui_oauth_google: ^1.2.15
 
 dev_dependencies:
   flutter_test:
