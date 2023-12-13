@@ -10,9 +10,9 @@ enum OriginType {
   String toString() {
     switch (this) {
       case OriginalOnly:
-        return L10n.fullVTuber;
+        return L10n.strings.fullVTuber;
       case All:
-        return L10n.allVTuber;
+        return L10n.strings.allVTuber;
       default:
         throw Exception("Unknown enum type $this");
     }
@@ -32,9 +32,9 @@ enum OriginType {
   String get tooltip {
     switch (this) {
       case OriginalOnly:
-        return "กำลังแสดงเฉพาะ " + L10n.fullVTuber;
+        return "กำลังแสดงเฉพาะ " + L10n.strings.fullVTuber;
       case All:
-        return "กำลังแสดง " + L10n.allVTuber;
+        return "กำลังแสดง " + L10n.strings.allVTuber;
       default:
         throw Exception("Unknown enum type $this");
     }

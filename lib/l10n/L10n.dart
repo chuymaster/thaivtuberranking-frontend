@@ -13,28 +13,8 @@ class L10n {
   static void setLocalizations(AppLocalizations localizations) {
     _instance._localizations = localizations;
   }
-  
-  static String get fullVTuber {
-    return _instance._localizations.fullVTuber;
-  }
 
-  static String get allVTuber {
-    return _instance._localizations.allVTuber;
-  }
-
-  static String get megumin {
-    return _instance._localizations.megumin;
-  }
-
-
-  static String getString(String key) {
-    switch (key) {
-      case 'fullVTuber':
-        return _instance._localizations.fullVTuber;
-      case 'allVTuber':
-        return _instance._localizations.allVTuber;
-      default:
-        throw Exception("Localization key not found: $key");
-    }
+  static AppLocalizations get strings {
+    return _instance._localizations;
   }
 }

@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
         initialRoute: HomePage.route,
         onGenerateTitle: (context) {
           L10n.setLocalizations(AppLocalizations.of(context)!);
-          return AppLocalizations.of(context)!.siteTitle;
+          return L10n.strings.siteTitle;
         } ,
         onGenerateRoute: router.generateRoute,
         theme: ThemeData(useMaterial3: true, fontFamily: ThaiText.sarabun),
