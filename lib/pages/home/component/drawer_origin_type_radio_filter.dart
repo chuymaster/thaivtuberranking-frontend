@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
-import 'package:thaivtuberranking/common/strings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../entity/origin_type.dart';
 
 class DrawerOriginTypeRadioFilter extends StatefulWidget {
@@ -49,7 +49,7 @@ class _DrawerOriginTypeRadioFilterState
                     }
                   },
                 ),
-                ThaiText(text: Strings.fullVTuber),
+                ThaiText(text: AppLocalizations.of(context)!.fullVTuber),
               ],
             ),
             Row(
@@ -65,7 +65,7 @@ class _DrawerOriginTypeRadioFilterState
                     }
                   },
                 ),
-                ThaiText(text: Strings.allVTuber),
+                ThaiText(text: AppLocalizations.of(context)!.allVTuber),
               ],
             )
           ],
@@ -74,7 +74,7 @@ class _DrawerOriginTypeRadioFilterState
           padding: EdgeInsets.fromLTRB(16, 8, 8, 8),
           child: ThaiText(
               text: "'" +
-                  Strings.fullVTuber +
+                  AppLocalizations.of(context)!.fullVTuber +
                   "' หมายถึงแชนแนลที่เดบิวต์ตัวเองเป็น VTuber และทำคอนเทนต์ VTuber ตั้งแต่ต้น ไม่ได้เปลี่ยนมาจากคอนเทนต์อื่น",
               fontSize: 12,
               color: Colors.black54),

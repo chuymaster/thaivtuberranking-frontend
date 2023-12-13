@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:thaivtuberranking/common/strings.dart';
 import 'package:thaivtuberranking/services/url_launcher.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DescriptionBox extends StatelessWidget {
   static TextStyle _defaultStyle = TextStyle(color: Colors.black);
@@ -55,15 +55,15 @@ class DescriptionBox extends StatelessWidget {
             style: _titleStyle,
           ),
           _columnSpace,
-          Text("1. ${Strings.fullVTuber}"),
+          Text("1. ${AppLocalizations.of(context)!.fullVTuber}"),
           _columnSpace,
           Text(
               "- แชนแนลที่นำแสดงโดยโมเดล VTuber (โมเดล Live2D หรือ 3D) เป็นหลักตั้งแต่คอนเทนต์แรก และมีโมเดล VTuber เป็นตัวเอกของคอนเทนต์"),
           _columnSpace,
-          Text("2. ${Strings.allVTuber}"),
+          Text("2. ${AppLocalizations.of(context)!.allVTuber}"),
           _columnSpace,
           Text(
-              "- แชนแนลที่นำโมเดล VTuber มาแสดงเป็นหลักหลังจากเปิดแชนแนลและอัพโหลดคอนเทนต์อื่นไปแล้ว จะปรากฏในการรายชื่อหมวด ${Strings.allVTuber}เท่านั้น"),
+              "- แชนแนลที่นำโมเดล VTuber มาแสดงเป็นหลักหลังจากเปิดแชนแนลและอัพโหลดคอนเทนต์อื่นไปแล้ว จะปรากฏในการรายชื่อหมวด ${AppLocalizations.of(context)!.allVTuber} เท่านั้น"),
           _columnSpace,
           Text(
               "ทั้งสองกรณีต้องเป็นแชนแนลที่ทำโดยคนไทย มุ่งเน้นกลุ่มผู้ชมคนไทยเป็นหลัก และมีคอนเทนต์อัพโหลดแล้ว ทีมงานจึงจะสามารถพิจารณาได้"),

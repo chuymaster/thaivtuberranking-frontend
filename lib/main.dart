@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
-import 'package:thaivtuberranking/common/strings.dart';
 import 'package:thaivtuberranking/providers/channel_list/channel_list_provider.dart';
 import 'package:thaivtuberranking/providers/channel_list/channel_list_repository.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
@@ -13,6 +12,8 @@ import 'common/component/thai_text.dart';
 import 'pages/home/home_page.dart';
 import 'services/route/router.dart' as router;
 import 'package:http/http.dart' as http;
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Future<void> main() async {
   await Firebase.initializeApp(
@@ -52,10 +53,13 @@ class MyApp extends StatelessWidget {
           FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance)
         ],
         initialRoute: HomePage.route,
-        title: Strings.siteTitle,
+        onGenerateTitle: (context) => AppLocalizations.of(context)!.siteTitle,
         onGenerateRoute: router.generateRoute,
         theme: ThemeData(useMaterial3: true, fontFamily: ThaiText.sarabun),
         home: HomePage(),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        // locale: Locale('th'),
       ),
     ));
   }
