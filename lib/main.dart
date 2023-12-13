@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
+import 'package:thaivtuberranking/l10n/L10n.dart';
 import 'package:thaivtuberranking/providers/channel_list/channel_list_provider.dart';
 import 'package:thaivtuberranking/providers/channel_list/channel_list_repository.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
   MyApp() {
     _initAnalytics();
     _channelListProvider.getChannelList();
+    
   }
 
   @override
@@ -53,7 +55,10 @@ class MyApp extends StatelessWidget {
           FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance)
         ],
         initialRoute: HomePage.route,
-        onGenerateTitle: (context) => AppLocalizations.of(context)!.siteTitle,
+        onGenerateTitle: (context) {
+          L10n.setLocalizations(AppLocalizations.of(context)!);
+          return AppLocalizations.of(context)!.siteTitle;
+        } ,
         onGenerateRoute: router.generateRoute,
         theme: ThemeData(useMaterial3: true, fontFamily: ThaiText.sarabun),
         home: HomePage(),

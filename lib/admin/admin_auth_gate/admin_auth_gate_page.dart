@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
 import 'package:flutter/material.dart';
+import 'package:thaivtuberranking/l10n/L10n.dart';
 
 import '../../common/component/confirm_dialog.dart';
 import '../../main.dart';
@@ -9,7 +10,6 @@ import '../../services/analytics.dart';
 import '../authentication.dart';
 import '../channel_request/channel_request_page.dart';
 import '../channel_management/channel_management_page.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AdminAuthGatePage extends StatelessWidget {
   static const String route = '/megumin';
@@ -49,7 +49,7 @@ class AdminAuthGatePage extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            title: Text(AppLocalizations.of(context)!.megumin),
+            title: Text(L10n.megumin),
             bottom: TabBar(
               tabs: [
                 Tab(

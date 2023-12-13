@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:thaivtuberranking/common/strings.dart';
+import 'package:thaivtuberranking/l10n/L10n.dart';
 
 /// ประเภทที่มาของแชนแนล - ออริจินัล/รีแบรนด์
 enum OriginType {
@@ -10,9 +10,9 @@ enum OriginType {
   String toString() {
     switch (this) {
       case OriginalOnly:
-        return Strings.fullVTuber;
+        return L10n.fullVTuber;
       case All:
-        return Strings.allVTuber;
+        return L10n.allVTuber;
       default:
         throw Exception("Unknown enum type $this");
     }
@@ -32,9 +32,9 @@ enum OriginType {
   String get tooltip {
     switch (this) {
       case OriginalOnly:
-        return "กำลังแสดงเฉพาะ " + Strings.fullVTuber;
+        return "กำลังแสดงเฉพาะ " + L10n.fullVTuber;
       case All:
-        return "กำลังแสดง " + Strings.allVTuber;
+        return "กำลังแสดง " + L10n.allVTuber;
       default:
         throw Exception("Unknown enum type $this");
     }
