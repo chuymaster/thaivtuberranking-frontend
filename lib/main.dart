@@ -13,7 +13,6 @@ import 'common/component/thai_text.dart';
 import 'pages/home/home_page.dart';
 import 'services/route/router.dart' as router;
 import 'package:http/http.dart' as http;
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Future<void> main() async {
@@ -64,7 +63,6 @@ class MyApp extends StatelessWidget {
         home: HomePage(),
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
-        // locale: Locale('th'),
       ),
     ));
   }
