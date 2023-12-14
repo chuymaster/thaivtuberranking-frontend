@@ -49,7 +49,7 @@ class AdminAuthGatePage extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            title: Text(L10n.strings.megumin),
+            title: Text(L10n.strings.admin__title),
             bottom: TabBar(
               tabs: [
                 Tab(

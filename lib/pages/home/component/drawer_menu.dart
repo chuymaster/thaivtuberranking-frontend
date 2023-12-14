@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
+import 'package:thaivtuberranking/l10n/L10n.dart';
 import 'package:thaivtuberranking/pages/home/component/drawer_activity_type_radio_filter.dart';
 import 'package:thaivtuberranking/pages/home/entity/activity_type.dart';
 import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
@@ -45,14 +46,13 @@ class _DrawerMenuState extends State<DrawerMenu> {
         children: [
           UserAccountsDrawerHeader(
             accountName: ThaiText(
-              text: prefix + "Thai VTubers Directory",
+              text: L10n.strings.navigation_menu_info_site_title(prefix),
               color: Colors.white,
               fontWeight: FontWeight.bold,
               fontFamily: ThaiText.kanit,
             ),
             accountEmail: ThaiText(
-              text:
-                  "เว็บนี้จัดทำเพื่อส่งเสริมวงการ VTuber ไทย\nโดยการเรียบเรียงแชนแนล VTuber คนไทยบนยูทูป",
+              text: L10n.strings.navigation_menu_info_site_description,
               color: Colors.white,
               fontSize: 13,
             ),
@@ -66,7 +66,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
               child: ListTile(
                   leading: Icon(Icons.access_time),
                   title: ThaiText(
-                    text: "ข้อมูลอัปเดต " + widget.lastUpdatedAt,
+                    text: L10n.strings.navigation_menu_info_last_updated_at(widget.lastUpdatedAt),
                     fontSize: 13,
                   ))),
           Card(

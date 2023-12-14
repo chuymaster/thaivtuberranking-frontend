@@ -8,8 +8,8 @@ void main() {
       await tester.pumpWidget(L10n.makeMockWidget(() {}));
       await tester.pumpAndSettle();
 
-      expect(OriginType.OriginalOnly.toString(), L10n.strings.fullVTuber);
-      expect(OriginType.All.toString(), L10n.strings.allVTuber);
+      expect(OriginType.OriginalOnly.toString(), L10n.strings.common_type_full_vtuber);
+      expect(OriginType.All.toString(), L10n.strings.common_type_all_vtuber);
     });
     test('parameterValue', () {
       expect(OriginType.OriginalOnly.parameterValue, "1");

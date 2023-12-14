@@ -1,6 +1,9 @@
 {
-  "site_title": "ลิสต์รายชื่อ VTuber (วีทูปเบอร์) ไทย",
-  "fullVTuber": "VTuber เต็มตัว",
-  "allVTuber": "VTuber ทั้งหมด",
-  "megumin": "我が名はめぐみん！"
+  "app__site_title": "ลิสต์รายชื่อ VTuber (วีทูปเบอร์) ไทย",
+  "common_type_full_vtuber": "VTuber เต็มตัว",
+  "common_type_all_vtuber": "VTuber ทั้งหมด",
+  "admin__title": "我が名はめぐみん！",
+  "navigation_menu_info_last_updated_at": "ข้อมูลอัปเดต {lastUpdatedAt}",
+  "navigation_menu_info_site_title": "{appEnvironment}Thai VTubers Directory",
+  "navigation_menu_info_site_description": "เว็บนี้จัดทำเพื่อส่งเสริมวงการ VTuber ไทย\\nโดยการเรียบเรียงแชนแนล VTuber คนไทยบนยูทูป"
 }

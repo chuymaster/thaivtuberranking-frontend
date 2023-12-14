@@ -1,6 +1,9 @@
 {
-  "site_title": "Thai VTubers (Virtual Youtubers) Directory",
-  "fullVTuber": "Original VTuber",
-  "allVTuber": "All VTuber",
-  "megumin": "我が名はめぐみん！"
+  "app__site_title": "Thai VTubers (Virtual Youtubers) Directory",
+  "common_type_full_vtuber": "Original VTuber",
+  "common_type_all_vtuber": "All VTuber",
+  "admin__title": "我が名はめぐみん！",
+  "navigation_menu_info_last_updated_at": "Last updated: {lastUpdatedAt}",
+  "navigation_menu_info_site_title": "{appEnvironment}Thai VTubers Directory",
+  "navigation_menu_info_site_description": "Find your favorite Thai VTubers"
 }
