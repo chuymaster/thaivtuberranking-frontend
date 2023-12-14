@@ -24,6 +24,8 @@ See https://github.com/chuymaster/thaivtuberranking-docs
 
 Use `L10n` helper class to localize strings. Do not use hard-coded strings.
 
+[Translation Sheet](https://docs.google.com/spreadsheets/d/19jNewC37ThjRGWCsf2ZScjiJtmKtincxIK3l0F5XuGc/edit#gid=0)
+
 ## Automated Deployment
 
 - Auto trigger deploy to Netlify production site when `production` branch is updated. Host: https://vtuber.chuysan.com/#/
