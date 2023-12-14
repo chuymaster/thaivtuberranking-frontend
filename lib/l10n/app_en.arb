@@ -5,5 +5,16 @@
   "admin__title": "我が名はめぐみん！",
   "navigation_menu_info_last_updated_at": "Last updated: {lastUpdatedAt}",
   "navigation_menu_info_site_title": "{appEnvironment}Thai VTubers Directory",
-  "navigation_menu_info_site_description": "Find your favorite Thai VTubers"
+  "navigation_menu_info_site_description": "Find your favorite Thai VTubers!",
+  "navigation_menu_menu_title": "Menu",
+  "navigation_menu_menu_add_new_channel": "Add new channel",
+  "navigation_menu_menu_report_problems": "Report Problems / Suggest Features",
+  "navigation_menu_menu_deletion_criterias": "Automatic Channel Deletion Criterias",
+  "navigation_menu_menu_disclaimer": "Disclaimer",
+  "navigation_menu_menu_discover_thai_vtuber": "Discover Thai VTubers Info",
+  "navigation_menu_menu_for_developers": "For Developers",
+  "navigation_menu_menu_api_document": "API Document",
+  "navigation_menu_menu_client_app_repo": "Client App Repository",
+  "navigation_menu_menu_release_notes": "Release Notes",
+  "navigation_menu_menu_developer_blog": "Developer Blog"
 }

@@ -5,5 +5,16 @@
   "admin__title": "我が名はめぐみん！",
   "navigation_menu_info_last_updated_at": "ข้อมูลอัปเดต {lastUpdatedAt}",
   "navigation_menu_info_site_title": "{appEnvironment}Thai VTubers Directory",
-  "navigation_menu_info_site_description": "เว็บนี้จัดทำเพื่อส่งเสริมวงการ VTuber ไทย\\nโดยการเรียบเรียงแชนแนล VTuber คนไทยบนยูทูป"
+  "navigation_menu_info_site_description": "เว็บนี้จัดทำเพื่อส่งเสริมวงการ VTuber ไทย\\nโดยการเรียบเรียงแชนแนล VTuber คนไทยบนยูทูป",
+  "navigation_menu_menu_title": "เมนู",
+  "navigation_menu_menu_add_new_channel": "แจ้งเพิ่มแชนแนล",
+  "navigation_menu_menu_report_problems": "แจ้งปัญหา/แจ้งข้อมูลแชนแนลผิด/เสนอฟีเจอร์",
+  "navigation_menu_menu_deletion_criterias": "เกณฑ์การลบแชนแนลโดยอัตโนมัติ",
+  "navigation_menu_menu_disclaimer": "คำสงวนสิทธิ์",
+  "navigation_menu_menu_discover_thai_vtuber": "แหล่งข้อมูล VTuber ไทย",
+  "navigation_menu_menu_for_developers": "ข้อมูลสำหรับนักพัฒนา",
+  "navigation_menu_menu_api_document": "API Document",
+  "navigation_menu_menu_client_app_repo": "Client App Repository",
+  "navigation_menu_menu_release_notes": "Release Notes",
+  "navigation_menu_menu_developer_blog": "บล็อกผู้พัฒนา"
 }

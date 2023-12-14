@@ -5,5 +5,16 @@
   "admin__title": "我が名はめぐみん！",
   "navigation_menu_info_last_updated_at": "最終更新  {lastUpdatedAt}",
   "navigation_menu_info_site_title": "{appEnvironment}Thai VTubers Directory",
-  "navigation_menu_info_site_description": "お気に入りのタイのVTuberを見つけよう！"
+  "navigation_menu_info_site_description": "お気に入りのタイのVTuberを見つけよう！",
+  "navigation_menu_menu_title": "メニュー",
+  "navigation_menu_menu_add_new_channel": "チャンネル追加",
+  "navigation_menu_menu_report_problems": "お問い合わせ・要望",
+  "navigation_menu_menu_deletion_criterias": "チャンネル自動削除基準",
+  "navigation_menu_menu_disclaimer": "免責事項",
+  "navigation_menu_menu_discover_thai_vtuber": "タイのVTuber情報を探す",
+  "navigation_menu_menu_for_developers": "開発者向け情報",
+  "navigation_menu_menu_api_document": "APIドキュメント",
+  "navigation_menu_menu_client_app_repo": "クライアントアプリレポジトリ",
+  "navigation_menu_menu_release_notes": "リリースノート",
+  "navigation_menu_menu_developer_blog": "作者ブログ"
 }
