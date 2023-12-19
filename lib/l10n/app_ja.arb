@@ -3,7 +3,7 @@
   "common_type_full_vtuber": "オリジナルVTuber",
   "common_type_all_vtuber": "全てのVTuber",
   "admin__title": "我が名はめぐみん！",
-  "navigation_menu_info_last_updated_at": "最終更新  {lastUpdatedAt}",
+  "navigation_menu_info_last_updated_at": "最終更新日 {lastUpdatedAt}",
   "navigation_menu_info_site_title": "{appEnvironment}Thai VTubers Directory",
   "navigation_menu_info_site_description": "お気に入りのタイのVTuberを見つけよう！",
   "navigation_menu_menu_title": "メニュー",
@@ -16,5 +16,18 @@
   "navigation_menu_menu_api_document": "APIドキュメント",
   "navigation_menu_menu_client_app_repo": "クライアントアプリレポジトリ",
   "navigation_menu_menu_release_notes": "リリースノート",
-  "navigation_menu_menu_developer_blog": "作者ブログ"
+  "navigation_menu_menu_developer_blog": "作者ブログ",
+  "announcement_text_delete_channel": "チャンネル削除告知",
+  "common_alert_error": "エラー",
+  "common_button_close": "閉じる",
+  "banner_text_reality": "REALITY - 顔出しナシのライブ配信",
+  "banner_description_reality": "スマホ一台で好きな姿に変身！",
+  "common_button_reload": "再読込",
+  "channel_button_copy_url": "このページのURLをコピー",
+  "channel_toast_copied_url": "コピーしました",
+  "channel_graph_description": "グラフ",
+  "channel_description_empty": "チャンネル説明なし",
+  "channel_info_subscribers_views": "登録者{subscribers}人\n再生{views}回",
+  "channel_info_updated_published": "最新動画 {updated}\nチャンネル開設日 {published}",
+  "channel_info_api": "API"
 }

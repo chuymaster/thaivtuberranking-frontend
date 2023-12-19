@@ -5,7 +5,7 @@
   "admin__title": "我が名はめぐみん！",
   "navigation_menu_info_last_updated_at": "ข้อมูลอัปเดต {lastUpdatedAt}",
   "navigation_menu_info_site_title": "{appEnvironment}Thai VTubers Directory",
-  "navigation_menu_info_site_description": "เว็บนี้จัดทำเพื่อส่งเสริมวงการ VTuber ไทย\\nโดยการเรียบเรียงแชนแนล VTuber คนไทยบนยูทูป",
+  "navigation_menu_info_site_description": "เว็บนี้จัดทำเพื่อส่งเสริมวงการ VTuber ไทย\nโดยการเรียบเรียงแชนแนล VTuber คนไทยบนยูทูป",
   "navigation_menu_menu_title": "เมนู",
   "navigation_menu_menu_add_new_channel": "แจ้งเพิ่มแชนแนล",
   "navigation_menu_menu_report_problems": "แจ้งปัญหา/แจ้งข้อมูลแชนแนลผิด/เสนอฟีเจอร์",
@@ -16,5 +16,18 @@
   "navigation_menu_menu_api_document": "API Document",
   "navigation_menu_menu_client_app_repo": "Client App Repository",
   "navigation_menu_menu_release_notes": "Release Notes",
-  "navigation_menu_menu_developer_blog": "บล็อกผู้พัฒนา"
+  "navigation_menu_menu_developer_blog": "บล็อกผู้พัฒนา",
+  "announcement_text_delete_channel": "ประกาศเรื่องการลบแชนแนล",
+  "common_alert_error": "Error",
+  "common_button_close": "ปิด",
+  "banner_text_reality": "REALITY - Become an Anime Avatar",
+  "banner_description_reality": "สร้างอวาตาร์อนิเมะมาไลฟ์แบบ VTuber เลย!",
+  "common_button_reload": "รีโหลด",
+  "channel_button_copy_url": "Copy URL ของหน้านี้",
+  "channel_toast_copied_url": "Copy URL แล้ว",
+  "channel_graph_description": "กราฟความเปลี่ยนแปลง",
+  "channel_description_empty": "ไม่มีคำอธิบาย",
+  "channel_info_subscribers_views": "ผู้ติดตาม {subscribers} คน\nดู {views} ครั้ง",
+  "channel_info_updated_published": "คลิปล่าสุด {updated}\nวันเปิดแชนแนล {published}",
+  "channel_info_api": "API"
 }

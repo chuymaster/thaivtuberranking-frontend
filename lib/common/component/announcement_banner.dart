@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
+import 'package:thaivtuberranking/l10n/L10n.dart';
 
 class AnnouncementBanner extends StatelessWidget {
   const AnnouncementBanner({super.key, required this.onPressed});
@@ -22,7 +23,7 @@ class AnnouncementBanner extends StatelessWidget {
                 Align(
                     alignment: Alignment.center,
                     child: ThaiText(
-                      text: 'ประกาศเรื่องการลบแชนแนล',
+                      text: L10n.strings.announcement_text_delete_channel,
                       color: Colors.white,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

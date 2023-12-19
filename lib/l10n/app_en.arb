@@ -16,5 +16,18 @@
   "navigation_menu_menu_api_document": "API Document",
   "navigation_menu_menu_client_app_repo": "Client App Repository",
   "navigation_menu_menu_release_notes": "Release Notes",
-  "navigation_menu_menu_developer_blog": "Developer Blog"
+  "navigation_menu_menu_developer_blog": "Developer Blog",
+  "announcement_text_delete_channel": "Announcement regarding channel delete",
+  "common_alert_error": "Error",
+  "common_button_close": "Close",
+  "banner_text_reality": "REALITY - Become an Anime Avatar",
+  "banner_description_reality": "Transform yourself and live like a VTuber!",
+  "common_button_reload": "Reload",
+  "channel_button_copy_url": "Copy the URL of this page",
+  "channel_toast_copied_url": "Copied URL",
+  "channel_graph_description": "Graph",
+  "channel_description_empty": "No description",
+  "channel_info_subscribers_views": "Subscribers: {subscribers}\nViews: {views}",
+  "channel_info_updated_published": "Latest video: {updated}\nChannel published: {published}",
+  "channel_info_api": "API"
 }
