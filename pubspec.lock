@@ -333,10 +333,10 @@ packages:
     dependency: "direct main"
     description:
       name: firebase_ui_oauth_google
-      sha256: "8b4ee91508214e6820075039c3490b4e99f41c041bd6285c14ed9dd35e566312"
+      sha256: e104760ec8f6cd32f310e84d8386d6ed626f5cce319d5129e41b764483b7aabd
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.15"
+    version: "1.2.16"
   firebase_ui_shared:
     dependency: transitive
     description:
@@ -417,10 +417,10 @@ packages:
     dependency: transitive
     description:
       name: google_sign_in
-      sha256: "23982b6a6b9e664bdc540488732d5760bc73e83ec74c2bd87cb690cfd357dd75"
+      sha256: "0b8787cb9c1a68ad398e8010e8c8766bfa33556d2ab97c439fb4137756d7308f"
       url: "https://pub.dev"
     source: hosted
-    version: "6.2.0"
+    version: "6.2.1"
   google_sign_in_android:
     dependency: transitive
     description:
