@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:thaivtuberranking/l10n/L10n.dart';
 
 class ErrorDialogView extends StatelessWidget {
   final String title;
