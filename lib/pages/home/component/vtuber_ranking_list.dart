@@ -5,6 +5,7 @@ import '../../../common/component/reality_app_banner.dart';
 import 'page_selection.dart';
 import '../entity/channel_info.dart';
 import 'package:transparent_image/transparent_image.dart';
+import 'package:thaivtuberranking/l10n/L10n.dart';
 
 class VTuberRankingList extends StatelessWidget {
   final List<ChannelInfo> itemList;
@@ -131,7 +132,7 @@ class RankingListTile extends StatelessWidget {
     );
 
     var rankText = displayRank > 0
-        ? 'อันดับ $displayRank ' + item.channelName
+        ? L10n.strings.channel_list_text_rank(displayRank, item.channelName)
         : item.channelName;
 
     return ListTile(
@@ -149,10 +150,9 @@ class RankingListTile extends StatelessWidget {
                   text: rankText,
                   fontWeight: FontWeight.bold,
                   overflow: TextOverflow.ellipsis),
-              ThaiText(text: 'ผู้ติดตาม $subscribers คน'),
-              ThaiText(text: 'ดู $views ครั้ง'),
+              ThaiText(text: L10n.strings.channel_info_subscribers_views(subscribers, views)),
               ThaiText(
-                  text: 'คลิปล่าสุด $updated\nวันเปิดแชนแนล $published',
+                  text: L10n.strings.channel_info_updated_published(published, updated),
                   fontSize: 12,
                   color: Colors.black54),
             ],

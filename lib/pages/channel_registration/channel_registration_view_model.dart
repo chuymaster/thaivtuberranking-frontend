@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/common/component/error_dialog.dart';
 import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
 import 'package:thaivtuberranking/services/result.dart';
-
+import 'package:thaivtuberranking/l10n/L10n.dart';
 import 'channel_registration_complete_page.dart';
 import 'channel_registration_repository.dart';
 
@@ -54,11 +54,11 @@ class ChannelRegistrationViewModel extends ChangeNotifier {
   String? validateFormValue(String? value, List<String> channelIdList) {
     if (value != null) {
       if (value.isEmpty) {
-        return 'โปรดกรอกแชนแนล ID';
+        return L10n.strings.channel_registration_error_id_required;
       } else if (!value.startsWith('UC')) {
-        return 'แชนแนล ID ต้องขึ้นต้นด้วย UC';
+        return L10n.strings.channel_registration_error_not_begin_with_uc;
       } else if (value.length != channelIdLength) {
-        return 'แชนแนล ID ต้องมีความยาว $channelIdLength ตัวอักษร';
+        return L10n.strings.channel_registration_error_length_mismatched(channelIdLength);
       } else if (channelIdList.contains(value)) {
         return ChannelRegistrationErrorMessage.alreadyAdded;
       }
@@ -88,7 +88,6 @@ class ChannelRegistrationViewModel extends ChangeNotifier {
 }
 
 class ChannelRegistrationErrorMessage {
-  static const String alreadyAdded = "แชนแนลนี้อยู่ในฐานข้อมูลแล้ว";
-  static const String failedToSubmit =
-      "เกิดปัญหาในการส่งข้อมูล กรุณาลองใหม่ในภายหลัง";
+  static String alreadyAdded = L10n.strings.channel_registration_error_already_existed;
+  static String failedToSubmit = L10n.strings.channel_registration_error_unknown;
 }

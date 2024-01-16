@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
+import 'package:thaivtuberranking/l10n/L10n.dart';
 import 'package:thaivtuberranking/pages/home/component/drawer_activity_type_radio_filter.dart';
 import 'package:thaivtuberranking/pages/home/entity/activity_type.dart';
 import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
@@ -45,14 +46,13 @@ class _DrawerMenuState extends State<DrawerMenu> {
         children: [
           UserAccountsDrawerHeader(
             accountName: ThaiText(
-              text: prefix + "Thai VTubers Directory",
+              text: L10n.strings.navigation_menu_info_site_title(prefix),
               color: Colors.white,
               fontWeight: FontWeight.bold,
               fontFamily: ThaiText.kanit,
             ),
             accountEmail: ThaiText(
-              text:
-                  "เว็บนี้จัดทำเพื่อส่งเสริมวงการ VTuber ไทย\nโดยการเรียบเรียงแชนแนล VTuber คนไทยบนยูทูป",
+              text: L10n.strings.navigation_menu_info_site_description,
               color: Colors.white,
               fontSize: 13,
             ),
@@ -66,7 +66,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
               child: ListTile(
                   leading: Icon(Icons.access_time),
                   title: ThaiText(
-                    text: "ข้อมูลอัปเดต " + widget.lastUpdatedAt,
+                    text: L10n.strings.navigation_menu_info_last_updated_at(widget.lastUpdatedAt),
                     fontSize: 13,
                   ))),
           Card(
@@ -100,18 +100,18 @@ class _DrawerMenuState extends State<DrawerMenu> {
               Container(
                 padding: EdgeInsets.fromLTRB(16, 8, 4, 8),
                 child: ThaiText(
-                  text: "เมนู",
+                  text: L10n.strings.navigation_menu_menu_title,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               ListTile(
-                title: ThaiText(text: "แจ้งเพิ่มแชนแนล"),
+                title: ThaiText(text: L10n.strings.navigation_menu_menu_add_new_channel),
                 trailing: Icon(Icons.add),
                 onTap: () => {widget.onTapAddChannelMenu()},
               ),
               ListTile(
                 title:
-                    ThaiText(text: "แจ้งปัญหา/แจ้งข้อมูลแชนแนลผิด/เสนอฟีเจอร์"),
+                    ThaiText(text: L10n.strings.navigation_menu_menu_report_problems),
                 trailing: Icon(Icons.open_in_new),
                 onTap: () {
                   var url = "https://twitter.com/chuymaster";
@@ -121,7 +121,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 },
               ),
               ListTile(
-                title: ThaiText(text: "เกณฑ์การลบแชนแนลโดยอัตโนมัติ"),
+                title: ThaiText(text: L10n.strings.navigation_menu_menu_deletion_criterias),
                 trailing: Icon(Icons.open_in_new),
                 onTap: () {
                   var url =
@@ -132,7 +132,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 },
               ),
               ListTile(
-                title: ThaiText(text: "คำสงวนสิทธิ์"),
+                title: ThaiText(text: L10n.strings.navigation_menu_menu_disclaimer),
                 trailing: Icon(Icons.open_in_new),
                 onTap: () {
                   var url =
@@ -151,7 +151,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
               Container(
                 padding: EdgeInsets.fromLTRB(16, 8, 4, 8),
                 child: ThaiText(
-                  text: "แหล่งข้อมูล VTuber ไทย",
+                  text: L10n.strings.navigation_menu_menu_discover_thai_vtuber,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -166,7 +166,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 },
               ),
               ListTile(
-                title: ThaiText(text: "Twitter #VTuberTH"),
+                title: ThaiText(text: "X #VTuberTH"),
                 trailing: Icon(Icons.open_in_new),
                 onTap: () {
                   var url = "https://twitter.com/hashtag/VtuberTH";
@@ -195,12 +195,12 @@ class _DrawerMenuState extends State<DrawerMenu> {
               Container(
                 padding: EdgeInsets.fromLTRB(16, 8, 4, 8),
                 child: ThaiText(
-                  text: "ข้อมูลสำหรับนักพัฒนา",
+                  text: L10n.strings.navigation_menu_menu_for_developers,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               ListTile(
-                title: ThaiText(text: "API Document"),
+                title: ThaiText(text: L10n.strings.navigation_menu_menu_api_document),
                 trailing: Icon(Icons.developer_mode),
                 onTap: () {
                   var url =
@@ -211,7 +211,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 },
               ),
               ListTile(
-                title: ThaiText(text: "Client App Repository"),
+                title: ThaiText(text: L10n.strings.navigation_menu_menu_client_app_repo),
                 trailing: Icon(Icons.developer_mode),
                 onTap: () {
                   var url =
@@ -222,7 +222,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 },
               ),
               ListTile(
-                title: ThaiText(text: "Release Notes"),
+                title: ThaiText(text: L10n.strings.navigation_menu_menu_release_notes),
                 trailing: Icon(Icons.open_in_new),
                 onTap: () {
                   var url =
@@ -233,7 +233,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 },
               ),
               ListTile(
-                title: ThaiText(text: "บล็อกผู้พัฒนา"),
+                title: ThaiText(text: L10n.strings.navigation_menu_menu_developer_blog),
                 trailing: Icon(Icons.open_in_new),
                 onTap: () {
                   var url = "https://chuysan.com/";

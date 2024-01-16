@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:thaivtuberranking/l10n/L10n.dart';
 
 enum ActivityType {
   ActiveOnly,
@@ -8,9 +9,9 @@ enum ActivityType {
   String toString() {
     switch (this) {
       case ActiveOnly:
-        return "แชนแนลที่ยังอัปเดตอยู่";
+        return L10n.strings.navigation_menu_radio_box_active_only;
       case All:
-        return "แชนแนลที่อัปเดตและไม่อัปเดต";
+        return L10n.strings.navigation_menu_radio_box_active_and_inactive;
       default:
         throw Exception("Unknown enum type $this");
     }
@@ -19,9 +20,9 @@ enum ActivityType {
   String get tooltip {
     switch (this) {
       case ActiveOnly:
-        return "กำลังแสดง" + this.toString();
+        return L10n.strings.home_tooltip_display_channel(this.toString());
       case All:
-        return "กำลังแสดง" + this.toString();
+        return L10n.strings.home_tooltip_display_channel(this.toString());
       default:
         throw Exception("Unknown enum type $this");
     }

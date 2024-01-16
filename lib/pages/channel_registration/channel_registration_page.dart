@@ -9,6 +9,7 @@ import 'package:thaivtuberranking/providers/channel_list/channel_list_provider.d
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/result.dart';
 import 'package:thaivtuberranking/services/url_launcher.dart';
+import 'package:thaivtuberranking/l10n/L10n.dart';
 
 import '../../main.dart';
 import 'channel_registration_view_model.dart';
@@ -69,7 +70,7 @@ class _ChannelRegistrationPageState extends State<ChannelRegistrationPage> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("แจ้งเพิ่มแชนแนล VTuber"),
+          title: Text(L10n.strings.channel_registration_text_title),
         ),
         body: Center(
             child: SizedBox(
@@ -105,7 +106,7 @@ class _ChannelRegistrationPageState extends State<ChannelRegistrationPage> {
   Widget get _channelRegistrationBox {
     List<Widget> columnWidgets = [];
     columnWidgets.add(Padding(
-      child: ThaiText(text: "โปรดกรอกแชนแนล ID (ขึ้นต้นด้วย UC)"),
+      child: ThaiText(text: L10n.strings.channel_registration_text_input_channel),
       padding: EdgeInsets.fromLTRB(0, 16, 8, 8),
     ));
     columnWidgets.add(Padding(
@@ -123,12 +124,12 @@ class _ChannelRegistrationPageState extends State<ChannelRegistrationPage> {
 
       // ประเภทช่อง
       columnWidgets.add(Text(
-        "โปรดเลือกประเภทของช่องที่ต้องการแจ้ง",
+        L10n.strings.channel_registration_text_select_channel_type,
         style: defaultStyle,
       ));
       columnWidgets.add(_typeRadio);
       columnWidgets.add(Padding(padding: EdgeInsets.all(8)));
-      columnWidgets.add(Text("โปรดตรวจสอบแชนแนลอีกครั้งก่อนส่งข้อมูล",
+      columnWidgets.add(Text(L10n.strings.channel_registration_text_check_before_submit,
           style: defaultRedStyle));
       columnWidgets.add(RichText(
           text: TextSpan(
@@ -171,7 +172,7 @@ class _ChannelRegistrationPageState extends State<ChannelRegistrationPage> {
   Widget get _submitButton {
     return FilledButton(
         child: ThaiText(
-            text: "ส่งข้อมูล",
+            text: L10n.strings.channel_registration_button_submit,
             fontWeight: FontWeight.bold,
             color: _viewModel.isRegisterButtonEnabled
                 ? Theme.of(context).colorScheme.onPrimary

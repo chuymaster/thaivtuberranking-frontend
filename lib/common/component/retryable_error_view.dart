@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
+import 'package:thaivtuberranking/l10n/L10n.dart';
 
 class RetryableErrorView extends StatelessWidget {
   final String title;
@@ -36,7 +37,7 @@ class RetryableErrorView extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ThaiText(
-                      text: "Reload",
+                      text: L10n.strings.common_button_reload,
                       color: Colors.white,
                     ),
                   ),

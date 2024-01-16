@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:thaivtuberranking/l10n/L10n.dart';
 
 class ErrorDialog {
   static Future<void> showErrorDialog(
@@ -8,7 +9,7 @@ class ErrorDialog {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Error'),
+          title: Text(L10n.strings.common_alert_error),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
@@ -22,7 +23,7 @@ class ErrorDialog {
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('ปิด'),
+              child: Text(L10n.strings.common_button_close),
               onPressed: () {
                 Navigator.of(context).pop();
               },

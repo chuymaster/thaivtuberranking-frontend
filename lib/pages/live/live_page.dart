@@ -14,6 +14,7 @@ import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/result.dart';
 import 'package:thaivtuberranking/services/url_launcher.dart';
 import 'package:provider/provider.dart';
+import 'package:thaivtuberranking/l10n/L10n.dart';
 
 class LivePage extends StatefulWidget {
   final OriginType originType;
@@ -87,7 +88,7 @@ class _LivePageState extends State<LivePage> {
       child: Align(
           alignment: Alignment.center,
           child: ThaiText(
-            text: "ไม่มีวิดีโอ",
+            text: L10n.strings.video_list_text_not_found,
             color: Colors.black54,
           )),
     );

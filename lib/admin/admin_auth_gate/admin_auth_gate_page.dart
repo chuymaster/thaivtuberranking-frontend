@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
 import 'package:flutter/material.dart';
+import 'package:thaivtuberranking/l10n/L10n.dart';
 
 import '../../common/component/confirm_dialog.dart';
 import '../../main.dart';
@@ -48,7 +49,7 @@ class AdminAuthGatePage extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            title: Text("我が名はめぐみん！"),
+            title: Text(L10n.strings.admin__title),
             bottom: TabBar(
               tabs: [
                 Tab(
