@@ -31,7 +31,7 @@ class _ChannelChartViewState extends State<ChannelChartView> {
       child: SfCartesianChart(
         legend: Legend(isVisible: true, position: LegendPosition.bottom),
         tooltipBehavior: _tooltipBehavior,
-        series: <ChartSeries>[
+        series: <CartesianSeries>[
           LineSeries<ChartDataPoint, DateTime>(
               name: 'Subscribers',
               color: Colors.blueAccent,
