@@ -49,7 +49,7 @@
   "channel_registration_text_all_vtuber_explanation": "- Channels that primarily feature VTuber models after having other contents for a period of time. These channels will only appear in the 'All VTubers' category.",
   "channel_registration_text_type_explanation": "In both cases, the channels must be created by Thais, primarily targeting Thai audiences, and have uploaded some contents.",
   "channel_registration_text_id_explanation_1": "Channel ID is the code following the URL of the channel, such as https://www.youtube.com/channel/",
-  "channel_registration_text_id_explanation_2": "You may check the channel ID from this site: ",
+  "channel_registration_text_id_explanation_2": "You can check the channel ID from this site.",
   "home_title_channel_list": "List of Thai VTuber channels",
   "home_title_video_list": "List of Thai VTuber videos",
   "home_tab_channel": "Channels",

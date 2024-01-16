@@ -45,7 +45,7 @@
   "channel_registration_error_unknown": "เกิดปัญหาในการส่งข้อมูล กรุณาลองใหม่ในภายหลัง",
   "channel_registration_title_id_explanation": "แชนแนล ID คืออะไร?",
   "channel_registration_title_type_explanation": "ประเภทของแชนแนลที่อนุญาต",
-  "channel_registration_text_full_vtuber_explanation": "- แชนแนลที่นำแสดงโดยโมเดล VTuber (โมเดล Live2D หรือ 3D) เป็นหลักตั้งแต่คอนเทนต์แรก และมีโมเดล VTuber เป็นตัวเอกของคอนเทนต์",
+  "channel_registration_text_full_vtuber_explanation": "- แชนแนลที่นำแสดงโดยโมเดล VTuber (โมเดล Live2D หรือ 3D) เป็นหลักตั้งแต่คอนเทนต์แรก มีโมเดล VTuber เป็นตัวเอกของคอนเทนต์ และประกาศตนว่าเป็น VTuber",
   "channel_registration_text_all_vtuber_explanation": "- แชนแนลที่นำโมเดล VTuber มาแสดงเป็นหลักหลังจากเปิดแชนแนลและอัพโหลดคอนเทนต์อื่นไปแล้ว จะปรากฏในการรายชื่อหมวด \"VTuber ทั้งหมด\" เท่านั้น",
   "channel_registration_text_type_explanation": "ทั้งสองกรณีต้องเป็นแชนแนลที่ทำโดยคนไทย มุ่งเน้นกลุ่มผู้ชมคนไทยเป็นหลัก และมีคอนเทนต์อัพโหลดแล้ว ทีมงานจึงจะสามารถพิจารณาได้",
   "channel_registration_text_id_explanation_1": "แชนแนล ID คือรหัสตามหลัง URL ของแชนแนล เช่น https://www.youtube.com/channel/",
