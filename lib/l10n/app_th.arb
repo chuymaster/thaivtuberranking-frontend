@@ -55,10 +55,13 @@
   "home_tab_channel": "แชนแนล",
   "home_tab_video": "วิดีโอ",
   "home_tooltip_add_channel": "แจ้งเพิ่มแชนแนล",
+  "navigation_menu_text_channel_type": "ประเภทแชนแนล",
+  "navigation_menu_text_original_description": "'VTuber เต็มตัว' หมายถึงแชนแนลที่เดบิวต์ตัวเองเป็น VTuber และทำคอนเทนต์ VTuber ตั้งแต่ต้น ไม่ได้เปลี่ยนมาจากคอนเทนต์อื่น",
   "navigation_menu_text_active_type": "ประเภทการอัปเดต",
   "navigation_menu_text_active_type_explanation": "แชนแนลที่ไม่มีการอัปโหลดวิดีโอมา 90 วันขึ้นไป จัดเป็นแชนแนลที่ไม่มีการอัปเดต",
   "navigation_menu_radio_box_active_only": "แชนแนลที่ยังอัปเดตอยู่",
   "navigation_menu_radio_box_active_and_inactive": "แชนแนลที่อัปเดตและไม่อัปเดต",
+  "home_tooltip_display_only_channel": "กำลังแสดงเฉพาะ {channelActivityType}",
   "home_tooltip_display_channel": "กำลังแสดง {channelActivityType}",
   "search_bar_placeholder": "ค้นหาแชนแนล",
   "search_text_input_prompt": "พิมพ์ชื่อแชนแนลที่อยากค้นหา",
@@ -78,5 +81,9 @@
   "video_list_tab_live": "Live",
   "video_list_tab_one_day": "24 ชม.",
   "video_list_tab_three_days": "3 วัน",
-  "video_list_tab_seven_days": "7 วัน"
+  "video_list_tab_seven_days": "7 วัน",
+  "error_empty_channel_description": "เกิดข้อผิดพลาดจึงไม่สามารถแสดงข้อมูลได้\nกรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ต\nหรือแจ้งผู้พัฒนาเพื่อทำการแก้ไข",
+  "error_empty_channel_contact": "ติดต่อ @chuymaster",
+  "error_not_found_description": "ไม่พบเพจที่ต้องการเปิด ({route}).\nโปรดตรวจสอบ URL อีกครั้ง",
+  "error_not_found_title": "Not Found"
 }

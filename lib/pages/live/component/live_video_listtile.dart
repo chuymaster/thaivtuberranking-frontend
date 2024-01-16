@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
 import 'package:thaivtuberranking/pages/live/entity/live_video.dart';
 import 'package:transparent_image/transparent_image.dart';
+import 'package:thaivtuberranking/l10n/L10n.dart';
 
 class LiveVideoListTile extends StatelessWidget {
   const LiveVideoListTile({
@@ -102,12 +103,12 @@ class LiveVideoListTile extends StatelessWidget {
       case LiveStatus.Live:
         return [
           ThaiText(
-            text: 'เริ่ม ' + item.getLiveStartAtString(),
+            text: L10n.strings.video_list_text_live_start(item.getLiveStartAtString()),
             color: Colors.black54,
             fontSize: 12,
           ),
           ThaiText(
-            text: 'ดูพร้อมกัน ' + item.getConcurrentViewerCount() + ' คน',
+            text: L10n.strings.video_list_text_concurrent_view(item.getConcurrentViewerCount()),
             color: Colors.black54,
             fontSize: 12,
           ),
@@ -115,7 +116,7 @@ class LiveVideoListTile extends StatelessWidget {
       case LiveStatus.Upcoming:
         return [
           ThaiText(
-            text: 'เริ่ม ' + item.getLiveScheduleString(),
+            text: L10n.strings.video_list_text_live_start(item.getLiveScheduleString()),
             color: Colors.black54,
             fontSize: 12,
           ),

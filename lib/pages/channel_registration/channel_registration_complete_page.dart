@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
 import 'package:thaivtuberranking/pages/home/home_page.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
+import 'package:thaivtuberranking/l10n/L10n.dart';
 
 import '../../main.dart';
 
@@ -17,7 +18,7 @@ class ChannelRegistrationCompletePage extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("แจ้งเพิ่มแชนแนลสำเร็จ"),
+          title: Text(L10n.strings.channel_registration_complete_text_title),
         ),
         body: Align(
             alignment: Alignment.topCenter,
@@ -27,15 +28,14 @@ class ChannelRegistrationCompletePage extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
                       child: ThaiText(
-                          text:
-                              "ขอบคุณที่ส่งข้อมูลแชนแนล ทางทีมงานจะพิจารณาและนำเข้าสู่ฐานข้อมูลหากข้อมูลถูกต้อง"),
+                          text: L10n.strings.channel_registration_complete_text_description),
                     ),
                     Padding(
                       padding: EdgeInsets.all(8),
                     ),
                     FilledButton(
                       child: ThaiText(
-                        text: "กลับสู่หน้าแรก",
+                        text: L10n.strings.channel_registration_complete_button_home,
                         color: Theme.of(context).colorScheme.onPrimary,
                       ),
                       onPressed: () {

@@ -11,18 +11,14 @@ class DescriptionBox extends StatelessWidget {
 
   final firstTextSpan = TextSpan(style: _defaultStyle, children: [
     TextSpan(
-        text:
-            "\n\nแชนแนล ID คือรหัสตามหลัง URL ของแชนแนล เช่น https://www.youtube.com/channel/"),
+        text: L10n.strings.channel_registration_text_id_explanation_1),
     TextSpan(
         text: "UCqhhWjpw23dWhJ5rRwCCrMA",
         style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red[800]))
   ]);
   final secondTextSpan = TextSpan(style: _defaultStyle, children: [
     TextSpan(
-        text:
-            "สำหรับช่องที่ URL ไม่ได้ขึ้นต้นด้วย UC สามารถตรวจสอบ ID ของแชนแนลได้"),
-    TextSpan(
-        text: "ที่เว็บไซต์นี้",
+        text: L10n.strings.channel_registration_text_id_explanation_2,
         style: _linkStyle,
         recognizer: TapGestureRecognizer()
           ..onTap = () {
@@ -40,7 +36,7 @@ class DescriptionBox extends StatelessWidget {
         crossAxisAlignment:
             CrossAxisAlignment.start, // Align children to the left
         children: [
-          Text("แชนแนล ID คืออะไร?", style: _titleStyle),
+          Text(L10n.strings.channel_registration_title_id_explanation, style: _titleStyle),
           SelectableText.rich(
             firstTextSpan,
             style: _defaultStyle,
@@ -50,23 +46,19 @@ class DescriptionBox extends StatelessWidget {
             style: _defaultStyle,
           ),
           _columnSpace,
-          Text(
-            "ประเภทของแชนแนลที่อนุญาต",
+          Text(L10n.strings.channel_registration_title_type_explanation,
             style: _titleStyle,
           ),
           _columnSpace,
           Text("1. ${L10n.strings.common_type_full_vtuber}"),
           _columnSpace,
-          Text(
-              "- แชนแนลที่นำแสดงโดยโมเดล VTuber (โมเดล Live2D หรือ 3D) เป็นหลักตั้งแต่คอนเทนต์แรก และมีโมเดล VTuber เป็นตัวเอกของคอนเทนต์"),
+          Text(L10n.strings.channel_registration_text_full_vtuber_explanation),
           _columnSpace,
           Text("2. ${L10n.strings.common_type_all_vtuber}"),
           _columnSpace,
-          Text(
-              "- แชนแนลที่นำโมเดล VTuber มาแสดงเป็นหลักหลังจากเปิดแชนแนลและอัพโหลดคอนเทนต์อื่นไปแล้ว จะปรากฏในการรายชื่อหมวด ${L10n.strings.common_type_all_vtuber} เท่านั้น"),
+          Text(L10n.strings.channel_registration_text_all_vtuber_explanation),
           _columnSpace,
-          Text(
-              "ทั้งสองกรณีต้องเป็นแชนแนลที่ทำโดยคนไทย มุ่งเน้นกลุ่มผู้ชมคนไทยเป็นหลัก และมีคอนเทนต์อัพโหลดแล้ว ทีมงานจึงจะสามารถพิจารณาได้"),
+          Text(L10n.strings.channel_registration_text_type_explanation),
           _columnSpace,
         ],
       ),

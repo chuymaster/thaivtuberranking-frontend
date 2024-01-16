@@ -4,6 +4,7 @@ import 'package:thaivtuberranking/pages/live/live_page.dart';
 import 'package:thaivtuberranking/pages/video_ranking/video_ranking_page.dart';
 import 'package:thaivtuberranking/pages/video_ranking/entity/video_ranking_type.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
+import 'package:thaivtuberranking/l10n/L10n.dart';
 
 import '../../main.dart';
 
@@ -27,10 +28,10 @@ class _VideoRankingContainerPageState extends State<VideoRankingContainerPage>
   late TabController _tabController;
 
   final List<Tab> _tabBarTabs = [
-    Tab(text: "Live"),
-    Tab(text: "24 ชม."),
-    Tab(text: "3 วัน"),
-    Tab(text: "7 วัน")
+    Tab(text: L10n.strings.video_list_tab_live),
+    Tab(text: L10n.strings.video_list_tab_one_day),
+    Tab(text: L10n.strings.video_list_tab_three_days),
+    Tab(text: L10n.strings.video_list_tab_seven_days)
   ];
 
   int _tabBarInitialIndex = 0;

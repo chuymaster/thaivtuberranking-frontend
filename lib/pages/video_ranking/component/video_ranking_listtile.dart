@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
 import 'package:thaivtuberranking/pages/video_ranking/entity/video_ranking.dart';
 import 'package:transparent_image/transparent_image.dart';
+import 'package:thaivtuberranking/l10n/L10n.dart';
 
 class VideoRankingListTile extends StatelessWidget {
   const VideoRankingListTile({
@@ -40,11 +41,11 @@ class VideoRankingListTile extends StatelessWidget {
               child: Column(
             children: [
               ThaiText(
-                text: '$displayRank. ' + item.title,
+                text: L10n.strings.video_list_text_number(displayRank, item.title),
                 fontWeight: FontWeight.bold,
               ),
               ThaiText(
-                text: 'ดู $views ครั้ง | ' + item.publishedAtString,
+                text: L10n.strings.video_list_text_views_published(item.publishedAtString, views),
                 color: Colors.black54,
                 fontSize: 12,
               ),
