@@ -74,9 +74,6 @@ class _DrawerMenuState extends State<DrawerMenu> {
                     text: L10n.strings.navigation_menu_info_last_updated_at(widget.lastUpdatedAt),
                     fontSize: 13,
                   ))),
-                            Card(
-            child: DrawerLanguageSelection(localeProvider: widget.localeProvider,)
-          ),
           Card(
             child: DrawerOriginTypeRadioFilter(
               currentOriginType: widget.currentOriginType,
@@ -100,6 +97,9 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 }
               },
             ),
+          ),
+          Card(
+            child: DrawerLanguageSelection(localeProvider: widget.localeProvider,)
           ),
           Card(
               child: Column(

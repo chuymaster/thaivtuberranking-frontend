@@ -23,12 +23,12 @@ class DrawerLanguageSelectionState
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.all(4),
+          padding: EdgeInsets.all(4)
         ),
         Container(
           padding: EdgeInsets.fromLTRB(16, 8, 4, 8),
           child: ThaiText(
-            text: "เลือกภาษา",
+            text: L10n.strings.navigation_menu_text_language,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -78,6 +78,9 @@ class DrawerLanguageSelectionState
               ],
             ),
           ],
+        ),
+        Padding(
+          padding: EdgeInsets.all(4)
         ),
       ],
     );
