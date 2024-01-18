@@ -14,6 +14,7 @@ import 'package:thaivtuberranking/pages/home/entity/channel_info.dart';
 import 'package:thaivtuberranking/pages/home/home_view_model.dart';
 import 'package:thaivtuberranking/pages/video_ranking/video_ranking_container_page.dart';
 import 'package:thaivtuberranking/providers/channel_list/channel_list_provider.dart';
+import 'package:thaivtuberranking/providers/locale_provider.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/result.dart';
 import 'package:thaivtuberranking/main.dart';
@@ -43,8 +44,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => _viewModel,
-      child: Consumer2<ChannelListProvider, HomeViewModel>(
-          builder: (context, provider, viewModel, _) {
+      child: Consumer3<ChannelListProvider, LocaleProvider, HomeViewModel>(
+          builder: (context, provider, localeProvider, viewModel, _) {
         if (provider.viewState is LoadingState) {
           return Scaffold(body: CenterCircularProgressIndicator());
         } else if (provider.viewState is ErrorState) {
@@ -58,7 +59,7 @@ class _HomePageState extends State<HomePage> {
         } else {
           return Scaffold(
             appBar: _buildAppBar(provider.channelList),
-            drawer: _buildDrawerMenu(provider.channelListLastUpdatedAt),
+            drawer: _buildDrawerMenu(provider.channelListLastUpdatedAt, localeProvider),
             body: _buildBody(provider.channelList),
             bottomNavigationBar: _bottomNavigationBar,
             floatingActionButton: _expandableFab,
@@ -82,7 +83,7 @@ class _HomePageState extends State<HomePage> {
         ]);
   }
 
-  Widget _buildDrawerMenu(String lastUpdatedAt) {
+  Widget _buildDrawerMenu(String lastUpdatedAt, LocaleProvider localeProvider) {
     return DrawerMenu(
         currentOriginType: _viewModel.originType,
         currentActivityType: _viewModel.activityType,
@@ -91,7 +92,8 @@ class _HomePageState extends State<HomePage> {
         onChangeActivityType: (activityType) =>
             _viewModel.activityType = activityType,
         onTapAddChannelMenu: () =>
-            {this._navigateToChannelRegistrationPage("drawer_menu")});
+            {this._navigateToChannelRegistrationPage("drawer_menu")},
+            localeProvider: localeProvider,);
   }
 
   Widget get _bottomNavigationBar {
