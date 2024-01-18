@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:intl/intl.dart';
 import 'package:thaivtuberranking/pages/channel/entity/channel_chart_data.dart';
+import 'package:thaivtuberranking/l10n/L10n.dart';
 
 class ChannelChartView extends StatefulWidget {
   ChannelChartView(
@@ -31,9 +32,9 @@ class _ChannelChartViewState extends State<ChannelChartView> {
       child: SfCartesianChart(
         legend: Legend(isVisible: true, position: LegendPosition.bottom),
         tooltipBehavior: _tooltipBehavior,
-        series: <ChartSeries>[
+        series: <CartesianSeries>[
           LineSeries<ChartDataPoint, DateTime>(
-              name: 'Subscribers',
+              name: L10n.strings.channel_list_tab_subscribers,
               color: Colors.blueAccent,
               dataSource: _chartData,
               xValueMapper: (ChartDataPoint data, _) => data.date,
@@ -41,7 +42,7 @@ class _ChannelChartViewState extends State<ChannelChartView> {
               dataLabelSettings: DataLabelSettings(isVisible: false),
               enableTooltip: true),
           LineSeries<ChartDataPoint, DateTime>(
-              name: 'Views',
+              name: L10n.strings.channel_list_tab_views,
               color: Colors.redAccent,
               dataSource: _chartData,
               xValueMapper: (ChartDataPoint data, _) => data.date,
@@ -55,14 +56,14 @@ class _ChannelChartViewState extends State<ChannelChartView> {
           NumericAxis(
               name: _viewsAxis,
               opposedPosition: true,
-              title: AxisTitle(text: 'Views'),
+              title: AxisTitle(text: L10n.strings.channel_list_tab_views),
               labelFormat: '{value}',
               numberFormat: NumberFormat.compact()),
         ],
         primaryXAxis: DateTimeAxis(dateFormat: DateFormat('d/M/yyyy')),
         primaryYAxis: NumericAxis(
             labelFormat: '{value}',
-            title: AxisTitle(text: 'Subscribers'),
+            title: AxisTitle(text: L10n.strings.channel_list_tab_subscribers),
             numberFormat: NumberFormat.compact()),
       ),
       width: widget.width,

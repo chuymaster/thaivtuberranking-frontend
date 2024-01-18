@@ -13,6 +13,7 @@ import 'package:thaivtuberranking/services/url_launcher.dart';
 import 'package:thaivtuberranking/main.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:thaivtuberranking/l10n/L10n.dart';
 
 class ChannelPage extends StatefulWidget {
   ChannelPage({super.key, required this.channelId});
@@ -99,7 +100,7 @@ class _ChannelPageState extends State<ChannelPage> {
   Widget get _shareButton {
     final icon = Icon(Icons.content_copy);
     final text = ThaiText(
-        text: 'Copy URL ของหน้านี้', fontSize: 14, color: Colors.black54);
+        text: L10n.strings.channel_button_copy_url, fontSize: 14, color: Colors.black54);
     final inkWell = InkWell(
       child: Row(
         children: [icon, text],
@@ -109,7 +110,7 @@ class _ChannelPageState extends State<ChannelPage> {
         final channelUrl =
             "https://vtuber.chuysan.com/#/channel?channel_id=$id";
         await Clipboard.setData(new ClipboardData(text: channelUrl));
-        showToast("Copy URL แล้ว");
+        showToast(L10n.strings.channel_toast_copied_url);
         MyApp.analytics.sendAnalyticsEvent(AnalyticsEvent.copyChannelUrl,
             {"channel_id": widget.channelId, "url": channelUrl});
       },
@@ -121,7 +122,7 @@ class _ChannelPageState extends State<ChannelPage> {
     return Container(
       padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
       child: ThaiText(
-          text: 'กราฟความเปลี่ยนแปลง',
+          text: L10n.strings.channel_graph_description,
           fontSize: 14,
           color: Colors.grey[500] ?? Colors.grey),
       alignment: Alignment.bottomLeft,
@@ -129,7 +130,7 @@ class _ChannelPageState extends State<ChannelPage> {
   }
 
   Widget get _description {
-    String description = 'ไม่มีคำอธิบาย';
+    String description = L10n.strings.channel_description_empty;
     if (_viewModel.channelInfo != null &&
         _viewModel.channelInfo!.description.isNotEmpty) {
       description = _viewModel.channelInfo!.description;
@@ -203,13 +204,13 @@ class _ChannelPageState extends State<ChannelPage> {
                       padding: EdgeInsets.all(4),
                     ),
                     ThaiText(
-                        text: 'ผู้ติดตาม $subscribers คน\nดู $views ครั้ง',
+                        text: L10n.strings.channel_info_subscribers_views(subscribers, views),
                         fontSize: 16),
                     Padding(
                       padding: EdgeInsets.all(4),
                     ),
                     ThaiText(
-                        text: 'คลิปล่าสุด $updated\nวันเปิดแชนแนล $published',
+                        text: L10n.strings.channel_info_updated_published(published, updated),
                         fontSize: 14,
                         color: Colors.black54),
                     Padding(
@@ -245,7 +246,7 @@ class _ChannelPageState extends State<ChannelPage> {
     return Container(
       child: InkWell(
         child: ThaiText(
-          text: "API",
+          text: L10n.strings.channel_info_api,
           fontSize: 12,
           color: Colors.blue,
         ),

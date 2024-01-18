@@ -7,6 +7,7 @@ import 'routing_data.dart';
 import '../../pages/channel/channel_page.dart';
 import '../../pages/error/error_page.dart';
 import '../../pages/home/home_page.dart';
+import 'package:thaivtuberranking/l10n/L10n.dart';
 
 // For test: channel?channel_id=UCqhhWjpw23dWhJ5rRwCCrMA
 
@@ -67,8 +68,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
 Widget _buildNotFoundPage(String route) {
   return ErrorPage(
-    name: 'Not Found',
-    errorMessage:
-        "ไม่พบเพจที่ต้องการเปิด (" + route + ").\nโปรดตรวจสอบ URL อีกครั้ง",
+    name: L10n.strings.error_not_found_title,
+    errorMessage: L10n.strings.error_not_found_description(route),
   );
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
+import 'package:thaivtuberranking/l10n/L10n.dart';
 
 class RealityAdListTile extends StatelessWidget {
   const RealityAdListTile({
@@ -31,10 +32,10 @@ class RealityAdListTile extends StatelessWidget {
                 child: Column(
               children: [
                 ThaiText(
-                    text: 'REALITY - Become an Anime Avatar',
+                    text: L10n.strings.banner_text_reality,
                     fontWeight: FontWeight.bold,
                     overflow: TextOverflow.ellipsis),
-                ThaiText(text: 'สร้างอวาตาร์อนิเมะมาไลฟ์แบบ VTuber เลย!'),
+                ThaiText(text: L10n.strings.banner_description_reality),
               ],
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,

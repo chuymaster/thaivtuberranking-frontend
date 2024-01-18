@@ -14,9 +14,11 @@ import 'package:thaivtuberranking/pages/home/entity/channel_info.dart';
 import 'package:thaivtuberranking/pages/home/home_view_model.dart';
 import 'package:thaivtuberranking/pages/video_ranking/video_ranking_container_page.dart';
 import 'package:thaivtuberranking/providers/channel_list/channel_list_provider.dart';
+import 'package:thaivtuberranking/providers/locale_provider.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/result.dart';
 import 'package:thaivtuberranking/main.dart';
+import 'package:thaivtuberranking/l10n/L10n.dart';
 import 'dart:core';
 
 class HomePage extends StatefulWidget {
@@ -42,8 +44,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => _viewModel,
-      child: Consumer2<ChannelListProvider, HomeViewModel>(
-          builder: (context, provider, viewModel, _) {
+      child: Consumer3<ChannelListProvider, LocaleProvider, HomeViewModel>(
+          builder: (context, provider, localeProvider, viewModel, _) {
         if (provider.viewState is LoadingState) {
           return Scaffold(body: CenterCircularProgressIndicator());
         } else if (provider.viewState is ErrorState) {
@@ -57,7 +59,7 @@ class _HomePageState extends State<HomePage> {
         } else {
           return Scaffold(
             appBar: _buildAppBar(provider.channelList),
-            drawer: _buildDrawerMenu(provider.channelListLastUpdatedAt),
+            drawer: _buildDrawerMenu(provider.channelListLastUpdatedAt, localeProvider),
             body: _buildBody(provider.channelList),
             bottomNavigationBar: _bottomNavigationBar,
             floatingActionButton: _expandableFab,
@@ -71,8 +73,8 @@ class _HomePageState extends State<HomePage> {
     return AppBar(
         title: Text(
           _viewModel.tabIndex == 0
-              ? "ลิสต์แชนแนล VTuber ไทย"
-              : "ลิสต์วิดีโอ VTuber ไทย",
+              ? L10n.strings.home_title_channel_list
+              : L10n.strings.home_title_video_list,
           style: TextStyle(fontFamily: ThaiText.kanit),
         ),
         actions: [
@@ -81,7 +83,7 @@ class _HomePageState extends State<HomePage> {
         ]);
   }
 
-  Widget _buildDrawerMenu(String lastUpdatedAt) {
+  Widget _buildDrawerMenu(String lastUpdatedAt, LocaleProvider localeProvider) {
     return DrawerMenu(
         currentOriginType: _viewModel.originType,
         currentActivityType: _viewModel.activityType,
@@ -90,7 +92,8 @@ class _HomePageState extends State<HomePage> {
         onChangeActivityType: (activityType) =>
             _viewModel.activityType = activityType,
         onTapAddChannelMenu: () =>
-            {this._navigateToChannelRegistrationPage("drawer_menu")});
+            {this._navigateToChannelRegistrationPage("drawer_menu")},
+            localeProvider: localeProvider,);
   }
 
   Widget get _bottomNavigationBar {
@@ -100,9 +103,9 @@ class _HomePageState extends State<HomePage> {
           selectedIndex: _viewModel.tabIndex,
           destinations: [
             NavigationDestination(
-                icon: Icon(Icons.person_pin), label: "แชนแนล"),
+                icon: Icon(Icons.person_pin), label: L10n.strings.home_tab_channel),
             NavigationDestination(
-                icon: Icon(Icons.ondemand_video), label: "วิดีโอ"),
+                icon: Icon(Icons.ondemand_video), label: L10n.strings.home_tab_video),
           ],
           onDestinationSelected: (index) {
             MyApp.analytics.sendAnalyticsEvent(
@@ -118,7 +121,7 @@ class _HomePageState extends State<HomePage> {
         onPressed: () =>
             _navigateToChannelRegistrationPage('appbar_add_button'),
         icon: const Icon(Icons.add_circle),
-        tooltip: "แจ้งเพิ่มแชนแนล",
+        tooltip: L10n.strings.navigation_menu_menu_add_new_channel,
       ),
       ActionButton(
           onPressed: () => _viewModel.toggleDisplayInactiveChannel(),

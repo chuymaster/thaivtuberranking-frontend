@@ -7,6 +7,7 @@ import 'package:thaivtuberranking/pages/home/component/vtuber_ranking_list.dart'
 import 'package:thaivtuberranking/pages/home/entity/channel_info.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/url_launcher.dart';
+import 'package:thaivtuberranking/l10n/L10n.dart';
 
 class SearchIconButton extends StatelessWidget {
   final List<ChannelInfo> channelList;
@@ -29,12 +30,12 @@ class SearchIconButton extends StatelessWidget {
                       AnalyticsEvent.search, {"query": query});
                 },
                 items: channelList,
-                searchLabel: "ค้นหาแชนแนล",
+                searchLabel: L10n.strings.search_bar_placeholder,
                 suggestion: Center(
-                  child: Text('พิมพ์ชื่อแชนแนลที่อยากค้นหา'),
+                  child: Text(L10n.strings.search_text_input_prompt),
                 ),
                 failure: Center(
-                  child: Text("ไม่พบผลลัพธ์"),
+                  child: Text(L10n.strings.search_text_not_found),
                 ),
                 filter: (channelInfo) {
                   return [channelInfo.channelName];

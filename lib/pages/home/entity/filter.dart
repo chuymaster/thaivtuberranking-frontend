@@ -1,3 +1,5 @@
+import 'package:thaivtuberranking/l10n/L10n.dart';
+
 enum Filter {
   Subscriber,
   View,
@@ -7,11 +9,11 @@ enum Filter {
   String toString() {
     switch (this) {
       case Subscriber:
-        return "ผู้ติดตาม";
+        return L10n.strings.channel_list_tab_subscribers;
       case View:
-        return "Views";
+        return L10n.strings.channel_list_tab_views;
       case PublishedDate:
-        return "วันเปิดแชนแนล";
+        return L10n.strings.channel_list_tab_published;
       default:
         throw Exception("Unknown enum type $this");
     }
