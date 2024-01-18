@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
 import 'package:thaivtuberranking/l10n/L10n.dart';
 import 'package:thaivtuberranking/pages/home/component/drawer_activity_type_radio_filter.dart';
+import 'package:thaivtuberranking/pages/home/component/drawer_language_selection.dart';
 import 'package:thaivtuberranking/pages/home/entity/activity_type.dart';
+import 'package:thaivtuberranking/pages/home/entity/app_language.dart';
 import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
+import 'package:thaivtuberranking/providers/locale_provider.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
 import 'package:thaivtuberranking/services/environment_setting.dart';
 import 'package:thaivtuberranking/services/url_launcher.dart';
@@ -18,6 +21,7 @@ class DrawerMenu extends StatefulWidget {
   final Function(OriginType) onChangeOriginType;
   final Function(ActivityType) onChangeActivityType;
   final Function onTapAddChannelMenu;
+  final LocaleProvider localeProvider;
 
   const DrawerMenu(
       {super.key,
@@ -26,7 +30,8 @@ class DrawerMenu extends StatefulWidget {
       required this.lastUpdatedAt,
       required this.onChangeOriginType,
       required this.onChangeActivityType,
-      required this.onTapAddChannelMenu});
+      required this.onTapAddChannelMenu,
+      required this.localeProvider});
 
   @override
   _DrawerMenuState createState() => _DrawerMenuState();
@@ -92,6 +97,9 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 }
               },
             ),
+          ),
+          Card(
+            child: DrawerLanguageSelection(localeProvider: widget.localeProvider,)
           ),
           Card(
               child: Column(

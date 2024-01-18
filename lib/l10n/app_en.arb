@@ -55,6 +55,7 @@
   "home_tab_channel": "Channels",
   "home_tab_video": "Videos",
   "home_tooltip_add_channel": "Submit new VTuber channel",
+  "navigation_menu_text_language": "Site Language",
   "navigation_menu_text_channel_type": "Channel Type",
   "navigation_menu_text_original_description": "Original VTuber' refers to a channel that debuted and has been creating content as a VTuber from the beginning, rather than transitioning from other types of content.",
   "navigation_menu_text_active_type": "Activity Type",
