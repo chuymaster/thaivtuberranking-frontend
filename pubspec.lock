@@ -309,26 +309,26 @@ packages:
     dependency: "direct main"
     description:
       name: firebase_ui_auth
-      sha256: a318b3072e785a9183c36278fecff9bf2a8ef7d04bb1f6c3731a07919cfdcc86
+      sha256: "3dbe87b5a6a02763af69c79106b2b13eb5907f5696ada6b25c4b9addfe066b5b"
       url: "https://pub.dev"
     source: hosted
-    version: "1.12.1"
+    version: "1.13.0"
   firebase_ui_localizations:
     dependency: transitive
     description:
       name: firebase_ui_localizations
-      sha256: "7029d9bce8365840957f4d1e3a7f938e893789da2071504d4f3b7eaa31f12fea"
+      sha256: "816501d26bb9e2a58b5d5f80351d82a50bd2f5c8d4aeb22504c53f91b6c57259"
       url: "https://pub.dev"
     source: hosted
-    version: "1.10.1"
+    version: "1.10.2"
   firebase_ui_oauth:
     dependency: "direct main"
     description:
       name: firebase_ui_oauth
-      sha256: e447834f066600614ad8a158c270267e6d3007779028a706218a8521c52fdf8b
+      sha256: "176d76d31b0bf2167f2a4f83638e9af55c3a98fc6e6b3796f9185a6f48f09c61"
       url: "https://pub.dev"
     source: hosted
-    version: "1.4.17"
+    version: "1.5.0"
   firebase_ui_oauth_google:
     dependency: "direct main"
     description:
