@@ -37,8 +37,8 @@ class _ChannelRequestDataTableState extends State<ChannelRequestDataTable> {
                     onSelectChanged: (isSelected) {
                       widget.onSelectedChanged(isSelected!, index);
                     },
-                    color: MaterialStateProperty.resolveWith<Color?>(
-                        (Set<MaterialState> states) {
+                    color: WidgetStateProperty.resolveWith<Color?>(
+                        (Set<WidgetState> states) {
                       return _getCellColor(index, states);
                     }),
                     cells: makeDataCells(widget.channelRequests[index])))));
@@ -135,8 +135,8 @@ class _ChannelRequestDataTableState extends State<ChannelRequestDataTable> {
     }
   }
 
-  Color? _getCellColor(int index, Set<MaterialState> states) {
-    if (states.contains(MaterialState.selected)) {
+  Color? _getCellColor(int index, Set<WidgetState> states) {
+    if (states.contains(WidgetState.selected)) {
       return Theme.of(context).colorScheme.primary.withOpacity(0.4);
     } else {
       if (index.isEven) {

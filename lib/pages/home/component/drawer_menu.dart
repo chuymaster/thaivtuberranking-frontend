@@ -4,7 +4,6 @@ import 'package:thaivtuberranking/l10n/L10n.dart';
 import 'package:thaivtuberranking/pages/home/component/drawer_activity_type_radio_filter.dart';
 import 'package:thaivtuberranking/pages/home/component/drawer_language_selection.dart';
 import 'package:thaivtuberranking/pages/home/entity/activity_type.dart';
-import 'package:thaivtuberranking/pages/home/entity/app_language.dart';
 import 'package:thaivtuberranking/pages/home/entity/origin_type.dart';
 import 'package:thaivtuberranking/providers/locale_provider.dart';
 import 'package:thaivtuberranking/services/analytics.dart';
