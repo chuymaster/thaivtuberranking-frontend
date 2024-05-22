@@ -67,10 +67,10 @@ class PageSelection extends StatelessWidget {
         textStyle: TextStyle(
             color: (pageNumber == currentPageNumber)
                 ? Theme.of(context).colorScheme.onPrimary
-                : Theme.of(context).colorScheme.onBackground),
+                : Theme.of(context).colorScheme.onSurface),
         backgroundColor: (pageNumber == currentPageNumber)
             ? Theme.of(context).colorScheme.primaryContainer
-            : Theme.of(context).colorScheme.background,
+            : Theme.of(context).colorScheme.surface,
         shape: CircleBorder());
     return ElevatedButton(
         child: Text('$pageNumber'),

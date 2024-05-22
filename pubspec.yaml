@@ -44,6 +44,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
+  flutter_gen: any
+  firebase_auth: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

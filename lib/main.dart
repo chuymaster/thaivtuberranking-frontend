@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:thaivtuberranking/l10n/L10n.dart';
-import 'package:thaivtuberranking/pages/home/entity/app_language.dart';
 import 'package:thaivtuberranking/providers/channel_list/channel_list_provider.dart';
 import 'package:thaivtuberranking/providers/channel_list/channel_list_repository.dart';
 import 'package:thaivtuberranking/providers/locale_provider.dart';
