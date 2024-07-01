@@ -45,7 +45,7 @@ dependencies:
     sdk: flutter
 
   flutter_gen: any
-  firebase_auth: 5.1.0
+  firebase_auth: 5.1.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
