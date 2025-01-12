@@ -8,7 +8,7 @@ class Analytics {
   }
 
   Future<void> sendAnalyticsEvent(
-      String name, Map<String, dynamic> parameters) async {
+      String name, Map<String, Object> parameters) async {
     await _analytics?.logEvent(name: name, parameters: parameters);
   }
 }
