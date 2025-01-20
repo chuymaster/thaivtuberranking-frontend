@@ -40,7 +40,7 @@ dependencies:
   provider: ^6.1.2
   firebase_ui_auth: ^1.15.0
   firebase_ui_oauth: ^1.6.0
-  firebase_ui_oauth_google: ^1.4.0
+  firebase_ui_oauth_google: ^1.4.1
   flutter_localizations:
     sdk: flutter
 
