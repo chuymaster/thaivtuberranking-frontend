@@ -88,5 +88,7 @@
     "error_empty_channel_description": "Unable to display information.\nPlease check your internet connection,\nor notify the developer to correct the issue",
     "error_empty_channel_contact": "Contact @chuymaster",
     "error_not_found_description": "Page not found ({route}). Please check the URL again.",
-    "error_not_found_title": "Not Found!"
+    "error_not_found_title": "Not Found!",
+    "error_lokalise": "Lokalise!!",
+    "error_new_key": "NEW KEY!!"
 }
