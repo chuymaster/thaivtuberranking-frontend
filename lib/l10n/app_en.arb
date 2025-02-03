@@ -89,6 +89,5 @@
     "error_empty_channel_contact": "Contact @chuymaster",
     "error_not_found_description": "Page not found ({route}). Please check the URL again.",
     "error_not_found_title": "Not Found!",
-    "error_lokalise": "Lokalise!!",
-    "error_new_key": "NEW KEY!!"
+    "error_lokalise": "Lokalise!!"
 }
