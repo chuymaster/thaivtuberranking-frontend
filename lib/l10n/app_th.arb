@@ -1,6 +1,7 @@
 {
     "@@locale": "th",
-    "@@last_modified": "2025-02-03T06:41:16+01:00",
+    "@@last_modified": "2025-02-03T07:53:55+01:00",
+    "my_new_key": "HoHo",
     "app__site_title": "ลิสต์รายชื่อ VTuber (วีทูปเบอร์) ไทย",
     "common_type_full_vtuber": "VTuber เต็มตัว",
     "common_type_all_vtuber": "VTuber ทั้งหมด",
@@ -88,5 +89,7 @@
     "error_empty_channel_description": "เกิดข้อผิดพลาดจึงไม่สามารถแสดงข้อมูลได้\nกรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ต\nหรือแจ้งผู้พัฒนาเพื่อทำการแก้ไข",
     "error_empty_channel_contact": "ติดต่อ @chuymaster",
     "error_not_found_description": "ไม่พบเพจที่ต้องการเปิด ({route}).\nโปรดตรวจสอบ URL อีกครั้ง",
-    "error_not_found_title": "Not Found!"
+    "error_not_found_title": "Not Found!",
+    "error_lokalise": "Lokalise!!",
+    "error_new_key": "1234"
 }
