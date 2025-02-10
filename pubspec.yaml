@@ -44,7 +44,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  flutter_gen: 5.8.0
+  flutter_gen: 5.9.0
   firebase_auth: ^5.4.2
 dev_dependencies:
   flutter_test:
