@@ -1,6 +1,7 @@
 {
     "@@locale": "ja",
-    "@@last_modified": "2025-02-03T06:41:16+01:00",
+    "@@last_modified": "2025-02-03T07:53:55+01:00",
+    "my_new_key": "HoHo",
     "app__site_title": "タイのVTuber（バーチャルユーチューバー）一覧",
     "common_type_full_vtuber": "オリジナルVTuber",
     "common_type_all_vtuber": "全てのVTuber",
@@ -88,5 +89,7 @@
     "error_empty_channel_description": "エラーが発生しました。\nインターネットが正常に接続されているかを確認し、\n開発者に連絡してください。",
     "error_empty_channel_contact": "@chuymaster に連絡",
     "error_not_found_description": "{route}が存在しません。URLをもう一度確認してください。",
-    "error_not_found_title": "存在しないページです"
+    "error_not_found_title": "存在しないページです",
+    "error_lokalise": "ロカライズ！",
+    "error_new_key": "NEW KEY!!"
 }
