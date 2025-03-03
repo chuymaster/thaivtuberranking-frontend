@@ -1,6 +1,7 @@
 {
     "@@locale": "en",
-    "@@last_modified": "2025-02-03T06:41:16+01:00",
+    "@@last_modified": "2025-02-10T07:41:05+01:00",
+    "my_new_key": "HoHo",
     "app__site_title": "Thai VTubers (Virtual Youtubers) Directory",
     "common_type_full_vtuber": "Original VTuber",
     "common_type_all_vtuber": "All VTuber",
@@ -88,6 +89,7 @@
     "error_empty_channel_description": "Unable to display information.\nPlease check your internet connection,\nor notify the developer to correct the issue",
     "error_empty_channel_contact": "Contact @chuymaster",
     "error_not_found_description": "Page not found ({route}). Please check the URL again.",
-    "error_not_found_title": "Not Found!",
-    "error_lokalise": "Lokalise!!"
+    "error_not_found_title": "Not Found",
+    "error_lokalise": "Lokalise!!",
+    "error_lokalise_copy": "Lokalise!!"
 }
