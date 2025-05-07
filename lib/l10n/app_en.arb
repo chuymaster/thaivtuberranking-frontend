@@ -1,6 +1,7 @@
 {
     "@@locale": "en",
-    "@@last_modified": "2025-02-03T06:41:16+01:00",
+    "@@last_modified": "2025-02-03T07:53:55+01:00",
+    "my_new_key": "HoHo",
     "app__site_title": "Thai VTubers (Virtual Youtubers) Directory",
     "common_type_full_vtuber": "Original VTuber",
     "common_type_all_vtuber": "All VTuber",
