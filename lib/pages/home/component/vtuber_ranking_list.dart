@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thaivtuberranking/common/component/thai_text.dart';
 import 'package:thaivtuberranking/common/screenFactor.dart';
-import '../../../common/component/reality_app_banner.dart';
 import 'page_selection.dart';
 import '../entity/channel_info.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -14,8 +13,6 @@ class VTuberRankingList extends StatelessWidget {
   final ScrollController scrollController;
   final Function(ChannelInfo) onTapCell;
   final Function(ChannelInfo) onTapYouTubeIcon;
-  final Function onTapRealityAd;
-
   const VTuberRankingList(
       {super.key,
       required this.itemList,
@@ -23,12 +20,10 @@ class VTuberRankingList extends StatelessWidget {
       required this.scrollController,
       required this.onTapCell,
       required this.onTapYouTubeIcon,
-      required this.pageSelection,
-      required this.onTapRealityAd});
+      required this.pageSelection});
 
   Widget buildRankingList() {
-    bool shouldShowAd = rankOffset == 0;
-    int lastIndex = shouldShowAd ? itemList.length + 2 : itemList.length + 1;
+    int lastIndex = itemList.length + 1;
     return Expanded(
       child: ListView.builder(
           itemBuilder: (BuildContext context, int index) {
@@ -36,14 +31,8 @@ class VTuberRankingList extends StatelessWidget {
             if (index == 0 || index == lastIndex) {
               // แถวแรก/สุดท้ายให้เป็น page selection
               child = pageSelection;
-            } else if (shouldShowAd && index == 11) {
-              // Ad banner
-              child = RealityAdListTile(onTap: onTapRealityAd);
             } else {
               int fixedIndex = index - 1;
-              if (shouldShowAd && index > 11) {
-                fixedIndex = index - 2;
-              }
               ChannelInfo item = itemList[fixedIndex];
               int rank = fixedIndex + 1;
               var subscribers = item.subscribersString;
