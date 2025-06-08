@@ -5,13 +5,13 @@ init: # Install FVM and Flutter
 	dart pub global activate fvm && fvm install && fvm flutter config --enable-web
 
 run: # Run application in debug environment
-	fvm flutter run -d chrome --web-renderer html
+	fvm flutter run -d chrome
 
 run-qa: # Run application in QA environment
-	fvm flutter run -d chrome --dart-define=DEPLOY_ENVIRONMENT=Qa --web-renderer html
+	fvm flutter run -d chrome --dart-define=DEPLOY_ENVIRONMENT=Qa
 
 run-prod: # Run application in production environment
-	fvm flutter run -d chrome --dart-define=DEPLOY_ENVIRONMENT=Production --web-renderer html
+	fvm flutter run -d chrome --dart-define=DEPLOY_ENVIRONMENT=Production
 
 build-qa: # Build QA environment
 	fvm flutter build web --release --dart-define=DEPLOY_ENVIRONMENT=Qa
