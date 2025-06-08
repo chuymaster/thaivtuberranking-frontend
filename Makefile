@@ -13,14 +13,11 @@ run-qa: # Run application in QA environment
 run-prod: # Run application in production environment
 	fvm flutter run -d chrome --dart-define=DEPLOY_ENVIRONMENT=Production --web-renderer html
 
-build-for-release: # Build the app for release
-	fvm flutter build web --release --web-renderer html
-
 build-qa: # Build QA environment
-	fvm flutter build web --release --dart-define=DEPLOY_ENVIRONMENT=Qa --web-renderer html
+	fvm flutter build web --release --dart-define=DEPLOY_ENVIRONMENT=Qa
 
-build-release: # Build production environment
-	fvm flutter build web --release --dart-define=DEPLOY_ENVIRONMENT=Production --web-renderer html
+build-production: # Build production environment
+	fvm flutter build web --release --dart-define=DEPLOY_ENVIRONMENT=Production
 
 build-mock: # Generate http mocks
 	fvm flutter pub run build_runner build

@@ -27,3 +27,4 @@ doc/api/
 ui-debug.log
 .vscode/
 flutter/
+.fvm/

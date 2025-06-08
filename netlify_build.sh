@@ -26,7 +26,7 @@ case "$ENVIRONMENT" in
     make build-qa
     ;;
   production|prod|release)
-    make build-release
+    make build-production
     ;;
   *)
     echo "Unknown environment: $ENVIRONMENT" >&2
