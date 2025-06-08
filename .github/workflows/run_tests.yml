@@ -19,7 +19,7 @@ jobs:
           java-version: "11"
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.32.2"
+          flutter-version: "3.27.1"
       - uses: szenius/set-timezone@v2.0
         with:
           timezoneLinux: "Asia/Tokyo"

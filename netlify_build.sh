@@ -17,6 +17,7 @@ flutter config --enable-web
 
 # Optional: use FVM
 flutter pub global activate fvm
+export PATH="$HOME/.pub-cache/bin:$PATH"
 fvm install
 fvm flutter pub get
 

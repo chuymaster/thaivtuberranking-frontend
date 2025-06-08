@@ -9,7 +9,7 @@ A Flutter Web client application for [Thai VTubers Directory](https://vtuber.chu
 ## Setup
 
 - See Documentation on Flutter site https://flutter.dev/docs/get-started/web
-- After cloning, run `make init` to install FVM and Flutter 3.32.2 from `.fvm/fvm_config.json`.
+- After cloning, run `fvm use` or `make init` to install Flutter 3.27.1 from `.fvm/fvm_config.json`.
 
 ## Local Command
 
