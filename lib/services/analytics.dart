@@ -32,8 +32,6 @@ class AnalyticsEvent {
   static String clickChannelStatisticsApi = 'click_channel_statistics_api';
   static String clickDeleteChannelAnnouncement =
       'click_delete_channel_announcement';
-  static String clickRealityAd = 'click_reality_ad';
-
   // Load screen
   static String screenLoaded = "screen_loaded";
 }

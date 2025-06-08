@@ -161,11 +161,6 @@ class _ChannelRankingPageState extends State<ChannelRankingPage>
               'location': 'top_youtube_icon'
             });
           },
-          onTapRealityAd: () {
-            UrlLauncher.launchURL("https://reality.app/");
-            MyApp.analytics
-                .sendAnalyticsEvent(AnalyticsEvent.clickRealityAd, {});
-          },
         ),
       ],
     );
