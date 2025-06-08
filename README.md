@@ -9,6 +9,7 @@ A Flutter Web client application for [Thai VTubers Directory](https://vtuber.chu
 ## Setup
 
 - See Documentation on Flutter site https://flutter.dev/docs/get-started/web
+- After cloning, run `fvm use` to install Flutter 3.32.0 from `.fvm/fvm_config.json`.
 
 ## Local Command
 
@@ -53,13 +54,13 @@ Build commands that run when the branch is updated are listed below.
 - QA (Staging) Environment
 
 ```
-if cd flutter; then git fetch --tags && git checkout 3.27.1 && git pull; cd ..; else git clone https://github.com/flutter/flutter.git && cd flutter && git checkout 3.27.1 && cd ..; fi && flutter/bin/flutter channel stable && flutter/bin/flutter upgrade && flutter/bin/flutter config --enable-web && flutter/bin/flutter build web --release --dart-define=DEPLOY_ENVIRONMENT=Qa --web-renderer html
+if cd flutter; then git fetch --tags && git checkout 3.32.0 && git pull; cd ..; else git clone https://github.com/flutter/flutter.git && cd flutter && git checkout 3.32.0 && cd ..; fi && flutter/bin/flutter channel stable && flutter/bin/flutter upgrade && flutter/bin/flutter config --enable-web && flutter/bin/flutter build web --release --dart-define=DEPLOY_ENVIRONMENT=Qa --web-renderer html
 ```
 
 - Production Environment
 
 ```
-if cd flutter; then git fetch --tags && git checkout 3.27.1 && git pull; cd ..; else git clone https://github.com/flutter/flutter.git && cd flutter && git checkout 3.27.1 && cd ..; fi && flutter/bin/flutter channel stable && flutter/bin/flutter upgrade && flutter/bin/flutter config --enable-web && flutter/bin/flutter build web --release --dart-define=DEPLOY_ENVIRONMENT=Production --web-renderer html
+if cd flutter; then git fetch --tags && git checkout 3.32.0 && git pull; cd ..; else git clone https://github.com/flutter/flutter.git && cd flutter && git checkout 3.32.0 && cd ..; fi && flutter/bin/flutter channel stable && flutter/bin/flutter upgrade && flutter/bin/flutter config --enable-web && flutter/bin/flutter build web --release --dart-define=DEPLOY_ENVIRONMENT=Production --web-renderer html
 ```
 
 # Contributing
