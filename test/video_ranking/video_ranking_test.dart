@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:intl/intl.dart';
 import 'package:thaivtuberranking/pages/video_ranking/entity/video_ranking.dart';
 
 void main() {
@@ -38,8 +39,9 @@ void main() {
     });
     test('computed properties', () {
       final entity = VideoRanking.fromJson(json.decode(_json));
-      expect(entity.publishedAtString,
-          '12/2/2022 22:24'); // Note: Must test with Asia/Tokyo timezone (GMT+9)
+      final expected = DateFormat('d/M/yyyy HH:mm')
+          .format(DateTime.parse('2022-02-12T13:24:36Z').toLocal());
+      expect(entity.publishedAtString, expected);
       expect(entity.views, '1,000');
       expect(entity.videoUrl, 'http://youtube.com/watch?v=id');
     });
