@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:intl/intl.dart';
 import 'package:thaivtuberranking/pages/home/entity/channel_info.dart';
 
 void main() {
@@ -37,11 +38,17 @@ void main() {
     });
     test('computed properties', () {
       final entity = ChannelInfo.fromJson(json.decode(_json));
+      final published = DateFormat('d/M/yyyy')
+          .format(DateTime.parse('2020-11-11T12:58:49.610362Z').toLocal());
+      final updated = DateFormat('d/M/yyyy HH:mm')
+          .format(DateTime.fromMillisecondsSinceEpoch(1641006011156));
+      final lastPublished = DateFormat('d/M/yyyy HH:mm')
+          .format(DateTime.parse('2021-12-31T13:08:37Z').toLocal());
       expect(entity.channelUrl, "https://youtube.com/channel/channelId");
-      expect(entity.publishedAtString, "11/11/2020");
+      expect(entity.publishedAtString, published);
       expect(entity.publishedAtStringForComparison, "2020-11-11");
-      expect(entity.updatedAtString, "1/1/2022 12:00");
-      expect(entity.lastPublishedVideoAtString, "31/12/2021 22:08");
+      expect(entity.updatedAtString, updated);
+      expect(entity.lastPublishedVideoAtString, lastPublished);
       expect(entity.subscribersString, '1,000');
       expect(entity.viewsString, '1,000');
     });
