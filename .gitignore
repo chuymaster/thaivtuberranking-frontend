@@ -26,3 +26,5 @@ doc/api/
 *.cache
 ui-debug.log
 .vscode/
+flutter/
+.fvm/
