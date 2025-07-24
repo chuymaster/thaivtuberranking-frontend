@@ -9,7 +9,7 @@ import '../endpoint.dart';
 import 'entity/channel_request.dart';
 
 class ChannelRequestRepository {
-  final int _limit = 50;
+  final int _limit = 100;
 
   Future<Result> getChannelRequests() async {
     Uri uri = Uri.parse(Endpoint.getChannelRequestList);
