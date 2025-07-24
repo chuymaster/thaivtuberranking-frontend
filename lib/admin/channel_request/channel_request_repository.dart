@@ -9,7 +9,8 @@ import '../endpoint.dart';
 import 'entity/channel_request.dart';
 
 class ChannelRequestRepository {
-  final int _limit = 50;
+  // Increased default fetch size so the admin UI can load more requests
+  final int _limit = 200;
 
   Future<Result> getChannelRequests() async {
     Uri uri = Uri.parse(Endpoint.getChannelRequestList);
