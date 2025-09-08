@@ -36,7 +36,7 @@ dependencies:
   http: ^1.5.0
   oktoast: ^3.4.0
   search_page: ^2.0.0+1
-  syncfusion_flutter_charts: ^30.2.7
+  syncfusion_flutter_charts: ^31.1.17
   provider: ^6.1.5
   firebase_ui_auth: ^3.0.0
   firebase_ui_oauth: ^2.0.0
