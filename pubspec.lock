@@ -394,18 +394,18 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_gen
-      sha256: "102471a3c6ee7d9175ac8f1989e1bd0e1b4f0d23615da4f961cf9e82752550fe"
+      sha256: eac4863b65813aacbf16ecc07e7c271ab82fb2d95181825348f1fb7b03fd52da
       url: "https://pub.dev"
     source: hosted
-    version: "5.11.0"
+    version: "5.12.0"
   flutter_gen_core:
     dependency: transitive
     description:
       name: flutter_gen_core
-      sha256: eda54fdc5de08e7eeea663eb8442aafc8660b5a13fda4e0c9e572c64e50195fb
+      sha256: b6bafbbd981da2f964eb45bcb8b8a7676a281084f8922c0c75de4cfbaa849311
       url: "https://pub.dev"
     source: hosted
-    version: "5.11.0"
+    version: "5.12.0"
   flutter_lints:
     dependency: "direct dev"
     description:
