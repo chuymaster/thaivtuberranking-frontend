@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../common/component/center_circular_progress_indicator.dart';
 import '../../../common/component/confirm_dialog.dart';
@@ -58,9 +57,6 @@ class _ChannelRequestPageState extends State<ChannelRequestPage> {
                       scrollDirection: Axis.vertical,
                       child: ChannelRequestDataTable(
                         channelRequests: channelRequests,
-                        onLongPressRow: (index) {
-                          launchUrlString(channelRequests[index].channelUrl);
-                        },
                         onSelectedChanged: (isSelected, index) {
                           setState(() {
                             channelRequests[index].isSelected = isSelected;
