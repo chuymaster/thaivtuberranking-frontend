@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../../common/component/status_chip.dart';
 import '../entity/channel_request.dart';
@@ -7,11 +8,9 @@ class ChannelRequestDataTable extends StatefulWidget {
   const ChannelRequestDataTable(
       {Key? key,
       required this.channelRequests,
-      required this.onLongPressRow,
       required this.onSelectedChanged});
 
   final List<ChannelRequest> channelRequests;
-  final Function(int index) onLongPressRow;
   final Function(bool isSelected, int index) onSelectedChanged;
 
   @override
@@ -31,9 +30,6 @@ class _ChannelRequestDataTableState extends State<ChannelRequestDataTable> {
                 widget.channelRequests.length,
                 (index) => DataRow(
                     selected: widget.channelRequests[index].isSelected,
-                    onLongPress: () {
-                      widget.onLongPressRow(index);
-                    },
                     onSelectChanged: (isSelected) {
                       widget.onSelectedChanged(isSelected!, index);
                     },
@@ -41,7 +37,7 @@ class _ChannelRequestDataTableState extends State<ChannelRequestDataTable> {
                         (Set<WidgetState> states) {
                       return _getCellColor(index, states);
                     }),
-                    cells: makeDataCells(widget.channelRequests[index])))));
+                    cells: makeDataCells(widget.channelRequests[index], index)))));
   }
 
   List<DataColumn> get _dataColumns {
@@ -64,15 +60,22 @@ class _ChannelRequestDataTableState extends State<ChannelRequestDataTable> {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
+      const DataColumn(
+        label: Text(
+          'Link',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
     ];
   }
 
-  List<DataCell> makeDataCells(ChannelRequest channelRequest) {
+  List<DataCell> makeDataCells(ChannelRequest channelRequest, int index) {
     return [
       DataCell(_makeChannelInfoRow(
           channelRequest.title, channelRequest.thumbnailImageUrl)),
       DataCell(_makeTypeChip(channelRequest.type)),
       DataCell(_makeStatusTag(channelRequest.status)),
+      DataCell(_makeYouTubeIcon(channelRequest.channelUrl)),
     ];
   }
 
@@ -133,6 +136,16 @@ class _ChannelRequestDataTableState extends State<ChannelRequestDataTable> {
         return const StatusChip(
             title: "Rejected", backgroundColor: Colors.black);
     }
+  }
+
+  Widget _makeYouTubeIcon(String channelUrl) {
+    return IconButton(
+      icon: const Icon(Icons.open_in_new, color: Colors.red),
+      onPressed: () {
+        launchUrlString(channelUrl);
+      },
+      tooltip: 'Open YouTube Channel',
+    );
   }
 
   Color? _getCellColor(int index, Set<WidgetState> states) {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../common/component/center_circular_progress_indicator.dart';
 import '../../../common/component/confirm_dialog.dart';
@@ -50,27 +49,26 @@ class _ChannelRequestPageState extends State<ChannelRequestPage> {
             final List<ChannelRequest> channelRequests =
                 (viewModel.viewGetState as SuccessState).value;
             List<Widget> stackChildren = [
-              Align(
-                alignment: Alignment.topCenter,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: Column(
-                    children: [
-                      _menu,
-                      ChannelRequestDataTable(
-                        channelRequests: channelRequests,
-                        onLongPressRow: (index) {
-                          launchUrlString(channelRequests[index].channelUrl);
-                        },
-                        onSelectedChanged: (isSelected, index) {
-                          setState(() {
-                            channelRequests[index].isSelected = isSelected;
-                          });
-                        },
-                      )
-                    ],
+              Column(
+                children: [
+                  _menu,
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: ChannelRequestDataTable(
+                          channelRequests: channelRequests,
+                          onSelectedChanged: (isSelected, index) {
+                            setState(() {
+                              channelRequests[index].isSelected = isSelected;
+                            });
+                          },
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
             ];
             if (viewModel.viewPostState is LoadingState) {

@@ -24,7 +24,17 @@ class ChannelRequestRepository {
             json.decode(utf8.decode(response.bodyBytes));
         List<ChannelRequest> channelRequests =
             jsons.map((e) => ChannelRequest.fromJson(e)).toList();
-        channelRequests.sort((a, b) => b.updatedAt.compareTo(a.updatedAt));
+        channelRequests.sort((a, b) {
+          if (a.status == ChannelRequestStatus.unconfirmed &&
+              b.status != ChannelRequestStatus.unconfirmed) {
+            return -1;
+          } else if (a.status != ChannelRequestStatus.unconfirmed &&
+                     b.status == ChannelRequestStatus.unconfirmed) {
+            return 1;
+          } else {
+            return b.updatedAt.compareTo(a.updatedAt);
+          }
+        });
         return Result<List<ChannelRequest>>.success(
             channelRequests.take(_limit).toList());
       } else {
