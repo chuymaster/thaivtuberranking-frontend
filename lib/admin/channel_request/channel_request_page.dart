@@ -50,14 +50,13 @@ class _ChannelRequestPageState extends State<ChannelRequestPage> {
             final List<ChannelRequest> channelRequests =
                 (viewModel.viewGetState as SuccessState).value;
             List<Widget> stackChildren = [
-              Align(
-                alignment: Alignment.topCenter,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: Column(
-                    children: [
-                      _menu,
-                      ChannelRequestDataTable(
+              Column(
+                children: [
+                  _menu,
+                  Expanded(
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: ChannelRequestDataTable(
                         channelRequests: channelRequests,
                         onLongPressRow: (index) {
                           launchUrlString(channelRequests[index].channelUrl);
@@ -67,10 +66,10 @@ class _ChannelRequestPageState extends State<ChannelRequestPage> {
                             channelRequests[index].isSelected = isSelected;
                           });
                         },
-                      )
-                    ],
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
             ];
             if (viewModel.viewPostState is LoadingState) {
