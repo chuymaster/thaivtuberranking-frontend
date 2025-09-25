@@ -53,15 +53,18 @@ class _ChannelRequestPageState extends State<ChannelRequestPage> {
                 children: [
                   _menu,
                   Expanded(
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: ChannelRequestDataTable(
-                        channelRequests: channelRequests,
-                        onSelectedChanged: (isSelected, index) {
-                          setState(() {
-                            channelRequests[index].isSelected = isSelected;
-                          });
-                        },
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: ChannelRequestDataTable(
+                          channelRequests: channelRequests,
+                          onSelectedChanged: (isSelected, index) {
+                            setState(() {
+                              channelRequests[index].isSelected = isSelected;
+                            });
+                          },
+                        ),
                       ),
                     ),
                   ),
