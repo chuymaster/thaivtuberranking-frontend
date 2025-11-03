@@ -365,10 +365,10 @@ packages:
     dependency: "direct main"
     description:
       name: firebase_ui_oauth_google
-      sha256: "481f4658da3b38eef56e1f46686934937d3ecc40612b55b039d79ecf250a133a"
+      sha256: "7baf0c5349bdb35bb25696a05e8e7ed1d4c91c65a96472ddd421d50c3b87de18"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.1"
   firebase_ui_shared:
     dependency: transitive
     description:
