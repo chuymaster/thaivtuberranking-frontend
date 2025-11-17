@@ -33,7 +33,7 @@ dependencies:
   intl: any
   firebase_analytics: ^12.0.4
   firebase_core: ^4.2.1
-  http: ^1.5.0
+  http: ^1.6.0
   oktoast: ^3.4.0
   search_page: ^2.0.0+1
   syncfusion_flutter_charts: ^31.2.5
