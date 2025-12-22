@@ -31,7 +31,7 @@ dependencies:
   url_launcher: ^6.3.2
   transparent_image: ^2.0.1
   intl: any
-  firebase_analytics: ^12.0.4
+  firebase_analytics: ^12.1.0
   firebase_core: ^4.2.1
   http: ^1.6.0
   oktoast: ^3.4.0
