@@ -1,0 +1,110 @@
+{
+  "app": {
+    "title": "ลิสต์รายชื่อ VTuber (วีทูปเบอร์) ไทย"
+  },
+  "common": {
+    "type": {
+      "full_vtuber": "VTuber เต็มตัว",
+      "all_vtuber": "VTuber ทั้งหมด"
+    },
+    "button": {
+      "close": "ปิด",
+      "reload": "รีโหลด"
+    },
+    "alert": {
+      "error": "Error"
+    }
+  },
+  "navigation": {
+    "last_updated": "ข้อมูลอัปเดต {lastUpdatedAt}",
+    "site_title": "Thai VTubers Directory",
+    "site_description": "เว็บนี้จัดทำเพื่อส่งเสริมวงการ VTuber ไทย\\nโดยการเรียบเรียงแชนแนล VTuber คนไทยบนยูทูป",
+    "menu_title": "เมนู",
+    "language": "ภาษาของเว็บ",
+    "channel_type": "ประเภทแชนแนล",
+    "activity_type": "ประเภทการอัปเดต",
+    "activity_explanation": "แชนแนลที่ไม่มีการอัปโหลดวิดีโอมา 90 วันขึ้นไป จัดเป็นแชนแนลที่ไม่มีการอัปเดต",
+    "active_only": "แชนแนลที่ยังอัปเดตอยู่",
+    "active_and_inactive": "แชนแนลที่อัปเดตและไม่อัปเดต",
+    "add_channel": "แจ้งเพิ่มแชนแนล"
+  },
+  "home": {
+    "tab": {
+      "channel": "แชนแนล",
+      "video": "วิดีโอ"
+    },
+    "title": {
+      "channel_list": "ลิสต์แชนแนล VTuber ไทย",
+      "video_list": "ลิสต์วิดีโอ VTuber ไทย"
+    }
+  },
+  "channels": {
+    "title": "แชนแนล",
+    "tab": {
+      "subscribers": "ผู้ติดตาม",
+      "views": "Views",
+      "published": "วันเปิดแชนแนล"
+    },
+    "list": {
+      "subscribers": "ผู้ติดตาม {subscribers} คน",
+      "views": "ดู {views} ครั้ง",
+      "updated_published": "วิดีโอล่าสุด {updated}\\nวันเปิดแชนแนล {published}",
+      "rank": "อันดับ {displayRank} {title}"
+    }
+  },
+  "channel": {
+    "button": {
+      "copy_url": "Copy URL ของหน้านี้"
+    },
+    "toast": {
+      "copied_url": "Copy URL แล้ว"
+    },
+    "graph_description": "กราฟความเปลี่ยนแปลง",
+    "description_empty": "ไม่มีคำอธิบาย",
+    "info": {
+      "subscribers_views": "ผู้ติดตาม {subscribers} คน\\nดู {views} ครั้ง",
+      "updated_published": "คลิปล่าสุด {updated}\\nวันเปิดแชนแนล {published}",
+      "api": "API"
+    }
+  },
+  "videos": {
+    "tab": {
+      "live": "Live",
+      "one_day": "24 ชม.",
+      "three_days": "3 วัน",
+      "seven_days": "7 วัน"
+    },
+    "list": {
+      "not_found": "ไม่มีวิดีโอ",
+      "views_published": "ดู {views} ครั้ง | {publishedAt}",
+      "number": "{displayRank}. {title}"
+    },
+    "live": {
+      "start": "เริ่ม {liveStart}",
+      "concurrent_view": "ดูพร้อมกัน {concurrentView} คน"
+    }
+  },
+  "search": {
+    "placeholder": "ค้นหาแชนแนล",
+    "input_prompt": "พิมพ์ชื่อแชนแนลที่อยากค้นหา",
+    "not_found": "ไม่พบผลลัพธ์"
+  },
+  "register": {
+    "title": "แจ้งเพิ่มแชนแนล VTuber",
+    "input_channel": "โปรดกรอกแชนแนล ID (ขึ้นต้นด้วย UC)",
+    "select_channel_type": "โปรดเลือกประเภทของช่องที่ต้องการแจ้ง",
+    "check_before_submit": "โปรดตรวจสอบแชนแนลอีกครั้งก่อนส่งข้อมูล",
+    "button_submit": "ส่งข้อมูล",
+    "complete": {
+      "title": "แจ้งเพิ่มแชนแนลสำเร็จ",
+      "description": "ขอบคุณที่ส่งข้อมูลแชนแนล ทางทีมงานจะพิจารณาและนำเข้าสู่ฐานข้อมูลหากข้อมูลถูกต้อง",
+      "button_home": "กลับสู่หน้าแรก"
+    }
+  },
+  "error": {
+    "not_found_title": "Not Found!",
+    "not_found_description": "ไม่พบเพจที่ต้องการเปิด ({route}).\\nโปรดตรวจสอบ URL อีกครั้ง",
+    "empty_channel_description": "เกิดข้อผิดพลาดจึงไม่สามารถแสดงข้อมูลได้\\nกรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ต\\nหรือแจ้งผู้พัฒนาเพื่อทำการแก้ไข",
+    "empty_channel_contact": "ติดต่อ @chuymaster"
+  }
+}

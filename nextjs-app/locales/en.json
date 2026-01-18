@@ -1,0 +1,110 @@
+{
+  "app": {
+    "title": "Thai VTubers (Virtual Youtubers) Directory"
+  },
+  "common": {
+    "type": {
+      "full_vtuber": "Original VTuber",
+      "all_vtuber": "All VTuber"
+    },
+    "button": {
+      "close": "Close",
+      "reload": "Reload"
+    },
+    "alert": {
+      "error": "Error"
+    }
+  },
+  "navigation": {
+    "last_updated": "Last updated: {lastUpdatedAt}",
+    "site_title": "Thai VTubers Directory",
+    "site_description": "Find your favorite Thai VTubers!",
+    "menu_title": "Menu",
+    "language": "Site Language",
+    "channel_type": "Channel Type",
+    "activity_type": "Activity Type",
+    "activity_explanation": "Channels that have not uploaded a video for over 90 days are classified as inactive.",
+    "active_only": "Active channels",
+    "active_and_inactive": "Active and inactive channels",
+    "add_channel": "Submit new channel"
+  },
+  "home": {
+    "tab": {
+      "channel": "Channels",
+      "video": "Videos"
+    },
+    "title": {
+      "channel_list": "List of Thai VTuber channels",
+      "video_list": "List of Thai VTuber videos"
+    }
+  },
+  "channels": {
+    "title": "Channels",
+    "tab": {
+      "subscribers": "Subscribers",
+      "views": "Views",
+      "published": "Published"
+    },
+    "list": {
+      "subscribers": "{subscribers} subscribers",
+      "views": "{views} views",
+      "updated_published": "Latest video {updated}\\nChannel opened on {published}",
+      "rank": "Rank {displayRank} {title}"
+    }
+  },
+  "channel": {
+    "button": {
+      "copy_url": "Copy the URL of this page"
+    },
+    "toast": {
+      "copied_url": "Copied URL"
+    },
+    "graph_description": "Graph",
+    "description_empty": "No description",
+    "info": {
+      "subscribers_views": "Subscribers: {subscribers}\\nViews: {views}",
+      "updated_published": "Latest video: {updated}\\nChannel published: {published}",
+      "api": "API"
+    }
+  },
+  "videos": {
+    "tab": {
+      "live": "Live",
+      "one_day": "24 hours",
+      "three_days": "3 days",
+      "seven_days": "7 days"
+    },
+    "list": {
+      "not_found": "No videos",
+      "views_published": "{views} views | {publishedAt}",
+      "number": "{displayRank}. {title}"
+    },
+    "live": {
+      "start": "Scheduled {liveStart}",
+      "concurrent_view": "Concurrent View: {concurrentView} people"
+    }
+  },
+  "search": {
+    "placeholder": "Search for channel",
+    "input_prompt": "Enter the name of the channel",
+    "not_found": "No results found"
+  },
+  "register": {
+    "title": "Submit new VTuber channel",
+    "input_channel": "Enter the channel ID, started with UC",
+    "select_channel_type": "Select the channel type",
+    "check_before_submit": "Please check the channel info again before submitting.",
+    "button_submit": "Submit",
+    "complete": {
+      "title": "Channel submitted",
+      "description": "Thank you for submitting the channel. We will add it to the channel database after verification.",
+      "button_home": "Back to home"
+    }
+  },
+  "error": {
+    "not_found_title": "Not Found!",
+    "not_found_description": "Page not found ({route}). Please check the URL again.",
+    "empty_channel_description": "Unable to display information.\\nPlease check your internet connection,\\nor notify the developer to correct the issue",
+    "empty_channel_contact": "Contact @chuymaster"
+  }
+}

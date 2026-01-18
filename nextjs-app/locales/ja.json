@@ -1,0 +1,110 @@
+{
+  "app": {
+    "title": "タイのVTuber（バーチャルユーチューバー）一覧"
+  },
+  "common": {
+    "type": {
+      "full_vtuber": "オリジナルVTuber",
+      "all_vtuber": "全てのVTuber"
+    },
+    "button": {
+      "close": "閉じる",
+      "reload": "再読込"
+    },
+    "alert": {
+      "error": "エラー"
+    }
+  },
+  "navigation": {
+    "last_updated": "最終更新日 {lastUpdatedAt}",
+    "site_title": "Thai VTubers Directory",
+    "site_description": "お気に入りのタイのVTuberを見つけよう！",
+    "menu_title": "メニュー",
+    "language": "表示言語",
+    "channel_type": "チャンネルカテゴリ",
+    "activity_type": "活動状態",
+    "activity_explanation": "90日以上動画を投稿していないチャンネルは活動休止チャンネルとなります。",
+    "active_only": "活動中",
+    "active_and_inactive": "活動休止中を含む",
+    "add_channel": "チャンネル掲載申請"
+  },
+  "home": {
+    "tab": {
+      "channel": "チャンネル",
+      "video": "動画"
+    },
+    "title": {
+      "channel_list": "タイのVTuberチャンネル一覧",
+      "video_list": "タイのVTuber動画一覧"
+    }
+  },
+  "channels": {
+    "title": "チャンネル",
+    "tab": {
+      "subscribers": "フォロワー数",
+      "views": "視聴回数",
+      "published": "開設日"
+    },
+    "list": {
+      "subscribers": "フォロワー数 {subscribers}人",
+      "views": "視聴回数 {views}回",
+      "updated_published": "動画更新日 {updated}\\n開設日  {published}",
+      "rank": "{displayRank}位 {title}"
+    }
+  },
+  "channel": {
+    "button": {
+      "copy_url": "このページのURLをコピー"
+    },
+    "toast": {
+      "copied_url": "コピーしました"
+    },
+    "graph_description": "グラフ",
+    "description_empty": "チャンネル説明なし",
+    "info": {
+      "subscribers_views": "登録者数 {subscribers}人\\n視聴回数 {views}回",
+      "updated_published": "最新動画 {updated}\\nチャンネル開設日 {published}",
+      "api": "API"
+    }
+  },
+  "videos": {
+    "tab": {
+      "live": "ライブ",
+      "one_day": "24時間",
+      "three_days": "3日",
+      "seven_days": "7日"
+    },
+    "list": {
+      "not_found": "動画がありません",
+      "views_published": "{views}回 | {publishedAt}",
+      "number": "{displayRank}. {title}"
+    },
+    "live": {
+      "start": "ライブ開始 {liveStart}",
+      "concurrent_view": "同時接続数 {concurrentView} 人"
+    }
+  },
+  "search": {
+    "placeholder": "チャンネル検索",
+    "input_prompt": "チャンネル名を入力",
+    "not_found": "結果が見つかりません"
+  },
+  "register": {
+    "title": "VTuberチャンネル掲載申請",
+    "input_channel": "UCで始まるチャンネルIDを入力してください。",
+    "select_channel_type": "チャンネルカテゴリの選択",
+    "check_before_submit": "チャンネル情報が正しいかどうか、今一度ご確認ください。",
+    "button_submit": "申請",
+    "complete": {
+      "title": "チャンネル掲載申請が完了しました。",
+      "description": "ご申請いただき、ありがとうございます。\\n確認後、問題なければチャンネル一覧に掲載いたします。",
+      "button_home": "ホームに戻る"
+    }
+  },
+  "error": {
+    "not_found_title": "存在しないページです",
+    "not_found_description": "{route}が存在しません。URLをもう一度確認してください。",
+    "empty_channel_description": "エラーが発生しました。\\nインターネットが正常に接続されているかを確認し、\\n開発者に連絡してください。",
+    "empty_channel_contact": "@chuymaster に連絡"
+  }
+}
