@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+const ADD_CHANNEL_API = 'https://us-central1-thaivtuberranking.cloudfunctions.net/postChannelRequest';
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -13,16 +15,28 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // TODO: Submit to actual backend/database
-    // For now, just log and return success
-    console.log('Channel registration request:', { channelId, channelType });
+    // Call the Cloud Functions API
+    const formData = new URLSearchParams();
+    formData.append('channel_id', channelId);
+    formData.append('type', channelType);
 
-    // In production, this would:
-    // 1. Verify the channel exists on YouTube
-    // 2. Add to pending approval queue
-    // 3. Send notification to admin
+    const response = await fetch(ADD_CHANNEL_API, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: formData.toString(),
+    });
 
-    return NextResponse.json({ success: true });
+    if (response.ok) {
+      return NextResponse.json({ success: true });
+    } else {
+      console.error('Cloud Functions API error:', response.status);
+      return NextResponse.json(
+        { error: `API error: ${response.status}` },
+        { status: response.status }
+      );
+    }
   } catch (error) {
     console.error('Registration error:', error);
     return NextResponse.json(

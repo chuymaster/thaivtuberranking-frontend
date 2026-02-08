@@ -22,11 +22,21 @@
     "menu_title": "Menu",
     "language": "Site Language",
     "channel_type": "Channel Type",
+    "channel_type_description": "'Original VTuber' refers to a channel that debuted and has been creating content as a VTuber from the beginning, rather than transitioning from other types of content.",
     "activity_type": "Activity Type",
     "activity_explanation": "Channels that have not uploaded a video for over 90 days are classified as inactive.",
     "active_only": "Active channels",
     "active_and_inactive": "Active and inactive channels",
-    "add_channel": "Submit new channel"
+    "add_channel": "Submit new channel",
+    "report_problems": "Report Problems / Suggest Features",
+    "deletion_criteria": "Automatic Channel Deletion Criteria",
+    "disclaimer": "Disclaimer",
+    "discover_vtuber": "Discover Thai VTubers Info",
+    "for_developers": "For Developers",
+    "api_document": "API Document",
+    "client_repo": "Client App Repository",
+    "release_notes": "Release Notes",
+    "developer_blog": "Developer Blog"
   },
   "home": {
     "tab": {

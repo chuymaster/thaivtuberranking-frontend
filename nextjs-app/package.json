@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:qa": "NEXT_PUBLIC_DEPLOY_ENVIRONMENT=qa next dev",
     "build": "next build",
+    "build:qa": "NEXT_PUBLIC_DEPLOY_ENVIRONMENT=qa next build",
+    "build:prod": "NEXT_PUBLIC_DEPLOY_ENVIRONMENT=production next build",
     "start": "next start",
     "lint": "eslint"
   },

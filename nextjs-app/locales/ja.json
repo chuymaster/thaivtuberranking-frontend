@@ -22,11 +22,21 @@
     "menu_title": "メニュー",
     "language": "表示言語",
     "channel_type": "チャンネルカテゴリ",
+    "channel_type_description": "「オリジナルVTuber」は、チャンネル開設時からVTuberとしてデビューし、コンテンツを制作しているチャンネルを指します。",
     "activity_type": "活動状態",
     "activity_explanation": "90日以上動画を投稿していないチャンネルは活動休止チャンネルとなります。",
     "active_only": "活動中",
     "active_and_inactive": "活動休止中を含む",
-    "add_channel": "チャンネル掲載申請"
+    "add_channel": "チャンネル掲載申請",
+    "report_problems": "お問い合わせ・要望",
+    "deletion_criteria": "チャンネル自動削除基準",
+    "disclaimer": "免責事項",
+    "discover_vtuber": "タイのVTuber情報を探す",
+    "for_developers": "開発者向け情報",
+    "api_document": "APIドキュメント",
+    "client_repo": "クライアントアプリレポジトリ",
+    "release_notes": "リリースノート",
+    "developer_blog": "開発者ブログ"
   },
   "home": {
     "tab": {

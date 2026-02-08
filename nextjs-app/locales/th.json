@@ -22,11 +22,21 @@
     "menu_title": "เมนู",
     "language": "ภาษาของเว็บ",
     "channel_type": "ประเภทแชนแนล",
+    "channel_type_description": "'VTuber เต็มตัว' หมายถึงแชนแนลที่เดบิวต์ตัวเองเป็น VTuber และทำคอนเทนต์ VTuber ตั้งแต่ต้น ไม่ได้เปลี่ยนมาจากคอนเทนต์อื่น",
     "activity_type": "ประเภทการอัปเดต",
     "activity_explanation": "แชนแนลที่ไม่มีการอัปโหลดวิดีโอมา 90 วันขึ้นไป จัดเป็นแชนแนลที่ไม่มีการอัปเดต",
     "active_only": "แชนแนลที่ยังอัปเดตอยู่",
     "active_and_inactive": "แชนแนลที่อัปเดตและไม่อัปเดต",
-    "add_channel": "แจ้งเพิ่มแชนแนล"
+    "add_channel": "แจ้งเพิ่มแชนแนล",
+    "report_problems": "แจ้งปัญหา/แจ้งข้อมูลแชนแนลผิด/เสนอฟีเจอร์",
+    "deletion_criteria": "เกณฑ์การลบแชนแนลโดยอัตโนมัติ",
+    "disclaimer": "คำสงวนสิทธิ์",
+    "discover_vtuber": "แหล่งข้อมูล VTuber ไทย",
+    "for_developers": "ข้อมูลสำหรับนักพัฒนา",
+    "api_document": "API Document",
+    "client_repo": "Client App Repository",
+    "release_notes": "Release Notes",
+    "developer_blog": "บล็อกผู้พัฒนา"
   },
   "home": {
     "tab": {

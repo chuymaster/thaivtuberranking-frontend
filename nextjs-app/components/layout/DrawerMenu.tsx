@@ -3,8 +3,10 @@
 import { useEffect } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import { OriginType, ActivityType, SortType } from '@/lib/types';
 import { setLocale } from '@/lib/locale';
+import { getEnvironmentPrefix } from '@/lib/env';
 
 interface DrawerMenuProps {
   isOpen: boolean;
@@ -15,6 +17,19 @@ const localeNames: Record<string, string> = {
   th: 'ไทย',
   en: 'English',
   ja: '日本語',
+};
+
+const externalLinks = {
+  reportProblems: 'https://twitter.com/chuymaster',
+  deletionCriteria: 'https://chuysan.notion.site/Public-d92d99d2b88a4747814834bcbdd9989f',
+  disclaimer: 'https://chuysan.notion.site/Public-f97473612ebc4166b1e8293624fb9062',
+  vtuberthaiinfo: 'https://vtuberthaiinfo.com/',
+  twitterVtuberTH: 'https://twitter.com/hashtag/VtuberTH',
+  vtuberAsia: 'https://vtuber.asia/',
+  apiDocument: 'https://github.com/chuymaster/thaivtuberranking-docs',
+  clientRepo: 'https://github.com/chuymaster/thaivtuberranking-frontend',
+  releaseNotes: 'https://chuysan.notion.site/Public-Release-Notes-fddbe59f838949038fcaa4d774a4f2fc',
+  developerBlog: 'https://chuysan.com/',
 };
 
 export function DrawerMenu({ isOpen, onClose }: DrawerMenuProps) {
@@ -33,6 +48,8 @@ export function DrawerMenu({ isOpen, onClose }: DrawerMenuProps) {
 
   // Check if we're on a page that shows filters
   const isChannelsPage = pathname === '/';
+
+  const envPrefix = getEnvironmentPrefix();
 
   // Close drawer on escape key
   useEffect(() => {
@@ -74,16 +91,26 @@ export function DrawerMenu({ isOpen, onClose }: DrawerMenuProps) {
       />
 
       {/* Drawer */}
-      <div className="fixed inset-y-0 left-0 z-50 w-72 bg-white shadow-xl transform transition-transform">
-        <div className="flex flex-col h-full">
+      <div className="fixed inset-y-0 left-0 z-50 w-80 bg-white shadow-xl transform transition-transform overflow-y-auto">
+        <div className="flex flex-col">
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900">
-              {t('menu_title')}
-            </h2>
+          <div className="bg-blue-600 text-white p-4">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+                <span className="text-2xl">🎭</span>
+              </div>
+              <div>
+                <h2 className="font-bold">
+                  {envPrefix}{t('site_title')}
+                </h2>
+                <p className="text-sm text-blue-100 whitespace-pre-line">
+                  {t('site_description')}
+                </p>
+              </div>
+            </div>
             <button
               onClick={onClose}
-              className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+              className="absolute top-4 right-4 p-1 text-white/80 hover:text-white"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -91,118 +118,133 @@ export function DrawerMenu({ isOpen, onClose }: DrawerMenuProps) {
             </button>
           </div>
 
-          {/* Content */}
-          <div className="flex-1 overflow-y-auto p-4">
-            {/* Site Description */}
-            <div className="mb-6 text-sm text-gray-600 whitespace-pre-line">
-              {t('site_description')}
-            </div>
-
-            {/* Filters - only show on channels page */}
-            {isChannelsPage && (
-              <div className="mb-6 space-y-4">
-                <div className="pt-4 border-t border-gray-200">
-                  <h3 className="text-sm font-medium text-gray-700 mb-2">
-                    {tChannels('title')}
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    <FilterChip
-                      active={currentSort === SortType.Subscribers}
-                      onClick={() => updateFilter('sort', SortType.Subscribers)}
-                    >
-                      {tChannels('tab.subscribers')}
-                    </FilterChip>
-                    <FilterChip
-                      active={currentSort === SortType.Views}
-                      onClick={() => updateFilter('sort', SortType.Views)}
-                    >
-                      {tChannels('tab.views')}
-                    </FilterChip>
-                    <FilterChip
-                      active={currentSort === SortType.PublishedDate}
-                      onClick={() => updateFilter('sort', SortType.PublishedDate)}
-                    >
-                      {tChannels('tab.published')}
-                    </FilterChip>
-                  </div>
+          {/* Filters - only show on channels page */}
+          {isChannelsPage && (
+            <div className="p-4 border-b border-gray-200">
+              {/* Channel Type */}
+              <div className="mb-4">
+                <h3 className="text-sm font-bold text-gray-900 mb-2">
+                  {t('channel_type')}
+                </h3>
+                <div className="space-y-2">
+                  <label className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      checked={currentOrigin === OriginType.OriginalOnly}
+                      onChange={() => updateFilter('origin', 'original_only')}
+                      className="w-4 h-4 text-blue-600"
+                    />
+                    <span className="text-sm text-gray-900">{tCommon('type.full_vtuber')}</span>
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      checked={currentOrigin === OriginType.All}
+                      onChange={() => updateFilter('origin', 'all')}
+                      className="w-4 h-4 text-blue-600"
+                    />
+                    <span className="text-sm text-gray-900">{tCommon('type.all_vtuber')}</span>
+                  </label>
                 </div>
-
-                <div>
-                  <h3 className="text-sm font-medium text-gray-700 mb-2">
-                    {t('channel_type')}
-                  </h3>
-                  <div className="flex gap-2">
-                    <FilterChip
-                      active={currentOrigin === OriginType.OriginalOnly}
-                      onClick={() => updateFilter('origin', 'original_only')}
-                    >
-                      {tCommon('type.full_vtuber')}
-                    </FilterChip>
-                    <FilterChip
-                      active={currentOrigin === OriginType.All}
-                      onClick={() => updateFilter('origin', 'all')}
-                    >
-                      {tCommon('type.all_vtuber')}
-                    </FilterChip>
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="text-sm font-medium text-gray-700 mb-2">
-                    {t('activity_type')}
-                  </h3>
-                  <div className="flex gap-2">
-                    <FilterChip
-                      active={currentActivity === ActivityType.ActiveOnly}
-                      onClick={() => updateFilter('activity', 'active_only')}
-                    >
-                      {t('active_only')}
-                    </FilterChip>
-                    <FilterChip
-                      active={currentActivity === ActivityType.All}
-                      onClick={() => updateFilter('activity', 'all')}
-                    >
-                      {t('active_and_inactive')}
-                    </FilterChip>
-                  </div>
-                </div>
+                <p className="text-xs text-gray-600 mt-2">{t('channel_type_description')}</p>
               </div>
-            )}
 
-            {/* Language Selection */}
-            <div className="mb-6 pt-4 border-t border-gray-200">
-              <h3 className="text-sm font-medium text-gray-700 mb-3">
-                {t('language')}
-              </h3>
-              <div className="flex gap-2">
-                {Object.entries(localeNames).map(([code, name]) => (
-                  <button
-                    key={code}
-                    onClick={() => handleLocaleChange(code)}
-                    className={`px-3 py-1.5 text-sm rounded-full border transition-colors ${
-                      locale === code
-                        ? 'bg-blue-600 text-white border-blue-600'
-                        : 'bg-white text-gray-700 border-gray-300 hover:border-gray-400'
-                    }`}
-                  >
-                    {name}
-                  </button>
-                ))}
+              {/* Activity Type */}
+              <div>
+                <h3 className="text-sm font-bold text-gray-900 mb-2">
+                  {t('activity_type')}
+                </h3>
+                <div className="space-y-2">
+                  <label className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      checked={currentActivity === ActivityType.ActiveOnly}
+                      onChange={() => updateFilter('activity', 'active_only')}
+                      className="w-4 h-4 text-blue-600"
+                    />
+                    <span className="text-sm text-gray-900">{t('active_only')}</span>
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      checked={currentActivity === ActivityType.All}
+                      onChange={() => updateFilter('activity', 'all')}
+                      className="w-4 h-4 text-blue-600"
+                    />
+                    <span className="text-sm text-gray-900">{t('active_and_inactive')}</span>
+                  </label>
+                </div>
+                <p className="text-xs text-gray-600 mt-2">{t('activity_explanation')}</p>
               </div>
             </div>
+          )}
 
-            {/* Add Channel Link */}
-            <div className="pt-4 border-t border-gray-200">
-              <a
+          {/* Language Selection */}
+          <div className="p-4 border-b border-gray-200">
+            <h3 className="text-sm font-bold text-gray-900 mb-3">
+              {t('language')}
+            </h3>
+            <div className="flex gap-2">
+              {Object.entries(localeNames).map(([code, name]) => (
+                <button
+                  key={code}
+                  onClick={() => handleLocaleChange(code)}
+                  className={`px-3 py-1.5 text-sm rounded-full border transition-colors ${
+                    locale === code
+                      ? 'bg-blue-600 text-white border-blue-600'
+                      : 'bg-white text-gray-700 border-gray-300 hover:border-gray-400'
+                  }`}
+                >
+                  {name}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Menu */}
+          <div className="p-4 border-b border-gray-200">
+            <h3 className="text-sm font-bold text-gray-900 mb-3">
+              {t('menu_title')}
+            </h3>
+            <div className="space-y-1">
+              <Link
                 href="/register"
-                className="flex items-center gap-3 p-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
                 onClick={onClose}
+                className="flex items-center justify-between p-2 hover:bg-gray-100 rounded"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <span className="text-sm text-gray-900">{t('add_channel')}</span>
+                <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                 </svg>
-                {t('add_channel')}
-              </a>
+              </Link>
+              <ExternalLink href={externalLinks.reportProblems} label={t('report_problems')} />
+              <ExternalLink href={externalLinks.deletionCriteria} label={t('deletion_criteria')} />
+              <ExternalLink href={externalLinks.disclaimer} label={t('disclaimer')} />
+            </div>
+          </div>
+
+          {/* Discover Thai VTubers */}
+          <div className="p-4 border-b border-gray-200">
+            <h3 className="text-sm font-bold text-gray-900 mb-3">
+              {t('discover_vtuber')}
+            </h3>
+            <div className="space-y-1">
+              <ExternalLink href={externalLinks.vtuberthaiinfo} label="VTuberThaiInfo" highlight />
+              <ExternalLink href={externalLinks.twitterVtuberTH} label="X #VTuberTH" />
+              <ExternalLink href={externalLinks.vtuberAsia} label="VTuber Indonesia / Malaysia / Philippines" />
+            </div>
+          </div>
+
+          {/* For Developers */}
+          <div className="p-4">
+            <h3 className="text-sm font-bold text-gray-900 mb-3">
+              {t('for_developers')}
+            </h3>
+            <div className="space-y-1">
+              <ExternalLink href={externalLinks.apiDocument} label={t('api_document')} icon="code" />
+              <ExternalLink href={externalLinks.clientRepo} label={t('client_repo')} icon="code" />
+              <ExternalLink href={externalLinks.releaseNotes} label={t('release_notes')} />
+              <ExternalLink href={externalLinks.developerBlog} label={t('developer_blog')} />
             </div>
           </div>
         </div>
@@ -211,25 +253,34 @@ export function DrawerMenu({ isOpen, onClose }: DrawerMenuProps) {
   );
 }
 
-function FilterChip({
-  active,
-  onClick,
-  children,
-}: {
-  active: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
+function ExternalLink({ 
+  href, 
+  label, 
+  highlight = false,
+  icon = 'external'
+}: { 
+  href: string; 
+  label: string; 
+  highlight?: boolean;
+  icon?: 'external' | 'code';
 }) {
   return (
-    <button
-      onClick={onClick}
-      className={`px-3 py-1.5 text-sm font-medium rounded-full border transition-colors ${
-        active
-          ? 'bg-blue-600 text-white border-blue-600'
-          : 'bg-white text-gray-700 border-gray-300 hover:border-gray-400'
-      }`}
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center justify-between p-2 hover:bg-gray-100 rounded"
     >
-      {children}
-    </button>
+      <span className={`text-sm ${highlight ? 'text-blue-600 font-bold' : 'text-gray-900'}`}>{label}</span>
+      {icon === 'external' ? (
+        <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+      ) : (
+        <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        </svg>
+      )}
+    </a>
   );
 }
