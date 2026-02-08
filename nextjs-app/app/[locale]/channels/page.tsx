@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { getChannelList } from '@/lib/api/channels';
 import { ChannelList } from '@/components/channels/ChannelList';
+import { FilterTabs } from '@/components/channels/FilterTabs';
 import { Pagination } from '@/components/ui/Pagination';
 import { OriginType, ActivityType, SortType } from '@/lib/types';
 import { applyFilters } from '@/lib/utils/filter';
@@ -63,13 +64,15 @@ export default async function ChannelsPage(props: PageProps) {
           </p>
         </header>
 
-        {/* Filter and Sort Tabs (TODO: Will be implemented as client component) */}
+        {/* Filter and Sort Tabs */}
         <div className="mb-6 bg-white p-4 shadow-sm rounded-lg">
-          <div className="flex gap-4 flex-wrap">
-            <div className="text-sm text-gray-600">
-              Filters: Origin ({originType}), Activity ({activityType}), Sort ({sortType})
-            </div>
-          </div>
+          <Suspense fallback={<FilterTabsSkeleton />}>
+            <FilterTabs
+              currentOrigin={originType}
+              currentActivity={activityType}
+              currentSort={sortType}
+            />
+          </Suspense>
         </div>
 
         {/* Channel List */}
@@ -86,6 +89,22 @@ export default async function ChannelsPage(props: PageProps) {
           totalPages={totalPages}
           baseUrl="/channels"
         />
+      </div>
+    </div>
+  );
+}
+
+function FilterTabsSkeleton() {
+  return (
+    <div className="space-y-4 animate-pulse">
+      <div className="h-10 bg-gray-200 rounded-lg" />
+      <div className="flex gap-2">
+        <div className="h-8 w-24 bg-gray-200 rounded-full" />
+        <div className="h-8 w-24 bg-gray-200 rounded-full" />
+      </div>
+      <div className="flex gap-2">
+        <div className="h-8 w-32 bg-gray-200 rounded-full" />
+        <div className="h-8 w-32 bg-gray-200 rounded-full" />
       </div>
     </div>
   );
