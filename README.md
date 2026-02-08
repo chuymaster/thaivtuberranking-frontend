@@ -1,6 +1,18 @@
+> [!IMPORTANT]
+> ## 📦 This repository is archived
+> This Flutter Web application has been replaced by a new Next.js version.
+> 
+> - **New site:** https://vtuber.chuysan.com
+> - **Archive (this Flutter version):** https://vtuber-chuysan.netlify.app
+> - **📸 [Feature Screenshots & Documentation](archive/README.md)**
+> 
+> This repository is kept for reference only and will no longer receive updates.
+
+---
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/3f342da2-0855-4157-8aa3-985a78c1bf64/deploy-status)](https://app.netlify.com/sites/vtuber-chuysan/deploys)
 
-# thaivtuberranking-frontend
+# thaivtuberranking-frontend (Archived)
 
 A Flutter Web client application for [Thai VTubers Directory](https://vtuber.chuysan.com/) website.
 
