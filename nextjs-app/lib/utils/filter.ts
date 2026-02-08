@@ -32,12 +32,36 @@ export function filterByActivity(channels: ChannelInfo[], activityType: Activity
   return channels.filter(channel => isChannelActive(channel));
 }
 
+export function searchChannels(channels: ChannelInfo[], query: string): ChannelInfo[] {
+  if (!query || query.trim() === '') {
+    return channels;
+  }
+
+  const normalizedQuery = query.toLowerCase().trim();
+
+  return channels.filter(channel => {
+    const title = (channel.title || '').toLowerCase();
+    const description = (channel.description || '').toLowerCase();
+    const channelId = (channel.channel_id || '').toLowerCase();
+
+    return (
+      title.includes(normalizedQuery) ||
+      description.includes(normalizedQuery) ||
+      channelId.includes(normalizedQuery)
+    );
+  });
+}
+
 export function applyFilters(
   channels: ChannelInfo[],
   originType: OriginType,
-  activityType: ActivityType
+  activityType: ActivityType,
+  searchQuery?: string
 ): ChannelInfo[] {
   let filtered = filterByOrigin(channels, originType);
   filtered = filterByActivity(filtered, activityType);
+  if (searchQuery) {
+    filtered = searchChannels(filtered, searchQuery);
+  }
   return filtered;
 }

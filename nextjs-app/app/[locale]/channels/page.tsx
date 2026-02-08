@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import { getChannelList } from '@/lib/api/channels';
 import { ChannelList } from '@/components/channels/ChannelList';
 import { FilterTabs } from '@/components/channels/FilterTabs';
+import { SearchInput } from '@/components/channels/SearchInput';
 import { Pagination } from '@/components/ui/Pagination';
 import { OriginType, ActivityType, SortType } from '@/lib/types';
 import { applyFilters } from '@/lib/utils/filter';
@@ -15,6 +16,7 @@ interface PageProps {
     origin?: string;
     activity?: string;
     sort?: string;
+    q?: string;
   }>;
 }
 
@@ -39,12 +41,13 @@ export default async function ChannelsPage(props: PageProps) {
     searchParams.activity === 'all' ? ActivityType.All : ActivityType.ActiveOnly;
   const sortType =
     (searchParams.sort as SortType) || SortType.Subscribers;
+  const searchQuery = searchParams.q || '';
 
   // Fetch all channels (with ISR caching)
   const allChannels = await getChannelList();
 
-  // Apply filters and sorting
-  const filteredChannels = applyFilters(allChannels, originType, activityType);
+  // Apply filters, search, and sorting
+  const filteredChannels = applyFilters(allChannels, originType, activityType, searchQuery);
   const sortedChannels = sortChannels(filteredChannels, sortType);
 
   // Pagination
@@ -63,6 +66,13 @@ export default async function ChannelsPage(props: PageProps) {
             Total: {sortedChannels.length} channels
           </p>
         </header>
+
+        {/* Search */}
+        <div className="mb-4">
+          <Suspense fallback={<div className="h-10 bg-gray-200 rounded-lg animate-pulse" />}>
+            <SearchInput />
+          </Suspense>
+        </div>
 
         {/* Filter and Sort Tabs */}
         <div className="mb-6 bg-white p-4 shadow-sm rounded-lg">
