@@ -1,12 +1,10 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-import { useLocale, useTranslations } from 'next-intl';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { Link, usePathname } from '@/lib/navigation';
 
 export function BottomNav() {
   const pathname = usePathname();
-  const locale = useLocale();
   const t = useTranslations('home.tab');
 
   const isChannelsActive = pathname.includes('/channels');
@@ -16,7 +14,7 @@ export function BottomNav() {
     <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200 md:hidden">
       <div className="flex h-16">
         <Link
-          href={`/${locale}/channels`}
+          href="/channels"
           className={`flex-1 flex flex-col items-center justify-center gap-1 transition-colors ${
             isChannelsActive
               ? 'text-blue-600'
@@ -35,7 +33,7 @@ export function BottomNav() {
         </Link>
 
         <Link
-          href={`/${locale}/videos`}
+          href="/videos"
           className={`flex-1 flex flex-col items-center justify-center gap-1 transition-colors ${
             isVideosActive
               ? 'text-blue-600'

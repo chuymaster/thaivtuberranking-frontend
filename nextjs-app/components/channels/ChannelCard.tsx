@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { ChannelInfo } from '@/lib/types';
 import { formatNumber, formatDate } from '@/lib/utils/format';
 import { useTranslations } from 'next-intl';

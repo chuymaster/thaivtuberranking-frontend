@@ -40,6 +40,7 @@
   },
   "channels": {
     "title": "チャンネル",
+    "channels_count": "チャンネル",
     "tab": {
       "subscribers": "フォロワー数",
       "views": "視聴回数",

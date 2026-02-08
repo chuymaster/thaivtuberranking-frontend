@@ -1,25 +1,10 @@
 import type { Metadata } from "next";
-import { Sarabun, Kanit } from "next/font/google";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales } from '@/i18n';
 import { Header, BottomNav } from '@/components/layout';
-import "../globals.css";
-
-const sarabun = Sarabun({
-  variable: "--font-sarabun",
-  subsets: ["latin", "thai"],
-  weight: ["300", "400", "500", "600", "700"],
-  display: "swap",
-});
-
-const kanit = Kanit({
-  variable: "--font-kanit",
-  subsets: ["latin", "thai"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
+import { LocaleHtmlLang } from '@/components/LocaleHtmlLang';
 
 export const metadata: Metadata = {
   title: "Thai VTuber Ranking - ลิสต์รายชื่อ VTuber ไทย",
@@ -61,18 +46,13 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body
-        className={`${sarabun.variable} ${kanit.variable} antialiased font-sans`}
-      >
-        <NextIntlClientProvider messages={messages} locale={locale}>
-          <Header />
-          <main className="pb-16 md:pb-0">
-            {children}
-          </main>
-          <BottomNav />
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider messages={messages} locale={locale}>
+      <LocaleHtmlLang locale={locale} />
+      <Header />
+      <main className="pb-16 md:pb-0">
+        {children}
+      </main>
+      <BottomNav />
+    </NextIntlClientProvider>
   );
 }

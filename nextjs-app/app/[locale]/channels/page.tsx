@@ -1,8 +1,6 @@
 import { Suspense } from 'react';
 import { getChannelList } from '@/lib/api/channels';
 import { ChannelList } from '@/components/channels/ChannelList';
-import { FilterTabs } from '@/components/channels/FilterTabs';
-import { SearchInput } from '@/components/channels/SearchInput';
 import { Pagination } from '@/components/ui/Pagination';
 import { OriginType, ActivityType, SortType } from '@/lib/types';
 import { applyFilters } from '@/lib/utils/filter';
@@ -57,32 +55,10 @@ export default async function ChannelsPage(props: PageProps) {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-4xl mx-auto py-8 px-4">
-        <header className="mb-8">
-          <h1 className="text-3xl font-bold font-heading text-gray-900 mb-2">
-            {t('title')}
-          </h1>
-          <p className="text-gray-600">
-            Total: {sortedChannels.length} channels
-          </p>
-        </header>
-
-        {/* Search */}
-        <div className="mb-4">
-          <Suspense fallback={<div className="h-10 bg-gray-200 rounded-lg animate-pulse" />}>
-            <SearchInput />
-          </Suspense>
-        </div>
-
-        {/* Filter and Sort Tabs */}
-        <div className="mb-6 bg-white p-4 shadow-sm rounded-lg">
-          <Suspense fallback={<FilterTabsSkeleton />}>
-            <FilterTabs
-              currentOrigin={originType}
-              currentActivity={activityType}
-              currentSort={sortType}
-            />
-          </Suspense>
+      <div className="max-w-4xl mx-auto py-6 px-4">
+        {/* Channel Count */}
+        <div className="mb-4 text-sm text-gray-600">
+          {sortedChannels.length} {t('channels_count')}
         </div>
 
         {/* Channel List */}
@@ -104,36 +80,19 @@ export default async function ChannelsPage(props: PageProps) {
   );
 }
 
-function FilterTabsSkeleton() {
-  return (
-    <div className="space-y-4 animate-pulse">
-      <div className="h-10 bg-gray-200 rounded-lg" />
-      <div className="flex gap-2">
-        <div className="h-8 w-24 bg-gray-200 rounded-full" />
-        <div className="h-8 w-24 bg-gray-200 rounded-full" />
-      </div>
-      <div className="flex gap-2">
-        <div className="h-8 w-32 bg-gray-200 rounded-full" />
-        <div className="h-8 w-32 bg-gray-200 rounded-full" />
-      </div>
-    </div>
-  );
-}
-
 function ChannelListSkeleton() {
   return (
-    <div className="bg-white shadow-sm">
+    <div className="bg-white shadow-sm rounded-lg">
       {Array.from({ length: 10 }).map((_, i) => (
         <div
           key={i}
           className="flex items-center gap-4 p-4 border-b border-gray-200 animate-pulse"
         >
           <div className="flex-shrink-0 w-12 h-6 bg-gray-200 rounded" />
-          <div className="flex-shrink-0 w-22 h-22 bg-gray-200 rounded-full" />
+          <div className="flex-shrink-0 w-12 h-12 bg-gray-200 rounded-full" />
           <div className="flex-1 space-y-2">
-            <div className="h-6 bg-gray-200 rounded w-3/4" />
+            <div className="h-5 bg-gray-200 rounded w-3/4" />
             <div className="h-4 bg-gray-200 rounded w-1/2" />
-            <div className="h-4 bg-gray-200 rounded w-2/3" />
           </div>
         </div>
       ))}

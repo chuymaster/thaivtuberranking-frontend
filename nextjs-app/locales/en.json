@@ -40,6 +40,7 @@
   },
   "channels": {
     "title": "Channels",
+    "channels_count": "channels",
     "tab": {
       "subscribers": "Subscribers",
       "views": "Views",
