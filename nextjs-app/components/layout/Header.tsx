@@ -3,6 +3,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
+import Link from 'next/link';
 import { DrawerMenu } from './DrawerMenu';
 
 export function Header() {
@@ -93,9 +94,9 @@ export function Header() {
               </div>
             </div>
           ) : (
-            <h1 className="text-lg font-semibold text-gray-900 font-heading">
+            <Link href="/channels" className="text-lg font-semibold text-gray-900 font-heading hover:text-gray-700">
               {t('site_title')}
-            </h1>
+            </Link>
           )}
 
           {/* Search Button */}

@@ -1,7 +1,5 @@
-import { createNavigation } from 'next-intl/navigation';
-import { locales } from '@/i18n';
+// Re-export from next for non-URL-based locale routing
+import NextLink from 'next/link';
+export { redirect, usePathname, useRouter } from 'next/navigation';
 
-export const { Link, redirect, usePathname, useRouter } = createNavigation({
-  locales,
-  defaultLocale: 'th',
-});
+export const Link = NextLink;

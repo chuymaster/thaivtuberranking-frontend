@@ -7,7 +7,7 @@ import { formatNumber, formatDate } from '@/lib/utils/format';
 import { getTranslations } from 'next-intl/server';
 
 interface PageProps {
-  params: Promise<{ locale: string; channelId: string }>;
+  params: Promise<{ channelId: string }>;
 }
 
 export async function generateMetadata({ params }: PageProps) {
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export default async function ChannelDetailPage({ params }: PageProps) {
-  const { channelId, locale } = await params;
+  const { channelId } = await params;
   const t = await getTranslations('channel');
   const tChannels = await getTranslations('channels');
 
@@ -54,7 +54,7 @@ export default async function ChannelDetailPage({ params }: PageProps) {
       <div className="max-w-4xl mx-auto py-8 px-4">
         {/* Back Link */}
         <a
-          href={`/${locale}/channels`}
+          href="/channels"
           className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6"
         >
           <svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

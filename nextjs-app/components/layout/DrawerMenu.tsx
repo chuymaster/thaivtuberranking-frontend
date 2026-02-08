@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { OriginType, ActivityType, SortType } from '@/lib/types';
+import { setLocale } from '@/lib/locale';
 
 interface DrawerMenuProps {
   isOpen: boolean;
@@ -31,7 +32,7 @@ export function DrawerMenu({ isOpen, onClose }: DrawerMenuProps) {
   const currentActivity = (searchParams.get('activity') as ActivityType) || ActivityType.ActiveOnly;
 
   // Check if we're on a page that shows filters
-  const isChannelsPage = pathname.endsWith('/channels') || pathname.match(/\/[a-z]{2}$/);
+  const isChannelsPage = pathname === '/channels' || pathname === '/';
 
   // Close drawer on escape key
   useEffect(() => {
@@ -51,8 +52,7 @@ export function DrawerMenu({ isOpen, onClose }: DrawerMenuProps) {
   }, [isOpen, onClose]);
 
   const handleLocaleChange = (newLocale: string) => {
-    const newPathname = pathname.replace(`/${locale}`, `/${newLocale}`);
-    router.push(newPathname);
+    setLocale(newLocale as 'en' | 'th' | 'ja');
     onClose();
   };
 
@@ -194,7 +194,7 @@ export function DrawerMenu({ isOpen, onClose }: DrawerMenuProps) {
             {/* Add Channel Link */}
             <div className="pt-4 border-t border-gray-200">
               <a
-                href={`/${locale}/register`}
+                href="/register"
                 className="flex items-center gap-3 p-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
                 onClick={onClose}
               >
