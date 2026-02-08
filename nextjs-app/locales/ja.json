@@ -100,6 +100,22 @@
       "title": "チャンネル掲載申請が完了しました。",
       "description": "ご申請いただき、ありがとうございます。\\n確認後、問題なければチャンネル一覧に掲載いたします。",
       "button_home": "ホームに戻る"
+    },
+    "info": {
+      "id_title": "チャンネルIDとは？",
+      "id_explanation": "チャンネルIDは、チャンネルURLに続くコードです。例：https://www.youtube.com/channel/",
+      "id_example": "UCqhhWjpw23dWhJ5rRwCCrMA",
+      "id_link": "チャンネルIDはこちらのサイトから調べることができます。",
+      "type_title": "掲載可能なチャンネル",
+      "full_vtuber_explanation": "チャンネル開設時からVTuberモデル（Live2Dまたは3D）を使って動画を投稿し、主にVTuberとして活動しているチャンネル",
+      "all_vtuber_explanation": "一定期間の活動後、VTuberに転換したチャンネル。あるいはVTuberモデルを使って動画を投稿しているが、メインコンテンツではないチャンネル。「全てのVTuber」のカテゴリで表示されます。",
+      "type_note": "いずれもタイ人によって制作され、タイ人を主な視聴者としているチャンネル、かつコンテンツがアップロードされている場合に限り、掲載が可能になります。"
+    },
+    "error": {
+      "id_required": "チャンネルIDを入力してください。",
+      "not_begin_with_uc": "チャンネルIDはUCで始まる必要があります。",
+      "length_mismatched": "チャンネルIDは24文字である必要があります。",
+      "already_existed": "このチャンネルは掲載済です。"
     }
   },
   "error": {

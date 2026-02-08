@@ -53,7 +53,7 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider messages={messages} locale={locale}>
           <Header />
-          <main className="pb-16 md:pb-0">
+          <main className="pb-16">
             {children}
           </main>
           <BottomNav />

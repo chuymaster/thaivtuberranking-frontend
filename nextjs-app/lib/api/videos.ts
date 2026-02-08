@@ -8,13 +8,13 @@ export interface VideoRankingResponse {
 
 export async function getVideoRankings(type: VideoRankingType): Promise<VideoRanking[]> {
   const typeMap = {
-    [VideoRankingType.OneDay]: '1day',
-    [VideoRankingType.ThreeDay]: '3day',
-    [VideoRankingType.SevenDay]: '7day',
+    [VideoRankingType.OneDay]: 'one_day_ranking',
+    [VideoRankingType.ThreeDay]: 'three_days_ranking',
+    [VideoRankingType.SevenDay]: 'seven_days_ranking',
   };
 
   const res = await fetch(
-    `${BASE_URL}/v2/video_ranking/${typeMap[type]}.json`,
+    `${BASE_URL}/v2/channel_data/${typeMap[type]}.json`,
     {
       next: {
         revalidate: 3600, // 1 hour ISR

@@ -94,7 +94,7 @@ export function Header() {
               </div>
             </div>
           ) : (
-            <Link href="/channels" className="text-lg font-semibold text-gray-900 font-heading hover:text-gray-700">
+            <Link href="/" className="text-lg font-semibold text-gray-900 font-heading hover:text-gray-700">
               {t('site_title')}
             </Link>
           )}

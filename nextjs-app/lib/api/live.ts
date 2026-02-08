@@ -7,20 +7,34 @@ export interface LiveVideoResponse {
 }
 
 export async function getLiveVideos(): Promise<LiveVideo[]> {
-  const res = await fetch(
-    `${BASE_URL}/v2/live/live.json`,
-    {
-      next: {
-        revalidate: 300, // 5 minutes ISR for fresher live data
-        tags: ['live-videos']
+  const [liveRes, upcomingRes] = await Promise.all([
+    fetch(
+      `${BASE_URL}/v2/channel_data/live_videos.json`,
+      {
+        next: {
+          revalidate: 300, // 5 minutes ISR for fresher live data
+          tags: ['live-videos']
+        }
       }
-    }
-  );
+    ),
+    fetch(
+      `${BASE_URL}/v2/channel_data/upcoming_videos.json`,
+      {
+        next: {
+          revalidate: 300,
+          tags: ['upcoming-videos']
+        }
+      }
+    )
+  ]);
 
-  if (!res.ok) {
-    throw new Error(`Failed to fetch live videos: ${res.status}`);
-  }
+  const liveVideos: LiveVideo[] = liveRes.ok 
+    ? (await liveRes.json() as LiveVideoResponse).result 
+    : [];
+  
+  const upcomingVideos: LiveVideo[] = upcomingRes.ok 
+    ? (await upcomingRes.json() as LiveVideoResponse).result 
+    : [];
 
-  const data: LiveVideoResponse = await res.json();
-  return data.result;
+  return [...liveVideos, ...upcomingVideos];
 }

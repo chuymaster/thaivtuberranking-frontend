@@ -100,6 +100,22 @@
       "title": "Channel submitted",
       "description": "Thank you for submitting the channel. We will add it to the channel database after verification.",
       "button_home": "Back to home"
+    },
+    "info": {
+      "id_title": "What is a Channel ID?",
+      "id_explanation": "Channel ID is the code following the URL of the channel, such as https://www.youtube.com/channel/",
+      "id_example": "UCqhhWjpw23dWhJ5rRwCCrMA",
+      "id_link": "You can check the channel ID from this site.",
+      "type_title": "Types of channels allowed:",
+      "full_vtuber_explanation": "Channels primarily featuring VTuber models (Live2D or 3D) from the first content and having a VTuber model as the main character of the content",
+      "all_vtuber_explanation": "Channels that primarily feature VTuber models after having other contents for a period of time. These channels will only appear in the 'All VTubers' category.",
+      "type_note": "In both cases, the channels must be created by Thais, primarily targeting Thai audiences, and have uploaded some contents."
+    },
+    "error": {
+      "id_required": "Enter channel ID",
+      "not_begin_with_uc": "Channel ID must start with UC",
+      "length_mismatched": "Channel ID must be 24 characters long",
+      "already_existed": "This channel is already in the database"
     }
   },
   "error": {

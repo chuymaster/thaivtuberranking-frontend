@@ -32,7 +32,7 @@ export function DrawerMenu({ isOpen, onClose }: DrawerMenuProps) {
   const currentActivity = (searchParams.get('activity') as ActivityType) || ActivityType.ActiveOnly;
 
   // Check if we're on a page that shows filters
-  const isChannelsPage = pathname === '/channels' || pathname === '/';
+  const isChannelsPage = pathname === '/';
 
   // Close drawer on escape key
   useEffect(() => {

@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import { Link } from '@/lib/navigation';
 import { ChannelInfo } from '@/lib/types';
+import { SafeImage } from '@/components/ui/SafeImage';
 import { formatNumber, formatDate } from '@/lib/utils/format';
 import { useTranslations } from 'next-intl';
 
@@ -20,12 +20,12 @@ export function ChannelCard({ channel, rank }: ChannelCardProps) {
         </div>
 
         <div className="flex-shrink-0">
-          <Image
+          <SafeImage
             src={channel.thumbnail_icon_url}
             alt={channel.title}
             width={88}
             height={88}
-            className="rounded-full"
+            className="rounded-full bg-gray-200"
           />
         </div>
 
