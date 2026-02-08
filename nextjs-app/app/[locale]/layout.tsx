@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales } from '@/i18n';
+import { Header, BottomNav } from '@/components/layout';
 import "../globals.css";
 
 const sarabun = Sarabun({
@@ -65,7 +66,11 @@ export default async function LocaleLayout({
         className={`${sarabun.variable} ${kanit.variable} antialiased font-sans`}
       >
         <NextIntlClientProvider messages={messages} locale={locale}>
-          {children}
+          <Header />
+          <main className="pb-16 md:pb-0">
+            {children}
+          </main>
+          <BottomNav />
         </NextIntlClientProvider>
       </body>
     </html>
