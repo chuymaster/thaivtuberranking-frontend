@@ -24,3 +24,23 @@ build-mock: # Generate http mocks
 
 upgrade-major: # upgrade major versions of pub
 	fvm flutter pub upgrade --major-versions
+
+# ==================== Next.js ====================
+
+nextjs-install: # Install Next.js dependencies
+	cd nextjs-app && npm install
+
+nextjs-dev: # Run Next.js in development mode
+	cd nextjs-app && npm run dev
+
+nextjs-dev-qa: # Run Next.js in QA mode
+	cd nextjs-app && npm run dev:qa
+
+nextjs-build-qa: # Build Next.js for QA
+	cd nextjs-app && npm run build:qa
+
+nextjs-build-prod: # Build Next.js for production
+	cd nextjs-app && npm run build:prod
+
+nextjs-start: # Start Next.js production server
+	cd nextjs-app && npm run start
